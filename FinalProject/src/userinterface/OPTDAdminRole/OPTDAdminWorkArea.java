@@ -32,6 +32,7 @@ public class OPTDAdminWorkArea extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -43,13 +44,16 @@ public class OPTDAdminWorkArea extends javax.swing.JPanel {
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 330, -1));
 
         jButton2.setText("Manage Organ Procurement and Transplantation >>");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
 
-        jButton3.setText("Manage Employees>>");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 320, 330, -1));
+        jButton3.setText("Manage Organizations>>");
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 330, -1));
 
         jButton4.setText("Manage Users>>");
-        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 390, 330, -1));
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 330, -1));
+
+        jButton5.setText("Manage Employees>>");
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 330, -1));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -58,6 +62,7 @@ public class OPTDAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
