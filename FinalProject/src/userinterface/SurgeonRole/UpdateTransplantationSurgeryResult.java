@@ -9,12 +9,12 @@ package userinterface.SurgeonRole;
  *
  * @author Neha
  */
-public class UpdateSurgeryResult extends javax.swing.JPanel {
+public class UpdateTransplantationSurgeryResult extends javax.swing.JPanel {
 
     /**
-     * Creates new form UpdateSurgeryResult
+     * Creates new form UpdateTransplantationSurgeryResult
      */
-    public UpdateSurgeryResult() {
+    public UpdateTransplantationSurgeryResult() {
         initComponents();
     }
 
@@ -27,65 +27,65 @@ public class UpdateSurgeryResult extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        jTextField8 = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        jTextField10 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("Procurement Surgery Details");
-
-        jLabel2.setText("Donor ID :");
-
-        jLabel3.setText("Donor Name :");
-
-        jTextField8.setEnabled(false);
-
-        jTextField9.setEnabled(false);
-
-        jLabel4.setText("Location:");
-
-        jTextField10.setEnabled(false);
-
-        jLabel5.setText("Hospital Name:");
-
-        jLabel6.setText("Surgery Date:");
 
         jLabel7.setText("Surgery Time:");
 
         jTextField5.setEnabled(false);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setText("Update Transplantation Surgery Result");
+
         jTextField6.setEnabled(false);
+
+        jLabel2.setText("Patient ID :");
 
         jTextField7.setEnabled(false);
 
+        jLabel3.setText("Patient Name :");
+
         jLabel8.setText("Surgery Result:");
+
+        jTextField8.setEnabled(false);
 
         jLabel9.setText("Comments:");
 
+        jTextField9.setEnabled(false);
+
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        jLabel4.setText("Location:");
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        jTextField10.setEnabled(false);
+
+        jLabel5.setText("Hospital Name:");
+
         jButton1.setText("Update Status");
+
+        jLabel6.setText("Surgery Date:");
 
         jButton2.setText("<<Back");
 
@@ -102,10 +102,8 @@ public class UpdateSurgeryResult extends javax.swing.JPanel {
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(274, 274, 274)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel3)
@@ -129,14 +127,14 @@ public class UpdateSurgeryResult extends javax.swing.JPanel {
                                             .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(60, 60, 60)))))))
-                .addGap(0, 286, Short.MAX_VALUE))
+                .addGap(0, 381, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
+                .addGap(90, 90, 90)
                 .addComponent(jLabel1)
-                .addGap(62, 62, 62)
+                .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -172,7 +170,7 @@ public class UpdateSurgeryResult extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addContainerGap(159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
