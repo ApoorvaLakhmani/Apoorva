@@ -9,12 +9,12 @@ package userinterface.SurgeonRole;
  *
  * @author Neha
  */
-public class ProcurementSurgeryDetails extends javax.swing.JPanel {
+public class SurgeryDetails extends javax.swing.JPanel {
 
     /**
      * Creates new form SurgeryDetails
      */
-    public ProcurementSurgeryDetails() {
+    public SurgeryDetails() {
         initComponents();
     }
 
