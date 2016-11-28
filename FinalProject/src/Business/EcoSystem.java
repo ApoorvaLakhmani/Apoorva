@@ -5,15 +5,19 @@
  */
 package Business;
 
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.Role.Role;
 import java.util.ArrayList;
 
 /**
  *
  * @author Neha
  */
-public class Ecosystem {
+public class EcoSystem extends Organization {
      private static EcoSystem business;
     private ArrayList<Network> networkList; 
+    
     private EcoSystem(){
         super(null);
         networkList=new ArrayList<Network>();
@@ -29,5 +33,10 @@ public class Ecosystem {
         }
         return business;
         
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+       return null;
     }
 }
