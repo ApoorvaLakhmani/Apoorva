@@ -9,6 +9,6 @@ package Business.WorkQueue;
  *
  * @author Neha
  */
-public class TransplantRequirementWorkRequest extends WorkRequest{
+public class OrganTransplantRequirementWorkRequest extends WorkRequest{
     
 }
