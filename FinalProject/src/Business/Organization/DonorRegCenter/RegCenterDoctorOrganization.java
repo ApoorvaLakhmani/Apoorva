@@ -5,10 +5,26 @@
  */
 package Business.Organization.DonorRegCenter;
 
+import Business.Organization.Organization;
+import Business.Role.DoctorRole;
+import Business.Role.Role;
+import java.util.ArrayList;
+
 /**
  *
  * @author ApoorvaLakhmani
  */
-public class RegCenterDoctorOrganization {
+public class RegCenterDoctorOrganization extends Organization {
+
+    public RegCenterDoctorOrganization() {
+        super(Type.Doctor.getValue());
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        ArrayList<Role> roles = new ArrayList();
+        roles.add(new DoctorRole());
+        return roles;
+    }
     
 }

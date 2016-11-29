@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Business.Organization.Hospital;
+package Business.Organization.OPTOrganization;
 
 import Business.Organization.Organization;
-import Business.Role.HospitalAdminRole;
+import Business.Role.OPTEAdminRole;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -14,16 +14,16 @@ import java.util.ArrayList;
  *
  * @author ApoorvaLakhmani
  */
-public class HospitalAdminOrganization extends Organization{
+public class OPTEAdminOrganization extends Organization{
 
-    public HospitalAdminOrganization() {
-        super(Type.HospitalAdmin.getValue());
+    public OPTEAdminOrganization() {
+        super(Type.OPTEAdmin.getValue());
     }
 
     @Override
     public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roles = new ArrayList();
-        roles.add(new HospitalAdminRole());
+       ArrayList<Role> roles = new ArrayList();
+        roles.add(new OPTEAdminRole());
         return roles;
     }
     
