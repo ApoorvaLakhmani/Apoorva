@@ -39,4 +39,10 @@ public class EcoSystem extends Organization {
     public ArrayList<Role> getSupportedRole() {
        return null;
     }
+    
+    public Network createAndNetwork(){
+        Network network = new Network();
+        networkList.add(network);
+        return network;
+    }
 }

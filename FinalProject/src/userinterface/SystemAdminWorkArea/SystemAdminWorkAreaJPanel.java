@@ -9,14 +9,16 @@ package userinterface.SystemAdminWorkArea;
 //import Business.Enterprise.Enterprise;
 //import Business.Network.Network;
 //import Business.Organization.Organization;
-import UserInterface.SystemAdminWorkArea.ManageNetworkJPanel;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
 
 /**
  *
@@ -24,62 +26,80 @@ import javax.swing.tree.DefaultTreeModel;
  */
 public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     
-//    private JPanel userProcessContainer;
-//    private EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     
 
     /**
      * Creates new form SystemAdminWorkAreaJPanel
      */
 
-    public SystemAdminWorkAreaJPanel(){
-            //JPanel userProcessContainer, EcoSystem system) {
+    public SystemAdminWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system){
          initComponents();
-//         this.userProcessContainer = userProcessContainer;
-//         this.system = system;
+         this.userProcessContainer = userProcessContainer;
+         this.system = system;
          populateTree();
     }
     
     public void populateTree(){
-//        DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
-//        ArrayList<Network> networkList = system.getNetworkList();
-//        ArrayList<Enterprise> enterpriseList;
-//        ArrayList<Organization> organizationList;
-//        
-//        Network network;
-//        Enterprise enterprise;
-//        Organization organization;
-//        
-//        DefaultMutableTreeNode rootNetwork = new DefaultMutableTreeNode("Networks");
-//        DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
-//        root.removeAllChildren();
-//        root.insert(rootNetwork,0);
-//        
-//        DefaultMutableTreeNode networkNode;
-//        DefaultMutableTreeNode enterpriseNode;
-//        DefaultMutableTreeNode organizationNode;
-//        
-//        for(int i = 0; i<networkList.size(); i++){
-//            network = networkList.get(i);
-//            networkNode = new DefaultMutableTreeNode(network.getNetworkName());
-//            rootNetwork.insert(networkNode, i);
+        DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
+        ArrayList<Network> networkList = system.getNetworkList();
+        ArrayList<Enterprise> enterpriseList;
+        ArrayList<Organization> organizationList;
+        
+        Network network;
+        Enterprise enterprise;
+        Organization organization;
+        Network stateNetwork;
+        Network cityNetwork;
+        
+        DefaultMutableTreeNode rootNetwork = new DefaultMutableTreeNode("Networks");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
+        root.removeAllChildren();
+        root.insert(rootNetwork,0);
+        
+        DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode stateNetworkNode;
+        DefaultMutableTreeNode cityNetworkNode;
+        DefaultMutableTreeNode enterpriseNode;
+        DefaultMutableTreeNode organizationNode;
+        
+        for(int i = 0; i<networkList.size(); i++){
+            network = networkList.get(i);
+            networkNode = new DefaultMutableTreeNode(network.getNetworkName());
+            rootNetwork.insert(networkNode, i);
+            
+            for(int j = 0 ; j<network.getSubNetwork().size(); j++){
+                stateNetwork = network.getSubNetwork().get(j);
+                stateNetworkNode = new DefaultMutableTreeNode(stateNetwork.getNetworkName());
+                networkNode.insert(stateNetworkNode, j);
+                
+                
+                for(int k = 0; k<stateNetwork.getSubNetwork().size(); k++){
+                   cityNetwork = stateNetwork.getSubNetwork().get(k);
+                   cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
+                   stateNetworkNode.insert(cityNetworkNode, k);
+                   
+                   enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
+//                 for(int j = 0; j<enterpriseList.size(); j++){
+//                      enterprise = enterpriseList.get(j);
+//                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+//                      cityNetworkNode.insert(enterpriseNode, j);
+//                
+//                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+//                
+//                      for(int k = 0; k< organizationList.size(); k++){
+//                          organization = organizationList.get(k);
+//                          organizationNode = new DefaultMutableTreeNode(organization.getName());
+//                          enterpriseNode.insert(organizationNode, k);
+//                      }
+//                  } 
+                }
+            }
+            
 //            
-//            enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
-//            for(int j = 0; j<enterpriseList.size(); j++){
-//                enterprise = enterpriseList.get(j);
-//                enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
-//                networkNode.insert(enterpriseNode, j);
-//                
-//                organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
-//                
-//                for(int k = 0; k< organizationList.size(); k++){
-//                    organization = organizationList.get(k);
-//                    organizationNode = new DefaultMutableTreeNode(organization.getName());
-//                    enterpriseNode.insert(organizationNode, k);
-//                }
-//            } 
-//        }
-//        treeModel.reload();
+        }
+        treeModel.reload();
     }
 
     /**
@@ -95,7 +115,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         SelectedNodeLabel = new javax.swing.JLabel();
         ViewLabel = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        ManageNetBtn = new javax.swing.JButton();
         MngEnterpriseBtn = new javax.swing.JButton();
         MngEnterpriseAdminBtn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
@@ -106,8 +126,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane.setDividerLocation(130);
 
+        SelectedNodeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         SelectedNodeLabel.setText("Selected Node :");
 
+        ViewLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ViewLabel.setText("<view_selected_node>");
         ViewLabel.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
@@ -115,13 +137,15 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        jButton1.setText("Manage Network");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        ManageNetBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        ManageNetBtn.setText("Manage Network");
+        ManageNetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ManageNetBtnActionPerformed(evt);
             }
         });
 
+        MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseBtn.setText("Manage Enterprise");
         MngEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,6 +153,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        MngEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseAdminBtn.setText("Manage Enterprise Admin");
         MngEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +171,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(35, 35, 35)
                         .addComponent(SelectedNodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(61, 61, 61)
-                        .addComponent(ViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(ViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(113, 113, 113)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ManageNetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(319, Short.MAX_VALUE))
+                .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,7 +188,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(SelectedNodeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ManageNetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52)
                 .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54)
@@ -174,36 +199,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jSplitPane.setRightComponent(jPanel1);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("colors");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("blue");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("violet");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("red");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("yellow");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("sports");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("basketball");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("soccer");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("football");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hockey");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("food");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hot dogs");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("pizza");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ravioli");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("bananas");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
         NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         NetworkJTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
@@ -216,17 +211,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(262, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 619, Short.MAX_VALUE)
         );
 
         jSplitPane.setLeftComponent(jPanel2);
@@ -234,18 +223,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         add(jSplitPane, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        ManageNetworkJPanel manageNetwork = new ManageNetworkJPanel(userProcessContainer, system);
-//        userProcessContainer.add("ManageNetworkJPanel",manageNetwork);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void ManageNetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ManageNetBtnActionPerformed
+        ManageNetworkJPanel manageNetwork = new ManageNetworkJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageNetworkJPanel",manageNetwork);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_ManageNetBtnActionPerformed
 
     private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
-//        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer, system);
-//        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
 
     private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
@@ -268,12 +257,12 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ManageNetBtn;
     private javax.swing.JButton MngEnterpriseAdminBtn;
     private javax.swing.JButton MngEnterpriseBtn;
     private javax.swing.JTree NetworkJTree;
     private javax.swing.JLabel SelectedNodeLabel;
     private javax.swing.JLabel ViewLabel;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
