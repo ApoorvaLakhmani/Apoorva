@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
+import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
 
 /**
  *
@@ -238,10 +239,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
 
     private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
-//        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
-//        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
     private void ViewLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ViewLabelPropertyChange
