@@ -7,6 +7,11 @@
 package userinterface.registrationcenter.AdministrativeRole;
 
 //import Business.Enterprise.Enterprise;
+
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import javax.swing.JPanel;
+
 //import java.awt.CardLayout;
 //import javax.swing.JPanel;
 
@@ -16,13 +21,13 @@ package userinterface.registrationcenter.AdministrativeRole;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     
-//    JPanel userProcessContainer;
-//    Enterprise enterprise;
+ JPanel userProcessContainer;
+  EcoSystem system;
     /** Creates new form AdminWorkAreaJPanel */
-    public AdminWorkAreaJPanel() {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
-//        this.userProcessContainer = userProcessContainer;
-//        this.enterprise = enterprise;
+       this.userProcessContainer = userProcessContainer;
+      this.system = system;
 //        valueLabel.setText(enterprise.getName());
     }
     

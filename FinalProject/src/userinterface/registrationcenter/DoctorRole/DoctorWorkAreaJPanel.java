@@ -5,17 +5,23 @@
  */
 package userinterface.registrationcenter.DoctorRole;
 
+import Business.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ApoorvaLakhmani
  */
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
-
+    JPanel userProcessContainer;
+    EcoSystem system;
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel() {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;
     }
 
     /**

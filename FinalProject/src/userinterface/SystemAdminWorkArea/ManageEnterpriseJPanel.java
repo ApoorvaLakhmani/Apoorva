@@ -10,9 +10,11 @@ package UserInterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -27,17 +29,20 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
-
+    private UserAccount account;
+    
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseJPanel(JPanel userProcessContainer, EcoSystem system) {
+    public ManageEnterpriseJPanel(JPanel userProcessContainer,UserAccount account, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        this.account=account;
 
         populateTable();
         populateComboBox();
+        populateCountryName();
         enterpriseTypeJComboBox.setEnabled(false);
         enterpriseNameTextField.setEnabled(false);
     }
@@ -102,6 +107,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         StateComboBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         CityComboBox = new javax.swing.JComboBox();
+        countryNameTextBox = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -200,6 +206,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(CityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 339, 190, -1));
+        add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
@@ -270,7 +277,18 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
            }
        }
     }//GEN-LAST:event_StateComboBoxItemStateChanged
-
+private void populateCountryName(){
+    ArrayList<Network> networkList = system.getNetworkList();
+    Network network;
+     for(int i = 0; i<networkList.size(); i++){
+            network = networkList.get(i);
+            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
+                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
+                    countryNameTextBox.setText(network.getNetworkName());
+                }
+            }
+     }
+}
     
 //     private void populateStateCombo(String[] statelist){
 //        StateComboBox.removeAllItems();
@@ -293,6 +311,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox CountryNetComboBox;
     private javax.swing.JComboBox StateComboBox;
     private javax.swing.JButton backJButton;
+    private javax.swing.JTextField countryNameTextBox;
     private javax.swing.JTable enterpriseJTable;
     private javax.swing.JTextField enterpriseNameTextField;
     private javax.swing.JComboBox enterpriseTypeJComboBox;

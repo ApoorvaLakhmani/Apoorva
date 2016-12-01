@@ -14,21 +14,18 @@ import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-
-
 /**
  *
  * @author Administrator
  */
 public class MainJFrame extends javax.swing.JFrame {
-    
+
     private EcoSystem system;
     private DB4OUtil dB4OUtil = DB4OUtil.getInstance();
 
     /**
      * Creates new form MainJFrame
      */
-
     public MainJFrame() {
         initComponents();
         system = dB4OUtil.retrieveSystem();
@@ -125,58 +122,65 @@ public class MainJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
-         // Get user name
+        // Get user name
         String userName = userNameJTextField.getText();
         // Get Password
         char[] passwordCharArray = passwordField.getPassword();
         String password = String.valueOf(passwordCharArray);
-        
+
         //Step1: Checking the system user account directory to check if user exists
         UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
-        
+
         Enterprise inEnterprise = null;
         Organization inOrganization = null;
-        if(userAccount == null){
+        if (userAccount == null) {
             //Step 2: Traverse each network and check each enterprise
-            for(Network network : system.getNetworkList()){
+            for (Network network : system.getNetworkList()) {
                 //Step 2.1 Check against each enterprise
                 userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
-                if(userAccount == null){
-                    for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                    if(userAccount == null){
-                       //Step 3: Check against each organization in enterprise
-                        for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
-                            if(userAccount != null){
-                                inEnterprise = enterprise;
-                                inOrganization = organization;
-                                break;
+                if (userAccount == null) {
+                    for (Network state : network.getSubNetwork()) {
+                        for (Network city : state.getSubNetwork()) {
+                            for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
+                                userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                                if (userAccount == null) {
+                                    //Step 3: Check against each organization in enterprise
+                                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                        userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                                        if (userAccount != null) {
+                                            inEnterprise = enterprise;
+                                            inOrganization = organization;
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    inEnterprise = enterprise;
+                                    break;
+                                }
+                                if (inOrganization != null) {
+                                    break;
+                                }
                             }
-                        } 
-                    }else{
-                        inEnterprise = enterprise;
+                            break;
+                        }
                         break;
                     }
-                    if(inOrganization != null){
-                        break;
-                    }
-                } 
-                }else{
-                  break;  
+
+                } else {
+                    break;
                 }
-               
-                if(inEnterprise != null){
+
+                if (inEnterprise != null) {
                     break;
                 }
             }
         }
-        if(userAccount == null){
-            JOptionPane.showMessageDialog(null,"Invalid credentials");
+        if (userAccount == null) {
+            JOptionPane.showMessageDialog(null, "Invalid credentials");
             return;
-        }else{
+        } else {
             CardLayout layout = (CardLayout) container.getLayout();
-            container.add("workArea",userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
+            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inOrganization, inEnterprise, system));
             layout.next(container);
         }
         loginJButton.setEnabled(false);

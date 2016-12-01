@@ -5,17 +5,23 @@
  */
 package userinterface.HospitalAdminRole;
 
+import Business.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Neha
  */
 public class HospitalAdminWorkArea extends javax.swing.JPanel {
-
+private JPanel userProcessContainer;
+    private EcoSystem system;
     /**
      * Creates new form HospitalAdminWorkArea
      */
-    public HospitalAdminWorkArea() {
+    public HospitalAdminWorkArea(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;            
     }
 
     /**

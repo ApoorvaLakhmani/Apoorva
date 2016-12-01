@@ -5,17 +5,23 @@
  */
 package userinterface.OPTDAdminRole;
 
+import Business.EcoSystem;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Neha
  */
 public class OPTDAdminWorkArea extends javax.swing.JPanel {
-
+private JPanel userProcessContainer;
+    private EcoSystem system;
     /**
      * Creates new form OPTDAdminWorkArea
      */
-    public OPTDAdminWorkArea() {
+    public OPTDAdminWorkArea(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;
     }
 
     /**
