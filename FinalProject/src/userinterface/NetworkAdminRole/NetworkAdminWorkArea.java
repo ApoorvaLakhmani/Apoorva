@@ -5,17 +5,102 @@
  */
 package userinterface.NetworkAdminRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
+import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JPanel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author Neha
  */
 public class NetworkAdminWorkArea extends javax.swing.JPanel {
-
+      private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount account;
     /**
      * Creates new form NetworkAdminWorkArea
      */
-    public NetworkAdminWorkArea() {
+      
+    public NetworkAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system) {
         initComponents();
+            this.userProcessContainer = userProcessContainer;
+         this.system = system;
+         this.account = account;
+         populateTree();
+    }
+    
+    public void populateTree(){
+        DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
+        ArrayList<Network> networkList = system.getNetworkList();
+        ArrayList<Enterprise> enterpriseList;
+        ArrayList<Organization> organizationList;
+        
+        Network network;
+        Enterprise enterprise;
+        Organization organization;
+        Network stateNetwork;
+        Network cityNetwork;
+        
+        DefaultMutableTreeNode rootNetwork = new DefaultMutableTreeNode("Network");
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
+        root.removeAllChildren();
+        root.insert(rootNetwork,0);
+        
+        DefaultMutableTreeNode networkNode;
+        DefaultMutableTreeNode stateNetworkNode;
+        DefaultMutableTreeNode cityNetworkNode;
+        DefaultMutableTreeNode enterpriseNode;
+        DefaultMutableTreeNode organizationNode;
+        
+        for(int i = 0; i<networkList.size(); i++){
+            network = networkList.get(i);
+            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
+                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
+                 networkNode = new DefaultMutableTreeNode(network.getNetworkName());
+                 rootNetwork.insert(networkNode, i);
+            
+            for(int j = 0 ; j<network.getSubNetwork().size(); j++){
+                stateNetwork = network.getSubNetwork().get(j);
+                stateNetworkNode = new DefaultMutableTreeNode(stateNetwork.getNetworkName());
+                networkNode.insert(stateNetworkNode, j);
+                
+                
+                for(int k = 0; k<stateNetwork.getSubNetwork().size(); k++){
+                   cityNetwork = stateNetwork.getSubNetwork().get(k);
+                   cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
+                   stateNetworkNode.insert(cityNetworkNode, k);
+                   
+                   enterpriseList = cityNetwork.getEnterpriseDirectory().getEnterpriseList();
+                   for(int a = 0; a<enterpriseList.size(); a++){
+                      enterprise = enterpriseList.get(a);
+                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                      cityNetworkNode.insert(enterpriseNode, a);
+                
+                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                
+                      for(int b = 0; b< organizationList.size(); b++){
+                          organization = organizationList.get(b);
+                          organizationNode = new DefaultMutableTreeNode(organization.getName());
+                          enterpriseNode.insert(organizationNode, b);
+                      }
+                    } 
+                }
+            } 
+            }
+            }
+            
+                   
+        }
+        treeModel.reload();
     }
 
     /**
@@ -28,115 +113,80 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
+        jTree1 = new javax.swing.JTree();
+        MngEnterpriseBtn = new javax.swing.JButton();
+        MngEnterpriseAdminBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        NetworkJTree = new javax.swing.JTree();
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+        jScrollPane1.setViewportView(jTree1);
 
-            },
-            new String [] {
-                "RequestID", "Hospital", "City", "PatientID", "PatientName", "RequestStatus"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+        MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        MngEnterpriseBtn.setText("Manage Enterprise");
+        MngEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MngEnterpriseBtnActionPerformed(evt);
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setResizable(false);
-            jTable1.getColumnModel().getColumn(1).setResizable(false);
-            jTable1.getColumnModel().getColumn(2).setResizable(false);
-            jTable1.getColumnModel().getColumn(3).setResizable(false);
-            jTable1.getColumnModel().getColumn(4).setResizable(false);
-            jTable1.getColumnModel().getColumn(5).setResizable(false);
-        }
 
-        jButton2.setText("Send Email");
+        MngEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        MngEnterpriseAdminBtn.setText("Manage Enterprise Admin");
+        MngEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MngEnterpriseAdminBtnActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Initiate Legal Authorization>>");
-
-        jButton4.setText("Initiate procurement and Transplant>>");
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("Network Admin Work Area");
-
-        jTextField1.setText("<<Country Name>>");
-        jTextField1.setEnabled(false);
-        jTextField1.setOpaque(false);
-
-        jLabel2.setText("Country:");
-
-        jButton5.setText("Initiate Organ Matching>>");
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
+        NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        jScrollPane2.setViewportView(NetworkJTree);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(197, 197, 197)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 584, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(111, 111, 111)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 252, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(390, 390, 390)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(265, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MngEnterpriseAdminBtn))
+                .addContainerGap(333, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton5)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addGap(99, 99, 99)
+                .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54)
+                .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
+        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
+
+    private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
+        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JButton MngEnterpriseAdminBtn;
+    private javax.swing.JButton MngEnterpriseBtn;
+    private javax.swing.JTree NetworkJTree;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTree jTree1;
     // End of variables declaration//GEN-END:variables
 }

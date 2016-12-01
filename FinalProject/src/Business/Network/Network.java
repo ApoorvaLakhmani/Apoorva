@@ -5,7 +5,9 @@
  */
 package Business.Network;
 
+import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
+import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 
 /**
@@ -15,11 +17,15 @@ import java.util.ArrayList;
 public class Network {
     
     private String networkName;
+    private UserAccountDirectory userAccountDirectory;
+    private EmployeeDirectory employeeDirectory;
     private EnterpriseDirectory enterpriseDirectory;
     private ArrayList<Network> subNetwork;
     
     public Network(){
         enterpriseDirectory = new EnterpriseDirectory();
+        employeeDirectory = new EmployeeDirectory();
+        userAccountDirectory = new UserAccountDirectory();
         subNetwork = new ArrayList<>();
     }
 
@@ -47,6 +53,23 @@ public class Network {
     public void setEnterpriseDirectory(EnterpriseDirectory enterpriseDir) {
         this.enterpriseDirectory = enterpriseDir;
     }
+
+    public UserAccountDirectory getUserAccountDirectory() {
+        return userAccountDirectory;
+    }
+
+    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+        this.userAccountDirectory = userAccountDirectory;
+    }
+
+    public EmployeeDirectory getEmployeeDirectory() {
+        return employeeDirectory;
+    }
+
+    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
+        this.employeeDirectory = employeeDirectory;
+    }
+    
     @Override
     public String toString(){
        return networkName; 
@@ -57,5 +80,7 @@ public class Network {
         subNetwork.add(stateNetwork);
         return stateNetwork;
     }
+    
+    
     
 }

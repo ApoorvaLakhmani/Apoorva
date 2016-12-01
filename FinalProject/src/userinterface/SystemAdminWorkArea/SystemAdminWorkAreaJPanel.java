@@ -115,8 +115,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         SelectedNodeLabel = new javax.swing.JLabel();
         ViewLabel = new javax.swing.JLabel();
         ManageNetBtn = new javax.swing.JButton();
-        MngEnterpriseBtn = new javax.swing.JButton();
-        MngEnterpriseAdminBtn = new javax.swing.JButton();
+        manageNetworkAdminBtm = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
@@ -144,19 +143,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        MngEnterpriseBtn.setText("Manage Enterprise");
-        MngEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
+        manageNetworkAdminBtm.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageNetworkAdminBtm.setText("Manage Network Admin");
+        manageNetworkAdminBtm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MngEnterpriseBtnActionPerformed(evt);
-            }
-        });
-
-        MngEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        MngEnterpriseAdminBtn.setText("Manage Enterprise Admin");
-        MngEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MngEnterpriseAdminBtnActionPerformed(evt);
+                manageNetworkAdminBtmActionPerformed(evt);
             }
         });
 
@@ -175,8 +166,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(113, 113, 113)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ManageNetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -188,11 +178,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                     .addComponent(ViewLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(94, 94, 94)
                 .addComponent(ManageNetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(215, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(316, Short.MAX_VALUE))
         );
 
         jSplitPane.setRightComponent(jPanel1);
@@ -229,20 +217,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_ManageNetBtnActionPerformed
 
-    private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
-        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer, system);
-        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
-
-    private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
-        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
-        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
-
     private void ViewLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ViewLabelPropertyChange
         // TODO add your handling code here:
     }//GEN-LAST:event_ViewLabelPropertyChange
@@ -254,11 +228,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_NetworkJTreeValueChanged
 
+    private void manageNetworkAdminBtmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkAdminBtmActionPerformed
+        ManageNetworkAdminJPanel manageNetworkAdmin = new ManageNetworkAdminJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageNetworkAdminJPanel",manageNetworkAdmin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageNetworkAdminBtmActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ManageNetBtn;
-    private javax.swing.JButton MngEnterpriseAdminBtn;
-    private javax.swing.JButton MngEnterpriseBtn;
     private javax.swing.JTree NetworkJTree;
     private javax.swing.JLabel SelectedNodeLabel;
     private javax.swing.JLabel ViewLabel;
@@ -266,5 +245,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JButton manageNetworkAdminBtm;
     // End of variables declaration//GEN-END:variables
 }

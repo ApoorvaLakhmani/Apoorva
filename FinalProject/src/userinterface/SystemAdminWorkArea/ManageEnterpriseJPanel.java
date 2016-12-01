@@ -16,6 +16,7 @@ import java.awt.event.ItemEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.NetworkAdminRole.NetworkAdminWorkArea;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -163,7 +164,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(908, 795, -1, -1));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 590, -1, -1));
 
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         backJButton.setText("<< Back");
@@ -172,7 +173,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 795, -1, -1));
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("State : ");
@@ -223,7 +224,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        NetworkAdminWorkArea sysAdminwjp = (NetworkAdminWorkArea) component;
         sysAdminwjp.populateTree();
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();

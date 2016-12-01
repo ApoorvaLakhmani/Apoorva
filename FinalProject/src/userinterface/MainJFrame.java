@@ -140,7 +140,9 @@ public class MainJFrame extends javax.swing.JFrame {
             //Step 2: Traverse each network and check each enterprise
             for(Network network : system.getNetworkList()){
                 //Step 2.1 Check against each enterprise
-                for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+                userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
+                if(userAccount == null){
+                    for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
                     userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                     if(userAccount == null){
                        //Step 3: Check against each organization in enterprise
@@ -159,7 +161,11 @@ public class MainJFrame extends javax.swing.JFrame {
                     if(inOrganization != null){
                         break;
                     }
+                } 
+                }else{
+                  break;  
                 }
+               
                 if(inEnterprise != null){
                     break;
                 }
