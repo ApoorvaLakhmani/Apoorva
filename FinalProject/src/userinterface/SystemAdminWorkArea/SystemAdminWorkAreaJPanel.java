@@ -81,24 +81,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                    cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
                    stateNetworkNode.insert(cityNetworkNode, k);
                    
-                   enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
-//                 for(int j = 0; j<enterpriseList.size(); j++){
-//                      enterprise = enterpriseList.get(j);
-//                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
-//                      cityNetworkNode.insert(enterpriseNode, j);
-//                
-//                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
-//                
-//                      for(int k = 0; k< organizationList.size(); k++){
-//                          organization = organizationList.get(k);
-//                          organizationNode = new DefaultMutableTreeNode(organization.getName());
-//                          enterpriseNode.insert(organizationNode, k);
-//                      }
-//                  } 
+                   enterpriseList = cityNetwork.getEnterpriseDirectory().getEnterpriseList();
+                   for(int a = 0; a<enterpriseList.size(); a++){
+                      enterprise = enterpriseList.get(a);
+                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                      cityNetworkNode.insert(enterpriseNode, a);
+                
+                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                
+                      for(int b = 0; b< organizationList.size(); b++){
+                          organization = organizationList.get(b);
+                          organizationNode = new DefaultMutableTreeNode(organization.getName());
+                          enterpriseNode.insert(organizationNode, b);
+                      }
+                    } 
                 }
-            }
-            
-//            
+            }         
         }
         treeModel.reload();
     }

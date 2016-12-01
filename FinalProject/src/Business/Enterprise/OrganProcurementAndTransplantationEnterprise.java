@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class OrganProcurementAndTransplantationEnterprise extends Enterprise{
 
-    public OrganProcurementAndTransplantationEnterprise(String name, EnterpriseType type) {
+    public OrganProcurementAndTransplantationEnterprise(String name) {
         super(name, EnterpriseType.OrganProcAndTransCenter);
     }
 

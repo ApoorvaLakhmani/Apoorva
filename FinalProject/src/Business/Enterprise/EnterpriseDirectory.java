@@ -29,6 +29,14 @@ public class EnterpriseDirectory {
             enterprise = new HospitalEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        if(type == Enterprise.EnterpriseType.DonorRegCenter){
+            enterprise = new DonorRegistrationCenter(name);
+            enterpriseList.add(enterprise);
+        }
+        if(type == Enterprise.EnterpriseType.OrganProcAndTransCenter){
+            enterprise = new OrganProcurementAndTransplantationEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;       
     }
     
