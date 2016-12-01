@@ -14,7 +14,7 @@ import java.util.ArrayList;
  */
 public class DonorRegistrationCenter extends Enterprise{
 
-    public DonorRegistrationCenter(String name, EnterpriseType type) {
+    public DonorRegistrationCenter(String name) {
         super(name, EnterpriseType.DonorRegCenter);
     }
 

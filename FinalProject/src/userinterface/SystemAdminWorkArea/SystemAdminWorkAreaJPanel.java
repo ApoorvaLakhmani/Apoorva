@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
+import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
 
 /**
  *
@@ -80,24 +81,22 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                    cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
                    stateNetworkNode.insert(cityNetworkNode, k);
                    
-                   enterpriseList = network.getEnterpriseDirectory().getEnterpriseList();
-//                 for(int j = 0; j<enterpriseList.size(); j++){
-//                      enterprise = enterpriseList.get(j);
-//                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
-//                      cityNetworkNode.insert(enterpriseNode, j);
-//                
-//                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
-//                
-//                      for(int k = 0; k< organizationList.size(); k++){
-//                          organization = organizationList.get(k);
-//                          organizationNode = new DefaultMutableTreeNode(organization.getName());
-//                          enterpriseNode.insert(organizationNode, k);
-//                      }
-//                  } 
+                   enterpriseList = cityNetwork.getEnterpriseDirectory().getEnterpriseList();
+                   for(int a = 0; a<enterpriseList.size(); a++){
+                      enterprise = enterpriseList.get(a);
+                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                      cityNetworkNode.insert(enterpriseNode, a);
+                
+                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+                
+                      for(int b = 0; b< organizationList.size(); b++){
+                          organization = organizationList.get(b);
+                          organizationNode = new DefaultMutableTreeNode(organization.getName());
+                          enterpriseNode.insert(organizationNode, b);
+                      }
+                    } 
                 }
-            }
-            
-//            
+            }         
         }
         treeModel.reload();
     }
@@ -238,10 +237,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
 
     private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
-//        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
-//        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
+        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, system);
+        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
     private void ViewLabelPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_ViewLabelPropertyChange

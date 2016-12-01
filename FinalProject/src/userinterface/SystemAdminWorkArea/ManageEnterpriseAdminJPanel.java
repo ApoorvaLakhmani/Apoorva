@@ -10,6 +10,11 @@ package UserInterface.SystemAdminWorkArea;
 //import Business.Network.Network;
 //import Business.Role.AdminRole;
 //import Business.UserAccount.UserAccount;
+import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;
@@ -22,54 +27,54 @@ import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
  */
 public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
-//    private JPanel userProcessContainer;
-//    private EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
 
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseAdminJPanel() {
+    public ManageEnterpriseAdminJPanel(JPanel userProcessContainer, EcoSystem system) {
         initComponents();
 
-//        this.userProcessContainer = userProcessContainer;
-//        this.system = system;
+        this.userProcessContainer = userProcessContainer;
+        this.system = system;
 
         populateTable();
         populateNetworkComboBox();
     }
 
     private void populateTable() {
-//        DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
-//
-//        model.setRowCount(0);
-//        for (Network network : system.getNetworkList()) {
-//            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-//                for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-//                    Object[] row = new Object[3];
-//                    row[0] = enterprise.getName();
-//                    row[1] = network.getNetworkName();
-//                    row[2] = userAccount.getUsername();
-//
-//                    model.addRow(row);
-//                }
-//            }
-//        }
+        DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
+
+        model.setRowCount(0);
+        for (Network network : system.getNetworkList()) {
+            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
+                for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                    Object[] row = new Object[3];
+                    row[0] = enterprise.getName();
+                    row[1] = network.getNetworkName();
+                    row[2] = userAccount.getUsername();
+
+                    model.addRow(row);
+                }
+            }
+        }
     }
 
     private void populateNetworkComboBox(){
-//        networkJComboBox.removeAllItems();
-//        
-//        for (Network network : system.getNetworkList()){
-//            networkJComboBox.addItem(network);
-//        }
+        networkJComboBox.removeAllItems();
+        
+        for (Network network : system.getNetworkList()){
+            networkJComboBox.addItem(network);
+        }
     }
     
-    private void populateEnterpriseComboBox(){
-//        enterpriseJComboBox.removeAllItems();
-//        
-//        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
-//            enterpriseJComboBox.addItem(enterprise);
-//        }
+    private void populateEnterpriseComboBox(Network network){
+        enterpriseJComboBox.removeAllItems();
+        
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            enterpriseJComboBox.addItem(enterprise);
+        }
         
     }
     
@@ -233,37 +238,37 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
 
     private void networkJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_networkJComboBoxActionPerformed
 
-//        Network network = (Network) networkJComboBox.getSelectedItem();
-//        if (network != null){
-//            populateEnterpriseComboBox(network);
-//        }
-//        
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        if (network != null){
+            populateEnterpriseComboBox(network);
+        }
+        
         
     }//GEN-LAST:event_networkJComboBoxActionPerformed
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-//        
-//        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-//        
-//        String username = usernameJTextField.getText();
-//        String password = String.valueOf(passwordJPasswordField.getPassword());
-//        String name = nameJTextField.getText();
-//        
-//        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-//        
-//        UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
-//        populateTable();
+        
+        Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
+        
+        String username = usernameJTextField.getText();
+        String password = String.valueOf(passwordJPasswordField.getPassword());
+        String name = nameJTextField.getText();
+        
+        Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
+        
+        //UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new AdminRole());
+        populateTable();
         
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-//        userProcessContainer.remove(this);
-//         Component[] componentArray = userProcessContainer.getComponents();
-//        Component component = componentArray[componentArray.length - 1];
-//        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-//        sysAdminwjp.populateTree();
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

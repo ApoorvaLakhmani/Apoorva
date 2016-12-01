@@ -46,23 +46,28 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
-            for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
-                Object[] row = new Object[3];
-                row[0] = enterprise.getName();
-                row[1] = network.getNetworkName();
-                row[2] = enterprise.getEnterpriseType().getValue();
-
-                model.addRow(row);
+            for(Network stateNetwork : network.getSubNetwork()){
+                for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                    for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
+                        Object[] row = new Object[5];
+                        row[0] = enterprise.getName();
+                        row[1] = network.getNetworkName();
+                        row[2] = stateNetwork.getNetworkName();
+                        row[3] = cityNetwork.getNetworkName();
+                        row[4] = enterprise.getEnterpriseType().getValue();
+                        model.addRow(row);
+                    }
+                }
             }
+            
         }
     }
 
     private void populateComboBox() {
         CountryNetComboBox.removeAllItems();
         enterpriseTypeJComboBox.removeAllItems();
-        StateComboBox.removeAllItems();
-        CityComboBox.removeAllItems();
-
+        
+        CountryNetComboBox.addItem("Please select");
         for (Network network : system.getNetworkList()) {
             CountryNetComboBox.addItem(network);
         }
@@ -97,20 +102,22 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         CityComboBox = new javax.swing.JComboBox();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         enterpriseJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Enterprise Name", "Network", "Type"
+                "Enterprise Name", "Country Network", "State Network", "City Network", "Enterprise Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, true, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -119,8 +126,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 47, 760, 106));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("Country : ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 201, -1, -1));
 
         CountryNetComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         CountryNetComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -129,17 +139,22 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 CountryNetComboBoxItemStateChanged(evt);
             }
         });
+        add(CountryNetComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 201, 190, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("Name : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 479, -1, -1));
 
         enterpriseNameTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 476, 190, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("Enterprise Type : ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 416, -1, -1));
 
         enterpriseTypeJComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 413, 190, -1));
 
         submitJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         submitJButton.setText("Submit");
@@ -148,6 +163,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 submitJButtonActionPerformed(evt);
             }
         });
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(908, 795, -1, -1));
 
         backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         backJButton.setText("<< Back");
@@ -156,9 +172,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 795, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("State : ");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 269, -1, -1));
 
         StateComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         StateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -167,9 +185,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 StateComboBoxItemStateChanged(evt);
             }
         });
+        add(StateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 269, 190, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel5.setText("City : ");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 339, -1, -1));
 
         CityComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         CityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -178,159 +198,94 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
                 CityComboBoxItemStateChanged(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel5))
-                        .addGap(52, 52, 52)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(CountryNetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(CityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(239, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitJButton)
-                .addGap(104, 104, 104))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel4)
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(CountryNetComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(StateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(CityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backJButton)
-                    .addComponent(submitJButton))
-                .addGap(31, 31, 31))
-        );
+        add(CityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 339, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
 
-//        Network network = (Network) networkJComboBox.getSelectedItem();
-//        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
-//
-//        if (network == null || type == null) {
-//            JOptionPane.showMessageDialog(null, "Invalid Input!");
-//            return;
-//        }
-//
-//        String name = nameJTextField.getText();
-//
-//        Enterprise enterprise = network.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-//
-//        populateTable();
+        Network cityNetwork = (Network) CityComboBox.getSelectedItem();
+        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
+
+        if (cityNetwork == null || type == null) {
+            JOptionPane.showMessageDialog(null, "Invalid Input!");
+            return;
+        }
+
+        String name = enterpriseNameTextField.getText();
+
+        Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+
+        populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-//        userProcessContainer.remove(this);
-//        Component[] componentArray = userProcessContainer.getComponents();
-//        Component component = componentArray[componentArray.length - 1];
-//        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
-//        sysAdminwjp.populateTree();
-//
-//        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//        layout.previous(userProcessContainer);
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        sysAdminwjp.populateTree();
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void CityComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CityComboBoxItemStateChanged
-        enterpriseTypeJComboBox.setEnabled(true);
-        enterpriseNameTextField.setEnabled(true);
+        if(evt.getStateChange() == ItemEvent.SELECTED && !CityComboBox.getSelectedItem().equals("Please select")){
+            enterpriseTypeJComboBox.setEnabled(true);
+            enterpriseNameTextField.setEnabled(true);
+        }
+        
     }//GEN-LAST:event_CityComboBoxItemStateChanged
 
     private void CountryNetComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CountryNetComboBoxItemStateChanged
-       if(evt.getStateChange() == ItemEvent.SELECTED){
-          if(CountryNetComboBox.getSelectedItem().toString().equals("USA")){
-            String[] stateList = new String[]{"New York","California"};
-            populateStateCombo(stateList);
-        }
-        else if(CountryNetComboBox.getSelectedItem().toString().equals("India")){
-            String[] stateList = new String[]{"Maharastra","Rajasthan"};
-            populateStateCombo(stateList);
-        } 
-       }
-        
+       if(evt.getStateChange() == ItemEvent.SELECTED && !CountryNetComboBox.getSelectedItem().equals("Please select")){
+           StateComboBox.removeAllItems();
+           StateComboBox.addItem("Please select");
+           for(Network network : system.getNetworkList()){
+               if(network.getNetworkName().equals(CountryNetComboBox.getSelectedItem().toString())){
+                  for(Network stateNetwork : network.getSubNetwork()){
+                      StateComboBox.addItem(stateNetwork);
+                  }
+               }
+           }
+       }       
     }//GEN-LAST:event_CountryNetComboBoxItemStateChanged
 
     private void StateComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StateComboBoxItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED){
-            if(CountryNetComboBox.getSelectedItem().equals("USA")&& StateComboBox.getSelectedItem().equals("California")){
-                String[] cityList = new String[]{"San Fransisco","Mountain View"};
-                populateCityCombo(cityList);
-            }
-            if(CountryNetComboBox.getSelectedItem().equals("USA")&& StateComboBox.getSelectedItem().equals("New York")){
-                String[] cityList = new String[]{"New York","Long Island"};
-                populateCityCombo(cityList);
-            }
-             if(CountryNetComboBox.getSelectedItem().equals("India")&& StateComboBox.getSelectedItem().equals("Maharastra")){
-                String[] cityList = new String[]{"Mumbai","Pune"};
-                populateCityCombo(cityList);
-            }
-            if(CountryNetComboBox.getSelectedItem().equals("India")&& StateComboBox.getSelectedItem().equals("Rajasthan")){
-                String[] cityList = new String[]{"Jaipur","Udaipur"};
-                populateCityCombo(cityList);
-            }
-        }
+       if(evt.getStateChange() == ItemEvent.SELECTED && !StateComboBox.getSelectedItem().equals("Please select")){
+           CityComboBox.removeAllItems();
+           CityComboBox.addItem("Please select");
+           for(Network network : system.getNetworkList()){
+               if(network.getNetworkName().equals(CountryNetComboBox.getSelectedItem().toString())){
+                  for(Network stateNetwork : network.getSubNetwork()){
+                      if(stateNetwork.getNetworkName().equals(StateComboBox.getSelectedItem().toString())){
+                          for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                              CityComboBox.addItem(cityNetwork);
+                          }
+                      }
+                  }
+               }
+           }
+       }
     }//GEN-LAST:event_StateComboBoxItemStateChanged
 
     
-     private void populateStateCombo(String[] statelist){
-        StateComboBox.removeAllItems();
-        StateComboBox.addItem("Please Select");
-        for(String statename : statelist){
-            StateComboBox.addItem(statename);
-        }
-    }
+//     private void populateStateCombo(String[] statelist){
+//        StateComboBox.removeAllItems();
+//        StateComboBox.addItem("Please Select");
+//        for(String statename : statelist){
+//            StateComboBox.addItem(statename);
+//        }
+//    }
     
-     private void populateCityCombo(String[] cityList){
-        CityComboBox.removeAllItems();
-        CityComboBox.addItem("Please select");
-        for(String city : cityList){
-            CityComboBox.addItem(city);
-        }
-    }
+//     private void populateCityCombo(String[] cityList){
+//        CityComboBox.removeAllItems();
+//        CityComboBox.addItem("Please select");
+//        for(String city : cityList){
+//            CityComboBox.addItem(city);
+//        }
+//    }
      
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CityComboBox;
