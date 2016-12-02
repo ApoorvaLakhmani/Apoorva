@@ -161,9 +161,13 @@ public class MainJFrame extends javax.swing.JFrame {
                                     break;
                                 }
                             }
-                            break;
+                            if(inEnterprise != null){
+                                break;
+                            }
                         }
-                        break;
+                        if(inEnterprise != null){
+                                break;
+                        }
                     }
 
                 } else {
