@@ -24,6 +24,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.NetworkAdminRole.NetworkAdminWorkArea;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -307,7 +308,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        SystemAdminWorkAreaJPanel sysAdminwjp = (SystemAdminWorkAreaJPanel) component;
+        NetworkAdminWorkArea sysAdminwjp = (NetworkAdminWorkArea) component;
         sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
