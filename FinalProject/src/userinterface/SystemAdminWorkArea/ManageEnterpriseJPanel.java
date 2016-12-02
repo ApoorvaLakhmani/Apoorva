@@ -13,6 +13,7 @@ import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -48,6 +49,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }
 
     private void populateTable() {
+        enterpriseJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
 
         model.setRowCount(0);
@@ -133,7 +135,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 47, 760, 106));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 47, 760, 120));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("Country : ");
@@ -206,6 +208,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
             }
         });
         add(CityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 339, 190, -1));
+
+        countryNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 

@@ -121,6 +121,8 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
 
         jScrollPane1.setViewportView(jTree1);
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseBtn.setText("Manage Enterprise");
         MngEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -128,6 +130,7 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
                 MngEnterpriseBtnActionPerformed(evt);
             }
         });
+        add(MngEnterpriseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 99, 261, 39));
 
         MngEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseAdminBtn.setText("Manage Enterprise Admin");
@@ -136,34 +139,14 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
                 MngEnterpriseAdminBtnActionPerformed(evt);
             }
         });
+        add(MngEnterpriseAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 192, -1, 42));
 
+        NetworkJTree.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
         NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane2.setViewportView(NetworkJTree);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MngEnterpriseAdminBtn))
-                .addContainerGap(333, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(54, 54, 54)
-                .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, 174, 652));
     }// </editor-fold>//GEN-END:initComponents
 
     private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed

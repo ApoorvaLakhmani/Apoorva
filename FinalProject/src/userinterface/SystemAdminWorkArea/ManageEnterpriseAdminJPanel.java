@@ -20,12 +20,12 @@ import Business.Role.RegisterationCenterAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.NetworkAdminRole.NetworkAdminWorkArea;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -40,55 +40,54 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseAdminJPanel(JPanel userProcessContainer,UserAccount account, EcoSystem system) {
+    public ManageEnterpriseAdminJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
 
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-         this.account = account;
-         populateCountryName();
-         populateStateComboBox();
+        this.account = account;
+        populateCountryName();
+        populateStateComboBox();
         populateTable();
 
     }
 
     private void populateTable() {
+        enterpriseJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
-        
+
         model.setRowCount(0);
         for (Network country : system.getNetworkList()) {
-             for (Network state : country.getSubNetwork()){
-                for (Network city : state.getSubNetwork()){
-                 for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
-                    for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
-                        Object[] row = new Object[4];
-                        row[0] = enterprise.getName();
-                        row[1] = state.getNetworkName();
-                        row[2] = city.getNetworkName();
-                        row[3] = userAccount.getUsername();
+            for (Network state : country.getSubNetwork()) {
+                for (Network city : state.getSubNetwork()) {
+                    for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
+                        for (UserAccount userAccount : enterprise.getUserAccountDirectory().getUserAccountList()) {
+                            Object[] row = new Object[4];
+                            row[0] = enterprise.getName();
+                            row[1] = state.getNetworkName();
+                            row[2] = city.getNetworkName();
+                            row[3] = userAccount.getUsername();
 
-                        model.addRow(row);
+                            model.addRow(row);
+                        }
                     }
+
                 }
-                 
-             } 
-                 
-             }
+
+            }
         }
-            
-        
+
     }
 
-    
-    private void populateEnterpriseComboBox(Network network){
+    private void populateEnterpriseComboBox(Network network) {
         enterpriseJComboBox.removeAllItems();
         enterpriseJComboBox.addItem("Please Select");
-        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+        for (Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()) {
             enterpriseJComboBox.addItem(enterprise);
         }
-        
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,6 +116,9 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         stateComboBox = new javax.swing.JComboBox();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        enterpriseJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -138,170 +140,109 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        jLabel1.setText("City:");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 40, 690, 160));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setText("City:");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 351, -1, -1));
+
+        cityNameComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         cityNameComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cityNameComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cityNameComboBoxItemStateChanged(evt);
             }
         });
+        add(cityNameComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 359, 136, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("Username");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 468, -1, -1));
 
+        usernameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 463, 136, -1));
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("Enterprise");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 417, -1, -1));
 
+        enterpriseJComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(enterpriseJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 414, 136, -1));
 
+        submitJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 630, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel4.setText("Password");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 510, -1, -1));
 
+        nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 563, 136, -1));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel5.setText("Name");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 563, -1, -1));
 
+        passwordJPasswordField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(passwordJPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 508, 136, -1));
+
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
+        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 638, -1, -1));
 
+        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel6.setText("Country :");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 262, -1, -1));
 
         countryNameTextBox.setEditable(false);
+        countryNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 259, 136, -1));
 
+        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel7.setText("State:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 311, -1, 17));
 
+        stateComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         stateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         stateComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 stateComboBoxItemStateChanged(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backJButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(submitJButton)
-                .addGap(154, 154, 154))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(countryNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel3))
-                                    .addGap(52, 52, 52)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(cityNameComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addGap(52, 52, 52)
-                                        .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel4)
-                                            .addComponent(jLabel5))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(52, 52, 52)
-                                                .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGap(54, 54, 54)
-                                                .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))))))))
-                .addContainerGap(280, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(countryNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stateComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(cityNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(enterpriseJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(usernameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(passwordJPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(nameJTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(submitJButton)
-                        .addGap(21, 21, 21))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(backJButton)
-                        .addGap(30, 30, 30))))
-        );
+        add(stateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 304, 135, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
-        
+
         Enterprise enterprise = (Enterprise) enterpriseJComboBox.getSelectedItem();
-        
+
         String username = usernameJTextField.getText();
         String password = String.valueOf(passwordJPasswordField.getPassword());
         String name = nameJTextField.getText();
-        
+
         Employee employee = enterprise.getEmployeeDirectory().createEmployee(name);
-        if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)){
+        if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)) {
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new HospitalAdminRole());
-        }
-        else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DonorRegCenter)){
+        } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.DonorRegCenter)) {
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new RegisterationCenterAdminRole());
-        }
-        else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)){
+        } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)) {
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OPTEAdminRole());
         }
-        
+
         populateTable();
-        
+
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -315,62 +256,63 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void stateComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_stateComboBoxItemStateChanged
-       if(evt.getStateChange() == ItemEvent.SELECTED && !stateComboBox.getSelectedItem().equals("Please select")){
-        ArrayList<Network> networkList = system.getNetworkList();
-    Network network;
-   cityNameComboBox.removeAllItems();
-   cityNameComboBox.addItem("Please select");
-     for(int i = 0; i<networkList.size(); i++){
-            network = networkList.get(i);
-            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
-                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
-                   for (Network state:network.getSubNetwork()){
-                      if(stateComboBox.getSelectedItem().toString().equals(state.getNetworkName())){
-                          for(Network city: state.getSubNetwork())
-                          cityNameComboBox.addItem(city);
-                      }
-                    
-                   }
+        if (evt.getStateChange() == ItemEvent.SELECTED && !stateComboBox.getSelectedItem().equals("Please select")) {
+            ArrayList<Network> networkList = system.getNetworkList();
+            Network network;
+            cityNameComboBox.removeAllItems();
+            cityNameComboBox.addItem("Please select");
+            for (int i = 0; i < networkList.size(); i++) {
+                network = networkList.get(i);
+                if (network.getUserAccountDirectory().getUserAccountList().size() > 0) {
+                    if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                        for (Network state : network.getSubNetwork()) {
+                            if (stateComboBox.getSelectedItem().toString().equals(state.getNetworkName())) {
+                                for (Network city : state.getSubNetwork()) {
+                                    cityNameComboBox.addItem(city);
+                                }
+                            }
+
+                        }
+                    }
                 }
             }
         }
-        } 
     }//GEN-LAST:event_stateComboBoxItemStateChanged
 
     private void cityNameComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cityNameComboBoxItemStateChanged
-      if(evt.getStateChange() == ItemEvent.SELECTED && !cityNameComboBox.getSelectedItem().equals("Please select")){
-            Network city = (Network)cityNameComboBox.getSelectedItem();
+        if (evt.getStateChange() == ItemEvent.SELECTED && !cityNameComboBox.getSelectedItem().equals("Please select")) {
+            Network city = (Network) cityNameComboBox.getSelectedItem();
             populateEnterpriseComboBox(city);
         }
     }//GEN-LAST:event_cityNameComboBoxItemStateChanged
-    
-    private void populateCountryName(){
-    ArrayList<Network> networkList = system.getNetworkList();
-    Network network;
-     for(int i = 0; i<networkList.size(); i++){
+
+    private void populateCountryName() {
+        ArrayList<Network> networkList = system.getNetworkList();
+        Network network;
+        for (int i = 0; i < networkList.size(); i++) {
             network = networkList.get(i);
-            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
-                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
+            if (network.getUserAccountDirectory().getUserAccountList().size() > 0) {
+                if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
                     countryNameTextBox.setText(network.getNetworkName());
                 }
             }
-     }
-}
-    
-    private void populateStateComboBox(){
-        
+        }
+    }
+
+    private void populateStateComboBox() {
+
         ArrayList<Network> networkList = system.getNetworkList();
-    Network network;
-     cityNameComboBox.removeAllItems();
-    stateComboBox.removeAllItems();
-    stateComboBox.addItem("Please select");
-     for(int i = 0; i<networkList.size(); i++){
+        Network network;
+        cityNameComboBox.removeAllItems();
+        stateComboBox.removeAllItems();
+        stateComboBox.addItem("Please select");
+        for (int i = 0; i < networkList.size(); i++) {
             network = networkList.get(i);
-            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
-                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
-                   for (Network state:network.getSubNetwork()){
-                       stateComboBox.addItem(state);
-                   }
+            if (network.getUserAccountDirectory().getUserAccountList().size() > 0) {
+                if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                    for (Network state : network.getSubNetwork()) {
+                        stateComboBox.addItem(state);
+                    }
                 }
             }
         }
