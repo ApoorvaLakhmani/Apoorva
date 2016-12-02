@@ -5,17 +5,29 @@
  */
 package userinterface.SurgeonRole;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Neha
  */
 public class SurgeriesWorkArea extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private UserAccount account;
+    private Organization organization;
+    private EcoSystem business;
     /**
      * Creates new form ProcurementSurgeriesWorkQueue
      */
-    public SurgeriesWorkArea() {
+    public SurgeriesWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.organization=organization;
+        this.business=business;
     }
 
     /**

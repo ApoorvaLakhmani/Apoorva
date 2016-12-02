@@ -5,17 +5,30 @@
  */
 package userinterface.OPTDLabAssistantRole;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Neha
  */
 public class LabAssistantWorkArea extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer; 
+    private UserAccount account;
+    private Organization organization;
+    private EcoSystem business;
     /**
      * Creates new form LabAssistantWorkArea
      */
-    public LabAssistantWorkArea() {
+    public LabAssistantWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
+        this.business=business;
+        this.account=account;
+        this.userProcessContainer=userProcessContainer;
+        this.organization=organization;
+        
     }
 
     /**

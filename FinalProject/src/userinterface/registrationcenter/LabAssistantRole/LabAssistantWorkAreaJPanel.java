@@ -5,17 +5,29 @@
  */
 package userinterface.registrationcenter.LabAssistantRole;
 
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ApoorvaLakhmani
  */
 public class LabAssistantWorkAreaJPanel extends javax.swing.JPanel {
-
+private JPanel userProcessContainer;
+private UserAccount account;
+private Organization organization;
+private  EcoSystem business;
     /**
      * Creates new form LabAssistantWorkAreaJPanel
      */
-    public LabAssistantWorkAreaJPanel() {
+    public LabAssistantWorkAreaJPanel(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.account=account;
+        this.organization=organization;
+        this.business=business;
     }
 
     /**
