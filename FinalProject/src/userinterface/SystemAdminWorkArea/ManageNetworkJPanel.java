@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import Business.Network.Network;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Font;
 import java.awt.event.ItemEvent;
 import java.util.Iterator;
 import javax.swing.JPanel;
@@ -37,6 +38,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
     }
 
     private void populateNetworkTable() {
+        networkJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
         model.setRowCount(0);
@@ -75,6 +77,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        networkJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -106,11 +109,13 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
             networkJTable.getColumnModel().getColumn(0).setResizable(false);
         }
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 63, 490, 160));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 63, 630, 160));
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("City : ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 415, -1, -1));
 
+        submitJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +124,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(626, 550, -1, -1));
 
+        backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,12 +133,15 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 550, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("Country : ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 266, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel3.setText("State : ");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 335, -1, -1));
 
+        CountryCombo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         CountryCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please Select", "USA", "India" }));
         CountryCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -141,6 +150,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         add(CountryCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 263, -1, -1));
 
+        StateCombo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         StateCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         StateCombo.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -149,6 +159,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         });
         add(StateCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 332, -1, -1));
 
+        CityCombo.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         CityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(CityCombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 409, -1, -1));
     }// </editor-fold>//GEN-END:initComponents

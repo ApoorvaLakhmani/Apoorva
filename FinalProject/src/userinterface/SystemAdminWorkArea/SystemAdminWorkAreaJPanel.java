@@ -185,6 +185,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane.setRightComponent(jPanel1);
 
+        NetworkJTree.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
         NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         NetworkJTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
