@@ -3,19 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.OPTDAdminRole;
+package userinterface.OPTEAdminRole;
+
+import Business.EcoSystem;
+import Business.Employee.Employee;
+import Business.Organization.Organization;
+import Business.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Neha
  */
-public class ManageOPTDEmployeesPanel extends javax.swing.JPanel {
-
+public class ManageOPTEEmployeesPanel extends javax.swing.JPanel {
+private JPanel userProcessContainer;
+private OrganizationDirectory organizationDir;
     /**
      * Creates new form ManageOPTDEmployeesPanel
      */
-    public ManageOPTDEmployeesPanel() {
+    public ManageOPTEEmployeesPanel(JPanel userProcessContainer,OrganizationDirectory organizationDir) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.organizationDir=organizationDir;
+        
+        populateOrganizationComboBox();
+        populateOrganizationEmpComboBox();
     }
 
     /**
@@ -161,19 +175,54 @@ public class ManageOPTDEmployeesPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
+        Organization organization = (Organization) organizationEmpJComboBox.getSelectedItem();
+        String name = nameJTextField.getText();
+        
+        organization.getEmployeeDirectory().createEmployee(name);
 
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void organizationJComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_organizationJComboBoxActionPerformed
-      
+      Organization organization = (Organization) organizationJComboBox.getSelectedItem();
+        if (organization != null){
+            populateTable(organization);
+        }
     }//GEN-LAST:event_organizationJComboBoxActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
         
     }//GEN-LAST:event_backJButtonActionPerformed
-
+    
+    public void populateOrganizationComboBox(){
+        organizationJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationJComboBox.addItem(organization);
+        }
+    }
+    
+    public void populateOrganizationEmpComboBox(){
+        organizationEmpJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            organizationEmpJComboBox.addItem(organization);
+        }
+    }
+    private void populateTable(Organization organization){
+        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Employee employee : organization.getEmployeeDirectory().getEmployeeList()){
+            Object[] row = new Object[2];
+            row[0] = employee.getId();
+            row[1] = employee.getName();
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;

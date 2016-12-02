@@ -3,21 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.OPTDAdminRole;
+package userinterface.OPTEAdminRole;
+
+import Business.EcoSystem;
+import Business.Organization.Organization;
+import Business.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import java.awt.Font;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Neha
  */
-public class ManageOPTDOrganizationsPanel extends javax.swing.JPanel {
-
+public class ManageOPTEOrganizationsPanel extends javax.swing.JPanel {
+    private JPanel userProcessContainer;
+    private OrganizationDirectory directory;
     /**
      * Creates new form ManageOPTDOrganizationsPanel
      */
-    public ManageOPTDOrganizationsPanel() {
+    public ManageOPTEOrganizationsPanel(JPanel userProcessContainer,OrganizationDirectory directory) {
         initComponents();
+        this.directory=directory;
+        this.userProcessContainer=userProcessContainer;
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -130,15 +142,32 @@ public class ManageOPTDOrganizationsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
-
+         Organization.Type type = (Organization.Type) organizationJComboBox.getSelectedItem();
+        //directory.createOrganization(type);
+        populateTable();
        
     }//GEN-LAST:event_addJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
-
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
         
     }//GEN-LAST:event_backJButtonActionPerformed
-
+    private void populateTable(){
+        organizationJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) organizationJTable.getModel();
+        
+        model.setRowCount(0);
+        
+        for (Organization organization : directory.getOrganizationList()){
+            Object[] row = new Object[2];
+            row[0] = organization.getOrganizationID();
+            row[1] = organization.getName();
+            
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addJButton;
