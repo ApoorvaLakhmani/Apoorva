@@ -5,7 +5,8 @@
  */
 package userinterface.HospitalAdminRole;
 
-import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -13,15 +14,18 @@ import javax.swing.JPanel;
  * @author Neha
  */
 public class HospitalAdminWorkArea extends javax.swing.JPanel {
-private JPanel userProcessContainer;
-    private EcoSystem system;
+    private JPanel userProcessContainer;
+    //private EcoSystem system;
+    private Enterprise enterprise;
+    
     /**
      * Creates new form HospitalAdminWorkArea
      */
-    public HospitalAdminWorkArea(JPanel userProcessContainer,EcoSystem system) {
+    public HospitalAdminWorkArea(JPanel userProcessContainer,Enterprise enterprise) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.system=system;            
+        this.enterprise = enterprise;
+        
     }
 
     /**
@@ -33,29 +37,84 @@ private JPanel userProcessContainer;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        userJButton2 = new javax.swing.JButton();
+        manageEmployeeJButton = new javax.swing.JButton();
+        manageOrganizationJButton = new javax.swing.JButton();
+        enterpriseLabel = new javax.swing.JLabel();
+        valueLabel = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jLabel1.setText("Hospital Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, 184, -1));
+        userJButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        userJButton2.setText("Manage User");
+        userJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userJButton2ActionPerformed(evt);
+            }
+        });
+        add(userJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 220, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton2.setText("View and Raise Donor requests>>");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 210, -1, -1));
+        manageEmployeeJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageEmployeeJButton.setText("Manage Employee");
+        manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageEmployeeJButtonActionPerformed(evt);
+            }
+        });
+        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 220, -1));
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton3.setText("Register Donors>>");
-        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 300, 341, -1));
+        manageOrganizationJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageOrganizationJButton.setText("Manage Organization");
+        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOrganizationJButtonActionPerformed(evt);
+            }
+        });
+        add(manageOrganizationJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 220, -1, -1));
+
+        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+
+        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        valueLabel.setText("<value>");
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void userJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButton2ActionPerformed
+        // TODO add your handling code here:
+        ManageHospitalUserAccountJPanel muajp = new ManageHospitalUserAccountJPanel(userProcessContainer, enterprise);
+        userProcessContainer.add("ManageUserAccountJPanel", muajp);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_userJButton2ActionPerformed
+
+    private void manageEmployeeJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeJButtonActionPerformed
+
+        ManageHospitalEmployeeJPanel manageEmployeeJPanel = new ManageHospitalEmployeeJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageEmployeeJPanel", manageEmployeeJPanel);
+
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
+
+    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
+
+        ManageHospitalOrganizationJPanel manageOrganizationJPanel = new ManageHospitalOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
+        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton manageEmployeeJButton;
+    private javax.swing.JButton manageOrganizationJButton;
+    private javax.swing.JButton userJButton;
+    private javax.swing.JButton userJButton1;
+    private javax.swing.JButton userJButton2;
+    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }

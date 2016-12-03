@@ -28,6 +28,7 @@ public abstract class Organization {
         Doctor("Doctor Organization"), 
         RegCenterLab("Lab Organization"),
         HospitalAdmin("Hospital Admin Organization"),
+        OrganTransaplantDeptRep("Organ Transplantation Department Representative"),
         OPTEAdmin("OPTE Admin Organization"),
         OPTELab("OPTE Lab Organization"),
         Surgeon("Surgeon Organization"),

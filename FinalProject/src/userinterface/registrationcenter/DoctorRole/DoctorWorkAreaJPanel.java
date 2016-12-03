@@ -40,6 +40,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         refreshTestJButton = new javax.swing.JButton();
         requestTestJButton = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -69,11 +71,15 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(workRequestJTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 193, 658, 169));
+
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 27, 127, 30));
 
         valueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         valueLabel.setText("<value>");
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 29, 158, 26));
 
         refreshTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         refreshTestJButton.setText("Refresh");
@@ -82,6 +88,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 refreshTestJButtonActionPerformed(evt);
             }
         });
+        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 97, -1, -1));
 
         requestTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         requestTestJButton.setText("Request Test");
@@ -90,45 +97,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 requestTestJButtonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(396, Short.MAX_VALUE)
-                .addComponent(refreshTestJButton)
-                .addGap(109, 109, 109))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(requestTestJButton)))
-                .addGap(84, 84, 84))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
-                .addComponent(refreshTestJButton)
-                .addGap(63, 63, 63)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
-                .addComponent(requestTestJButton)
-                .addGap(86, 86, 86))
-        );
+        add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed

@@ -5,17 +5,25 @@
  */
 package userinterface.HospitalAdminRole;
 
+import Business.EcoSystem;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Neha
  */
 public class RaiseAndViewMyRequests extends javax.swing.JPanel {
-
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    
     /**
      * Creates new form RaiseAndViewMyRequests
      */
-    public RaiseAndViewMyRequests() {
+    public RaiseAndViewMyRequests(JPanel userProcessContainer,EcoSystem system) {
         initComponents();
+        this.userProcessContainer=userProcessContainer;
+        this.system=system;  
     }
 
     /**
@@ -33,6 +41,11 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
 
         jButton1.setText("Raise new request>>");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -85,6 +98,13 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
                 .addContainerGap(285, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       RaiseNewRequestPanel raiseNewRequest = new RaiseNewRequestPanel(system);
+       userProcessContainer.add("RaiseAndViewMyRequests",raiseNewRequest);
+       CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
