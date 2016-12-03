@@ -4,8 +4,11 @@
  */
 package Business.Organization;
 
+import Business.LegalOrganization;
 import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
 import Business.Organization.DonorRegCenter.RegCenterLabOrganization;
+import Business.Organization.OPTOrganization.OPTELabOrganization;
+import Business.Organization.OPTOrganization.SurgeonOrganization;
 import Business.Organization.Organization.Type;
 import java.util.ArrayList;
 
@@ -35,6 +38,19 @@ public class OrganizationDirectory {
             organization = new RegCenterLabOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.Surgeon.getValue())){
+            organization = new SurgeonOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.OPTELab.getValue())){
+            organization = new OPTELabOrganization();
+            organizationList.add(organization);
+        }
+        else if (type.getValue().equals(Type.LegalDepartment.getValue())){
+            organization = new LegalOrganization();
+            organizationList.add(organization);
+        }
+      
         return organization;
     }
 }

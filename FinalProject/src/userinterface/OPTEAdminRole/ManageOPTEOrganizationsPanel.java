@@ -27,8 +27,16 @@ public class ManageOPTEOrganizationsPanel extends javax.swing.JPanel {
         initComponents();
         this.directory=directory;
         this.userProcessContainer=userProcessContainer;
+        populateTable();
+        populateCombo();
     }
-
+    private void populateCombo(){
+        organizationJComboBox.removeAllItems();
+        for (Organization.Type type : Organization.Type.values()){
+            if (type.getValue().equals(Organization.Type.Surgeon.getValue()) || type.getValue().equals(Organization.Type.OPTELab.getValue()))
+                organizationJComboBox.addItem(type);
+        }
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -143,7 +151,7 @@ public class ManageOPTEOrganizationsPanel extends javax.swing.JPanel {
 
     private void addJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addJButtonActionPerformed
          Organization.Type type = (Organization.Type) organizationJComboBox.getSelectedItem();
-        //directory.createOrganization(type);
+        directory.createOrganization(type);
         populateTable();
        
     }//GEN-LAST:event_addJButtonActionPerformed
