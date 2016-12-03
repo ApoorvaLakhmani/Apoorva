@@ -7,6 +7,7 @@ package Business.Network;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Organization.OrganizationDirectory;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 
@@ -21,12 +22,14 @@ public class Network {
     private EmployeeDirectory employeeDirectory;
     private EnterpriseDirectory enterpriseDirectory;
     private ArrayList<Network> subNetwork;
+    private OrganizationDirectory organizationDirectory;
     
     public Network(){
         enterpriseDirectory = new EnterpriseDirectory();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
         subNetwork = new ArrayList<>();
+        organizationDirectory = new OrganizationDirectory();
     }
 
     public ArrayList<Network> getSubNetwork() {

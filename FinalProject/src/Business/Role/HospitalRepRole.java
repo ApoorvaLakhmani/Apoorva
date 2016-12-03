@@ -11,16 +11,17 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.registrationcenter.LabAssistantRole.LabAssistantWorkAreaJPanel;
+import userinterface.HospitalAdminRole.HospitalRepJPanel;
+
 /**
  *
- * @author Neha
+ * @author ApoorvaLakhmani
  */
-public class RegisterationCenterLabAssistantRole extends Role {
+public class HospitalRepRole extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new LabAssistantWorkAreaJPanel(userProcessContainer,account, organization, business);
+        return new HospitalRepJPanel(userProcessContainer, inNetwork);
     }
     
 }

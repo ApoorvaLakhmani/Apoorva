@@ -6,6 +6,7 @@
 package userinterface.HospitalAdminRole;
 
 import Business.EcoSystem;
+import Business.Network.Network;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -15,15 +16,17 @@ import javax.swing.JPanel;
  */
 public class RaiseAndViewMyRequests extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    private EcoSystem system;
+    //private EcoSystem system;
+    private Network network;
     
     /**
      * Creates new form RaiseAndViewMyRequests
      */
-    public RaiseAndViewMyRequests(JPanel userProcessContainer,EcoSystem system) {
+    public RaiseAndViewMyRequests(JPanel userProcessContainer,Network network) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        this.system=system;  
+        this.network = network;
+        //this.system=system;  
     }
 
     /**
@@ -35,19 +38,24 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        RaiseReqBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        RequestDetailsTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        jButton1.setText("Raise new request>>");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        RaiseReqBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        RaiseReqBtn.setText("Raise new request>>");
+        RaiseReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                RaiseReqBtnActionPerformed(evt);
             }
         });
+        add(RaiseReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 480, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        RequestDetailsTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        RequestDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -63,54 +71,27 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(RequestDetailsTable);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 885, 192));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("My Work Requests");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 885, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(353, 353, 353)
-                                .addComponent(jButton1))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(408, 408, 408)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(111, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(jLabel1)
-                .addGap(70, 70, 70)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
-                .addComponent(jButton1)
-                .addContainerGap(285, Short.MAX_VALUE))
-        );
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 86, 201, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       RaiseNewRequestPanel raiseNewRequest = new RaiseNewRequestPanel(system);
+    private void RaiseReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseReqBtnActionPerformed
+       RaiseNewRequestPanel raiseNewRequest = new RaiseNewRequestPanel(network);
        userProcessContainer.add("RaiseAndViewMyRequests",raiseNewRequest);
        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_RaiseReqBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton RaiseReqBtn;
+    private javax.swing.JTable RequestDetailsTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

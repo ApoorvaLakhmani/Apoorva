@@ -6,6 +6,11 @@
 package userinterface.HospitalAdminRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
+import Business.Network.Network;
+import Business.Organization.Hospital.HospitalRepOrganization;
+import Business.Organization.Organization;
 
 /**
  *
@@ -13,14 +18,16 @@ import Business.EcoSystem;
  */
 public class RaiseNewRequestPanel extends javax.swing.JPanel {
     
-    private EcoSystem system;
+    //private EcoSystem system;
+    private Network network;
 
     /**
      * Creates new form RaiseNewRequestPanel
      */
-    public RaiseNewRequestPanel(EcoSystem system) {
+    public RaiseNewRequestPanel(Network network) {
         initComponents();
-        this.system = system;
+        //this.system = system;
+        this.network = network;
     }
 
     /**
@@ -32,195 +39,175 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
+        HeaderLabel = new javax.swing.JLabel();
+        patientidlabel = new javax.swing.JLabel();
+        patientnamelabel = new javax.swing.JLabel();
+        OrganNeededLabel = new javax.swing.JLabel();
+        patientagelabel = new javax.swing.JLabel();
+        PatientBloodTypeLabel = new javax.swing.JLabel();
+        PatientWeightLabel = new javax.swing.JLabel();
+        OrganSizeLabel = new javax.swing.JLabel();
+        PatientIDTextField = new javax.swing.JTextField();
+        PatientNameField = new javax.swing.JTextField();
+        PatientAgeTextField = new javax.swing.JTextField();
+        PatientBloodTypeTextField = new javax.swing.JTextField();
+        PatientWeightTextField = new javax.swing.JTextField();
+        OrganNeededTextField = new javax.swing.JTextField();
+        OrganSizeTextField = new javax.swing.JTextField();
+        RaiseRequestBtn = new javax.swing.JButton();
+        PatientLocLabel = new javax.swing.JLabel();
+        PatientLocTextField = new javax.swing.JTextField();
+        MedicalCondLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jButton2 = new javax.swing.JButton();
+        OtherMedicalConditionTextArea = new javax.swing.JTextArea();
+        BackBtn = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Raise Donor Requirement request");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel2.setText("Patient ID:");
+        HeaderLabel.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
+        HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        HeaderLabel.setText("Raise Donor Requirement request");
+        add(HeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 42, 434, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel3.setText("Patient Name:");
+        patientidlabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientidlabel.setText("Patient ID:");
+        add(patientidlabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 121, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel4.setText("Organ affected:");
+        patientnamelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientnamelabel.setText("Patient Name:");
+        add(patientnamelabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 162, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel5.setText("Age:");
+        OrganNeededLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        OrganNeededLabel.setText("Organ affected:");
+        add(OrganNeededLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 369, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel6.setText("Blood type:");
+        patientagelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientagelabel.setText("Age:");
+        add(patientagelabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 203, -1, -1));
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel7.setText("Body Weight:");
+        PatientBloodTypeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientBloodTypeLabel.setText("Blood type:");
+        add(PatientBloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 287, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel8.setText("Organ size:");
+        PatientWeightLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientWeightLabel.setText("Body Weight:");
+        add(PatientWeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 328, -1, -1));
 
-        jTextField1.setEditable(false);
+        OrganSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        OrganSizeLabel.setText("Organ size:");
+        add(OrganSizeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 410, -1, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton1.setText("Raise request");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        PatientIDTextField.setEditable(false);
+        PatientIDTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(PatientIDTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 121, 166, -1));
+
+        PatientNameField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(PatientNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 168, 166, -1));
+
+        PatientAgeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientAgeTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                PatientAgeTextFieldActionPerformed(evt);
             }
         });
+        add(PatientAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 215, 166, -1));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel10.setText("Location:");
+        PatientBloodTypeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(PatientBloodTypeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 309, 166, -1));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel11.setText("Other Medical Conditions:");
+        PatientWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(PatientWeightTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 356, 166, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        OrganNeededTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(OrganNeededTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 403, 166, -1));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton2.setText("<< Back");
+        OrganSizeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(OrganSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 450, 166, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(265, 265, 265)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField8)
-                        .addComponent(jTextField4)
-                        .addComponent(jTextField5)
-                        .addComponent(jTextField6)
-                        .addComponent(jTextField7))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(82, 82, 82))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
-                .addComponent(jButton2)
-                .addGap(232, 232, 232)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(201, 201, 201))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel8)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(53, 53, 53))
-        );
+        RaiseRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        RaiseRequestBtn.setText("Raise request");
+        RaiseRequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RaiseRequestBtnActionPerformed(evt);
+            }
+        });
+        add(RaiseRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(375, 621, 207, -1));
+
+        PatientLocLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientLocLabel.setText("Location:");
+        add(PatientLocLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 244, -1, -1));
+
+        PatientLocTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(PatientLocTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 262, 166, -1));
+
+        MedicalCondLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        MedicalCondLabel.setText("Other Medical Conditions:");
+        add(MedicalCondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 497, -1, -1));
+
+        OtherMedicalConditionTextArea.setColumns(20);
+        OtherMedicalConditionTextArea.setRows(5);
+        jScrollPane1.setViewportView(OtherMedicalConditionTextArea);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(533, 497, 260, -1));
+
+        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        BackBtn.setText("<< Back");
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 621, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void RaiseRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseRequestBtnActionPerformed
+       Patient patient = null;
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+        for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
+            if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)){
+                for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+                    if(organization instanceof HospitalRepOrganization){
+                       patient = ((HospitalRepOrganization) organization).getPatientDirectory().getPatient();
+                    }
+                }
+            }
+        }
+        
+        patient.setPatientName(PatientNameField.getText());
+        patient.setPatientAge(Integer.parseInt(PatientAgeTextField.getText()));
+        patient.setPatientLocation(PatientLocTextField.getText());
+        patient.setBloodType(PatientBloodTypeTextField.getText());
+        patient.setWeight(Double.parseDouble(PatientWeightTextField.getText()));
+        patient.setOrganNeeded(OrganNeededTextField.getText());
+        patient.setOrganSize(Integer.parseInt(OrganSizeTextField.getText()));
+        patient.setOtherMedicalCondition(OtherMedicalConditionTextArea.getText());
+        
+        
+    }//GEN-LAST:event_RaiseRequestBtnActionPerformed
+
+    private void PatientAgeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientAgeTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PatientAgeTextFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JButton BackBtn;
+    private javax.swing.JLabel HeaderLabel;
+    private javax.swing.JLabel MedicalCondLabel;
+    private javax.swing.JLabel OrganNeededLabel;
+    private javax.swing.JTextField OrganNeededTextField;
+    private javax.swing.JLabel OrganSizeLabel;
+    private javax.swing.JTextField OrganSizeTextField;
+    private javax.swing.JTextArea OtherMedicalConditionTextArea;
+    private javax.swing.JTextField PatientAgeTextField;
+    private javax.swing.JLabel PatientBloodTypeLabel;
+    private javax.swing.JTextField PatientBloodTypeTextField;
+    private javax.swing.JTextField PatientIDTextField;
+    private javax.swing.JLabel PatientLocLabel;
+    private javax.swing.JTextField PatientLocTextField;
+    private javax.swing.JTextField PatientNameField;
+    private javax.swing.JLabel PatientWeightLabel;
+    private javax.swing.JTextField PatientWeightTextField;
+    private javax.swing.JButton RaiseRequestBtn;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel patientagelabel;
+    private javax.swing.JLabel patientidlabel;
+    private javax.swing.JLabel patientnamelabel;
     // End of variables declaration//GEN-END:variables
 }

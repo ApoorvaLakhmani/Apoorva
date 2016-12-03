@@ -18,8 +18,6 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
 
 /**
  *
@@ -124,6 +122,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane.setDividerLocation(130);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         SelectedNodeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         SelectedNodeLabel.setText("Selected Node :");
 
@@ -135,6 +135,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        ManageNetBtn.setBackground(new java.awt.Color(255, 255, 255));
         ManageNetBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         ManageNetBtn.setText("Manage Network");
         ManageNetBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -143,6 +144,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        manageNetworkAdminBtm.setBackground(new java.awt.Color(255, 255, 255));
         manageNetworkAdminBtm.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         manageNetworkAdminBtm.setText("Manage Network Admin");
         manageNetworkAdminBtm.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +187,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         jSplitPane.setRightComponent(jPanel1);
 
+        NetworkJTree.setBackground(new java.awt.Color(204, 255, 255));
         NetworkJTree.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
         NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));

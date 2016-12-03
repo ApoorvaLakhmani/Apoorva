@@ -7,6 +7,7 @@ package Business.Organization;
 import Business.LegalOrganization;
 import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
 import Business.Organization.DonorRegCenter.RegCenterLabOrganization;
+import Business.Organization.Hospital.HospitalRepOrganization;
 import Business.Organization.OPTOrganization.OPTELabOrganization;
 import Business.Organization.OPTOrganization.SurgeonOrganization;
 import Business.Organization.Organization.Type;
@@ -50,6 +51,11 @@ public class OrganizationDirectory {
             organization = new LegalOrganization();
             organizationList.add(organization);
         }
+        else if (type.getValue().equals(Type.OrganTransaplantDeptRep.getValue())){
+            organization = new HospitalRepOrganization();
+            organizationList.add(organization);
+        }
+        
       
         return organization;
     }

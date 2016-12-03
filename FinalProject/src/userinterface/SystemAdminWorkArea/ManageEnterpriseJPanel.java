@@ -10,6 +10,7 @@ package UserInterface.SystemAdminWorkArea;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -226,7 +227,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
 
         Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-
+        if(type.equals(Enterprise.EnterpriseType.DonorRegCenter)){
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.RegCenterLab);
+        }
+        
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
