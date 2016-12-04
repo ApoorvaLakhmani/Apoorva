@@ -7,6 +7,7 @@ package userinterface.HospitalAdminRole;
 
 import Business.EcoSystem;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -17,17 +18,19 @@ import javax.swing.JPanel;
 public class HospitalRepJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-    //private EcoSystem system;
+    private EcoSystem system;
     private Network network;
+    private UserAccount userAccount;
 
     /**
      * Creates new form HospitalRepJPanel
      */
-    public HospitalRepJPanel(JPanel userProcessContainer,Network network) {
+    public HospitalRepJPanel(JPanel userProcessContainer,UserAccount userAccount,Network network,EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
-        //this.system=system; 
+        this.system=system; 
         this.network = network;
+        this.userAccount = userAccount;
     }
 
     /**
@@ -96,7 +99,7 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RaiseRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseRequestBtnActionPerformed
-        RaiseAndViewMyRequests raiseAndViewRequest = new RaiseAndViewMyRequests(userProcessContainer, network);
+        RaiseAndViewMyRequests raiseAndViewRequest = new RaiseAndViewMyRequests(userProcessContainer,userAccount, network,system);
         userProcessContainer.add("RaiseAndViewMyRequests",raiseAndViewRequest);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

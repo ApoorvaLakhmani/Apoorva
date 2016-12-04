@@ -7,8 +7,11 @@ package userinterface.HospitalAdminRole;
 
 import Business.EcoSystem;
 import Business.Network.Network;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,17 +19,36 @@ import javax.swing.JPanel;
  */
 public class RaiseAndViewMyRequests extends javax.swing.JPanel {
     private JPanel userProcessContainer;
-    //private EcoSystem system;
+    private EcoSystem system;
     private Network network;
+    private UserAccount userAccount;
     
     /**
      * Creates new form RaiseAndViewMyRequests
      */
-    public RaiseAndViewMyRequests(JPanel userProcessContainer,Network network) {
+    public RaiseAndViewMyRequests(JPanel userProcessContainer,UserAccount userAccount,Network network,EcoSystem system) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.network = network;
-        //this.system=system;  
+        this.system=system; 
+        this.userAccount = userAccount;
+        //populateTable();
+    }
+    
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) RequestDetailsTable.getModel();
+        model.setRowCount(0);
+        
+        for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[7];
+            row[0] = request.getRequestID();
+            row[1] = request.getRequestDate();
+            row[5] = request.getStatus();
+            //String result = ((LabTestWorkRequest) request).getTestResult();
+            //row[3] = result == null ? "Waiting" : result;
+            
+            model.addRow(row);
+        }
     }
 
     /**
@@ -73,7 +95,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(RequestDetailsTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 885, 192));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 890, 192));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("My Work Requests");
@@ -81,7 +103,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RaiseReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseReqBtnActionPerformed
-       RaiseNewRequestPanel raiseNewRequest = new RaiseNewRequestPanel(network);
+       RaiseNewRequestPanel raiseNewRequest = new RaiseNewRequestPanel(userProcessContainer,userAccount,network,system);
        userProcessContainer.add("RaiseAndViewMyRequests",raiseNewRequest);
        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
        layout.next(userProcessContainer);

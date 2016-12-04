@@ -15,90 +15,89 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import userinterface.CountryNetworkAdminRole.ManageStateNetworkAdminJPanl;
 
 /**
  *
  * @author Neha
  */
 public class StateAdminWorkArea extends javax.swing.JPanel {
+
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
+
     /**
      * Creates new form StateAdminWorkArea
      */
-    public StateAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system) {
+    public StateAdminWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-         this.system = system;
-         this.account = account;
+        this.system = system;
+        this.account = account;
+        populateTree();
     }
-    
-    public void populateTree(){
+
+    public void populateTree() {
         DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
         ArrayList<Network> networkList = system.getNetworkList();
         ArrayList<Enterprise> enterpriseList;
         ArrayList<Organization> organizationList;
-        
+
         Network network;
         Enterprise enterprise;
         Organization organization;
         Network stateNetwork;
         Network cityNetwork;
-        
+
         DefaultMutableTreeNode rootNetwork = new DefaultMutableTreeNode("Network");
-        DefaultMutableTreeNode root = (DefaultMutableTreeNode)treeModel.getRoot();
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) treeModel.getRoot();
         root.removeAllChildren();
-        root.insert(rootNetwork,0);
-        
+        root.insert(rootNetwork, 0);
+
         DefaultMutableTreeNode networkNode;
         DefaultMutableTreeNode stateNetworkNode;
         DefaultMutableTreeNode cityNetworkNode;
         DefaultMutableTreeNode enterpriseNode;
         DefaultMutableTreeNode organizationNode;
-        
-        for(int i = 0; i<networkList.size(); i++){
+
+        for (int i = 0; i < networkList.size(); i++) {
             network = networkList.get(i);
-            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
-                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
-                 networkNode = new DefaultMutableTreeNode(network.getNetworkName());
-                 rootNetwork.insert(networkNode, i);
-            
-            for(int j = 0 ; j<network.getSubNetwork().size(); j++){
+            networkNode = new DefaultMutableTreeNode(network.getNetworkName());
+            rootNetwork.insert(networkNode, i);
+            for (int j = 0; j < network.getSubNetwork().size(); j++) {
                 stateNetwork = network.getSubNetwork().get(j);
-                stateNetworkNode = new DefaultMutableTreeNode(stateNetwork.getNetworkName());
-                networkNode.insert(stateNetworkNode, j);
-                
-                
-                for(int k = 0; k<stateNetwork.getSubNetwork().size(); k++){
-                   cityNetwork = stateNetwork.getSubNetwork().get(k);
-                   cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
-                   stateNetworkNode.insert(cityNetworkNode, k);
-                   
-                   enterpriseList = cityNetwork.getEnterpriseDirectory().getEnterpriseList();
-                   for(int a = 0; a<enterpriseList.size(); a++){
-                      enterprise = enterpriseList.get(a);
-                      enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
-                      cityNetworkNode.insert(enterpriseNode, a);
-                
-                      organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
-                
-                      for(int b = 0; b< organizationList.size(); b++){
-                          organization = organizationList.get(b);
-                          organizationNode = new DefaultMutableTreeNode(organization.getName());
-                          enterpriseNode.insert(organizationNode, b);
-                      }
-                    } 
+                if (stateNetwork.getUserAccountDirectory().getUserAccountList().get(0).getUsername().
+                        equals(account.getUsername())) {
+                    stateNetworkNode = new DefaultMutableTreeNode(stateNetwork.getNetworkName());
+                    networkNode.insert(stateNetworkNode, j);
+                    for (int k = 0; k < stateNetwork.getSubNetwork().size(); k++) {
+                        cityNetwork = stateNetwork.getSubNetwork().get(k);
+                        cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());
+                        stateNetworkNode.insert(cityNetworkNode, k);
+
+                        enterpriseList = cityNetwork.getEnterpriseDirectory().getEnterpriseList();
+                        for (int a = 0; a < enterpriseList.size(); a++) {
+                            enterprise = enterpriseList.get(a);
+                            enterpriseNode = new DefaultMutableTreeNode(enterprise.getName());
+                            cityNetworkNode.insert(enterpriseNode, a);
+
+                            organizationList = enterprise.getOrganizationDirectory().getOrganizationList();
+
+                            for (int b = 0; b < organizationList.size(); b++) {
+                                organization = organizationList.get(b);
+                                organizationNode = new DefaultMutableTreeNode(organization.getName());
+                                enterpriseNode.insert(organizationNode, b);
+                            }
+                        }
+                    }
+
                 }
-            } 
+
             }
-            }
-            
-                   
         }
         treeModel.reload();
     }
-
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -177,21 +176,24 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
-        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer,account, system);
-        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer, account, system);
+        userProcessContainer.add("ManageEnterpriseJPanel", manageEnterprise);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
 
     private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
-        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer,account, system);
-        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer, account, system);
+        userProcessContainer.add("ManageEnterpriseAdminJPanel", manageEnterpriseAdmin);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
     private void manageWorkRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageWorkRequestBtnActionPerformed
-        // TODO add your handling code here:
+        StateNetworkManageRequestJPanel manageRequest = new StateNetworkManageRequestJPanel(userProcessContainer,account, system);
+        userProcessContainer.add("ManageNetworkAdminJPanel",manageRequest);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageWorkRequestBtnActionPerformed
 
 

@@ -11,6 +11,13 @@ import Business.Hospital.Patient;
 import Business.Network.Network;
 import Business.Organization.Hospital.HospitalRepOrganization;
 import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 /**
  *
@@ -18,16 +25,20 @@ import Business.Organization.Organization;
  */
 public class RaiseNewRequestPanel extends javax.swing.JPanel {
     
-    //private EcoSystem system;
+    private JPanel userProcessContainer;
+    private EcoSystem system;
     private Network network;
+    private UserAccount userAccount;
 
     /**
      * Creates new form RaiseNewRequestPanel
      */
-    public RaiseNewRequestPanel(Network network) {
+    public RaiseNewRequestPanel(JPanel userProcessContainer,UserAccount userAccount,Network cityNetwork, EcoSystem system) {
         initComponents();
-        //this.system = system;
-        this.network = network;
+        this.system = system;
+        this.network = cityNetwork;
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount= userAccount;
     }
 
     /**
@@ -153,12 +164,16 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
 
         BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BackBtn.setText("<< Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(33, 621, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RaiseRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseRequestBtnActionPerformed
        Patient patient = null;
-        
         for(Enterprise enterprise : network.getEnterpriseDirectory().getEnterpriseList()){
             if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.Hospital)){
                 for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -179,11 +194,40 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         patient.setOtherMedicalCondition(OtherMedicalConditionTextArea.getText());
         
         
+        
+        FindDonorRequest findDonorReq = new FindDonorRequest();
+        findDonorReq.setPatientDetails(patient);
+        findDonorReq.setSender(userAccount);
+        findDonorReq.setStatus("Request Raised");
+        findDonorReq.setRequestDate(new Date());
+        
+        for(Network network : system.getNetworkList()){
+            for(Network stateNetwork : network.getSubNetwork()){
+                for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                    if(cityNetwork.getNetworkName().equals(this.network.getNetworkName())){
+                        stateNetwork.getWorkQueue().getWorkRequestList().add(findDonorReq);
+                        JOptionPane.showMessageDialog(null, "Request raised successfully");
+                    }
+                }
+            }
+        }
+        userAccount.getWorkQueue().getWorkRequestList().add(findDonorReq);
+        
     }//GEN-LAST:event_RaiseRequestBtnActionPerformed
 
     private void PatientAgeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientAgeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PatientAgeTextFieldActionPerformed
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        RaiseAndViewMyRequests viewRequest = (RaiseAndViewMyRequests) component;
+        viewRequest.populateTable();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

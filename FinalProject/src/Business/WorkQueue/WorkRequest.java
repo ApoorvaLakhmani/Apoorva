@@ -13,15 +13,23 @@ import java.util.Date;
  * @author Neha
  */
 public abstract class WorkRequest {
-      private String message;
+    private int requestID;
+    private String message;
     private UserAccount sender;
     private UserAccount receiver;
     private String status;
     private Date requestDate;
     private Date resolveDate;
+    private static int counter;
     
     public WorkRequest(){
         requestDate = new Date();
+        counter++;
+        requestID = counter;
+    }
+
+    public int getRequestID() {
+        return requestID;
     }
 
     public String getMessage() {
