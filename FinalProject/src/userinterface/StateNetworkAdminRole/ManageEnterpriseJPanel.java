@@ -240,7 +240,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        CountryNetworkAdminWorkArea sysAdminwjp = (CountryNetworkAdminWorkArea) component;
+        StateAdminWorkArea sysAdminwjp = (StateAdminWorkArea) component;
         sysAdminwjp.populateTree();
 
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
