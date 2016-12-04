@@ -32,7 +32,8 @@ public abstract class Organization {
         OPTEAdmin("OPTE Admin Organization"),
         OPTELab("OPTE Lab Organization"),
         Surgeon("Surgeon Organization"),
-        LegalDepartment("Legal Organization");
+        LegalDepartment("Legal Organization"),
+        StateNetworkAdmin("State Network Admin");
         private String value;
         private Type(String value) {
             this.value = value;

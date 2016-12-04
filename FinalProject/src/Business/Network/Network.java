@@ -7,7 +7,9 @@ package Business.Network;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
 
@@ -15,21 +17,21 @@ import java.util.ArrayList;
  *
  * @author ApoorvaLakhmani
  */
-public class Network{
+public class Network extends Organization{
     
     private String networkName;
-    private UserAccountDirectory userAccountDirectory;
-    private EmployeeDirectory employeeDirectory;
+    //private UserAccountDirectory userAccountDirectory;
+    //private EmployeeDirectory employeeDirectory;
     private EnterpriseDirectory enterpriseDirectory;
     private ArrayList<Network> subNetwork;
-    private OrganizationDirectory organizationDirectory;
     
     public Network(){
+        super(Type.StateNetworkAdmin.getValue());
         enterpriseDirectory = new EnterpriseDirectory();
-        employeeDirectory = new EmployeeDirectory();
-        userAccountDirectory = new UserAccountDirectory();
+        //employeeDirectory = new EmployeeDirectory();
+        //userAccountDirectory = new UserAccountDirectory();
         subNetwork = new ArrayList<>();
-        organizationDirectory = new OrganizationDirectory();
+        
     }
 
     public ArrayList<Network> getSubNetwork() {
@@ -57,21 +59,21 @@ public class Network{
         this.enterpriseDirectory = enterpriseDir;
     }
 
-    public UserAccountDirectory getUserAccountDirectory() {
-        return userAccountDirectory;
-    }
-
-    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
-        this.userAccountDirectory = userAccountDirectory;
-    }
-
-    public EmployeeDirectory getEmployeeDirectory() {
-        return employeeDirectory;
-    }
-
-    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
-        this.employeeDirectory = employeeDirectory;
-    }
+//    public UserAccountDirectory getUserAccountDirectory() {
+//        return userAccountDirectory;
+//    }
+//
+//    public void setUserAccountDirectory(UserAccountDirectory userAccountDirectory) {
+//        this.userAccountDirectory = userAccountDirectory;
+//    }
+//
+//    public EmployeeDirectory getEmployeeDirectory() {
+//        return employeeDirectory;
+//    }
+//
+//    public void setEmployeeDirectory(EmployeeDirectory employeeDirectory) {
+//        this.employeeDirectory = employeeDirectory;
+//    }
     
     @Override
     public String toString(){
@@ -82,6 +84,11 @@ public class Network{
         Network stateNetwork = new Network();
         subNetwork.add(stateNetwork);
         return stateNetwork;
+    }
+
+    @Override
+    public ArrayList<Role> getSupportedRole() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
