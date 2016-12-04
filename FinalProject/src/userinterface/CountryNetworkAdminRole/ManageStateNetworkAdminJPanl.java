@@ -34,6 +34,7 @@ public class ManageStateNetworkAdminJPanl extends javax.swing.JPanel {
          this.system = system;
          this.account=account;
          populateStateComboBox();
+         populateTable();
     }
 
     /**
@@ -147,6 +148,7 @@ public class ManageStateNetworkAdminJPanl extends javax.swing.JPanel {
         Employee employee = network.getEmployeeDirectory().createEmployee(name);
 
         UserAccount account = network.getUserAccountDirectory().createUserAccount(username, password, employee, new StateNetworkAdminRole());
+        
         populateTable();
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -180,8 +182,9 @@ public class ManageStateNetworkAdminJPanl extends javax.swing.JPanel {
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
+            if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
             for (Network state: network.getSubNetwork()){
-                for (UserAccount userAccount : network.getUserAccountDirectory().getUserAccountList()) {
+                for (UserAccount userAccount : state.getUserAccountDirectory().getUserAccountList()) {
                     Object[] row = new Object[2];
                     row[0] = state.getNetworkName();
                     row[1] = userAccount.getUsername();
@@ -190,6 +193,9 @@ public class ManageStateNetworkAdminJPanl extends javax.swing.JPanel {
                 }
             }
         }
+        }
+ 
+        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;

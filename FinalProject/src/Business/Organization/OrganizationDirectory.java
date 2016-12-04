@@ -14,7 +14,6 @@ import Business.Organization.Organization.Type;
 import java.util.ArrayList;
 
 /**
- *
  * @author raunak
  */
 public class OrganizationDirectory {
@@ -55,6 +54,10 @@ public class OrganizationDirectory {
             organization = new HospitalRepOrganization();
             organizationList.add(organization);
         }
+//        else if(type.getValue().equals(Type.StateNetworkAdmin.getValue())){
+//            organization = new StateNetworkAdminOrganization();
+//            organizationList.add(organization);
+//        }
         
       
         return organization;

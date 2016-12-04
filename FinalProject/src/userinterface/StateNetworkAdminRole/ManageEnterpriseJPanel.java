@@ -32,19 +32,20 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
-    
+
     /**
      * Creates new form ManageEnterpriseJPanel
      */
-    public ManageEnterpriseJPanel(JPanel userProcessContainer,UserAccount account, EcoSystem system) {
+    public ManageEnterpriseJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
-        this.account=account;
+        this.account = account;
 
         populateTable();
-        populateComboBox();
-        populateCountryName();
+      //  populateCountryName();
+        populateCityComboBox();
+        populateEnterpriseComboBox();
         enterpriseTypeJComboBox.setEnabled(false);
         enterpriseNameTextField.setEnabled(false);
     }
@@ -55,36 +56,20 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
-            for(Network stateNetwork : network.getSubNetwork()){
-                for(Network cityNetwork : stateNetwork.getSubNetwork()){
+            for (Network state: network.getSubNetwork()){
+                 if (state.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                  for (Network cityNetwork : state.getSubNetwork()) {
                     for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
                         Object[] row = new Object[5];
                         row[0] = enterprise.getName();
-                        row[1] = network.getNetworkName();
-                        row[2] = stateNetwork.getNetworkName();
-                        row[3] = cityNetwork.getNetworkName();
-                        row[4] = enterprise.getEnterpriseType().getValue();
+                        row[1] = cityNetwork.getNetworkName();
+                        row[2] = enterprise.getEnterpriseType().getValue();
                         model.addRow(row);
                     }
-                }
+                }  
             }
-            
+           }
         }
-    }
-
-    private void populateComboBox() {
-        CountryNetComboBox.removeAllItems();
-        enterpriseTypeJComboBox.removeAllItems();
-        
-        CountryNetComboBox.addItem("Please select");
-        for (Network network : system.getNetworkList()) {
-            CountryNetComboBox.addItem(network);
-        }
-
-        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
-            enterpriseTypeJComboBox.addItem(type);
-        }
-
     }
 
     /**
@@ -99,7 +84,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         enterpriseJTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        CountryNetComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         enterpriseNameTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -107,9 +91,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         submitJButton = new javax.swing.JButton();
         backJButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        StateComboBox = new javax.swing.JComboBox();
         jLabel5 = new javax.swing.JLabel();
         CityComboBox = new javax.swing.JComboBox();
+        stateNameTextBox = new javax.swing.JTextField();
         countryNameTextBox = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,17 +101,17 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         enterpriseJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Enterprise Name", "Country Network", "State Network", "City Network", "Enterprise Type"
+                "Enterprise Name", "City Network", "Enterprise Type"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true, true, true
+                false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -141,15 +125,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel1.setText("Country : ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 201, -1, -1));
-
-        CountryNetComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        CountryNetComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        CountryNetComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                CountryNetComboBoxItemStateChanged(evt);
-            }
-        });
-        add(CountryNetComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 201, 190, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel2.setText("Name : ");
@@ -188,15 +163,6 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         jLabel4.setText("State : ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 269, -1, -1));
 
-        StateComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        StateComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        StateComboBox.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                StateComboBoxItemStateChanged(evt);
-            }
-        });
-        add(StateComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 269, 190, -1));
-
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         jLabel5.setText("City : ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 339, -1, -1));
@@ -210,8 +176,11 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         add(CityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 339, 190, -1));
 
+        stateNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        add(stateNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 170, 30));
+
         countryNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 200, 170, 30));
+        add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 170, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
@@ -227,81 +196,73 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
 
         Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-        if(type.equals(Enterprise.EnterpriseType.DonorRegCenter)){
+        if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.RegCenterLab);
         }
-        
+
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-<<<<<<< HEAD
-=======
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         StateAdminWorkArea sysAdminwjp = (StateAdminWorkArea) component;
         sysAdminwjp.populateTree();
-
->>>>>>> 8379f87e1e13c3a9dbb8eb6b4c07cbf61fa9f680
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
 
     private void CityComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CityComboBoxItemStateChanged
-        if(evt.getStateChange() == ItemEvent.SELECTED && !CityComboBox.getSelectedItem().equals("Please select")){
+        if (evt.getStateChange() == ItemEvent.SELECTED && !CityComboBox.getSelectedItem().equals("Please select")) {
             enterpriseTypeJComboBox.setEnabled(true);
             enterpriseNameTextField.setEnabled(true);
         }
-        
+
     }//GEN-LAST:event_CityComboBoxItemStateChanged
+//    private void populateCountryName() {
+//        ArrayList<Network> networkList = system.getNetworkList();
+//        Network network;
+//        for (int i = 0; i < networkList.size(); i++) {
+//            network = networkList.get(i);
+//            if (network.getUserAccountDirectory().getUserAccountList().size() > 0) {
+//                if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+//                    stateNameTextBox.setText(network.getNetworkName());
+//                }
+//            }
+//        }
+//    }
 
-    private void CountryNetComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CountryNetComboBoxItemStateChanged
-       if(evt.getStateChange() == ItemEvent.SELECTED && !CountryNetComboBox.getSelectedItem().equals("Please select")){
-           StateComboBox.removeAllItems();
-           StateComboBox.addItem("Please select");
-           for(Network network : system.getNetworkList()){
-               if(network.getNetworkName().equals(CountryNetComboBox.getSelectedItem().toString())){
-                  for(Network stateNetwork : network.getSubNetwork()){
-                      StateComboBox.addItem(stateNetwork);
-                  }
-               }
-           }
-       }       
-    }//GEN-LAST:event_CountryNetComboBoxItemStateChanged
-
-    private void StateComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StateComboBoxItemStateChanged
-       if(evt.getStateChange() == ItemEvent.SELECTED && !StateComboBox.getSelectedItem().equals("Please select")){
-           CityComboBox.removeAllItems();
-           CityComboBox.addItem("Please select");
-           for(Network network : system.getNetworkList()){
-               if(network.getNetworkName().equals(CountryNetComboBox.getSelectedItem().toString())){
-                  for(Network stateNetwork : network.getSubNetwork()){
-                      if(stateNetwork.getNetworkName().equals(StateComboBox.getSelectedItem().toString())){
-                          for(Network cityNetwork : stateNetwork.getSubNetwork()){
-                              CityComboBox.addItem(cityNetwork);
-                          }
-                      }
-                  }
-               }
-           }
-       }
-    }//GEN-LAST:event_StateComboBoxItemStateChanged
-private void populateCountryName(){
-    ArrayList<Network> networkList = system.getNetworkList();
-    Network network;
-     for(int i = 0; i<networkList.size(); i++){
-            network = networkList.get(i);
-            if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
-                if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
-                    countryNameTextBox.setText(network.getNetworkName());
+    private void populateCityComboBox() {
+        ArrayList<Network> networkList = system.getNetworkList();
+        CityComboBox.removeAllItems();
+        CityComboBox.addItem("Please select");
+        for (Network country : networkList) {
+            if (country.getUserAccountDirectory().getUserAccountList().size() > 0) {
+                for (Network state : country.getSubNetwork()) {
+                    if (state.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                        countryNameTextBox.setText(country.getNetworkName());
+                        stateNameTextBox.setText(state.getNetworkName());
+                        for (Network city : state.getSubNetwork()) {
+                            CityComboBox.addItem(city);
+                        }
+                    }
                 }
             }
-     }
-}
-    
+        }
+
+    }
+     private void populateEnterpriseComboBox() {
+        enterpriseTypeJComboBox.removeAllItems();
+        enterpriseTypeJComboBox.removeAllItems();
+        for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
+            enterpriseTypeJComboBox.addItem(type);
+        }
+
+    }
+
 //     private void populateStateCombo(String[] statelist){
 //        StateComboBox.removeAllItems();
 //        StateComboBox.addItem("Please Select");
@@ -309,7 +270,6 @@ private void populateCountryName(){
 //            StateComboBox.addItem(statename);
 //        }
 //    }
-    
 //     private void populateCityCombo(String[] cityList){
 //        CityComboBox.removeAllItems();
 //        CityComboBox.addItem("Please select");
@@ -317,11 +277,9 @@ private void populateCountryName(){
 //            CityComboBox.addItem(city);
 //        }
 //    }
-     
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CityComboBox;
-    private javax.swing.JComboBox CountryNetComboBox;
-    private javax.swing.JComboBox StateComboBox;
     private javax.swing.JButton backJButton;
     private javax.swing.JTextField countryNameTextBox;
     private javax.swing.JTable enterpriseJTable;
@@ -333,6 +291,7 @@ private void populateCountryName(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField stateNameTextBox;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables
 }
