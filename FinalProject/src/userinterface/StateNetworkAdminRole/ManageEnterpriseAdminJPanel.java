@@ -292,7 +292,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         for (int i = 0; i < networkList.size(); i++) {
             network = networkList.get(i);
             if (network.getUserAccountDirectory().getUserAccountList().size() > 0) {
-                if (network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                if (network.getSubNetwork().get(0).getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
                     countryNameTextBox.setText(network.getNetworkName());
                 }
             }

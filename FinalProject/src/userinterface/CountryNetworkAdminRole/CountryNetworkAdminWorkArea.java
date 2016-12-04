@@ -114,8 +114,6 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        MngEnterpriseBtn = new javax.swing.JButton();
-        MngEnterpriseAdminBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
         manageRequestsBtn = new javax.swing.JButton();
@@ -124,24 +122,6 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTree1);
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        MngEnterpriseBtn.setText("Manage Enterprise");
-        MngEnterpriseBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MngEnterpriseBtnActionPerformed(evt);
-            }
-        });
-        add(MngEnterpriseBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 99, 261, 39));
-
-        MngEnterpriseAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        MngEnterpriseAdminBtn.setText("Manage Enterprise Admin");
-        MngEnterpriseAdminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MngEnterpriseAdminBtnActionPerformed(evt);
-            }
-        });
-        add(MngEnterpriseAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 192, -1, 42));
 
         NetworkJTree.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
@@ -158,7 +138,7 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
                 manageRequestsBtnActionPerformed(evt);
             }
         });
-        add(manageRequestsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 300, -1));
+        add(manageRequestsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 300, -1));
 
         manageStateNetworkAdminBtn.setBackground(new java.awt.Color(255, 255, 255));
         manageStateNetworkAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -168,22 +148,8 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
                 manageStateNetworkAdminBtnActionPerformed(evt);
             }
         });
-        add(manageStateNetworkAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
+        add(manageStateNetworkAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
-        ManageEnterpriseJPanel manageEnterprise = new ManageEnterpriseJPanel(userProcessContainer,account, system);
-        userProcessContainer.add("ManageEnterpriseJPanel",manageEnterprise);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_MngEnterpriseBtnActionPerformed
-
-    private void MngEnterpriseAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseAdminBtnActionPerformed
-        ManageEnterpriseAdminJPanel manageEnterpriseAdmin = new ManageEnterpriseAdminJPanel(userProcessContainer,account, system);
-        userProcessContainer.add("ManageEnterpriseAdminJPanel",manageEnterpriseAdmin);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
     private void manageRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestsBtnActionPerformed
        
@@ -198,8 +164,6 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton MngEnterpriseAdminBtn;
-    private javax.swing.JButton MngEnterpriseBtn;
     private javax.swing.JTree NetworkJTree;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

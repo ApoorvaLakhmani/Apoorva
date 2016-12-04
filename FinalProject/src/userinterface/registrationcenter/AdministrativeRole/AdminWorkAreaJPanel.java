@@ -42,7 +42,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         userJButton = new javax.swing.JButton();
         manageEmployeeJButton = new javax.swing.JButton();
-        manageOrganizationJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
 
@@ -66,14 +65,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
-        manageOrganizationJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        manageOrganizationJButton.setText("Manage Organization");
-        manageOrganizationJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationJButtonActionPerformed(evt);
-            }
-        });
-
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseLabel.setText("Enterprise :");
 
@@ -88,7 +79,6 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addGap(90, 90, 90)
@@ -109,9 +99,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(102, 102, 102)
-                .addComponent(manageOrganizationJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(188, 188, 188)
                 .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
                 .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -138,20 +126,11 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
 
-    private void manageOrganizationJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationJButtonActionPerformed
-
-        ManageOrganizationJPanel manageOrganizationJPanel = new ManageOrganizationJPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("manageOrganizationJPanel", manageOrganizationJPanel);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationJButtonActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
-    private javax.swing.JButton manageOrganizationJButton;
     private javax.swing.JButton userJButton;
     private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables

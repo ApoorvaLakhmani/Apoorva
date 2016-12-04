@@ -171,41 +171,44 @@ public class MainJFrame extends javax.swing.JFrame {
                 if (userAccount == null) {
                     for (Network state : network.getSubNetwork()) {
                         userAccount = state.getUserAccountDirectory().authenticateUser(userName, password);
-                        for (Network city : state.getSubNetwork()) {
-                            for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
-                                userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
-                                if (userAccount == null) {
-                                    //Step 3: Check against each organization in enterprise
-                                    for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
-                                        userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
-                                        if (userAccount != null) {
-                                            inEnterprise = enterprise;
-                                            inOrganization = organization;
-                                            inNetwork = city;
-                                            break;
+                        if (userAccount == null) {
+                            for (Network city : state.getSubNetwork()) {
+                                for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
+                                    userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
+                                    if (userAccount == null) {
+                                        //Step 3: Check against each organization in enterprise
+                                        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                            userAccount = organization.getUserAccountDirectory().authenticateUser(userName, password);
+                                            if (userAccount != null) {
+                                                inEnterprise = enterprise;
+                                                inOrganization = organization;
+                                                inNetwork = city;
+                                                break;
+                                            }
                                         }
+                                    } else {
+                                        inEnterprise = enterprise;
+                                        break;
                                     }
-                                } else {
-                                    inEnterprise = enterprise;
+                                    if (inOrganization != null) {
+                                        break;
+                                    }
+                                }
+                                if (inEnterprise != null) {
                                     break;
                                 }
-                                if (inOrganization != null) {
-                                    break;
-                                }
-                            }
-                            if(inEnterprise != null){
-                                break;
                             }
                         }
-                        if(inEnterprise != null){
-                                break;
+
+                        if (inEnterprise != null) {
+                            break;
                         }
                     }
 
                 } else {
                     break;
                 }
-                
+
                 if (inEnterprise != null) {
                     break;
                 }
@@ -216,7 +219,7 @@ public class MainJFrame extends javax.swing.JFrame {
             return;
         } else {
             CardLayout layout = (CardLayout) container.getLayout();
-            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount,inNetwork, inOrganization, inEnterprise, system));
+            container.add("workArea", userAccount.getRole().createWorkArea(container, userAccount, inNetwork, inOrganization, inEnterprise, system));
             layout.next(container);
         }
         loginJButton.setEnabled(false);
