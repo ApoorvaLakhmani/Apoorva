@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author ApoorvaLakhmani
  */
-public class Network {
+public class Network{
     
     private String networkName;
     private UserAccountDirectory userAccountDirectory;

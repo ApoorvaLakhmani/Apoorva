@@ -9,7 +9,7 @@ import Business.EcoSystem;
 import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
-import Business.Role.NetworkAdminRole;
+import Business.Role.CountryNetworkAdminRole;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -22,13 +22,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Neha
  */
 
-public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
+public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
      private JPanel userProcessContainer;
     private EcoSystem system;
     /**
      * Creates new form ManageNetworkAdminJPanel
      */
-    public ManageNetworkAdminJPanel( JPanel userProcessContainer,EcoSystem system) {
+    public ManageCountryNetworkAdminJPanel( JPanel userProcessContainer,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
@@ -49,7 +49,7 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         nameJTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        enterpriseJTable = new javax.swing.JTable();
+        networkJTable = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
         passwordJPasswordField = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
@@ -76,7 +76,7 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
         nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 345, 138, -1));
 
-        enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
+        networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -95,9 +95,9 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(enterpriseJTable);
-        if (enterpriseJTable.getColumnModel().getColumnCount() > 0) {
-            enterpriseJTable.getColumnModel().getColumn(1).setResizable(false);
+        jScrollPane1.setViewportView(networkJTable);
+        if (networkJTable.getColumnModel().getColumnCount() > 0) {
+            networkJTable.getColumnModel().getColumn(1).setResizable(false);
         }
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 48, 523, 120));
@@ -144,7 +144,7 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
 
         Employee employee = network.getEmployeeDirectory().createEmployee(name);
 
-        UserAccount account = network.getUserAccountDirectory().createUserAccount(username, password, employee, new NetworkAdminRole());
+        UserAccount account = network.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryNetworkAdminRole());
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
@@ -169,8 +169,8 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
     }
      
      private void populateTable() {
-        enterpriseJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
-        DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
+        networkJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
@@ -186,7 +186,6 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backJButton;
-    private javax.swing.JTable enterpriseJTable;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -194,6 +193,7 @@ public class ManageNetworkAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;
+    private javax.swing.JTable networkJTable;
     private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JButton submitJButton;
     private javax.swing.JTextField usernameJTextField;

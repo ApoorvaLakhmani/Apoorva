@@ -170,6 +170,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
                 if (userAccount == null) {
                     for (Network state : network.getSubNetwork()) {
+                        userAccount = state.getUserAccountDirectory().authenticateUser(userName, password);
                         for (Network city : state.getSubNetwork()) {
                             for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
                                 userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);

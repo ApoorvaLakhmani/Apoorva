@@ -3,18 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NetworkAdminRole;
+package userinterface.CountryNetworkAdminRole;
 
 /**
  *
  * @author Neha
  */
-public class NetworkAdminWorkRequestArea extends javax.swing.JPanel {
+public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
 
     /**
      * Creates new form NetworkAdminWorkArea
      */
-    public NetworkAdminWorkRequestArea() {
+    public CountryNetworkAdminWorkRequestArea() {
         initComponents();
     }
 

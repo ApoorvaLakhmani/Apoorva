@@ -11,17 +11,17 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
-import userinterface.NetworkAdminRole.NetworkAdminWorkArea;
+import userinterface.CountryNetworkAdminRole.CountryNetworkAdminWorkArea;
 
 /**
  *
  * @author Neha
  */
-public class NetworkAdminRole extends Role {
+public class CountryNetworkAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new NetworkAdminWorkArea(userProcessContainer,account, business);
+        return new CountryNetworkAdminWorkArea(userProcessContainer,account, business);
     }
     
 }

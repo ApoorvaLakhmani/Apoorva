@@ -146,7 +146,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         manageNetworkAdminBtm.setBackground(new java.awt.Color(255, 255, 255));
         manageNetworkAdminBtm.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        manageNetworkAdminBtm.setText("Manage Network Admin");
+        manageNetworkAdminBtm.setText("Manage Country Network Admin");
         manageNetworkAdminBtm.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageNetworkAdminBtmActionPerformed(evt);
@@ -168,7 +168,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(113, 113, 113)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ManageNetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
+                            .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -181,8 +181,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addGap(94, 94, 94)
                 .addComponent(ManageNetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(316, Short.MAX_VALUE))
+                .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(316, 316, 316))
         );
 
         jSplitPane.setRightComponent(jPanel1);
@@ -233,7 +233,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_NetworkJTreeValueChanged
 
     private void manageNetworkAdminBtmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageNetworkAdminBtmActionPerformed
-        ManageNetworkAdminJPanel manageNetworkAdmin = new ManageNetworkAdminJPanel(userProcessContainer, system);
+        ManageCountryNetworkAdminJPanel manageNetworkAdmin = new ManageCountryNetworkAdminJPanel(userProcessContainer, system);
         userProcessContainer.add("ManageNetworkAdminJPanel",manageNetworkAdmin);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

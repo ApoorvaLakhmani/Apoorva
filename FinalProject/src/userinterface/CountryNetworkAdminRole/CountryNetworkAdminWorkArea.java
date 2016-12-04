@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.NetworkAdminRole;
+package userinterface.CountryNetworkAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseAdminJPanel;
-import UserInterface.SystemAdminWorkArea.ManageEnterpriseJPanel;
+import userinterface.StateNetworkAdminRole.ManageEnterpriseAdminJPanel;
+import userinterface.StateNetworkAdminRole.ManageEnterpriseJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -22,7 +22,7 @@ import javax.swing.tree.DefaultTreeModel;
  *
  * @author Neha
  */
-public class NetworkAdminWorkArea extends javax.swing.JPanel {
+public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
       private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
@@ -30,7 +30,7 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
      * Creates new form NetworkAdminWorkArea
      */
       
-    public NetworkAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system) {
+    public CountryNetworkAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system) {
         initComponents();
             this.userProcessContainer = userProcessContainer;
          this.system = system;
@@ -118,6 +118,8 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
         MngEnterpriseAdminBtn = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
+        manageRequestsBtn = new javax.swing.JButton();
+        manageStateNetworkAdminBtn = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTree1);
 
@@ -147,6 +149,26 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
         jScrollPane2.setViewportView(NetworkJTree);
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, 174, 652));
+
+        manageRequestsBtn.setBackground(new java.awt.Color(255, 255, 255));
+        manageRequestsBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageRequestsBtn.setText("Manage WorkRequests");
+        manageRequestsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageRequestsBtnActionPerformed(evt);
+            }
+        });
+        add(manageRequestsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 340, 300, -1));
+
+        manageStateNetworkAdminBtn.setBackground(new java.awt.Color(255, 255, 255));
+        manageStateNetworkAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageStateNetworkAdminBtn.setText("Manage State Network Admin");
+        manageStateNetworkAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageStateNetworkAdminBtnActionPerformed(evt);
+            }
+        });
+        add(manageStateNetworkAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void MngEnterpriseBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MngEnterpriseBtnActionPerformed
@@ -163,6 +185,17 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
+    private void manageRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestsBtnActionPerformed
+       
+    }//GEN-LAST:event_manageRequestsBtnActionPerformed
+
+    private void manageStateNetworkAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStateNetworkAdminBtnActionPerformed
+        ManageStateNetworkAdminJPanl manageNetworkAdmin = new ManageStateNetworkAdminJPanl(userProcessContainer,account, system);
+        userProcessContainer.add("ManageNetworkAdminJPanel",manageNetworkAdmin);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageStateNetworkAdminBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MngEnterpriseAdminBtn;
@@ -171,5 +204,7 @@ public class NetworkAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
+    private javax.swing.JButton manageRequestsBtn;
+    private javax.swing.JButton manageStateNetworkAdminBtn;
     // End of variables declaration//GEN-END:variables
 }

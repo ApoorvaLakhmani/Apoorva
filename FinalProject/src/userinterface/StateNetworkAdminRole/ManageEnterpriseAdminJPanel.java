@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package UserInterface.SystemAdminWorkArea;
+package userinterface.StateNetworkAdminRole;
 
 //import Business.EcoSystem;
 //import Business.Employee.Employee;
@@ -25,7 +25,7 @@ import java.awt.event.ItemEvent;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.NetworkAdminRole.NetworkAdminWorkArea;
+import userinterface.CountryNetworkAdminRole.CountryNetworkAdminWorkArea;
 
 /**
  *
@@ -249,7 +249,7 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
-        NetworkAdminWorkArea sysAdminwjp = (NetworkAdminWorkArea) component;
+        CountryNetworkAdminWorkArea sysAdminwjp = (CountryNetworkAdminWorkArea) component;
         sysAdminwjp.populateTree();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
