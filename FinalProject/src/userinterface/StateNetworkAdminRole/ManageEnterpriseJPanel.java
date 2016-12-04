@@ -238,14 +238,10 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
         userProcessContainer.remove(this);
-<<<<<<< HEAD
-=======
         Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         StateAdminWorkArea sysAdminwjp = (StateAdminWorkArea) component;
         sysAdminwjp.populateTree();
-
->>>>>>> 8379f87e1e13c3a9dbb8eb6b4c07cbf61fa9f680
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backJButtonActionPerformed
