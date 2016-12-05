@@ -21,7 +21,8 @@ public abstract class Enterprise extends Organization{
     public enum EnterpriseType{
         Hospital("Hospital"),
         DonorRegCenter("Registration Center"),
-        OrganProcAndTransCenter("Organ Procurement And Transplantation");
+        OrganProcAndTransCenter("Organ Procurement And Transplantation"),
+        LegalEnterprise("Legal Enterprise");
         
         private String value;
 
