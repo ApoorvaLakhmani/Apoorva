@@ -8,6 +8,7 @@ package userinterface.LegalRepresentativeRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
@@ -144,17 +145,18 @@ private EcoSystem business;
     public void populateWorkQueue(){
         
         DefaultTableModel model = (DefaultTableModel) legalWorkRequestTable.getModel();
-        
         model.setRowCount(0);
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
+        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[3];
-            row[0] = request.getRequestID();
+            row[0] = request;
             row[1] = ((FindDonorRequest) request).getHospitalID();
             String result = ((FindDonorRequest) request).getAuthorization();
             row[2] = result == null ? "Waiting" : result;
             
             model.addRow(row);
         }
+    }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

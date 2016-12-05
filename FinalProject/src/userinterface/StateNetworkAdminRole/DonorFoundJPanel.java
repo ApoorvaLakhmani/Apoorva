@@ -14,9 +14,7 @@ import Business.RegCenter.Donor;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
-import Business.WorkQueue.LegalAuthorizationWorkRequest;
 import java.awt.CardLayout;
-import java.awt.Component;
 import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -128,8 +126,8 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
                    Organization org = null;
            for (Network city : stateNetwork.getSubNetwork()) {
                if (patient.getPatientLocation().equalsIgnoreCase(city.getNetworkName())) {
-                   for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
-                       if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.LegalEnterprise)) {
+                   for (Enterprise enterprise  : city.getEnterpriseDirectory().getEnterpriseList()) {
+                       if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.LegalEnterprise.toString())) {
                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
                                if (organization instanceof LegalOrganization) {
                                    org = organization;

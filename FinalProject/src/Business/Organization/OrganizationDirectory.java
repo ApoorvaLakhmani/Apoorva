@@ -4,10 +4,10 @@
  */
 package Business.Organization;
 
-import Business.LegalOrganization;
 import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
 import Business.Organization.DonorRegCenter.RegCenterLabOrganization;
 import Business.Organization.Hospital.HospitalRepOrganization;
+import Business.Organization.LegalEnterprise.LegalOrganization;
 import Business.Organization.OPTOrganization.OPTELabOrganization;
 import Business.Organization.OPTOrganization.SurgeonOrganization;
 import Business.Organization.Organization.Type;
