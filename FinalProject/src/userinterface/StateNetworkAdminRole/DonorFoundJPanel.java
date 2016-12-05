@@ -6,6 +6,7 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 
@@ -91,7 +92,24 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LegalDeptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalDeptBtnActionPerformed
-        // TODO add your handling code here:
+//        String message = messageJTextField.getText();
+//        
+//        LabTestWorkRequest request = new LabTestWorkRequest();
+//        request.setMessage(message);
+//        request.setSender(userAccount);
+//        request.setStatus("Sent");
+//        
+//        Organization org = null;
+//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+//            if (organization instanceof LabOrganization){
+//                org = organization;
+//                break;
+//            }
+//        }
+//        if (org!=null){
+//            org.getWorkQueue().getWorkRequestList().add(request);
+//            userAccount.getWorkQueue().getWorkRequestList().add(request);
+//        }
     }//GEN-LAST:event_LegalDeptBtnActionPerformed
 
 
