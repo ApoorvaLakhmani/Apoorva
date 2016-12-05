@@ -6,11 +6,8 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
-<<<<<<< HEAD
 import Business.RegCenter.Donor;
-=======
 import Business.Organization.Organization;
->>>>>>> db0246cf3c64af34401c3e2aec62ac1b0c71f51b
 import Business.UserAccount.UserAccount;
 import java.awt.Font;
 import java.util.ArrayList;
@@ -116,9 +113,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LegalDeptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalDeptBtnActionPerformed
-<<<<<<< HEAD
-        
-=======
+
 //        String message = messageJTextField.getText();
 //        
 //        LabTestWorkRequest request = new LabTestWorkRequest();
@@ -137,7 +132,6 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
 //            org.getWorkQueue().getWorkRequestList().add(request);
 //            userAccount.getWorkQueue().getWorkRequestList().add(request);
 //        }
->>>>>>> db0246cf3c64af34401c3e2aec62ac1b0c71f51b
     }//GEN-LAST:event_LegalDeptBtnActionPerformed
 
 

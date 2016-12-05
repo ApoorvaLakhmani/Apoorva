@@ -15,6 +15,7 @@ import Business.Employee.Employee;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Role.HospitalAdminRole;
+import Business.Role.LegalRepresentativeRole;
 import Business.Role.OPTEAdminRole;
 import Business.Role.RegisterationCenterAdminRole;
 import Business.UserAccount.UserAccount;
@@ -232,6 +233,8 @@ public class ManageEnterpriseAdminJPanel extends javax.swing.JPanel {
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new RegisterationCenterAdminRole());
         } else if (enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)) {
             UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new OPTEAdminRole());
+        }else if(enterprise.getEnterpriseType().equals(Enterprise.EnterpriseType.LegalEnterprise)){
+            UserAccount account = enterprise.getUserAccountDirectory().createUserAccount(username, password, employee, new LegalRepresentativeRole());
         }
 
         populateTable();

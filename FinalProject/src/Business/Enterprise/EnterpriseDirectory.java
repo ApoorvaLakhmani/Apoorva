@@ -37,6 +37,10 @@ public class EnterpriseDirectory {
             enterprise = new OrganProcurementAndTransplantationEnterprise(name);
             enterpriseList.add(enterprise);
         }
+        if(type == Enterprise.EnterpriseType.LegalEnterprise){
+            enterprise = new LegalEnterprise(name);
+            enterpriseList.add(enterprise);
+        }
         return enterprise;       
     }
     
