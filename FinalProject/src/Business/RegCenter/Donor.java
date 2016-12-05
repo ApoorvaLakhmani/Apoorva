@@ -90,6 +90,9 @@ public class Donor {
         this.donorAddress = donorAddress;
     }
     
-    
+    @Override
+    public String toString(){
+        return String.valueOf(donorId);
+    }
     
 }

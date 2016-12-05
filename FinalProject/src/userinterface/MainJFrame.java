@@ -169,10 +169,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 //Step 2.1 Check against each enterprise
                 userAccount = network.getUserAccountDirectory().authenticateUser(userName, password);
                 if (userAccount == null) {
-                    for (Network state : network.getSubNetwork()) {
-                        userAccount = state.getUserAccountDirectory().authenticateUser(userName, password);
+                    for (Network stateNetwork : network.getSubNetwork()) {
+                        userAccount = stateNetwork.getUserAccountDirectory().authenticateUser(userName, password);
                         if (userAccount == null) {
-                            for (Network city : state.getSubNetwork()) {
+                            for (Network city : stateNetwork.getSubNetwork()) {
                                 for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
                                     userAccount = enterprise.getUserAccountDirectory().authenticateUser(userName, password);
                                     if (userAccount == null) {
@@ -198,6 +198,8 @@ public class MainJFrame extends javax.swing.JFrame {
                                     break;
                                 }
                             }
+                        }else{
+                            inNetwork = stateNetwork;
                         }
 
                         if (inEnterprise != null) {

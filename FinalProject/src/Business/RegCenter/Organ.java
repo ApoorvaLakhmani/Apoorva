@@ -13,5 +13,23 @@ public class Organ {
     
     private String organName;
     private int organLife;
+
+    public String getOrganName() {
+        return organName;
+    }
+
+    public void setOrganName(String organName) {
+        this.organName = organName;
+    }
+
+    public int getOrganLife() {
+        return organLife;
+    }
+
+    public void setOrganLife(int organLife) {
+        this.organLife = organLife;
+    }
+    
+    
     
 }

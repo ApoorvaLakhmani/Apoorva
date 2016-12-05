@@ -26,15 +26,17 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
+    private Network stateNetwork;
 
     /**
      * Creates new form StateAdminWorkArea
      */
-    public StateAdminWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
+    public StateAdminWorkArea(JPanel userProcessContainer, UserAccount account, Network stateNetwork,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.account = account;
+        this.stateNetwork = stateNetwork;
         populateTree();
     }
 
@@ -190,7 +192,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     }//GEN-LAST:event_MngEnterpriseAdminBtnActionPerformed
 
     private void manageWorkRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageWorkRequestBtnActionPerformed
-        StateNetworkManageRequestJPanel manageRequest = new StateNetworkManageRequestJPanel(userProcessContainer,account, system);
+        StateNetworkManageRequestJPanel manageRequest = new StateNetworkManageRequestJPanel(userProcessContainer,account,stateNetwork, system);
         userProcessContainer.add("ManageNetworkAdminJPanel",manageRequest);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);

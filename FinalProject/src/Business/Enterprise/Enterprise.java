@@ -13,7 +13,8 @@ import Business.Organization.OrganizationDirectory;
  * @author ApoorvaLakhmani
  */
 public abstract class Enterprise extends Organization{
-    
+    private int enterpriseID;
+    private static int counter;
     private EnterpriseType enterpriseType;
     private OrganizationDirectory organizationDirectory;
     
@@ -45,8 +46,14 @@ public abstract class Enterprise extends Organization{
         super(name);
         this.enterpriseType = type; 
         organizationDirectory = new OrganizationDirectory();
+        counter++;
+        enterpriseID = counter;
     }
 
+    public int getEnterpriseID() {
+        return enterpriseID;
+    }
+    
     public OrganizationDirectory getOrganizationDirectory() {
         return organizationDirectory;
     }

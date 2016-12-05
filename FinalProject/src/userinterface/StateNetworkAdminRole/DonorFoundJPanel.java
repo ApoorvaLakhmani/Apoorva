@@ -6,8 +6,12 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
+import Business.RegCenter.Donor;
 import Business.UserAccount.UserAccount;
+import java.awt.Font;
+import java.util.ArrayList;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +22,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
+    private ArrayList<Donor> donorList;
     /**
      * Creates new form DonorFoundJPanel
      */
@@ -25,13 +30,29 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    DonorFoundJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
+    DonorFoundJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system,ArrayList<Donor> donorList) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.account = account;
+        this.donorList = donorList;
+        populateTable();
     }
-
+    
+    public void populateTable(){
+        DonorDetailTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) DonorDetailTable.getModel();
+        model.setRowCount(0);
+        
+        for(Donor donor : donorList){
+           Object[] row = new Object[2];
+           row[0] = donor;
+           row[1] = donor.getDonorName();
+           
+           model.addRow(row);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +112,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LegalDeptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalDeptBtnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_LegalDeptBtnActionPerformed
 
 

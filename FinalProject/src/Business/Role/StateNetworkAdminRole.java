@@ -20,8 +20,8 @@ import userinterface.StateNetworkAdminRole.StateAdminWorkArea;
 public class StateNetworkAdminRole extends Role{
 
     @Override
-    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new StateAdminWorkArea(userProcessContainer,account, business);
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, Network network, Organization organization, Enterprise enterprise, EcoSystem system) {
+        return new StateAdminWorkArea(userProcessContainer,account, network,system);
     }
     
 }

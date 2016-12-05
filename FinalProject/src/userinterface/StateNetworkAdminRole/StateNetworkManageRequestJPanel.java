@@ -6,9 +6,15 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
+import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,14 +25,40 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
+    private Network stateNetwork;
     /**
      * Creates new form StateNetworkManageRequestJPanel
      */
-    StateNetworkManageRequestJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system) {
+    StateNetworkManageRequestJPanel(JPanel userProcessContainer, UserAccount account, Network stateNetwork,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.account = account;
+        this.stateNetwork = stateNetwork;
+        
+        populatetable();
+    }
+    
+    public void populatetable(){
+        DonorRequestTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) DonorRequestTable.getModel();
+        model.setRowCount(0);
+        
+        for(Network countryNetwork : system.getNetworkList()){
+            for(Network stateNetwork : countryNetwork.getSubNetwork()){
+                if(stateNetwork.getNetworkName().equals(this.stateNetwork.getNetworkName())){
+                    for(WorkRequest request : stateNetwork.getWorkQueue().getWorkRequestList()){
+                        FindDonorRequest donorReq = (FindDonorRequest) request;
+                        Object[] row = new Object[3];
+                        row[0] = request;
+                        row[1] = donorReq.getPatientDetails().getPatientID();
+                        row[2] = request.getStatus();
+                        
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
     }
 
     /**
@@ -40,8 +72,12 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         DonorRequestTable = new javax.swing.JTable();
-        FindDonorBtn = new javax.swing.JButton();
+        ViewRequestBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        DonorRequestTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         DonorRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -55,49 +91,55 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(DonorRequestTable);
 
-        FindDonorBtn.setText("Find Donor");
-        FindDonorBtn.addActionListener(new java.awt.event.ActionListener() {
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 90, 638, 164));
+
+        ViewRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        ViewRequestBtn.setText("View Request");
+        ViewRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FindDonorBtnActionPerformed(evt);
+                ViewRequestBtnActionPerformed(evt);
             }
         });
+        add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 240, 50));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(97, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 638, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(313, 313, 313))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110)
-                .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
-        );
+        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        BackBtn.setText("<< Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 170, 50));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void FindDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindDonorBtnActionPerformed
-        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system);
-        userProcessContainer.add("ManageNetworkAdminJPanel",donorFound);
+    private void ViewRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewRequestBtnActionPerformed
+        
+        int selectedRow= DonorRequestTable.getSelectedRow();
+        if(selectedRow >= 0){
+            FindDonorRequest request= (FindDonorRequest)DonorRequestTable.getValueAt(selectedRow, 0);
+            ViewDonorRequestJPanel viewDonorReq = new ViewDonorRequestJPanel(userProcessContainer,account,stateNetwork,system,request);
+            userProcessContainer.add("ViewDonorRequestJPanel",viewDonorReq);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(null, "Select an element");
+        }
+        
+        
+        
+    }//GEN-LAST:event_ViewRequestBtnActionPerformed
+
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        userProcessContainer.remove(this);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_FindDonorBtnActionPerformed
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackBtn;
     private javax.swing.JTable DonorRequestTable;
-    private javax.swing.JButton FindDonorBtn;
+    private javax.swing.JButton ViewRequestBtn;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

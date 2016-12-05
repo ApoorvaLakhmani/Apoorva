@@ -196,11 +196,16 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
 
         Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        
         if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.RegCenterLab);
         }
-
+        else if(type.equals(Enterprise.EnterpriseType.Hospital)){
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OrganTransaplantDeptRep);
+        }else if(type.equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)){
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Surgeon);
+        }
         populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed

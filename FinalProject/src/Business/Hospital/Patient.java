@@ -20,13 +20,39 @@ public class Patient {
     private String organNeeded;
     private int organSize;
     private String otherMedicalCondition;
+    private int patientContactNumber;
+    private String critical;
     private static int counter;
+    
     
     public Patient(){
         counter++;
         patientID = counter;
     }
 
+    public int getPatientID() {
+        return patientID;
+    }
+
+    
+    public String getCritical() {
+        return critical;
+    }
+
+    public void setCritical(String critical) {
+        this.critical = critical;
+    }
+
+    
+    public int getPatientContactNumber() {
+        return patientContactNumber;
+    }
+
+    public void setPatientContactNumber(int patientContactNumber) {
+        this.patientContactNumber = patientContactNumber;
+    }
+
+    
     public String getPatientName() {
         return patientName;
     }
