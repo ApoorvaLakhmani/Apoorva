@@ -12,6 +12,7 @@ import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -41,6 +42,7 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     }
     
     public void populateData(){
+        requestIDTExtField.setText(String.valueOf(request.getRequestID()));
         PatientIDTextField.setText(String.valueOf(request.getPatientDetails().getPatientID()));
         PatientNameField.setText(request.getPatientDetails().getPatientName());
         PatientAgeTextField.setText(String.valueOf(request.getPatientDetails().getPatientAge()));
@@ -84,6 +86,9 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         PatientBloodTypeTextField = new javax.swing.JTextField();
         PatientWeightTextField = new javax.swing.JTextField();
         OrganNeededTextField = new javax.swing.JTextField();
+        patientidlabel1 = new javax.swing.JLabel();
+        requestIDTExtField = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
 
         FindDonorBtn.setText("Find Donor");
         FindDonorBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -159,6 +164,19 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         OrganNeededTextField.setEditable(false);
         OrganNeededTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
+        patientidlabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientidlabel1.setText("Request ID:");
+
+        requestIDTExtField.setEditable(false);
+        requestIDTExtField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -177,7 +195,8 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                             .addComponent(PatientWeightLabel)
                             .addComponent(OrganNeededLabel)
                             .addComponent(OrganSizeLabel)
-                            .addComponent(MedicalCondLabel))
+                            .addComponent(MedicalCondLabel)
+                            .addComponent(patientidlabel1))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -187,19 +206,26 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                                 .addComponent(PatientNameField)
                                 .addComponent(PatientIDTextField)
                                 .addComponent(ContactNoTextField)
-                                .addComponent(PatientBloodTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(PatientWeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(OrganNeededTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(OrganSizeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(PatientBloodTypeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(PatientWeightTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(OrganNeededTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(OrganSizeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                                .addComponent(requestIDTExtField, javax.swing.GroupLayout.Alignment.TRAILING))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(315, 315, 315)
+                        .addGap(34, 34, 34)
+                        .addComponent(backBtn)
+                        .addGap(202, 202, 202)
                         .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(179, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(requestIDTExtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientidlabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patientidlabel)
                     .addComponent(PatientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -242,8 +268,10 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
-                .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn))
                 .addGap(35, 35, 35))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -272,7 +300,7 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         ArrayList<Donor> foundDonorList = new ArrayList<>();
         foundDonorList.add(foundDonor);
         
-        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList);
+        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
         userProcessContainer.add("DonorFoundJPanel",donorFound);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
@@ -281,6 +309,16 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     private void PatientAgeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientAgeTextFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PatientAgeTextFieldActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+       userProcessContainer.remove(this);
+         Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        StateNetworkManageRequestJPanel sysAdminwjp = (StateNetworkManageRequestJPanel) component;
+        sysAdminwjp.populatetable();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -301,10 +339,13 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField PatientNameField;
     private javax.swing.JLabel PatientWeightLabel;
     private javax.swing.JTextField PatientWeightTextField;
+    private javax.swing.JButton backBtn;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel patientContactNoLabel;
     private javax.swing.JLabel patientagelabel;
     private javax.swing.JLabel patientidlabel;
+    private javax.swing.JLabel patientidlabel1;
     private javax.swing.JLabel patientnamelabel;
+    private javax.swing.JTextField requestIDTExtField;
     // End of variables declaration//GEN-END:variables
 }
