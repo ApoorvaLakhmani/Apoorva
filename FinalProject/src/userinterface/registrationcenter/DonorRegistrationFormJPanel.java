@@ -5,17 +5,24 @@
  */
 package userinterface.registrationcenter;
 
+import Business.Organization.OrganizationDirectory;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ApoorvaLakhmani
  */
-public class DonarRegistrationJPanel extends javax.swing.JPanel {
+public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
+    
+    private JPanel userProcessContainer;
 
     /**
      * Creates new form DonarRegistrationJPanel
      */
-    public DonarRegistrationJPanel() {
+    public DonorRegistrationFormJPanel(JPanel userProcessContainer) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
     }
 
     /**
@@ -59,7 +66,7 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
         AddTextArea = new javax.swing.JTextArea();
         TelephoneTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        InitialScreeningBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -99,11 +106,6 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
         GenderBtnGrp.add(MaleRadioBtn);
         MaleRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MaleRadioBtn.setText("Male");
-        MaleRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MaleRadioBtnActionPerformed(evt);
-            }
-        });
         add(MaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 247, -1, -1));
 
         GenderBtnGrp.add(FemaleRadioBtn);
@@ -130,65 +132,30 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
 
         LungChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         LungChkBox.setText("Lungs");
-        LungChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LungChkBoxActionPerformed(evt);
-            }
-        });
         add(LungChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 720, -1, -1));
 
         KidneyChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         KidneyChkBox.setText("Kidney");
-        KidneyChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KidneyChkBoxActionPerformed(evt);
-            }
-        });
         add(KidneyChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 679, -1, -1));
 
         LiverChkbox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         LiverChkbox.setText("Liver");
-        LiverChkbox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LiverChkboxActionPerformed(evt);
-            }
-        });
         add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 761, -1, -1));
 
         HeartChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         HeartChkBox.setText("Heart");
-        HeartChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                HeartChkBoxActionPerformed(evt);
-            }
-        });
         add(HeartChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 802, -1, -1));
 
         EyesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         EyesChkBox.setText("Eyes");
-        EyesChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EyesChkBoxActionPerformed(evt);
-            }
-        });
         add(EyesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 674, -1, -1));
 
         TissuesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         TissuesChkBox.setText("Tissues");
-        TissuesChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TissuesChkBoxActionPerformed(evt);
-            }
-        });
         add(TissuesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 720, -1, -1));
 
         BonesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BonesChkBox.setText("Bones");
-        BonesChkBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BonesChkBoxActionPerformed(evt);
-            }
-        });
         add(BonesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 761, -1, -1));
 
         Label3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -222,42 +189,22 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
         EmailTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(EmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 487, 246, -1));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jButton1.setText("Proceed for Initial Screening >> ");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 980, -1, 40));
+        InitialScreeningBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        InitialScreeningBtn.setText("Proceed for Initial Screening >> ");
+        InitialScreeningBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                InitialScreeningBtnActionPerformed(evt);
+            }
+        });
+        add(InitialScreeningBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 980, -1, 40));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void MaleRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MaleRadioBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MaleRadioBtnActionPerformed
-
-    private void LungChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LungChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LungChkBoxActionPerformed
-
-    private void KidneyChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KidneyChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KidneyChkBoxActionPerformed
-
-    private void LiverChkboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiverChkboxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_LiverChkboxActionPerformed
-
-    private void HeartChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HeartChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_HeartChkBoxActionPerformed
-
-    private void EyesChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EyesChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_EyesChkBoxActionPerformed
-
-    private void TissuesChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TissuesChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TissuesChkBoxActionPerformed
-
-    private void BonesChkBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BonesChkBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BonesChkBoxActionPerformed
+    private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
+        DonorRegistrationFormJPanel donorRegister = new DonorRegistrationFormJPanel(userProcessContainer);
+        userProcessContainer.add("DonorRegistrationJPanel", donorRegister);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_InitialScreeningBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -277,6 +224,7 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel GenderLabel;
     private javax.swing.JLabel HeaderLabel;
     private javax.swing.JCheckBox HeartChkBox;
+    private javax.swing.JButton InitialScreeningBtn;
     private javax.swing.JCheckBox KidneyChkBox;
     private javax.swing.JLabel Label;
     private javax.swing.JLabel Label3;
@@ -292,7 +240,6 @@ public class DonarRegistrationJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel TelephoneLabel;
     private javax.swing.JTextField TelephoneTextField;
     private javax.swing.JCheckBox TissuesChkBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
