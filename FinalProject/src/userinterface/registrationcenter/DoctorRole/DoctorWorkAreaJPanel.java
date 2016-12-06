@@ -6,24 +6,55 @@
 package userinterface.registrationcenter.DoctorRole;
 
 import Business.EcoSystem;
+import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
+import Business.Organization.Organization;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.InitialScreeningTestWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.LegalRepresentativeRole.ViewLegalRequestPanel;
+import userinterface.registrationcenter.InitialScreeningJPanel;
 
 /**
  *
  * @author ApoorvaLakhmani
  */
 public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
-    JPanel userProcessContainer;
-    EcoSystem system;
+
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount userAccount;
+    private RegCenterDoctorOrganization doctorOrganization;
+
     /**
      * Creates new form DoctorWorkAreaJPanel
      */
-    public DoctorWorkAreaJPanel(JPanel userProcessContainer,EcoSystem system) {
+    public DoctorWorkAreaJPanel(JPanel userProcessContainer, EcoSystem system,Organization organization, UserAccount account) {
         initComponents();
-        this.userProcessContainer=userProcessContainer;
-        this.system=system;
+        this.userProcessContainer = userProcessContainer;
+        this.userAccount = account;
+        this.system = system;
+        this.doctorOrganization = (RegCenterDoctorOrganization)organization;
+        populateTable();
+        
     }
-
+    
+    public void populateTable(){
+        DefaultTableModel model = (DefaultTableModel) initialScreeningReqTable.getModel();
+        model.setRowCount(0);
+       
+        for(WorkRequest request : doctorOrganization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[3];
+            row[0] = request;
+            row[1] = request.getStatus();
+            row[2] = ((InitialScreeningTestWorkRequest)request).getDonor().getDonorName();
+            
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,31 +65,30 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        workRequestJTable = new javax.swing.JTable();
+        initialScreeningReqTable = new javax.swing.JTable();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
-        refreshTestJButton = new javax.swing.JButton();
         requestTestJButton = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        workRequestJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        workRequestJTable.setModel(new javax.swing.table.DefaultTableModel(
+        initialScreeningReqTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        initialScreeningReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Message", "Receiver", "Status", "Result"
+                "Request ID", "Status", "Donor Name"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -69,9 +99,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(workRequestJTable);
+        jScrollPane1.setViewportView(initialScreeningReqTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 193, 658, 169));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 658, 169));
 
         enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseLabel.setText("EnterPrise :");
@@ -81,17 +111,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 29, 158, 26));
 
-        refreshTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        refreshTestJButton.setText("Refresh");
-        refreshTestJButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                refreshTestJButtonActionPerformed(evt);
-            }
-        });
-        add(refreshTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(549, 97, -1, -1));
-
         requestTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        requestTestJButton.setText("Request Test");
+        requestTestJButton.setText("Initial Screening");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
@@ -100,25 +121,28 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
-
-       
-
-    }//GEN-LAST:event_refreshTestJButtonActionPerformed
-
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
+        int selectedRow = initialScreeningReqTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            InitialScreeningTestWorkRequest request = (InitialScreeningTestWorkRequest) initialScreeningReqTable.getValueAt(selectedRow, 0);
+            InitialScreeningJPanel initialScreening = new InitialScreeningJPanel(userProcessContainer,request);
+            userProcessContainer.add("InitialScreeningJPanel", initialScreening);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
 
-        
+            JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
 
     }//GEN-LAST:event_requestTestJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JTable initialScreeningReqTable;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton refreshTestJButton;
     private javax.swing.JButton requestTestJButton;
     private javax.swing.JLabel valueLabel;
-    private javax.swing.JTable workRequestJTable;
     // End of variables declaration//GEN-END:variables
 }

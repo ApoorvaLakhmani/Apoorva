@@ -51,10 +51,10 @@ public class MainJFrame extends javax.swing.JFrame {
         loginJLabel = new javax.swing.JLabel();
         logoutJButton = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
         container = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1200, 1200));
 
         jSplitPane1.setDividerLocation(175);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
@@ -141,9 +141,10 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane1.setLeftComponent(jPanel1);
 
-        container.setBackground(new java.awt.Color(255, 255, 255));
         container.setLayout(new java.awt.CardLayout());
-        jSplitPane1.setRightComponent(container);
+        jScrollPane1.setViewportView(container);
+
+        jSplitPane1.setRightComponent(jScrollPane1);
 
         getContentPane().add(jSplitPane1, java.awt.BorderLayout.CENTER);
 
@@ -289,6 +290,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton loginJButton;
     private javax.swing.JLabel loginJLabel;

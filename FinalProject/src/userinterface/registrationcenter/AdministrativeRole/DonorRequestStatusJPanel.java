@@ -11,6 +11,7 @@ import Business.Enterprise.Enterprise;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InitialScreeningTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -31,7 +32,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
      */
     public DonorRequestStatusJPanel(JPanel userProcessContainers,Enterprise enterprise,UserAccount account,EcoSystem system) {
         initComponents();
-        this.userProcessContainer = userProcessContainer;
+        this.userProcessContainer = userProcessContainers;
         this.enterprise = enterprise;
         this.account = account;
         this.system = system;
@@ -47,7 +48,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
         
         for(WorkRequest request : account.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[2];
-            row[0] = ((InitialScreeningTestWorkRequest)request).getDonor();
+            row[0] = request;
             row[1] = request.getStatus();
             model.addRow(row);
         }
@@ -65,6 +66,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         DononrRegReqTable = new javax.swing.JTable();
         RegisterDonorBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         DononrRegReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,6 +96,13 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("<< Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -103,8 +112,13 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(180, 180, 180))
             .addGroup(layout.createSequentialGroup()
-                .addGap(277, 277, 277)
-                .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(277, 277, 277)
+                        .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -114,7 +128,9 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(101, 101, 101)
                 .addComponent(RegisterDonorBtn)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(jButton1)
+                .addContainerGap(140, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -138,10 +154,17 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
        }
     }//GEN-LAST:event_RegisterDonorBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DononrRegReqTable;
     private javax.swing.JButton RegisterDonorBtn;
+    private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

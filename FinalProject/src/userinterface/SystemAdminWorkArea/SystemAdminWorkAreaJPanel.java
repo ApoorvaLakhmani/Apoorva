@@ -114,6 +114,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         ViewLabel = new javax.swing.JLabel();
         ManageNetBtn = new javax.swing.JButton();
         manageNetworkAdminBtm = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
@@ -153,6 +154,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("View Registered Donors");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -168,7 +176,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                         .addGap(113, 113, 113)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ManageNetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(265, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,7 +191,9 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(ManageNetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(manageNetworkAdminBtm, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(316, 316, 316))
+                .addGap(65, 65, 65)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(209, 209, 209))
         );
 
         jSplitPane.setRightComponent(jPanel1);
@@ -239,12 +250,20 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageNetworkAdminBtmActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       RegisteredDonorsJPanel donorList = new RegisteredDonorsJPanel(userProcessContainer, system);
+       userProcessContainer.add("RegisteredDonorsJPanel",donorList);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ManageNetBtn;
     private javax.swing.JTree NetworkJTree;
     private javax.swing.JLabel SelectedNodeLabel;
     private javax.swing.JLabel ViewLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

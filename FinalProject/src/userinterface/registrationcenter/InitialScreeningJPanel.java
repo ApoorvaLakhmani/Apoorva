@@ -5,17 +5,26 @@
  */
 package userinterface.registrationcenter;
 
+import Business.WorkQueue.InitialScreeningTestWorkRequest;
+import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JPanel;
+
 /**
  *
  * @author ApoorvaLakhmani
  */
 public class InitialScreeningJPanel extends javax.swing.JPanel {
-
+    
+    private JPanel userProcessContainer;
+    private InitialScreeningTestWorkRequest request;
     /**
      * Creates new form InitialScreeningJPanel
      */
-    public InitialScreeningJPanel() {
+    public InitialScreeningJPanel(JPanel userProcessContainer,InitialScreeningTestWorkRequest request) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.request = request;
     }
 
     /**
@@ -32,6 +41,8 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         InfectionBtnGrp = new javax.swing.ButtonGroup();
         OrganDiseaseBtnGrp = new javax.swing.ButtonGroup();
         psychiatricBtnGrp = new javax.swing.ButtonGroup();
+        CancerBtnGrp = new javax.swing.ButtonGroup();
+        HIVBtnGrp = new javax.swing.ButtonGroup();
         HeaderLabel = new javax.swing.JLabel();
         SubHeaderLabel = new javax.swing.JLabel();
         BloodGrpLabel = new javax.swing.JLabel();
@@ -58,6 +69,13 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         psychiatricNoRadioBtn = new javax.swing.JRadioButton();
         psychiatricYesRadioBtn = new javax.swing.JRadioButton();
         SubmitBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        CancerYesRadioBtn = new javax.swing.JRadioButton();
+        CancerNoRadioBtn = new javax.swing.JRadioButton();
+        HIVYesRadioBtn = new javax.swing.JRadioButton();
+        HIVNoRadioBtn = new javax.swing.JRadioButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -136,11 +154,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         DiabetesBtnGrp.add(DiabetesNoRadioBtn);
         DiabetesNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         DiabetesNoRadioBtn.setText("No");
-        DiabetesNoRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                DiabetesNoRadioBtnActionPerformed(evt);
-            }
-        });
         add(DiabetesNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 385, -1, -1));
 
         InfectionBtnGrp.add(InfectionNoRadioBtn);
@@ -166,11 +179,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         psychiatricBtnGrp.add(psychiatricNoRadioBtn);
         psychiatricNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         psychiatricNoRadioBtn.setText("No");
-        psychiatricNoRadioBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                psychiatricNoRadioBtnActionPerformed(evt);
-            }
-        });
         add(psychiatricNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 524, -1, -1));
 
         psychiatricBtnGrp.add(psychiatricYesRadioBtn);
@@ -180,29 +188,119 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
 
         SubmitBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         SubmitBtn.setText("Submit ");
-        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 626, -1, -1));
+        SubmitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SubmitBtnActionPerformed(evt);
+            }
+        });
+        add(SubmitBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 700, -1, -1));
+
+        BackBtn.setText("<< Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setText("Cancer : ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel2.setText("HIV : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, -1, -1));
+
+        CancerBtnGrp.add(CancerYesRadioBtn);
+        CancerYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        CancerYesRadioBtn.setText("Yes");
+        add(CancerYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, -1, -1));
+
+        CancerBtnGrp.add(CancerNoRadioBtn);
+        CancerNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        CancerNoRadioBtn.setText("No");
+        add(CancerNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, -1, -1));
+
+        HIVBtnGrp.add(HIVYesRadioBtn);
+        HIVYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        HIVYesRadioBtn.setText("Yes");
+        add(HIVYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 620, -1, -1));
+
+        HIVBtnGrp.add(HIVNoRadioBtn);
+        HIVNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        HIVNoRadioBtn.setText("No");
+        add(HIVNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
-    private void psychiatricNoRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_psychiatricNoRadioBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_psychiatricNoRadioBtnActionPerformed
+    private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
+        request.getDonor().getHealthDetails().setBloodGroup(BloodGrpTextField.getText());
+        request.getDonor().getHealthDetails().setHeight(Integer.parseInt(HeightTextField.getText()));
+        request.getDonor().getHealthDetails().setWeight(Integer.parseInt(WeightTextField.getText()));
+        if(BPYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasHighBloodPressure(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasHighBloodPressure(false);
+        }
+        if(DiabetesYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasDiabetes(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasDiabetes(false);
+        }
+        if(infectionYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasInfectiousDisease(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasInfectiousDisease(false);
+        }
+        if(infectionYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasInfectiousDisease(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasInfectiousDisease(false);
+        }
+        if(psychiatricYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setPsychiatricDisease(true);
+        }else{
+            request.getDonor().getHealthDetails().setPsychiatricDisease(false);
+        }
+        if(CancerYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasCancer(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasCancer(false);
+        }
+        if(HIVYesRadioBtn.isSelected()){
+            request.getDonor().getHealthDetails().setHasHIV(true);
+        }else{
+            request.getDonor().getHealthDetails().setHasHIV(false);
+        }
+        
+        request.setStatus("Initial Screening Done");
+        request.setResolveDate(new Date());
+    }//GEN-LAST:event_SubmitBtnActionPerformed
 
-    private void DiabetesNoRadioBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DiabetesNoRadioBtnActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_DiabetesNoRadioBtnActionPerformed
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField BMITextField;
     private javax.swing.JRadioButton BPNoRadioBtn;
     private javax.swing.JRadioButton BPYesRadioBtn;
+    private javax.swing.JButton BackBtn;
     private javax.swing.JLabel BloodGrpLabel;
     private javax.swing.JTextField BloodGrpTextField;
     private javax.swing.ButtonGroup BloodPressureBtnGrp;
+    private javax.swing.ButtonGroup CancerBtnGrp;
+    private javax.swing.JRadioButton CancerNoRadioBtn;
+    private javax.swing.JRadioButton CancerYesRadioBtn;
     private javax.swing.ButtonGroup DiabetesBtnGrp;
     private javax.swing.JLabel DiabetesLabel;
     private javax.swing.JRadioButton DiabetesNoRadioBtn;
     private javax.swing.JRadioButton DiabetesYesRadioBtn;
+    private javax.swing.ButtonGroup HIVBtnGrp;
+    private javax.swing.JRadioButton HIVNoRadioBtn;
+    private javax.swing.JRadioButton HIVYesRadioBtn;
     private javax.swing.JLabel HeaderLabel;
     private javax.swing.JLabel HeightLabel;
     private javax.swing.JTextField HeightTextField;
@@ -220,6 +318,8 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField WeightTextField;
     private javax.swing.JLabel bmiLabel;
     private javax.swing.JRadioButton infectionYesRadioBtn;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.ButtonGroup psychiatricBtnGrp;
     private javax.swing.JRadioButton psychiatricNoRadioBtn;
     private javax.swing.JRadioButton psychiatricYesRadioBtn;

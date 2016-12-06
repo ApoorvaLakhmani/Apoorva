@@ -5,6 +5,7 @@
  */
 package Business;
 
+import Business.Hospital.Patient;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.RegCenter.Donor;
@@ -20,11 +21,13 @@ public class EcoSystem extends Organization {
     private static EcoSystem business;
     private ArrayList<Network> networkList;
     private ArrayList<Donor> masterDonorDirectory;
-    private MasterPatientDirectory masterPatientList;
+    private ArrayList<Patient> masterPatientList;
 
     private EcoSystem() {
         super(null);
         networkList = new ArrayList<Network>();
+        masterDonorDirectory = new ArrayList<>();
+        masterPatientList = new ArrayList<>();
     }
 
     public ArrayList<Donor> getMasterDonorDirectory() {
@@ -35,14 +38,14 @@ public class EcoSystem extends Organization {
         this.masterDonorDirectory = masterDonorDirectory;
     }
 
-    public MasterPatientDirectory getMasterPatientList() {
+    public ArrayList<Patient> getMasterPatientList() {
         return masterPatientList;
     }
 
-    public void setMasterPatientList(MasterPatientDirectory masterPatientList) {
+    public void setMasterPatientList(ArrayList<Patient> masterPatientList) {
         this.masterPatientList = masterPatientList;
     }
-
+    
     public ArrayList<Network> getNetworkList() {
         return networkList;
     }

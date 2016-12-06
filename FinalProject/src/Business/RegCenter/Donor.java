@@ -24,12 +24,22 @@ public class Donor {
     private String donorAddress;
     private Date dateOfBirth;
     private String donorEmailId;
+    private HealthDetails healthDetails;
     private static int counter;
     
     public Donor(){
         organDonateList = new ArrayList<>();
         counter++;
-        donorId = String.valueOf(counter);        
+        donorId = String.valueOf(counter);
+        healthDetails = new HealthDetails();
+    }
+
+    public HealthDetails getHealthDetails() {
+        return healthDetails;
+    }
+
+    public void setHealthDetails(HealthDetails healthDetails) {
+        this.healthDetails = healthDetails;
     }
 
     public String getDonorEmailId() {

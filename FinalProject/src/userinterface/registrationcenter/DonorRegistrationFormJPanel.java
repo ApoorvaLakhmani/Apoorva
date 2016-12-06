@@ -13,6 +13,7 @@ import Business.RegCenter.Donor;
 import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InitialScreeningTestWorkRequest;
+import java.awt.CardLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -85,6 +86,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         InitialScreeningBtn = new javax.swing.JButton();
         DonorAgeLabel = new javax.swing.JLabel();
         DonorAgeTextField = new javax.swing.JTextField();
+        BackBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -211,12 +213,20 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         DonorAgeLabel.setText("Age : ");
         add(DonorAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 70, 40));
         add(DonorAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 220, 40));
+
+        BackBtn.setText("<< Back");
+        BackBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackBtnActionPerformed(evt);
+            }
+        });
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1109, 150, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
           Donor donor = null;
           ArrayList<Organ> organList = new ArrayList<Organ>();
-          if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter)){
+          if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter.toString())){
              donor = ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor();
           }
           if(donor!=null){
@@ -316,12 +326,19 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
 
     }//GEN-LAST:event_InitialScreeningBtnActionPerformed
 
+    private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_BackBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea AddTextArea;
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JCheckBox AllOrganCheckbox;
     private javax.swing.JLabel AllOrganLabel;
+    private javax.swing.JButton BackBtn;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DobLabel;
     private javax.swing.JTextField DobTextField;

@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class DonorRegistrationCenter extends Enterprise{
     
     private DonorDirectory donorDirectory;
+    
 
     public DonorDirectory getDonorDirectory() {
         return donorDirectory;
@@ -27,6 +28,7 @@ public class DonorRegistrationCenter extends Enterprise{
     
     public DonorRegistrationCenter(String name) {
         super(name, EnterpriseType.DonorRegCenter);
+        donorDirectory = new DonorDirectory();
     }
 
     @Override
