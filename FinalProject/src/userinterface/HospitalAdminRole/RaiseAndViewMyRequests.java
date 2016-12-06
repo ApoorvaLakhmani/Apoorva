@@ -32,7 +32,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         this.network = network;
         this.system=system; 
         this.userAccount = userAccount;
-        //populateTable();
+        populateTable();
     }
     
     public void populateTable(){
