@@ -16,7 +16,7 @@ public class LegalAuthorizationWorkRequest extends WorkRequest {
     private String authorization;
     private int hospitalID;
     private String hospitalName;
-    private int contact;
+    private int hospitalContact;
     private Patient patient;
     private Donor donor;
     private String rejectionReason;
@@ -37,13 +37,15 @@ public class LegalAuthorizationWorkRequest extends WorkRequest {
         this.hospitalName = hospitalName;
     }
 
-    public int getContact() {
-        return contact;
+    public int getHospitalContact() {
+        return hospitalContact;
     }
 
-    public void setContact(int contact) {
-        this.contact = contact;
+    public void setHospitalContact(int hospitalContact) {
+        this.hospitalContact = hospitalContact;
     }
+
+   
 
     public Patient getPatient() {
         return patient;

@@ -201,6 +201,7 @@ public class MainJFrame extends javax.swing.JFrame {
                             }
                         }else{
                             inNetwork = stateNetwork;
+                            break;
                         }
 
                         if (inEnterprise != null) {

@@ -32,6 +32,10 @@ public abstract class WorkRequest {
         return requestID;
     }
 
+    public void setRequestID(int requestID) {
+        this.requestID = requestID;
+    }
+    
     public String getMessage() {
         return message;
     }

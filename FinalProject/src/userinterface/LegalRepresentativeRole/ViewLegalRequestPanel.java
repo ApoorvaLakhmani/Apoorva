@@ -5,6 +5,7 @@
  */
 package userinterface.LegalRepresentativeRole;
 
+import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.LegalAuthorizationWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -17,12 +18,12 @@ import javax.swing.JPanel;
 public class ViewLegalRequestPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
-    private LegalAuthorizationWorkRequest request;
+    private FindDonorRequest request;
 
     /**
      * Creates new form ViewLegalRequestPanel
      */
-    public ViewLegalRequestPanel(JPanel userProcessContainer, LegalAuthorizationWorkRequest request) {
+    public ViewLegalRequestPanel(JPanel userProcessContainer, FindDonorRequest request) {
         initComponents();
         rejectReasonTExtarea.setVisible(false);
         rejectReasonLabel.setVisible(false);
@@ -38,11 +39,11 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
         hospitalIDTextField.setText(String.valueOf(request.getHospitalID()));
         hospitalNameTextField.setText(String.valueOf(request.getHospitalName()));
         hospitalContactTextField.setText(String.valueOf(request.getHospitalName()));
-        //  patientIDTExtField.setText(String.valueOf(request.getPatient().get));
-        patientNameTextField.setText(String.valueOf(request.getPatient().getPatientName()));
-        // patientContactTExtField.setText(request.getPatient().get);
-        patientLocationTExtField.setText(String.valueOf(request.getPatient().getPatientLocation()));
-        //  patientCriticalityTextField.setText(String.valueOf(request.getPatient().get()));
+        patientIDTExtField.setText(String.valueOf(request.getPatientDetails().getPatientID()));
+        patientNameTextField.setText(String.valueOf(request.getPatientDetails().getPatientName()));
+        patientContactTExtField.setText(String.valueOf(request.getPatientDetails().getPatientContactNumber()));
+        patientLocationTExtField.setText(String.valueOf(request.getPatientDetails().getPatientLocation()));
+        patientCriticalityTextField.setText(String.valueOf(request.getPatientDetails().getCritical()));
         donorContactTextField.setText(String.valueOf(request.getDonor().getDonorPhoneNumber()));
         donorIDTextField.setText(String.valueOf(request.getDonor().getDonorId()));
         donorLocationTExtArea.setText(String.valueOf(request.getDonor().getDonorAddress()));

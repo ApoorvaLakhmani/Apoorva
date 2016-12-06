@@ -69,10 +69,9 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             rootNetwork.insert(networkNode, i);
             for (int j = 0; j < network.getSubNetwork().size(); j++) {
                 stateNetwork = network.getSubNetwork().get(j);
-                if (stateNetwork.getUserAccountDirectory().getUserAccountList().get(0).getUsername().
-                        equals(account.getUsername())) {
+                if (stateNetwork.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
                     stateNetworkNode = new DefaultMutableTreeNode(stateNetwork.getNetworkName());
-                    networkNode.insert(stateNetworkNode, j);
+                    networkNode.insert(stateNetworkNode, 0);
                     for (int k = 0; k < stateNetwork.getSubNetwork().size(); k++) {
                         cityNetwork = stateNetwork.getSubNetwork().get(k);
                         cityNetworkNode = new DefaultMutableTreeNode(cityNetwork.getNetworkName());

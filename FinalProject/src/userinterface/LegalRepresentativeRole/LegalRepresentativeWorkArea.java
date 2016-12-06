@@ -8,8 +8,9 @@ package userinterface.LegalRepresentativeRole;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.LegalAuthorizationWorkRequest;
+import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
@@ -130,7 +131,7 @@ private EcoSystem business;
         int selectedRow= legalWorkRequestTable.getSelectedRow();
         if (selectedRow>=0)
         {
-        LegalAuthorizationWorkRequest request= (LegalAuthorizationWorkRequest)legalWorkRequestTable.getValueAt(selectedRow, 0);
+        FindDonorRequest request= (FindDonorRequest)legalWorkRequestTable.getValueAt(selectedRow, 0);
         ViewLegalRequestPanel viewLegalRequestPanel = new ViewLegalRequestPanel(userProcessContainer,request);
         userProcessContainer.add("viewLegalRequestPanel", viewLegalRequestPanel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -144,17 +145,18 @@ private EcoSystem business;
     public void populateWorkQueue(){
         
         DefaultTableModel model = (DefaultTableModel) legalWorkRequestTable.getModel();
-        
         model.setRowCount(0);
-        for (WorkRequest request : account.getWorkQueue().getWorkRequestList()){
+        for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[3];
-            row[0] = request.getRequestID();
-            row[1] = ((LegalAuthorizationWorkRequest) request).getHospitalID();
-            String result = ((LegalAuthorizationWorkRequest) request).getAuthorization();
+            row[0] = request;
+            row[1] = ((FindDonorRequest) request).getHospitalID();
+            String result = ((FindDonorRequest) request).getAuthorization();
             row[2] = result == null ? "Waiting" : result;
             
             model.addRow(row);
         }
+    }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

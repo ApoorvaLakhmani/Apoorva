@@ -6,6 +6,7 @@
 package Business.WorkQueue;
 
 import Business.Hospital.Patient;
+import Business.RegCenter.Donor;
 
 /**
  *
@@ -17,6 +18,9 @@ public class FindDonorRequest extends WorkRequest{
     private String hospitalName;
     private int hospitalContactNo;
     private String hospitalAddress;
+     private String authorization;
+    private Donor donor;
+    private String rejectionReason;
 
     public int getHospitalContactNo() {
         return hospitalContactNo;
@@ -58,6 +62,31 @@ public class FindDonorRequest extends WorkRequest{
     public void setHospitalAddress(String hospitalAddress) {
         this.hospitalAddress = hospitalAddress;
     }
+
+    public String getAuthorization() {
+        return authorization;
+    }
+
+    public void setAuthorization(String authorization) {
+        this.authorization = authorization;
+    }
+
+    public Donor getDonor() {
+        return donor;
+    }
+
+    public void setDonor(Donor donor) {
+        this.donor = donor;
+    }
+
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+    
     
     
 }

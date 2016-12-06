@@ -6,11 +6,18 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
+import Business.Network.Network;
+import Business.Organization.LegalEnterprise.LegalOrganization;
 import Business.RegCenter.Donor;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
+import java.awt.CardLayout;
 import java.awt.Font;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,8 +29,10 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private EcoSystem system;
+    private Network stateNetwork;
     private UserAccount account;
     private ArrayList<Donor> donorList;
+    private FindDonorRequest findDonorRequest;
     /**
      * Creates new form DonorFoundJPanel
      */
@@ -31,12 +40,14 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         initComponents();
     }
 
-    DonorFoundJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system,ArrayList<Donor> donorList) {
+    DonorFoundJPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system,ArrayList<Donor> donorList,FindDonorRequest findDonorRequest,Network stateNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.account = account;
         this.donorList = donorList;
+         this.findDonorRequest = findDonorRequest;
+          this.stateNetwork = stateNetwork;
         populateTable();
     }
     
@@ -66,6 +77,9 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         DonorDetailTable = new javax.swing.JTable();
         LegalDeptBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DonorDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -80,64 +94,74 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(DonorDetailTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 41, -1, 188));
+
         LegalDeptBtn.setText("Forward to legal Department");
         LegalDeptBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LegalDeptBtnActionPerformed(evt);
             }
         });
+        add(LegalDeptBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 320, 253, 58));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(186, 186, 186)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
-                        .addComponent(LegalDeptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(207, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(LegalDeptBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 467, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void LegalDeptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalDeptBtnActionPerformed
+        int selectedRow= DonorDetailTable.getSelectedRow();
+       if (selectedRow>=0)
+       {
+         Patient patient = findDonorRequest.getPatientDetails();
+        findDonorRequest.setSender(account);
+        findDonorRequest.setStatus("Awaiting Legal Authorizztion");
+        Donor donor=(Donor)DonorDetailTable.getValueAt(selectedRow, 0);
+        findDonorRequest.setDonor(donor);
+        
+                   Organization org = null;
+           for (Network city : stateNetwork.getSubNetwork()) {
+               if (patient.getPatientLocation().equalsIgnoreCase(city.getNetworkName())) {
+                   for (Enterprise enterprise  : city.getEnterpriseDirectory().getEnterpriseList()) {
+                       if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.LegalEnterprise.toString())) {
+                           for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                               if (organization instanceof LegalOrganization) {
+                                   org = organization;
+                                   break;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+        
+        
+        if (org!=null){
+            org.getWorkQueue().getWorkRequestList().add(findDonorRequest);
+        }
+       }
+       else{
+           
+           JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
+       }
 
-//        String message = messageJTextField.getText();
-//        
-//        LabTestWorkRequest request = new LabTestWorkRequest();
-//        request.setMessage(message);
-//        request.setSender(userAccount);
-//        request.setStatus("Sent");
-//        
-//        Organization org = null;
-//        for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
-//            if (organization instanceof LabOrganization){
-//                org = organization;
-//                break;
-//            }
-//        }
-//        if (org!=null){
-//            org.getWorkQueue().getWorkRequestList().add(request);
-//            userAccount.getWorkQueue().getWorkRequestList().add(request);
-//        }
     }//GEN-LAST:event_LegalDeptBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DonorDetailTable;
     private javax.swing.JButton LegalDeptBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
