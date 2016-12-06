@@ -32,4 +32,8 @@ public class DonorDirectory {
         donorList.add(donor);
         return donor;
     }
+    
+    public void deleteDonor(Donor donor){
+        donorList.remove(donor);
+    }
 }

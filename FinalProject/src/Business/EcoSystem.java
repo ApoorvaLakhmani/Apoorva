@@ -7,6 +7,7 @@ package Business;
 
 import Business.Network.Network;
 import Business.Organization.Organization;
+import Business.RegCenter.Donor;
 import Business.Role.Role;
 import java.util.ArrayList;
 
@@ -18,7 +19,7 @@ public class EcoSystem extends Organization {
 
     private static EcoSystem business;
     private ArrayList<Network> networkList;
-    private MasterDonorDirectory masterDonorList;
+    private ArrayList<Donor> masterDonorDirectory;
     private MasterPatientDirectory masterPatientList;
 
     private EcoSystem() {
@@ -26,12 +27,12 @@ public class EcoSystem extends Organization {
         networkList = new ArrayList<Network>();
     }
 
-    public MasterDonorDirectory getMasterDonorList() {
-        return masterDonorList;
+    public ArrayList<Donor> getMasterDonorDirectory() {
+        return masterDonorDirectory;
     }
 
-    public void setMasterDonorList(MasterDonorDirectory masterDonorList) {
-        this.masterDonorList = masterDonorList;
+    public void setMasterDonorDirectory(ArrayList<Donor> masterDonorDirectory) {
+        this.masterDonorDirectory = masterDonorDirectory;
     }
 
     public MasterPatientDirectory getMasterPatientList() {
@@ -53,6 +54,7 @@ public class EcoSystem extends Organization {
         return business;
 
     }
+    
 
     @Override
     public ArrayList<Role> getSupportedRole() {

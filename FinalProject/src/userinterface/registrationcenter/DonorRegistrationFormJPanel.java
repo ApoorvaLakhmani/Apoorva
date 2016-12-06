@@ -5,8 +5,21 @@
  */
 package userinterface.registrationcenter;
 
-import Business.Organization.OrganizationDirectory;
-import java.awt.CardLayout;
+import Business.Enterprise.DonorRegistrationCenter;
+import Business.Enterprise.Enterprise;
+import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
+import Business.Organization.Organization;
+import Business.RegCenter.Donor;
+import Business.RegCenter.Organ;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.InitialScreeningTestWorkRequest;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -16,13 +29,18 @@ import javax.swing.JPanel;
 public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
-
+    private Enterprise enterprise;
+    private UserAccount account;
+    
     /**
      * Creates new form DonarRegistrationJPanel
      */
-    public DonorRegistrationFormJPanel(JPanel userProcessContainer) {
+    public DonorRegistrationFormJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.account = account;
+       
     }
 
     /**
@@ -55,8 +73,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         LiverChkbox = new javax.swing.JCheckBox();
         HeartChkBox = new javax.swing.JCheckBox();
         EyesChkBox = new javax.swing.JCheckBox();
-        TissuesChkBox = new javax.swing.JCheckBox();
-        BonesChkBox = new javax.swing.JCheckBox();
         Label3 = new javax.swing.JLabel();
         SignatureLabel = new javax.swing.JLabel();
         DateLabel = new javax.swing.JLabel();
@@ -67,6 +83,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         TelephoneTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
         InitialScreeningBtn = new javax.swing.JButton();
+        DonorAgeLabel = new javax.swing.JLabel();
+        DonorAgeTextField = new javax.swing.JTextField();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -150,14 +168,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         EyesChkBox.setText("Eyes");
         add(EyesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 674, -1, -1));
 
-        TissuesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        TissuesChkBox.setText("Tissues");
-        add(TissuesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 720, -1, -1));
-
-        BonesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        BonesChkBox.setText("Bones");
-        add(BonesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 761, -1, -1));
-
         Label3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         Label3.setText("be removed for the purpose of transaplantation.");
         add(Label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 847, -1, -1));
@@ -197,13 +207,113 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
             }
         });
         add(InitialScreeningBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 980, -1, 40));
+
+        DonorAgeLabel.setText("Age : ");
+        add(DonorAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 70, 40));
+        add(DonorAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 220, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
-        DonorRegistrationFormJPanel donorRegister = new DonorRegistrationFormJPanel(userProcessContainer);
-        userProcessContainer.add("DonorRegistrationJPanel", donorRegister);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+          Donor donor = null;
+          ArrayList<Organ> organList = new ArrayList<Organ>();
+          if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter)){
+             donor = ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor();
+          }
+          if(donor!=null){
+              try {
+                  SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+                  Date dateOfBirth = sdf.parse(DobTextField.getText());
+                  donor.setDonorName(NameTextField.getText());
+                  donor.setDonorAge(Integer.parseInt(DonorAgeTextField.getText()));
+                  donor.setDateOfBirth(dateOfBirth);
+                  if(MaleRadioBtn.isSelected()){
+                      donor.setDonorGender("Male");
+                  }
+                  if(FemaleRadioBtn.isSelected()){
+                      donor.setDonorGender("Female");
+                  }
+                  donor.setDonorPhoneNumber(Integer.parseInt(TelephoneTextField.getText()));
+                  donor.setDonorEmailId(EmailTextField.getText());
+                  donor.setDonorAddress(AddTextArea.getText());
+                  if(AllOrganCheckbox.isSelected()){
+                      Organ kidney = new Organ();
+                      kidney.setOrganName("Kidney");
+                      kidney.setOrganLife(5);
+                      
+                      Organ liver = new Organ();
+                      liver.setOrganName("Liver");
+                      liver.setOrganLife(6);
+                      
+                      Organ heart = new Organ();
+                      heart.setOrganName("Heart");
+                      heart.setOrganLife(5);
+                      
+                      Organ Eyes = new Organ();
+                      Eyes.setOrganName("Eyes");
+                      Eyes.setOrganLife(5);
+                      
+                      Organ Lungs = new Organ();
+                      Lungs.setOrganName("Lungs");
+                      Lungs.setOrganLife(5);
+                      
+                      organList.add(Eyes);
+                      organList.add(kidney);
+                      organList.add(Lungs);
+                      organList.add(liver);
+                      organList.add(heart);
+                  }else if(KidneyChkBox.isSelected()){
+                      Organ kidney = new Organ();
+                      kidney.setOrganName("Kidney");
+                      kidney.setOrganLife(5);
+                      organList.add(kidney);
+                      
+                  }else if(LungChkBox.isSelected()){
+                      Organ lungs = new Organ();
+                      lungs.setOrganName("Kidney");
+                      lungs.setOrganLife(5);
+                      organList.add(lungs);
+                  }else if(LiverChkbox.isSelected()){
+                      Organ liver = new Organ();
+                      liver.setOrganName("Kidney");
+                      liver.setOrganLife(5);
+                      organList.add(liver);
+                  }else if(HeartChkBox.isSelected()){
+                      Organ heart = new Organ();
+                      heart.setOrganName("Kidney");
+                      heart.setOrganLife(5);
+                      organList.add(heart);
+                  }else if(EyesChkBox.isSelected()){
+                      Organ eyes = new Organ();
+                      eyes.setOrganName("Kidney");
+                      eyes.setOrganLife(5);
+                      organList.add(eyes);
+                  } 
+                                  
+              } catch (ParseException ex) {
+               Logger.getLogger(DonorRegistrationFormJPanel.class.getName()).log(Level.SEVERE, null, ex);
+              }
+              
+          }
+          InitialScreeningTestWorkRequest request = new InitialScreeningTestWorkRequest();
+          request.setDonor(donor);
+          request.setRequestDate(new Date());
+          request.setSender(account);
+          request.setStatus("Initial Screening for donor");
+          
+          Organization doctorOrganization = null;
+          for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
+              if(organization instanceof RegCenterDoctorOrganization){
+                  doctorOrganization = organization;
+                  break;
+              }
+          }
+          if(doctorOrganization!=null){
+              doctorOrganization.getWorkQueue().getWorkRequestList().add(request);
+              account.getWorkQueue().getWorkRequestList().add(request);
+              
+              JOptionPane.showMessageDialog(null, "Request for initial screening raised");
+          }
+
     }//GEN-LAST:event_InitialScreeningBtnActionPerformed
 
 
@@ -212,10 +322,11 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JCheckBox AllOrganCheckbox;
     private javax.swing.JLabel AllOrganLabel;
-    private javax.swing.JCheckBox BonesChkBox;
     private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DobLabel;
     private javax.swing.JTextField DobTextField;
+    private javax.swing.JLabel DonorAgeLabel;
+    private javax.swing.JTextField DonorAgeTextField;
     private javax.swing.JLabel EmailLabel;
     private javax.swing.JTextField EmailTextField;
     private javax.swing.JCheckBox EyesChkBox;
@@ -239,7 +350,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel SignatureLabel;
     private javax.swing.JLabel TelephoneLabel;
     private javax.swing.JTextField TelephoneTextField;
-    private javax.swing.JCheckBox TissuesChkBox;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

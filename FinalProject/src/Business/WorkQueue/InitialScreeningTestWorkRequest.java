@@ -5,14 +5,25 @@
  */
 package Business.WorkQueue;
 
+import Business.RegCenter.Donor;
+
 /**
  *
  * @author Neha
  */
-public class InitialScreeningLabTestWorkRequest {
-    
+public class InitialScreeningTestWorkRequest extends WorkRequest{
+    private Donor donor;
     private String testResult;
 
+    public Donor getDonor() {
+        return donor;
+    }
+
+    public void setDonor(Donor donor) {
+        this.donor = donor;
+    }
+
+    
     public String getTestResult() {
         return testResult;
     }
@@ -21,5 +32,9 @@ public class InitialScreeningLabTestWorkRequest {
         this.testResult = testResult;
     }
     
+    @Override
+    public String toString(){
+        return donor.getDonorName();
+    }
     
 }

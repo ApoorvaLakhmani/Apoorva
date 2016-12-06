@@ -5,7 +5,9 @@
  */
 package userinterface.registrationcenter.AdministrativeRole;
 
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import userinterface.registrationcenter.DonorRegistrationFormJPanel;
@@ -15,14 +17,20 @@ import userinterface.registrationcenter.DonorRegistrationFormJPanel;
  * @author ApoorvaLakhmani
  */
 public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
-    JPanel userProcessContainer;
-   
+    private JPanel userProcessContainer;
+    private Enterprise enterprise;
+    private UserAccount account;
+    private EcoSystem system;
+    
     /**
      * Creates new form DonorRegistrationStatusJPanel
      */
-    public DonorRegistrationStatusJPanel(JPanel userProcessContainer) {
+    public DonorRegistrationStatusJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
+        this.enterprise = enterprise;
+        this.account = account;
+        this.system = system;
     }
 
     /**
@@ -76,12 +84,15 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegStatusBtnActionPerformed
-        
+        DonorRequestStatusJPanel donorReqStatus = new DonorRequestStatusJPanel(userProcessContainer,enterprise,account,system);
+        userProcessContainer.add("DonorRequestStatusJPanel", donorReqStatus);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_RegStatusBtnActionPerformed
 
     private void NewRegBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewRegBtnActionPerformed
-        DonorRegistrationFormJPanel donorRegister = new DonorRegistrationFormJPanel(userProcessContainer);
-        userProcessContainer.add("DonorRegistrationJPanel", donorRegister);
+        DonorRegistrationFormJPanel donorRegRequest = new DonorRegistrationFormJPanel(userProcessContainer,enterprise,account);
+        userProcessContainer.add("DonorRegistrationFormJPanel", donorRegRequest);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_NewRegBtnActionPerformed

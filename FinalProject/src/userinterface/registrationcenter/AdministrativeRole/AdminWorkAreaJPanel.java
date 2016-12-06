@@ -6,8 +6,12 @@
 package userinterface.registrationcenter.AdministrativeRole;
 
 //import Business.Enterprise.Enterprise;
+import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.RegCenter.Donor;
+import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.util.ArrayList;
 import javax.swing.JPanel;
 import userinterface.registrationcenter.DonorRegistrationFormJPanel;
 
@@ -19,17 +23,22 @@ import userinterface.registrationcenter.DonorRegistrationFormJPanel;
  */
 public class AdminWorkAreaJPanel extends javax.swing.JPanel {
 
-    JPanel userProcessContainer;
-    Enterprise enterprise;
-
+    private JPanel userProcessContainer;
+    private Enterprise enterprise;
+    private UserAccount account;
+    private EcoSystem system;
+    
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, Enterprise enterprise) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account , Enterprise enterprise,EcoSystem system) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
+        this.account = account;
+        this.system = system;
         valueLabel.setText(enterprise.getName());
+        
     }
 
     /**
@@ -143,7 +152,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
 
     private void RegisterDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDonorBtnActionPerformed
-        DonorRegistrationStatusJPanel donorRegister = new DonorRegistrationStatusJPanel(userProcessContainer);
+        DonorRegistrationStatusJPanel donorRegister = new DonorRegistrationStatusJPanel(userProcessContainer,enterprise,account,system);
         userProcessContainer.add("DonorRegistrationStatusJPanel", donorRegister);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);  

@@ -6,6 +6,7 @@
 package Business.RegCenter;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -21,11 +22,34 @@ public class Donor {
     private String bloodGroup;
     private int donorPhoneNumber;
     private String donorAddress;
+    private Date dateOfBirth;
+    private String donorEmailId;
+    private static int counter;
     
     public Donor(){
         organDonateList = new ArrayList<>();
+        counter++;
+        donorId = String.valueOf(counter);        
     }
 
+    public String getDonorEmailId() {
+        return donorEmailId;
+    }
+
+    public void setDonorEmailId(String donorEmailId) {
+        this.donorEmailId = donorEmailId;
+    }
+    
+    
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    
     public String getDonorId() {
         return donorId;
     }
