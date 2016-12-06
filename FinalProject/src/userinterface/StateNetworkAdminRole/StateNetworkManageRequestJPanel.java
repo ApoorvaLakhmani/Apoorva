@@ -6,7 +6,11 @@
 package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
 import Business.Network.Network;
+import Business.Organization.OPTOrganization.OPTEAdminOrganization;
+import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
@@ -74,6 +78,7 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         DonorRequestTable = new javax.swing.JTable();
         ViewRequestBtn = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
+        opteRequestBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -89,6 +94,11 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
                 "RequestID", "HospitalID", "Status"
             }
         ));
+        DonorRequestTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                DonorRequestTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(DonorRequestTable);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 90, 638, 164));
@@ -100,7 +110,7 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
                 ViewRequestBtnActionPerformed(evt);
             }
         });
-        add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 240, 50));
+        add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 260, 50));
 
         BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BackBtn.setText("<< Back");
@@ -110,6 +120,14 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
             }
         });
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 170, 50));
+
+        opteRequestBtn.setText("Initiate procurement and Transplant>>");
+        opteRequestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opteRequestBtnActionPerformed(evt);
+            }
+        });
+        add(opteRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 260, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewRequestBtnActionPerformed
@@ -135,11 +153,59 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
 
+    private void opteRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opteRequestBtnActionPerformed
+          int selectedRow= DonorRequestTable.getSelectedRow();
+       if (selectedRow>=0)
+       {
+        FindDonorRequest request= (FindDonorRequest)DonorRequestTable.getValueAt(selectedRow, 0);
+        Patient patient = request.getPatientDetails();
+        request.setSender(account);
+        request.setStatus("Pending with OPTE");
+        
+                   Organization org = null;
+           for (Network city : stateNetwork.getSubNetwork()) {
+               if (patient.getPatientLocation().equalsIgnoreCase(city.getNetworkName())) {
+                   for (Enterprise enterprise  : city.getEnterpriseDirectory().getEnterpriseList()) {
+                       if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.OrganProcAndTransCenter.toString())) {
+                           for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                               if (organization instanceof OPTEAdminOrganization) {
+                                   org = organization;
+                                   break;
+                               }
+                           }
+                       }
+                   }
+               }
+           }
+        
+        
+        if (org!=null){
+            org.getWorkQueue().getWorkRequestList().add(request);
+        }
+       }
+       else{
+           
+           JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
+       }  
+    }//GEN-LAST:event_opteRequestBtnActionPerformed
+
+    private void DonorRequestTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DonorRequestTableMouseClicked
+//         int row = DonorRequestTable.rowAtPoint(evt.getPoint());
+//        WorkRequest request= (WorkRequest)DonorRequestTable.getValueAt(row,0);
+//        if(request.getStatus().equals("Legally authorized")){
+//            opteRequestBtn.setEnabled(true);
+//        }
+//        else{
+//             opteRequestBtn.setEnabled(false);
+//        }
+    }//GEN-LAST:event_DonorRequestTableMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
     private javax.swing.JTable DonorRequestTable;
     private javax.swing.JButton ViewRequestBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton opteRequestBtn;
     // End of variables declaration//GEN-END:variables
 }

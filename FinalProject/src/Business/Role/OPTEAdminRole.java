@@ -21,7 +21,7 @@ public class OPTEAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new OPTEAdminWorkArea(userProcessContainer, enterprise);
+        return new OPTEAdminWorkArea(userProcessContainer,account, enterprise,inNetwork);
     }
     
 }

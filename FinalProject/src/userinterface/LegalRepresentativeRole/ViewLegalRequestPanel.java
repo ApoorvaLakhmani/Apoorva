@@ -38,7 +38,7 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
         requestIDTextField.setText(String.valueOf(request.getRequestID()));
         hospitalIDTextField.setText(String.valueOf(request.getHospitalID()));
         hospitalNameTextField.setText(String.valueOf(request.getHospitalName()));
-        hospitalContactTextField.setText(String.valueOf(request.getHospitalName()));
+        hospitalContactTextField.setText(String.valueOf(request.getHospitalContactNo()));
         patientIDTExtField.setText(String.valueOf(request.getPatientDetails().getPatientID()));
         patientNameTextField.setText(String.valueOf(request.getPatientDetails().getPatientName()));
         patientContactTExtField.setText(String.valueOf(request.getPatientDetails().getPatientContactNumber()));
@@ -350,9 +350,11 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
 
         if (approveRadioBtn.isSelected()) {
             request.setAuthorization("Authorized");
+            request.setStatus("Legally authorized");
             request.setRejectionReason("NA");
         } else if (rejectRadioBtn.isSelected()) {
             request.setAuthorization("Rejected");
+            request.setStatus("Legally rejected");
             request.setRejectionReason(rejectReasonTExtarea.getText());
         }
 

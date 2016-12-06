@@ -6,9 +6,15 @@
 package userinterface.SurgeonRole;
 
 import Business.EcoSystem;
+import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,15 +25,19 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
     private UserAccount account;
     private Organization organization;
     private EcoSystem business;
+    private Network network;
     /**
      * Creates new form ProcurementSurgeriesWorkQueue
      */
-    public SurgeriesWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business) {
+    public SurgeriesWorkArea(JPanel userProcessContainer, UserAccount account, Organization organization, EcoSystem business, Network network) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.account=account;
         this.organization=organization;
         this.business=business;
+        this.network=network;
+        
+        populateSurgeries();
     }
 
     /**
@@ -41,37 +51,36 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        surgeryWorkQueueTable = new javax.swing.JTable();
+        viewSurgeryBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText(" Scheduled Surgeries");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        surgeryWorkQueueTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Request ID", "Surgery type", "Surgery status", "Surgery Result"
+                "Request ID", "Surgery Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(surgeryWorkQueueTable);
 
-        jButton1.setText("View Surgery Details>>");
-
-        jButton2.setText("<<Back");
-
-        jButton3.setText("Update surgery status>>");
+        viewSurgeryBtn.setText("View Surgery Details>>");
+        viewSurgeryBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewSurgeryBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -80,19 +89,14 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jButton3)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(320, 320, 320)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(316, 316, 316)
+                        .addComponent(viewSurgeryBtn)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -102,23 +106,67 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(40, 40, 40)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3))
-                .addGap(80, 80, 80)
-                .addComponent(jButton2)
-                .addContainerGap(126, Short.MAX_VALUE))
+                .addGap(41, 41, 41)
+                .addComponent(viewSurgeryBtn)
+                .addContainerGap(233, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void viewSurgeryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewSurgeryBtnActionPerformed
+        int selectedRow= surgeryWorkQueueTable.getSelectedRow();
+        if (selectedRow>=0)
+        {
+            FindDonorRequest request= (FindDonorRequest)surgeryWorkQueueTable.getValueAt(selectedRow, 0);
+            if(request.getStatus().equals("Procurement Pending"))
+            {
+            ProcurementSurgeryDetailsPanel procurementSurgeryDetailsPanel = new ProcurementSurgeryDetailsPanel(userProcessContainer,request);
+            userProcessContainer.add("procurementSurgeryDetailsPanel", procurementSurgeryDetailsPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            }
+            else if (request.getStatus().equals("Procurement Complete,Transplant Pending"))
+                {       
+            TransplantationSurgeryDetailsPanel transplantationSurgeryDetailsPanel = new TransplantationSurgeryDetailsPanel(userProcessContainer,request);
+            userProcessContainer.add("transplantationSurgeryDetailsPanel", transplantationSurgeryDetailsPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
+            }
+            else{
+            ProcurementAndTransplantSurgeryDetails transplantationSurgeryDetailsPanel = new ProcurementAndTransplantSurgeryDetails(userProcessContainer,request);
+            userProcessContainer.add("transplantationSurgeryDetailsPanel", transplantationSurgeryDetailsPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+                
+            }
+        }
+        
+        else{
+            
+            JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_viewSurgeryBtnActionPerformed
+    
+    
+    private void populateSurgeries() {
+       DefaultTableModel model = (DefaultTableModel) surgeryWorkQueueTable.getModel();
+        model.setRowCount(0);
+        
+        for (WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+            Object[] row = new Object[3];
+            row[0] = request;
+            row[1] = ((FindDonorRequest) request).getStatus();
+            model.addRow(row);
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable surgeryWorkQueueTable;
+    private javax.swing.JButton viewSurgeryBtn;
     // End of variables declaration//GEN-END:variables
+
+    
 }

@@ -7,6 +7,9 @@ package userinterface.OPTEAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -17,13 +20,17 @@ import javax.swing.JPanel;
 public class OPTEAdminWorkArea extends javax.swing.JPanel {
 private JPanel userProcessContainer;
     private Enterprise enterprise;
+    private Network network;
+    private UserAccount account;
     /**
      * Creates new form OPTDAdminWorkArea
      */
-    public OPTEAdminWorkArea(JPanel userProcessContainer, Enterprise enterprise) {
+    public OPTEAdminWorkArea(JPanel userProcessContainer,UserAccount account, Enterprise enterprise, Network network) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise=enterprise;
+        this.network=network;
+        this.account=account;
     }
 
     /**
@@ -37,7 +44,7 @@ private JPanel userProcessContainer;
 
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        manageOPTBtn = new javax.swing.JButton();
         manageOrganizationBtn = new javax.swing.JButton();
         manageUsersBtn = new javax.swing.JButton();
         manageEmployeeBtn = new javax.swing.JButton();
@@ -51,8 +58,13 @@ private JPanel userProcessContainer;
         jButton1.setText("Manage Organ Matching>>");
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 330, -1));
 
-        jButton2.setText("Manage Organ Procurement and Transplantation >>");
-        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
+        manageOPTBtn.setText("Manage Organ Procurement and Transplantation >>");
+        manageOPTBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOPTBtnActionPerformed(evt);
+            }
+        });
+        add(manageOPTBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
 
         manageOrganizationBtn.setText("Manage Organizations>>");
         manageOrganizationBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -100,12 +112,21 @@ private JPanel userProcessContainer;
         layout.next(userProcessContainer);
     }//GEN-LAST:event_manageUsersBtnActionPerformed
 
+    private void manageOPTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOPTBtnActionPerformed
+        
+        
+        OrganProcurementAndTransplantationPanel opt = new OrganProcurementAndTransplantationPanel(userProcessContainer,account, enterprise,network);
+        userProcessContainer.add("OrganProcurementAndTransplantation", opt);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_manageOPTBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeBtn;
+    private javax.swing.JButton manageOPTBtn;
     private javax.swing.JButton manageOrganizationBtn;
     private javax.swing.JButton manageUsersBtn;
     // End of variables declaration//GEN-END:variables
