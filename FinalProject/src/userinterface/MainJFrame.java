@@ -42,7 +42,7 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setExtendedState(MAXIMIZED_BOTH);
-        scheduleJob();
+        //scheduleJob();
     }
     
     public void scheduleJob(){
