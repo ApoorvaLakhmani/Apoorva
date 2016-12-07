@@ -95,7 +95,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(RequestDetailsTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 890, 192));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 870, 192));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("My Work Requests");

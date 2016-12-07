@@ -7,6 +7,7 @@ package userinterface.registrationcenter.AdministrativeRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -21,16 +22,18 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount account;
     private EcoSystem system;
+    private Network stateNetwork;
     
     /**
      * Creates new form DonorRegistrationStatusJPanel
      */
-    public DonorRegistrationStatusJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account,EcoSystem system) {
+    public DonorRegistrationStatusJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account,EcoSystem system,Network stateNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.account = account;
         this.system = system;
+        this.stateNetwork = stateNetwork;
     }
 
     /**
@@ -99,7 +102,7 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegStatusBtnActionPerformed
-        DonorRequestStatusJPanel donorReqStatus = new DonorRequestStatusJPanel(userProcessContainer,enterprise,account,system);
+        DonorRequestStatusJPanel donorReqStatus = new DonorRequestStatusJPanel(userProcessContainer,enterprise,account,system,stateNetwork);
         userProcessContainer.add("DonorRequestStatusJPanel", donorReqStatus);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

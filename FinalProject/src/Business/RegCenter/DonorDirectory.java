@@ -27,10 +27,8 @@ public class DonorDirectory {
         this.donorList = donorList;
     }
     
-    public Donor addDonor(){
-        Donor donor = new Donor();
+    public void addDonor(Donor donor){
         donorList.add(donor);
-        return donor;
     }
     
     public void deleteDonor(Donor donor){

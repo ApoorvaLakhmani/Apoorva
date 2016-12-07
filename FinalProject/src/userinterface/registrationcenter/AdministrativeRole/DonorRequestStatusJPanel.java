@@ -8,6 +8,7 @@ package userinterface.registrationcenter.AdministrativeRole;
 import Business.EcoSystem;
 import Business.Enterprise.DonorRegistrationCenter;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InitialScreeningTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
@@ -27,15 +28,17 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount account;
     private EcoSystem system;
+    private Network stateNetwork;
     /**
      * Creates new form DonorRequestStatusJPanel
      */
-    public DonorRequestStatusJPanel(JPanel userProcessContainers,Enterprise enterprise,UserAccount account,EcoSystem system) {
+    public DonorRequestStatusJPanel(JPanel userProcessContainers,Enterprise enterprise,UserAccount account,EcoSystem system,Network stateNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainers;
         this.enterprise = enterprise;
         this.account = account;
         this.system = system;
+        this.stateNetwork = stateNetwork;
         
         populateTable();
     }
@@ -142,6 +145,8 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
          InitialScreeningTestWorkRequest request= (InitialScreeningTestWorkRequest)DononrRegReqTable.getValueAt(selectedRow, 0);
          if(request.getStatus().equals("Initial Screening done")){
              system.getMasterDonorDirectory().add(request.getDonor());
+             stateNetwork.getDonorDirectory().addDonor(request.getDonor());
+             ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor(request.getDonor());
          }else{
              if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter)){
                  ((DonorRegistrationCenter)enterprise).getDonorDirectory().deleteDonor(request.getDonor());

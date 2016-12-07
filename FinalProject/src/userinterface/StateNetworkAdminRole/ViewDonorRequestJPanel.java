@@ -277,33 +277,50 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FindDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindDonorBtnActionPerformed
-        Organ organ1 = new Organ();
-        organ1.setOrganName("Kindney");
-        organ1.setOrganLife(5);
-        
-        Organ organ2 = new Organ();
-        organ1.setOrganName("Liver");
-        organ1.setOrganLife(5);
-        
-        ArrayList<Organ> organlist = new ArrayList<>();
-        
-        Donor foundDonor = new Donor();
-        foundDonor.setDonorId("D1");
-        foundDonor.setDonorName("Apoorva");
-        foundDonor.setBloodGroup("B+");
-        foundDonor.setDonorAddress("San Fransico");
-        foundDonor.setDonorAge(27);
-        foundDonor.setDonorGender("F");
-        foundDonor.setDonorPhoneNumber(12345678);
-        foundDonor.setOrganDonateList(organlist);
+        //if(request.getDonor()==null){
+            //Find a Donor
+                DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,stateNetwork.getDonorDirectory().getDonorList(),request,stateNetwork);
+                userProcessContainer.add("DonorFoundJPanel",donorFound);
+                CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+//            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
+//            userProcessContainer.add("DonorFoundJPanel",donorFound);
+//            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//        }else{
+//            //DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
+////            userProcessContainer.add("DonorFoundJPanel",donorFound);
+////            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+////            layout.next(userProcessContainer);
+//        }
+//        Organ organ1 = new Organ();
+//        organ1.setOrganName("Kindney");
+//        organ1.setOrganLife(5);
+//        
+//        Organ organ2 = new Organ();
+//        organ1.setOrganName("Liver");
+//        organ1.setOrganLife(5);
+//        
+//        ArrayList<Organ> organlist = new ArrayList<>();
+//        
+//        Donor foundDonor = new Donor();
+//        foundDonor.setDonorId("D1");
+//        foundDonor.setDonorName("Apoorva");
+//        foundDonor.setBloodGroup("B+");
+//        foundDonor.setDonorAddress("San Fransico");
+//        foundDonor.setDonorAge(27);
+//        foundDonor.setDonorGender("F");
+//        foundDonor.setDonorPhoneNumber(12345678);
+//        foundDonor.setOrganDonateList(organlist);
        
-        ArrayList<Donor> foundDonorList = new ArrayList<>();
-        foundDonorList.add(foundDonor);
         
-        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-        userProcessContainer.add("DonorFoundJPanel",donorFound);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
+        //foundDonorList.add(foundDonor);
+        
+//        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
+//        userProcessContainer.add("DonorFoundJPanel",donorFound);
+//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//        layout.next(userProcessContainer);
+       // }
     }//GEN-LAST:event_FindDonorBtnActionPerformed
 
     private void PatientAgeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientAgeTextFieldActionPerformed

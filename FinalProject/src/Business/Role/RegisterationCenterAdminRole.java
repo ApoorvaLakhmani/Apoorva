@@ -21,7 +21,7 @@ public class RegisterationCenterAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem system) {
-        return new AdminWorkAreaJPanel(userProcessContainer,account,enterprise,system);
+        return new AdminWorkAreaJPanel(userProcessContainer,account,enterprise,system,inNetwork);
     }
     
 }

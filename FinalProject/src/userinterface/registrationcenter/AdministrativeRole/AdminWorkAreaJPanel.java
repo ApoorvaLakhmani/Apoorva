@@ -8,6 +8,7 @@ package userinterface.registrationcenter.AdministrativeRole;
 //import Business.Enterprise.Enterprise;
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
@@ -24,16 +25,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     private Enterprise enterprise;
     private UserAccount account;
     private EcoSystem system;
+    private Network stateNetwork;
     
     /**
      * Creates new form AdminWorkAreaJPanel
      */
-    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account , Enterprise enterprise,EcoSystem system) {
+    public AdminWorkAreaJPanel(JPanel userProcessContainer, UserAccount account , Enterprise enterprise,EcoSystem system,Network stateNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.account = account;
         this.system = system;
+        this.stateNetwork = stateNetwork;
         valueLabel.setText(enterprise.getName());
         
     }
@@ -149,7 +152,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_manageEmployeeJButtonActionPerformed
 
     private void RegisterDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDonorBtnActionPerformed
-        DonorRegistrationStatusJPanel donorRegister = new DonorRegistrationStatusJPanel(userProcessContainer,enterprise,account,system);
+        DonorRegistrationStatusJPanel donorRegister = new DonorRegistrationStatusJPanel(userProcessContainer,enterprise,account,system,stateNetwork);
         userProcessContainer.add("DonorRegistrationStatusJPanel", donorRegister);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);  

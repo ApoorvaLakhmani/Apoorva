@@ -66,7 +66,7 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
             if(network.getUserAccountDirectory().getUserAccountList().size() > 0){
                 if(network.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())){
                  networkNode = new DefaultMutableTreeNode(network.getNetworkName());
-                 rootNetwork.insert(networkNode, i);
+                 rootNetwork.insert(networkNode, 0);
             
             for(int j = 0 ; j<network.getSubNetwork().size(); j++){
                 stateNetwork = network.getSubNetwork().get(j);

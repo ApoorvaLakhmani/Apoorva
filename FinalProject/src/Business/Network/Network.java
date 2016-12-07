@@ -9,6 +9,7 @@ import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
+import Business.RegCenter.DonorDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ public class Network extends Organization{
     //private EmployeeDirectory employeeDirectory;
     private EnterpriseDirectory enterpriseDirectory;
     private ArrayList<Network> subNetwork;
+    private DonorDirectory donorDirectory;
     
     public Network(){
         super(Type.StateNetworkAdmin.getValue());
@@ -31,9 +33,19 @@ public class Network extends Organization{
         //employeeDirectory = new EmployeeDirectory();
         //userAccountDirectory = new UserAccountDirectory();
         subNetwork = new ArrayList<>();
+        donorDirectory = new DonorDirectory();
         
     }
 
+    public DonorDirectory getDonorDirectory() {
+        return donorDirectory;
+    }
+
+    public void setDonorDirectory(DonorDirectory donorDirectory) {
+        this.donorDirectory = donorDirectory;
+    }
+
+    
     public ArrayList<Network> getSubNetwork() {
         return subNetwork;
     }

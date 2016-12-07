@@ -224,11 +224,11 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
-          Donor donor = null;
+          Donor donor = new Donor();
           ArrayList<Organ> organList = new ArrayList<Organ>();
-          if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter.toString())){
-             donor = ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor();
-          }
+//          if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter.toString())){
+//             donor = ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor();
+//          }
           if(donor!=null){
               try {
                   SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
