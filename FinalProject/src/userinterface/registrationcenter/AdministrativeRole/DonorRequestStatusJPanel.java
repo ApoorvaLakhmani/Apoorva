@@ -144,6 +144,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
        {
          InitialScreeningTestWorkRequest request= (InitialScreeningTestWorkRequest)DononrRegReqTable.getValueAt(selectedRow, 0);
          if(request.getStatus().equals("Initial Screening Done")){
+             request.setStatus("Registeration complete");
              system.getMasterDonorDirectory().add(request.getDonor());
              stateNetwork.getDonorDirectory().addDonor(request.getDonor());
              ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor(request.getDonor());

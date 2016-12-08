@@ -15,16 +15,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.quartz.CronScheduleBuilder;
-import org.quartz.CronTrigger;
-import org.quartz.JobBuilder;
-import org.quartz.JobDetail;
-import org.quartz.Scheduler;
-import org.quartz.SchedulerException;
-import org.quartz.SchedulerFactory;
-import org.quartz.Trigger;
-import org.quartz.TriggerBuilder;
-import org.quartz.impl.StdSchedulerFactory;
+//import org.quartz.CronScheduleBuilder;
+//import org.quartz.CronTrigger;
+//import org.quartz.JobBuilder;
+//import org.quartz.JobDetail;
+//import org.quartz.Scheduler;
+//import org.quartz.SchedulerException;
+//import org.quartz.SchedulerFactory;
+//import org.quartz.Trigger;
+//import org.quartz.TriggerBuilder;
+//import org.quartz.impl.StdSchedulerFactory;
 
 /**
  *
@@ -45,21 +45,21 @@ public class MainJFrame extends javax.swing.JFrame {
         //scheduleJob();
     }
     
-    public void scheduleJob(){
-        try {
-            //MyJob job = new MyJob();
-            JobDetail job1 = (JobDetail) JobBuilder.newJob(MyJob.class).withIdentity("Job1", "Group1").build();
-            job1.getJobDataMap().put("System", system);
-            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("Trigger 1", "group1").
-                    withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
-            Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
-            scheduler1.start();
-            scheduler1.scheduleJob(job1, trigger);
-        } catch (SchedulerException ex) {
-            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+//    public void scheduleJob(){
+//        try {
+//            //MyJob job = new MyJob();
+//            JobDetail job1 = (JobDetail) JobBuilder.newJob(MyJob.class).withIdentity("Job1", "Group1").build();
+//            job1.getJobDataMap().put("System", system);
+//            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("Trigger 1", "group1").
+//                    withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
+//            Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
+//            scheduler1.start();
+//            scheduler1.scheduleJob(job1, trigger);
+//        } catch (SchedulerException ex) {
+//            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

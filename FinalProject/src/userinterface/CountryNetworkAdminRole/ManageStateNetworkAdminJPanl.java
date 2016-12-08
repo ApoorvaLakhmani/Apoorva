@@ -133,6 +133,7 @@ public class ManageStateNetworkAdminJPanl extends javax.swing.JPanel {
         usernameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(393, 268, 136, -1));
 
+        countryNameTxtField.setEditable(false);
         countryNameTxtField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(countryNameTxtField, new org.netbeans.lib.awtextra.AbsoluteConstraints(42, 25, 138, -1));
     }// </editor-fold>//GEN-END:initComponents

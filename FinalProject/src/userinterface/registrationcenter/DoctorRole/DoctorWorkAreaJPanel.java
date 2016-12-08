@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.LegalRepresentativeRole.ViewLegalRequestPanel;
-import userinterface.registrationcenter.InitialScreeningJPanel;
 
 /**
  *
@@ -112,7 +111,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 29, 158, 26));
 
         requestTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        requestTestJButton.setText("Initial Screening");
+        requestTestJButton.setText("Initial Screening>>");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 requestTestJButtonActionPerformed(evt);
