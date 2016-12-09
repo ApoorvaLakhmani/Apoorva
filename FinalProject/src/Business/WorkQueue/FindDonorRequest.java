@@ -17,7 +17,8 @@ public class FindDonorRequest extends WorkRequest{
     private int hospitalID;
     private String hospitalName;
     private int hospitalContactNo;
-    private String hospitalAddress;
+    private String hospitalCity;
+    private String hospitalState;
      private String authorization;
     private Donor donor;
     private String rejectionReason;
@@ -55,13 +56,23 @@ public class FindDonorRequest extends WorkRequest{
         this.hospitalName = hospitalName;
     }
 
-    public String getHospitalAddress() {
-        return hospitalAddress;
+    public String getHospitalCity() {
+        return hospitalCity;
     }
 
-    public void setHospitalAddress(String hospitalAddress) {
-        this.hospitalAddress = hospitalAddress;
+    public void setHospitalCity(String hospitalCity) {
+        this.hospitalCity = hospitalCity;
     }
+
+    public String getHospitalState() {
+        return hospitalState;
+    }
+
+    public void setHospitalState(String hospitalState) {
+        this.hospitalState = hospitalState;
+    }
+
+  
 
     public String getAuthorization() {
         return authorization;

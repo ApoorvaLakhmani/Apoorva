@@ -13,6 +13,7 @@ public class Organ {
     
     private String organName;
     private int organLife;
+    private double organSize;
 
     public String getOrganName() {
         return organName;
@@ -29,6 +30,16 @@ public class Organ {
     public void setOrganLife(int organLife) {
         this.organLife = organLife;
     }
+
+    public double getOrganSize() {
+        return organSize;
+    }
+
+    public void setOrganSize(double organSize) {
+        this.organSize = organSize;
+    }
+
+    
     
     
     

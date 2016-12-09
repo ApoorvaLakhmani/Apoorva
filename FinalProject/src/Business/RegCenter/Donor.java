@@ -19,7 +19,7 @@ public class Donor {
     private int donorAge;
     private String donorGender;
     private ArrayList<Organ> organDonateList;
-    private String bloodGroup;
+   // private String bloodGroup;
     private int donorPhoneNumber;
     private String donorAddress;
     private Date dateOfBirth;
@@ -100,13 +100,13 @@ public class Donor {
         this.organDonateList = organDonateList;
     }
 
-    public String getBloodGroup() {
-        return bloodGroup;
-    }
-
-    public void setBloodGroup(String bloodGroup) {
-        this.bloodGroup = bloodGroup;
-    }
+//    public String getBloodGroup() {
+//        return bloodGroup;
+//    }
+//
+//    public void setBloodGroup(String bloodGroup) {
+//        this.bloodGroup = bloodGroup;
+//    }
 
     public int getDonorPhoneNumber() {
         return donorPhoneNumber;

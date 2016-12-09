@@ -43,9 +43,7 @@ private JPanel userProcessContainer;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         manageOPTBtn = new javax.swing.JButton();
-        manageOrganizationBtn = new javax.swing.JButton();
         manageUsersBtn = new javax.swing.JButton();
         manageEmployeeBtn = new javax.swing.JButton();
 
@@ -55,24 +53,13 @@ private JPanel userProcessContainer;
         jLabel1.setText("OPTD ADMIN WORK AREA");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
 
-        jButton1.setText("Manage Organ Matching>>");
-        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, 330, -1));
-
         manageOPTBtn.setText("Manage Organ Procurement and Transplantation >>");
         manageOPTBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageOPTBtnActionPerformed(evt);
             }
         });
-        add(manageOPTBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 250, -1, -1));
-
-        manageOrganizationBtn.setText("Manage Organizations>>");
-        manageOrganizationBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOrganizationBtnActionPerformed(evt);
-            }
-        });
-        add(manageOrganizationBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 310, 330, -1));
+        add(manageOPTBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
 
         manageUsersBtn.setText("Manage Users>>");
         manageUsersBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +67,7 @@ private JPanel userProcessContainer;
                 manageUsersBtnActionPerformed(evt);
             }
         });
-        add(manageUsersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 430, 330, -1));
+        add(manageUsersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 330, -1));
 
         manageEmployeeBtn.setText("Manage Employees>>");
         manageEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -88,15 +75,8 @@ private JPanel userProcessContainer;
                 manageEmployeeBtnActionPerformed(evt);
             }
         });
-        add(manageEmployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 370, 330, -1));
+        add(manageEmployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 330, -1));
     }// </editor-fold>//GEN-END:initComponents
-
-    private void manageOrganizationBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrganizationBtnActionPerformed
-        ManageOPTEOrganizationsPanel manageNetwork = new ManageOPTEOrganizationsPanel(userProcessContainer, enterprise.getOrganizationDirectory());
-        userProcessContainer.add("ManageOPTEOrganizationsPanel",manageNetwork);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_manageOrganizationBtnActionPerformed
 
     private void manageEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeBtnActionPerformed
         ManageOPTEEmployeesPanel manageOPTEEmployeesPanel = new ManageOPTEEmployeesPanel(userProcessContainer, enterprise.getOrganizationDirectory());
@@ -114,7 +94,6 @@ private JPanel userProcessContainer;
 
     private void manageOPTBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOPTBtnActionPerformed
         
-        
         OrganProcurementAndTransplantationPanel opt = new OrganProcurementAndTransplantationPanel(userProcessContainer,account, enterprise,network);
         userProcessContainer.add("OrganProcurementAndTransplantation", opt);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -123,11 +102,9 @@ private JPanel userProcessContainer;
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeBtn;
     private javax.swing.JButton manageOPTBtn;
-    private javax.swing.JButton manageOrganizationBtn;
     private javax.swing.JButton manageUsersBtn;
     // End of variables declaration//GEN-END:variables
 }

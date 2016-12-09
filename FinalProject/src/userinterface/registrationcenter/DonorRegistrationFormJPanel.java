@@ -72,8 +72,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         LungChkBox = new javax.swing.JCheckBox();
         KidneyChkBox = new javax.swing.JCheckBox();
         LiverChkbox = new javax.swing.JCheckBox();
-        HeartChkBox = new javax.swing.JCheckBox();
-        EyesChkBox = new javax.swing.JCheckBox();
+        pancreasChkBox = new javax.swing.JCheckBox();
+        intestineChkBox = new javax.swing.JCheckBox();
         Label3 = new javax.swing.JLabel();
         SignatureLabel = new javax.swing.JLabel();
         DateLabel = new javax.swing.JLabel();
@@ -108,7 +108,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         add(DobLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 207, -1, -1));
 
         GenderLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        GenderLabel.setText("Sex : ");
+        GenderLabel.setText("Gender : ");
         add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 251, -1, -1));
 
         TelephoneLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -162,13 +162,13 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         LiverChkbox.setText("Liver");
         add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 761, -1, -1));
 
-        HeartChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        HeartChkBox.setText("Heart");
-        add(HeartChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 802, -1, -1));
+        pancreasChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        pancreasChkBox.setText("Pancreas");
+        add(pancreasChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 802, -1, -1));
 
-        EyesChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        EyesChkBox.setText("Eyes");
-        add(EyesChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 674, -1, -1));
+        intestineChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        intestineChkBox.setText("Intestine");
+        add(intestineChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 674, -1, -1));
 
         Label3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         Label3.setText("be removed for the purpose of transaplantation.");
@@ -254,23 +254,23 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                       liver.setOrganName("Liver");
                       liver.setOrganLife(6);
                       
-                      Organ heart = new Organ();
-                      heart.setOrganName("Heart");
-                      heart.setOrganLife(5);
+                      Organ pancreas = new Organ();
+                      pancreas.setOrganName("Pancreas");
+                      pancreas.setOrganLife(5);
                       
-                      Organ Eyes = new Organ();
-                      Eyes.setOrganName("Eyes");
-                      Eyes.setOrganLife(5);
+                      Organ intestine = new Organ();
+                      intestine.setOrganName("Intestine");
+                      intestine.setOrganLife(5);
                       
-                      Organ Lungs = new Organ();
-                      Lungs.setOrganName("Lungs");
-                      Lungs.setOrganLife(5);
+                      Organ lungs = new Organ();
+                      lungs.setOrganName("Lungs");
+                      lungs.setOrganLife(5);
                       
-                      organList.add(Eyes);
+                      organList.add(pancreas);
                       organList.add(kidney);
-                      organList.add(Lungs);
+                      organList.add(lungs);
                       organList.add(liver);
-                      organList.add(heart);
+                      organList.add(pancreas);
                   }else if(KidneyChkBox.isSelected()){
                       Organ kidney = new Organ();
                       kidney.setOrganName("Kidney");
@@ -279,25 +279,26 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                       
                   }else if(LungChkBox.isSelected()){
                       Organ lungs = new Organ();
-                      lungs.setOrganName("Kidney");
+                      lungs.setOrganName("Lungs");
                       lungs.setOrganLife(5);
                       organList.add(lungs);
                   }else if(LiverChkbox.isSelected()){
                       Organ liver = new Organ();
-                      liver.setOrganName("Kidney");
+                      liver.setOrganName("Liver");
                       liver.setOrganLife(5);
                       organList.add(liver);
-                  }else if(HeartChkBox.isSelected()){
-                      Organ heart = new Organ();
-                      heart.setOrganName("Kidney");
-                      heart.setOrganLife(5);
-                      organList.add(heart);
-                  }else if(EyesChkBox.isSelected()){
-                      Organ eyes = new Organ();
-                      eyes.setOrganName("Kidney");
-                      eyes.setOrganLife(5);
-                      organList.add(eyes);
+                  }else if(pancreasChkBox.isSelected()){
+                      Organ pancreas = new Organ();
+                      pancreas.setOrganName("Pancreas");
+                      pancreas.setOrganLife(5);
+                      organList.add(pancreas);
+                  }else if(intestineChkBox.isSelected()){
+                      Organ intestines = new Organ();
+                      intestines.setOrganName("Intestines");
+                      intestines.setOrganLife(5);
+                      organList.add(intestines);
                   } 
+                  donor.setOrganDonateList(organList);
                                   
               } catch (ParseException ex) {
                Logger.getLogger(DonorRegistrationFormJPanel.class.getName()).log(Level.SEVERE, null, ex);
@@ -308,7 +309,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
           request.setDonor(donor);
           request.setRequestDate(new Date());
           request.setSender(account);
-          request.setStatus("Initial Screening for donor");
+          request.setStatus("Initial Screening pending");
           
           Organization doctorOrganization = null;
           for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
@@ -346,12 +347,10 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField DonorAgeTextField;
     private javax.swing.JLabel EmailLabel;
     private javax.swing.JTextField EmailTextField;
-    private javax.swing.JCheckBox EyesChkBox;
     private javax.swing.JRadioButton FemaleRadioBtn;
     private javax.swing.ButtonGroup GenderBtnGrp;
     private javax.swing.JLabel GenderLabel;
     private javax.swing.JLabel HeaderLabel;
-    private javax.swing.JCheckBox HeartChkBox;
     private javax.swing.JButton InitialScreeningBtn;
     private javax.swing.JCheckBox KidneyChkBox;
     private javax.swing.JLabel Label;
@@ -367,6 +366,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel SignatureLabel;
     private javax.swing.JLabel TelephoneLabel;
     private javax.swing.JTextField TelephoneTextField;
+    private javax.swing.JCheckBox intestineChkBox;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JCheckBox pancreasChkBox;
     // End of variables declaration//GEN-END:variables
 }

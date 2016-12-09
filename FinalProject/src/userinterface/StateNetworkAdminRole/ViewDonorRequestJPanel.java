@@ -14,6 +14,7 @@ import Business.WorkQueue.FindDonorRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.JPanel;
 
 /**
@@ -50,8 +51,8 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         ContactNoTextField.setText(String.valueOf(request.getPatientDetails().getPatientContactNumber()));
         PatientBloodTypeTextField.setText(request.getPatientDetails().getBloodType());
         PatientWeightTextField.setText(String.valueOf(request.getPatientDetails().getWeight()));
-        OrganNeededTextField.setText(request.getPatientDetails().getOrganNeeded());
-        OrganSizeTextField.setText(String.valueOf(request.getPatientDetails().getOrganSize()));
+        OrganNeededTextField.setText(request.getPatientDetails().getOrganNeeded().getOrganName());
+        OrganSizeTextField.setText(String.valueOf(request.getPatientDetails().getOrganNeeded().getOrganSize()));
         OtherMedicalConditionTextArea.setText(request.getPatientDetails().getOtherMedicalCondition());
     }
 
@@ -277,22 +278,51 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FindDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindDonorBtnActionPerformed
-        //if(request.getDonor()==null){
-            //Find a Donor
-                DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,stateNetwork.getDonorDirectory().getDonorList(),request,stateNetwork);
+       ArrayList<Donor> foundDonorList = new ArrayList<>();
+        
+        if(request.getDonor()==null){
+            //Find a Donor 
+            Donor foundDonor=new Donor();
+             Boolean organTest=false;
+             Boolean bloodTyping=false;
+
+            
+            for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()){
+                for (Organ organ:donor.getOrganDonateList()){
+                     if(request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())&&(request.getPatientDetails().getOrganNeeded().getOrganSize()==(organ.getOrganSize()))){
+                        organTest=true;
+                         break;
+                         
+                     }
+                }
+                String donorBloodGroup=foundDonor.getHealthDetails().getBloodGroup();
+                String patientBloodGroup=request.getPatientDetails().getBloodType();
+                 bloodTyping=bloodTest(donorBloodGroup,patientBloodGroup);
+                if (bloodTyping==true &&organTest==true ){
+                    foundDonor=donor;
+                }
+                       
+            }
+            foundDonorList.add(foundDonor);
+            
+            
+            
+            
+                DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
                 userProcessContainer.add("DonorFoundJPanel",donorFound);
                 CardLayout layout = (CardLayout)userProcessContainer.getLayout();
                 layout.next(userProcessContainer);
-//            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-//            userProcessContainer.add("DonorFoundJPanel",donorFound);
-//            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//            layout.next(userProcessContainer);
-//        }else{
-//            //DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-////            userProcessContainer.add("DonorFoundJPanel",donorFound);
-////            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-////            layout.next(userProcessContainer);
-//        }
+                
+        }  
+        else{
+            foundDonorList.add(request.getDonor());
+            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
+            userProcessContainer.add("DonorFoundJPanel",donorFound);
+            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            
+        }
+               
 //        Organ organ1 = new Organ();
 //        organ1.setOrganName("Kindney");
 //        organ1.setOrganLife(5);
@@ -336,7 +366,21 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
-
+    
+    private Boolean bloodTest(String donorBloodGroup,String patientBloodGroup){
+        
+         if (donorBloodGroup.equals("O") && (patientBloodGroup.equals("O") || patientBloodGroup.equals("A") || patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("A") && (patientBloodGroup.equals("A") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("B") && (patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("AB") && patientBloodGroup.equals("A")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ContactNoTextField;

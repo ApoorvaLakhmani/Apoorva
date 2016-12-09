@@ -5,6 +5,8 @@
  */
 package Business.Hospital;
 
+import Business.RegCenter.Organ;
+
 /**
  *
  * @author ApoorvaLakhmani
@@ -17,8 +19,8 @@ public class Patient {
     private String patientLocation;
     private String bloodType;
     private double weight;
-    private String organNeeded;
-    private int organSize;
+    private Organ organNeeded;
+   // private int organSize;
     private String otherMedicalCondition;
     private int patientContactNumber;
     private String critical;
@@ -28,6 +30,7 @@ public class Patient {
     public Patient(){
         counter++;
         patientID = counter;
+        organNeeded=new Organ();
     }
 
     public int getPatientID() {
@@ -93,21 +96,23 @@ public class Patient {
         this.weight = weight;
     }
 
-    public String getOrganNeeded() {
+    public Organ getOrganNeeded() {
         return organNeeded;
     }
 
-    public void setOrganNeeded(String organNeeded) {
+    public void setOrganNeeded(Organ organNeeded) {
         this.organNeeded = organNeeded;
     }
 
-    public int getOrganSize() {
-        return organSize;
+    public static int getCounter() {
+        return counter;
     }
 
-    public void setOrganSize(int organSize) {
-        this.organSize = organSize;
+    public static void setCounter(int counter) {
+        Patient.counter = counter;
     }
+
+  
 
     public String getOtherMedicalCondition() {
         return otherMedicalCondition;

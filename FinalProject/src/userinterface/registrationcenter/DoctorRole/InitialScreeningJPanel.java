@@ -3,11 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package userinterface.registrationcenter;
+package userinterface.registrationcenter.DoctorRole;
 
+import Business.RegCenter.Organ;
 import Business.WorkQueue.InitialScreeningTestWorkRequest;
 import java.awt.CardLayout;
+import java.awt.Component;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -18,13 +22,34 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     
     private JPanel userProcessContainer;
     private InitialScreeningTestWorkRequest request;
+
     /**
      * Creates new form InitialScreeningJPanel
      */
     public InitialScreeningJPanel(JPanel userProcessContainer,InitialScreeningTestWorkRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.request = request;
+        this.request=request;
+        for(Organ organ : request.getDonor().getOrganDonateList()){
+            if (organ.getOrganName().equals("Kidney")){
+                kidneySizeTextField.setEditable(true);
+            }
+            else if (organ.getOrganName().equals("Pancreas")){
+                pancreasSizeTextField.setEditable(true);
+            }
+             else if (organ.getOrganName().equals("Intestines")){
+                intestineSizeTextField.setEditable(true);
+            }
+            else if (organ.getOrganName().equals("Lungs")){
+                lungSizeTextField.setEditable(true);
+            }
+            else if (organ.getOrganName().equals("Liver")){
+                liverSizeTextField.setEditable(true);
+            }
+            
+            
+            
+        }
     }
 
     /**
@@ -54,7 +79,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         InfectionLabel = new javax.swing.JLabel();
         OrganDiseaseLabel = new javax.swing.JLabel();
         psychiatriclabel = new javax.swing.JLabel();
-        BloodGrpTextField = new javax.swing.JTextField();
         HeightTextField = new javax.swing.JTextField();
         WeightTextField = new javax.swing.JTextField();
         BMITextField = new javax.swing.JTextField();
@@ -76,12 +100,24 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         CancerNoRadioBtn = new javax.swing.JRadioButton();
         HIVYesRadioBtn = new javax.swing.JRadioButton();
         HIVNoRadioBtn = new javax.swing.JRadioButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        kidneySizeTextField = new javax.swing.JTextField();
+        liverSizeTextField = new javax.swing.JTextField();
+        lungSizeTextField = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        pancreasSizeTextField = new javax.swing.JTextField();
+        intestineSizeTextField = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        donorBloodTypeComboBox = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         HeaderLabel.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
         HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        HeaderLabel.setText("Organ Donar Registration Form");
+        HeaderLabel.setText("Initial Screening ");
         add(HeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 41, 426, 49));
 
         SubHeaderLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -124,9 +160,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         psychiatriclabel.setText("Any active psychiatric disorders : ");
         add(psychiatriclabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 532, -1, -1));
 
-        BloodGrpTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(BloodGrpTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 146, 114, -1));
-
         HeightTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(HeightTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 189, 114, -1));
 
@@ -139,22 +172,22 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         BloodPressureBtnGrp.add(BPYesRadioBtn);
         BPYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BPYesRadioBtn.setText("Yes");
-        add(BPYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 334, -1, -1));
+        add(BPYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 340, -1, -1));
 
         BloodPressureBtnGrp.add(BPNoRadioBtn);
         BPNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BPNoRadioBtn.setText("No");
-        add(BPNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 334, -1, -1));
+        add(BPNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 340, -1, -1));
 
         DiabetesBtnGrp.add(DiabetesYesRadioBtn);
         DiabetesYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         DiabetesYesRadioBtn.setText("Yes");
-        add(DiabetesYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 385, -1, -1));
+        add(DiabetesYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 390, -1, -1));
 
         DiabetesBtnGrp.add(DiabetesNoRadioBtn);
         DiabetesNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         DiabetesNoRadioBtn.setText("No");
-        add(DiabetesNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(324, 385, -1, -1));
+        add(DiabetesNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, -1, -1));
 
         InfectionBtnGrp.add(InfectionNoRadioBtn);
         InfectionNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -179,12 +212,12 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         psychiatricBtnGrp.add(psychiatricNoRadioBtn);
         psychiatricNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         psychiatricNoRadioBtn.setText("No");
-        add(psychiatricNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(445, 524, -1, -1));
+        add(psychiatricNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 520, -1, -1));
 
         psychiatricBtnGrp.add(psychiatricYesRadioBtn);
         psychiatricYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         psychiatricYesRadioBtn.setText("Yes");
-        add(psychiatricYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 524, -1, -1));
+        add(psychiatricYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, -1, -1));
 
         SubmitBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         SubmitBtn.setText("Submit ");
@@ -204,36 +237,72 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel1.setText("Cancer : ");
+        jLabel1.setText("Cancer test : ");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        jLabel2.setText("HIV : ");
+        jLabel2.setText("HIV test : ");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 630, -1, -1));
 
         CancerBtnGrp.add(CancerYesRadioBtn);
         CancerYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        CancerYesRadioBtn.setText("Yes");
-        add(CancerYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 580, -1, -1));
+        CancerYesRadioBtn.setText("Positive");
+        add(CancerYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 580, -1, -1));
 
         CancerBtnGrp.add(CancerNoRadioBtn);
         CancerNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        CancerNoRadioBtn.setText("No");
-        add(CancerNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, -1, -1));
+        CancerNoRadioBtn.setText("Negative");
+        add(CancerNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 580, -1, -1));
 
         HIVBtnGrp.add(HIVYesRadioBtn);
         HIVYesRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        HIVYesRadioBtn.setText("Yes");
-        add(HIVYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 620, -1, -1));
+        HIVYesRadioBtn.setText("Positive");
+        add(HIVYesRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 630, -1, -1));
 
         HIVBtnGrp.add(HIVNoRadioBtn);
         HIVNoRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        HIVNoRadioBtn.setText("No");
-        add(HIVNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 620, -1, -1));
+        HIVNoRadioBtn.setText("Negative");
+        add(HIVNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 630, -1, -1));
+
+        jLabel3.setText("Organ Size:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, -1, -1));
+
+        jLabel5.setText("Kidney");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
+
+        jLabel6.setText("Lung:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
+
+        jLabel7.setText("Intesttines:");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, -1));
+
+        kidneySizeTextField.setEditable(false);
+        add(kidneySizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 80, -1));
+
+        liverSizeTextField.setEditable(false);
+        add(liverSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 80, -1));
+
+        lungSizeTextField.setEditable(false);
+        add(lungSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 80, -1));
+
+        jLabel8.setText("Liver:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, 20));
+
+        pancreasSizeTextField.setEditable(false);
+        add(pancreasSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 80, 20));
+
+        intestineSizeTextField.setEditable(false);
+        add(intestineSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 80, -1));
+
+        jLabel9.setText("Pancreas:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
+
+        donorBloodTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "O", "A", "B", "AB" }));
+        add(donorBloodTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void SubmitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SubmitBtnActionPerformed
-        request.getDonor().getHealthDetails().setBloodGroup(BloodGrpTextField.getText());
+        request.getDonor().getHealthDetails().setBloodGroup(donorBloodTypeComboBox.getSelectedItem().toString());
         request.getDonor().getHealthDetails().setHeight(Integer.parseInt(HeightTextField.getText()));
         request.getDonor().getHealthDetails().setWeight(Integer.parseInt(WeightTextField.getText()));
         if(BPYesRadioBtn.isSelected()){
@@ -272,12 +341,36 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
             request.getDonor().getHealthDetails().setHasHIV(false);
         }
         
+        for(Organ organ : request.getDonor().getOrganDonateList()){
+            if (organ.getOrganName().equals("Kidney")){
+                organ.setOrganSize(Double.parseDouble(kidneySizeTextField.getText()));
+            }
+            else if (organ.getOrganName().equals("Pancreas")){
+                   organ.setOrganSize(Double.parseDouble(pancreasSizeTextField.getText()));
+            }
+             else if (organ.getOrganName().equals("Intestines")){
+                organ.setOrganSize(Double.parseDouble(intestineSizeTextField.getText()));
+            }
+            else if (organ.getOrganName().equals("Lungs")){
+                organ.setOrganSize(Double.parseDouble(lungSizeTextField.getText()));
+            }
+            else if (organ.getOrganName().equals("Liver")){
+               organ.setOrganSize(Double.parseDouble(liverSizeTextField.getText()));
+            }
+               
+        }
+         
         request.setStatus("Initial Screening Done");
         request.setResolveDate(new Date());
+        JOptionPane.showMessageDialog(null, "Screening complete!");
     }//GEN-LAST:event_SubmitBtnActionPerformed
 
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        DoctorWorkAreaJPanel sysAdminwjp = (DoctorWorkAreaJPanel) component;
+        sysAdminwjp.populateTable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
@@ -289,7 +382,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton BPYesRadioBtn;
     private javax.swing.JButton BackBtn;
     private javax.swing.JLabel BloodGrpLabel;
-    private javax.swing.JTextField BloodGrpTextField;
     private javax.swing.ButtonGroup BloodPressureBtnGrp;
     private javax.swing.ButtonGroup CancerBtnGrp;
     private javax.swing.JRadioButton CancerNoRadioBtn;
@@ -317,9 +409,21 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel WeightLabel;
     private javax.swing.JTextField WeightTextField;
     private javax.swing.JLabel bmiLabel;
+    private javax.swing.JComboBox<String> donorBloodTypeComboBox;
     private javax.swing.JRadioButton infectionYesRadioBtn;
+    private javax.swing.JTextField intestineSizeTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField kidneySizeTextField;
+    private javax.swing.JTextField liverSizeTextField;
+    private javax.swing.JTextField lungSizeTextField;
+    private javax.swing.JTextField pancreasSizeTextField;
     private javax.swing.ButtonGroup psychiatricBtnGrp;
     private javax.swing.JRadioButton psychiatricNoRadioBtn;
     private javax.swing.JRadioButton psychiatricYesRadioBtn;

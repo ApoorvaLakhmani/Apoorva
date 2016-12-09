@@ -26,15 +26,17 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
       private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
+    private Network countryNetwork;
     /**
      * Creates new form NetworkAdminWorkArea
      */
       
-    public CountryNetworkAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system) {
+    public CountryNetworkAdminWorkArea(JPanel userProcessContainer, UserAccount account , EcoSystem system,Network countryNetwork) {
         initComponents();
             this.userProcessContainer = userProcessContainer;
          this.system = system;
          this.account = account;
+         this.countryNetwork=countryNetwork;
          populateTree();
     }
     
@@ -152,7 +154,10 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestsBtnActionPerformed
-       
+      CountryNetworkAdminWorkRequestArea countryNetworkAdminWorkRequestArea = new CountryNetworkAdminWorkRequestArea(userProcessContainer,account, system,countryNetwork);
+        userProcessContainer.add("countryNetworkAdminWorkRequestArea",countryNetworkAdminWorkRequestArea);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_manageRequestsBtnActionPerformed
 
     private void manageStateNetworkAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageStateNetworkAdminBtnActionPerformed

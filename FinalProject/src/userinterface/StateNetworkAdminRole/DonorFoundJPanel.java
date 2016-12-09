@@ -48,6 +48,12 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         this.donorList = donorList;
          this.findDonorRequest = findDonorRequest;
           this.stateNetwork = stateNetwork;
+          if(donorList.isEmpty()){
+           noDonorLabel.setVisible(true);
+          }
+          else{
+             noDonorLabel.setVisible(false); 
+          }
         populateTable();
     }
     
@@ -78,6 +84,8 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         DonorDetailTable = new javax.swing.JTable();
         LegalDeptBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        noDonorLabel = new javax.swing.JLabel();
+        forwardToCountryAdminBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -94,7 +102,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(DonorDetailTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(186, 41, -1, 188));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, 188));
 
         LegalDeptBtn.setText("Forward to legal Department");
         LegalDeptBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -102,7 +110,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
                 LegalDeptBtnActionPerformed(evt);
             }
         });
-        add(LegalDeptBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(207, 320, 253, 58));
+        add(LegalDeptBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 310, 253, 58));
 
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,6 +119,19 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
             }
         });
         add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 467, -1, -1));
+
+        noDonorLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        noDonorLabel.setForeground(new java.awt.Color(255, 0, 51));
+        noDonorLabel.setText("No Donor Found!");
+        add(noDonorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, -1, -1));
+
+        forwardToCountryAdminBtn.setText("Request Country Administrator");
+        forwardToCountryAdminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forwardToCountryAdminBtnActionPerformed(evt);
+            }
+        });
+        add(forwardToCountryAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 390, 253, 58));
     }// </editor-fold>//GEN-END:initComponents
 
     private void LegalDeptBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LegalDeptBtnActionPerformed
@@ -157,11 +178,25 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void forwardToCountryAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardToCountryAdminBtnActionPerformed
+        for (Network network: system.getNetworkList()){
+            for(Network state:network.getSubNetwork()){
+                if(state.getNetworkName().equals(stateNetwork.getNetworkName())){
+                    network.getWorkQueue().getWorkRequestList().add(findDonorRequest);
+                    JOptionPane.showMessageDialog(null, "Request forwarded to Country Admin");
+                    break;
+                }
+            }
+        }
+    }//GEN-LAST:event_forwardToCountryAdminBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DonorDetailTable;
     private javax.swing.JButton LegalDeptBtn;
     private javax.swing.JButton backBtn;
+    private javax.swing.JButton forwardToCountryAdminBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel noDonorLabel;
     // End of variables declaration//GEN-END:variables
 }

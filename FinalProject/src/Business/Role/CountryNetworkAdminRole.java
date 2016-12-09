@@ -21,7 +21,7 @@ public class CountryNetworkAdminRole extends Role {
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
-        return new CountryNetworkAdminWorkArea(userProcessContainer,account, business);
+        return new CountryNetworkAdminWorkArea(userProcessContainer,account, business,inNetwork);
     }
     
 }
