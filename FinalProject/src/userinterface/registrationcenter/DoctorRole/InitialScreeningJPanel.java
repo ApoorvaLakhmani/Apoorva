@@ -30,26 +30,26 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request=request;
-        for(Organ organ : request.getDonor().getOrganDonateList()){
-            if (organ.getOrganName().equals("Kidney")){
-                kidneySizeTextField.setEditable(true);
-            }
-            else if (organ.getOrganName().equals("Pancreas")){
-                pancreasSizeTextField.setEditable(true);
-            }
-             else if (organ.getOrganName().equals("Intestines")){
-                intestineSizeTextField.setEditable(true);
-            }
-            else if (organ.getOrganName().equals("Lungs")){
-                lungSizeTextField.setEditable(true);
-            }
-            else if (organ.getOrganName().equals("Liver")){
-                liverSizeTextField.setEditable(true);
-            }
-            
-            
-            
-        }
+//        for(Organ organ : request.getDonor().getOrganDonateList()){
+//            if (organ.getOrganName().equals("Kidney")){
+//                kidneySizeTextField.setEditable(true);
+//            }
+//            else if (organ.getOrganName().equals("Pancreas")){
+//                pancreasSizeTextField.setEditable(true);
+//            }
+//             else if (organ.getOrganName().equals("Intestine")){
+//                intestineSizeTextField.setEditable(true);
+//            }
+//            else if (organ.getOrganName().equals("Lungs")){
+//                lungSizeTextField.setEditable(true);
+//            }
+//            else if (organ.getOrganName().equals("Liver")){
+//                liverSizeTextField.setEditable(true);
+//            }
+//            
+//            
+//            
+//        }
     }
 
     /**
@@ -100,17 +100,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         CancerNoRadioBtn = new javax.swing.JRadioButton();
         HIVYesRadioBtn = new javax.swing.JRadioButton();
         HIVNoRadioBtn = new javax.swing.JRadioButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        kidneySizeTextField = new javax.swing.JTextField();
-        liverSizeTextField = new javax.swing.JTextField();
-        lungSizeTextField = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        pancreasSizeTextField = new javax.swing.JTextField();
-        intestineSizeTextField = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         donorBloodTypeComboBox = new javax.swing.JComboBox<>();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -264,39 +253,6 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         HIVNoRadioBtn.setText("Negative");
         add(HIVNoRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 630, -1, -1));
 
-        jLabel3.setText("Organ Size:");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 130, -1, -1));
-
-        jLabel5.setText("Kidney");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
-
-        jLabel6.setText("Lung:");
-        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 190, -1, -1));
-
-        jLabel7.setText("Intesttines:");
-        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 280, -1, -1));
-
-        kidneySizeTextField.setEditable(false);
-        add(kidneySizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 160, 80, -1));
-
-        liverSizeTextField.setEditable(false);
-        add(liverSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 80, -1));
-
-        lungSizeTextField.setEditable(false);
-        add(lungSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 190, 80, -1));
-
-        jLabel8.setText("Liver:");
-        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 220, -1, 20));
-
-        pancreasSizeTextField.setEditable(false);
-        add(pancreasSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 80, 20));
-
-        intestineSizeTextField.setEditable(false);
-        add(intestineSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 280, 80, -1));
-
-        jLabel9.setText("Pancreas:");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, -1, -1));
-
         donorBloodTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "O", "A", "B", "AB" }));
         add(donorBloodTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 150, 110, 30));
     }// </editor-fold>//GEN-END:initComponents
@@ -341,24 +297,24 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
             request.getDonor().getHealthDetails().setHasHIV(false);
         }
         
-        for(Organ organ : request.getDonor().getOrganDonateList()){
-            if (organ.getOrganName().equals("Kidney")){
-                organ.setOrganSize(Double.parseDouble(kidneySizeTextField.getText()));
-            }
-            else if (organ.getOrganName().equals("Pancreas")){
-                   organ.setOrganSize(Double.parseDouble(pancreasSizeTextField.getText()));
-            }
-             else if (organ.getOrganName().equals("Intestines")){
-                organ.setOrganSize(Double.parseDouble(intestineSizeTextField.getText()));
-            }
-            else if (organ.getOrganName().equals("Lungs")){
-                organ.setOrganSize(Double.parseDouble(lungSizeTextField.getText()));
-            }
-            else if (organ.getOrganName().equals("Liver")){
-               organ.setOrganSize(Double.parseDouble(liverSizeTextField.getText()));
-            }
-               
-        }
+//        for(Organ organ : request.getDonor().getOrganDonateList()){
+//            if (organ.getOrganName().equals("Kidney")){
+//                organ.setOrganSize(Double.parseDouble(kidneySizeTextField.getText()));
+//            }
+//            else if (organ.getOrganName().equals("Pancreas")){
+//                   organ.setOrganSize(Double.parseDouble(pancreasSizeTextField.getText()));
+//            }
+//             else if (organ.getOrganName().equals("Intestines")){
+//                organ.setOrganSize(Double.parseDouble(intestineSizeTextField.getText()));
+//            }
+//            else if (organ.getOrganName().equals("Lungs")){
+//                organ.setOrganSize(Double.parseDouble(lungSizeTextField.getText()));
+//            }
+//            else if (organ.getOrganName().equals("Liver")){
+//               organ.setOrganSize(Double.parseDouble(liverSizeTextField.getText()));
+//            }
+//               
+//        }
          
         request.setStatus("Initial Screening Done");
         request.setResolveDate(new Date());
@@ -411,19 +367,8 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel bmiLabel;
     private javax.swing.JComboBox<String> donorBloodTypeComboBox;
     private javax.swing.JRadioButton infectionYesRadioBtn;
-    private javax.swing.JTextField intestineSizeTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField kidneySizeTextField;
-    private javax.swing.JTextField liverSizeTextField;
-    private javax.swing.JTextField lungSizeTextField;
-    private javax.swing.JTextField pancreasSizeTextField;
     private javax.swing.ButtonGroup psychiatricBtnGrp;
     private javax.swing.JRadioButton psychiatricNoRadioBtn;
     private javax.swing.JRadioButton psychiatricYesRadioBtn;

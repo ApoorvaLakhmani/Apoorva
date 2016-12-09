@@ -11,9 +11,11 @@ import Business.RegCenter.Donor;
 import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
+import Business.WorkQueue.OrganMatchingWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JPanel;
 
@@ -22,27 +24,28 @@ import javax.swing.JPanel;
  * @author ApoorvaLakhmani
  */
 public class ViewDonorRequestJPanel extends javax.swing.JPanel {
-    
+
     private JPanel userProcessContainer;
     private EcoSystem system;
     private UserAccount account;
     private Network stateNetwork;
     private FindDonorRequest request;
+
     /**
      * Creates new form ViewDonorRequestJPanel
      */
-    public ViewDonorRequestJPanel(JPanel userProcessContainer, UserAccount account, Network stateNetwork,EcoSystem system,FindDonorRequest request) {
+    public ViewDonorRequestJPanel(JPanel userProcessContainer, UserAccount account, Network stateNetwork, EcoSystem system, FindDonorRequest request) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
         this.account = account;
         this.stateNetwork = stateNetwork;
         this.request = request;
-        
+
         populateData();
     }
-    
-    public void populateData(){
+
+    public void populateData() {
         requestIDTExtField.setText(String.valueOf(request.getRequestID()));
         PatientIDTextField.setText(String.valueOf(request.getPatientDetails().getPatientID()));
         PatientNameField.setText(request.getPatientDetails().getPatientName());
@@ -150,11 +153,6 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
 
         PatientAgeTextField.setEditable(false);
         PatientAgeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        PatientAgeTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PatientAgeTextFieldActionPerformed(evt);
-            }
-        });
 
         PatientBloodTypeTextField.setEditable(false);
         PatientBloodTypeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -278,98 +276,66 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void FindDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FindDonorBtnActionPerformed
-       ArrayList<Donor> foundDonorList = new ArrayList<>();
-        
-        if(request.getDonor()==null){
-            //Find a Donor 
-            Donor foundDonor=new Donor();
-             Boolean organTest=false;
-             Boolean bloodTyping=false;
+        ArrayList<Donor> foundDonorList = new ArrayList<>();
+        //OrganMatchingWorkRequest organMatchingRequest = new OrganMatchingWorkRequest();
 
-            
-            for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()){
-                for (Organ organ:donor.getOrganDonateList()){
-                     if(request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())&&(request.getPatientDetails().getOrganNeeded().getOrganSize()==(organ.getOrganSize()))){
-                        organTest=true;
-                         break;
-                         
-                     }
+        if (request.getDonor() == null) {
+            //Find a Donor 
+            Donor foundDonor = new Donor();
+            Boolean organTest = false;
+            Boolean bloodTyping = false;
+
+            for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
+                for (Organ organ : donor.getOrganDonateList()) {
+                    if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
+                        organTest = true;
+                        break;
+
+                    }
                 }
-                String donorBloodGroup=foundDonor.getHealthDetails().getBloodGroup();
-                String patientBloodGroup=request.getPatientDetails().getBloodType();
-                 bloodTyping=bloodTest(donorBloodGroup,patientBloodGroup);
-                if (bloodTyping==true &&organTest==true ){
-                    foundDonor=donor;
+                String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
+                String patientBloodGroup = request.getPatientDetails().getBloodType();
+                bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
+                if (bloodTyping == true && organTest == true) {
+                    foundDonor = donor;
                 }
-                       
+                foundDonorList.add(foundDonor);
             }
-            foundDonorList.add(foundDonor);
             
-            
-            
-            
-                DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-                userProcessContainer.add("DonorFoundJPanel",donorFound);
-                CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-                layout.next(userProcessContainer);
-                
-        }  
-        else{
-            foundDonorList.add(request.getDonor());
-            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-            userProcessContainer.add("DonorFoundJPanel",donorFound);
-            CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+//            organMatchingRequest.setDonorList(foundDonorList);
+//            organMatchingRequest.setPatient(request.getPatientDetails());
+//            organMatchingRequest.setSender(account);
+//            organMatchingRequest.setStatus("Organ Matching Request Raised");
+//            organMatchingRequest.setRequestDate(new Date());
+
+            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork,foundDonorList);
+            userProcessContainer.add("DonorFoundJPanel", donorFound);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
-            
+
+        } else {
+            foundDonorList.add(request.getDonor());
+            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork,foundDonorList);
+            userProcessContainer.add("DonorFoundJPanel", donorFound);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+
         }
-               
-//        Organ organ1 = new Organ();
-//        organ1.setOrganName("Kindney");
-//        organ1.setOrganLife(5);
-//        
-//        Organ organ2 = new Organ();
-//        organ1.setOrganName("Liver");
-//        organ1.setOrganLife(5);
-//        
-//        ArrayList<Organ> organlist = new ArrayList<>();
-//        
-//        Donor foundDonor = new Donor();
-//        foundDonor.setDonorId("D1");
-//        foundDonor.setDonorName("Apoorva");
-//        foundDonor.setBloodGroup("B+");
-//        foundDonor.setDonorAddress("San Fransico");
-//        foundDonor.setDonorAge(27);
-//        foundDonor.setDonorGender("F");
-//        foundDonor.setDonorPhoneNumber(12345678);
-//        foundDonor.setOrganDonateList(organlist);
-       
-        
-        //foundDonorList.add(foundDonor);
-        
-//        DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer,account, system,foundDonorList,request,stateNetwork);
-//        userProcessContainer.add("DonorFoundJPanel",donorFound);
-//        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-//        layout.next(userProcessContainer);
-       // }
     }//GEN-LAST:event_FindDonorBtnActionPerformed
 
-    private void PatientAgeTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PatientAgeTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_PatientAgeTextFieldActionPerformed
-
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-       userProcessContainer.remove(this);
-         Component[] componentArray = userProcessContainer.getComponents();
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
         Component component = componentArray[componentArray.length - 1];
         StateNetworkManageRequestJPanel sysAdminwjp = (StateNetworkManageRequestJPanel) component;
         sysAdminwjp.populatetable();
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
-    
-    private Boolean bloodTest(String donorBloodGroup,String patientBloodGroup){
-        
-         if (donorBloodGroup.equals("O") && (patientBloodGroup.equals("O") || patientBloodGroup.equals("A") || patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
+
+    private Boolean bloodTest(String donorBloodGroup, String patientBloodGroup) {
+
+        if (donorBloodGroup.equals("O") && (patientBloodGroup.equals("O") || patientBloodGroup.equals("A") || patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
             return true;
         } else if (donorBloodGroup.equals("A") && (patientBloodGroup.equals("A") || patientBloodGroup.equals("AB"))) {
             return true;

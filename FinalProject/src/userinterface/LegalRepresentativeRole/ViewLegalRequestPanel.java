@@ -6,7 +6,7 @@
 package userinterface.LegalRepresentativeRole;
 
 import Business.WorkQueue.FindDonorRequest;
-import Business.WorkQueue.LegalAuthorizationWorkRequest;
+import Business.WorkQueue.OrganMatchingWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import javax.swing.JPanel;

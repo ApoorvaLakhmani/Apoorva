@@ -6,9 +6,16 @@
 package userinterface.OPTDLabAssistantRole;
 
 import Business.EcoSystem;
+import Business.Organization.OPTOrganization.OPTELabOrganization;
 import Business.Organization.Organization;
+import Business.RegCenter.Donor;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.OrganMatchingWorkRequest;
+import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,10 +34,32 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
         this.business=business;
         this.account=account;
         this.userProcessContainer=userProcessContainer;
-        this.organization=organization;
+        this.organization=(OPTELabOrganization)organization;
         
+        populateTable();
     }
 
+    public void populateTable(){
+        
+        organMatchingDetailTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) organMatchingDetailTable.getModel();
+        model.setRowCount(0);
+        
+       for(WorkRequest request : organization.getWorkQueue().getWorkRequestList()){
+           
+               Object[] row = new Object[6];
+               row[0] = request;
+               row[1] = ((OrganMatchingWorkRequest)(request)).getPatient().getPatientID();
+               row[2] = ((OrganMatchingWorkRequest)(request)).getPatient().getPatientName();
+               row[3] = ((OrganMatchingWorkRequest)(request)).getDonor().getDonorId();
+               row[4] = ((OrganMatchingWorkRequest)(request)).getDonor().getDonorName();
+               row[5] = request.getStatus();
+               //row[7] = ((OrganMatchingWorkRequest)(request)).getResult();
+               
+               model.addRow(row);
+           
+       }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,20 +70,12 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        assignJButton2 = new javax.swing.JButton();
         processJButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        organMatchingDetailTable = new javax.swing.JTable();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("OPTD Lab Assistant Work Area");
-
-        assignJButton2.setText("Assign to me");
-        assignJButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                assignJButton2ActionPerformed(evt);
-            }
-        });
 
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
@@ -63,28 +84,28 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        organMatchingDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Request ID", "Patient ID", "Patient Name", "Donor ID", "Donor Name", "Reciever", "Organ Matching Test status"
+                "Request ID", "Patient ID", "Patient Name", "Donor ID", "Donor Name", "Organ Matching Test status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(150);
+        jScrollPane1.setViewportView(organMatchingDetailTable);
+        if (organMatchingDetailTable.getColumnModel().getColumnCount() > 0) {
+            organMatchingDetailTable.getColumnModel().getColumn(0).setPreferredWidth(30);
+            organMatchingDetailTable.getColumnModel().getColumn(1).setPreferredWidth(30);
+            organMatchingDetailTable.getColumnModel().getColumn(3).setPreferredWidth(30);
+            organMatchingDetailTable.getColumnModel().getColumn(5).setPreferredWidth(150);
         }
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -94,16 +115,14 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(382, 382, 382)
-                        .addComponent(assignJButton2)
-                        .addGap(80, 80, 80)
-                        .addComponent(processJButton))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(409, 409, 409)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(427, 427, 427)
+                        .addComponent(processJButton)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -113,32 +132,31 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(assignJButton2)
-                    .addComponent(processJButton))
-                .addGap(93, 93, 93))
+                .addGap(69, 69, 69)
+                .addComponent(processJButton)
+                .addContainerGap(159, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void assignJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButton2ActionPerformed
-
-        
-
-    }//GEN-LAST:event_assignJButton2ActionPerformed
-
     private void processJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processJButtonActionPerformed
-
+        int selectedRow= organMatchingDetailTable.getSelectedRow();
+        if(selectedRow >= 0){
+           OrganMatchingWorkRequest organMatchRequest = (OrganMatchingWorkRequest) organMatchingDetailTable.getValueAt(selectedRow, 0);
+           
+           OrganMatchingTestProcessPanel organTestPanel = new OrganMatchingTestProcessPanel(userProcessContainer,organMatchRequest);
+           userProcessContainer.add("OrganMatchingTestProcessPanel", organTestPanel);
+           CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+           layout.next(userProcessContainer);
+        }
         
 
     }//GEN-LAST:event_processJButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton assignJButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable organMatchingDetailTable;
     private javax.swing.JButton processJButton;
     // End of variables declaration//GEN-END:variables
 }
