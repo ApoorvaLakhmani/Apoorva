@@ -26,6 +26,7 @@ public class Donor {
     private String donorEmailId;
     private HealthDetails healthDetails;
     private static int counter;
+    private Date donorRegisterationDate;
     
     public Donor(){
         organDonateList = new ArrayList<>();
@@ -122,6 +123,14 @@ public class Donor {
 
     public void setDonorAddress(String donorAddress) {
         this.donorAddress = donorAddress;
+    }
+
+    public Date getDonorRegisterationDate() {
+        return donorRegisterationDate;
+    }
+
+    public void setDonorRegisterationDate(Date donorRegisterationDate) {
+        this.donorRegisterationDate = donorRegisterationDate;
     }
     
     @Override

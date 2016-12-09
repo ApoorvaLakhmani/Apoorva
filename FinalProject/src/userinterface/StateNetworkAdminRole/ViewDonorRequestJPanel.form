@@ -34,20 +34,18 @@
                           <Component id="patientidlabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jScrollPane1" alignment="0" min="-2" pref="260" max="-2" attributes="0"/>
-                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="PatientLocTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientAgeTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientNameField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientIDTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ContactNoTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientBloodTypeTextField" alignment="1" pref="166" max="32767" attributes="0"/>
-                              <Component id="PatientWeightTextField" alignment="1" pref="166" max="32767" attributes="0"/>
-                              <Component id="OrganNeededTextField" alignment="1" pref="166" max="32767" attributes="0"/>
-                              <Component id="OrganSizeTextField" alignment="1" pref="166" max="32767" attributes="0"/>
-                              <Component id="requestIDTExtField" alignment="1" max="32767" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="PatientLocTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="PatientAgeTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="PatientNameField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="PatientIDTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="ContactNoTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="PatientBloodTypeTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="PatientWeightTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="OrganNeededTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="OrganSizeTextField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="requestIDTExtField" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -57,7 +55,7 @@
                       <Component id="FindDonorBtn" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="179" max="32767" attributes="0"/>
+              <EmptySpace pref="264" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -154,7 +152,7 @@
     <Component class="javax.swing.JLabel" name="PatientLocLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Location:"/>
       </Properties>
@@ -170,7 +168,7 @@
     <Component class="javax.swing.JLabel" name="MedicalCondLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Other Medical Conditions:"/>
       </Properties>
@@ -194,7 +192,7 @@
     <Component class="javax.swing.JLabel" name="patientContactNoLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Contact Number :"/>
       </Properties>
@@ -202,7 +200,7 @@
     <Component class="javax.swing.JLabel" name="patientidlabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Patient ID:"/>
       </Properties>
@@ -218,7 +216,7 @@
     <Component class="javax.swing.JLabel" name="patientnamelabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Patient Name:"/>
       </Properties>
@@ -226,7 +224,7 @@
     <Component class="javax.swing.JLabel" name="OrganNeededLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Organ affected:"/>
       </Properties>
@@ -234,7 +232,7 @@
     <Component class="javax.swing.JLabel" name="patientagelabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Age:"/>
       </Properties>
@@ -242,7 +240,7 @@
     <Component class="javax.swing.JLabel" name="PatientBloodTypeLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Blood type:"/>
       </Properties>
@@ -250,7 +248,7 @@
     <Component class="javax.swing.JLabel" name="PatientWeightLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Body Weight:"/>
       </Properties>
@@ -258,7 +256,7 @@
     <Component class="javax.swing.JLabel" name="OrganSizeLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Organ size:"/>
       </Properties>
@@ -317,7 +315,7 @@
     <Component class="javax.swing.JLabel" name="patientidlabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Tahoma" size="20" style="0"/>
+          <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Request ID:"/>
       </Properties>

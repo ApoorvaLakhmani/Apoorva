@@ -6,6 +6,7 @@
 package Business.Hospital;
 
 import Business.RegCenter.Organ;
+import java.util.Date;
 
 /**
  *
@@ -19,14 +20,17 @@ public class Patient {
     private String patientLocation;
     private String bloodType;
     private double weight;
+    private int height;
     private Organ organNeeded;
    // private int organSize;
     private String otherMedicalCondition;
     private int patientContactNumber;
     private String critical;
     private static int counter;
-    
-    
+    private Date transplantRequestDate;
+    private Date transplantCompletionDate;
+    private Date deathDate;
+ 
     public Patient(){
         counter++;
         patientID = counter;
@@ -112,14 +116,44 @@ public class Patient {
         Patient.counter = counter;
     }
 
-  
-
     public String getOtherMedicalCondition() {
         return otherMedicalCondition;
     }
 
     public void setOtherMedicalCondition(String otherMedicalCondition) {
         this.otherMedicalCondition = otherMedicalCondition;
+    }
+
+    public Date getTransplantRequestDate() {
+        return transplantRequestDate;
+    }
+
+    public void setTransplantRequestDate(Date transplantRequestDate) {
+        this.transplantRequestDate = transplantRequestDate;
+    }
+
+    public Date getTransplantCompletionDate() {
+        return transplantCompletionDate;
+    }
+
+    public void setTransplantCompletionDate(Date transplantCompletionDate) {
+        this.transplantCompletionDate = transplantCompletionDate;
+    }
+
+    public Date getDeathDate() {
+        return deathDate;
+    }
+
+    public void setDeathDate(Date deathDate) {
+        this.deathDate = deathDate;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
     }
     
     
