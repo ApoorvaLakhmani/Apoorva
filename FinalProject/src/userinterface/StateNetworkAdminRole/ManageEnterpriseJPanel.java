@@ -205,6 +205,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }else if(type.equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)){
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Surgeon);
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTEAdmin);
+            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTELab);
         }else if(type.equals(Enterprise.EnterpriseType.LegalEnterprise)){
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalDepartment);
         }

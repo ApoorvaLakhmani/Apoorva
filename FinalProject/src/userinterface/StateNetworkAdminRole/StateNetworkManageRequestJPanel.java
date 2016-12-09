@@ -9,8 +9,10 @@ import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
 import Business.Hospital.Patient;
 import Business.Network.Network;
+import Business.Organization.LegalEnterprise.LegalOrganization;
 import Business.Organization.OPTOrganization.OPTEAdminOrganization;
 import Business.Organization.Organization;
+import Business.RegCenter.Donor;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
@@ -79,6 +81,7 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         ViewRequestBtn = new javax.swing.JButton();
         BackBtn = new javax.swing.JButton();
         opteRequestBtn = new javax.swing.JButton();
+        legalApprovalBtn = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -110,7 +113,7 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
                 ViewRequestBtnActionPerformed(evt);
             }
         });
-        add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 310, 260, 50));
+        add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 330, 50));
 
         BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BackBtn.setText("<< Back");
@@ -127,7 +130,15 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
                 opteRequestBtnActionPerformed(evt);
             }
         });
-        add(opteRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 260, 50));
+        add(opteRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 330, 50));
+
+        legalApprovalBtn.setText("Initiate Legal Approval");
+        legalApprovalBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                legalApprovalBtnActionPerformed(evt);
+            }
+        });
+        add(legalApprovalBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 450, 330, 50));
     }// </editor-fold>//GEN-END:initComponents
 
     private void ViewRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewRequestBtnActionPerformed
@@ -200,12 +211,47 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
 //        }
     }//GEN-LAST:event_DonorRequestTableMouseClicked
 
+    private void legalApprovalBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_legalApprovalBtnActionPerformed
+        int selectedRow = DonorRequestTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            //Patient patient = findDonorRequest.getPatientDetails();
+            FindDonorRequest findDonorRequest= (FindDonorRequest)DonorRequestTable.getValueAt(selectedRow, 0);
+            findDonorRequest.setSender(account);
+            findDonorRequest.setStatus("Awaiting Legal Authorizztion");
+           
+            Organization org = null;
+            for (Network city : stateNetwork.getSubNetwork()) {
+                if (findDonorRequest.getPatientDetails().getPatientLocation().equalsIgnoreCase(city.getNetworkName())) {
+                    for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.LegalEnterprise.toString())) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof LegalOrganization) {
+                                    org = organization;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (org != null) {
+                org.getWorkQueue().getWorkRequestList().add(findDonorRequest);
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }//GEN-LAST:event_legalApprovalBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BackBtn;
     private javax.swing.JTable DonorRequestTable;
     private javax.swing.JButton ViewRequestBtn;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton legalApprovalBtn;
     private javax.swing.JButton opteRequestBtn;
     // End of variables declaration//GEN-END:variables
 }

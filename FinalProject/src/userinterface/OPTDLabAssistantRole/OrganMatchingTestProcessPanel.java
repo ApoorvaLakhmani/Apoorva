@@ -5,17 +5,27 @@
  */
 package userinterface.OPTDLabAssistantRole;
 
+import Business.WorkQueue.OrganMatchingWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.JPanel;
+import userinterface.HospitalAdminRole.RaiseAndViewMyRequests;
+
 /**
  *
  * @author Neha
  */
 public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
 
+    private JPanel userProcessContainer;
+    private OrganMatchingWorkRequest organMatchRequest;
     /**
      * Creates new form TestProcessPanel
      */
-    public OrganMatchingTestProcessPanel() {
-        initComponents();
+    public OrganMatchingTestProcessPanel(JPanel userProcessContainer, OrganMatchingWorkRequest organMatchRequest) {
+       initComponents(); 
+       this.userProcessContainer = userProcessContainer;
+       this.organMatchRequest = organMatchRequest;
     }
 
     /**
@@ -30,25 +40,35 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        processTestBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
+        tissueMatchComboBox = new javax.swing.JComboBox<>();
+        organSizeCombo = new javax.swing.JComboBox<>();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("Process Organ Matching Test");
 
-        jLabel2.setText("Blood Typing Test:");
+        jLabel2.setText("Tissue Matching Test");
 
-        jLabel3.setText("HLA Typing test:");
+        jLabel3.setText("Organ Size Matching Test");
 
-        jLabel4.setText("Cross-Match Test:");
+        processTestBtn.setText("Process Test");
+        processTestBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                processTestBtnActionPerformed(evt);
+            }
+        });
 
-        jButton1.setText("Process Test");
+        backBtn.setText("<< Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("<< Back");
+        tissueMatchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Positive", "Negative" }));
+
+        organSizeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Positive", "Negative" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -58,24 +78,22 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(217, 217, 217)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(106, 106, 106)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(tissueMatchComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(organSizeCombo, 0, 114, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
-                        .addComponent(jButton2)
-                        .addGap(147, 147, 147)
-                        .addComponent(jButton1)))
-                .addContainerGap(299, Short.MAX_VALUE))
+                        .addComponent(backBtn)
+                        .addGap(168, 168, 168)
+                        .addComponent(processTestBtn)))
+                .addContainerGap(262, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,35 +103,52 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tissueMatchComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(organSizeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel4))
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                        .addGap(104, 104, 104)
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(processTestBtn)))
                 .addContainerGap(259, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void processTestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_processTestBtnActionPerformed
+        String tissueMatchResult = tissueMatchComboBox.getSelectedItem().toString();
+        String orgaSizeMatchResult = organSizeCombo.getSelectedItem().toString();
+        if(tissueMatchResult.equals("Positive") && orgaSizeMatchResult.equals("Positive")){
+            organMatchRequest.setResult("Organ Matched");
+            
+        }else{
+           organMatchRequest.setResult("Organ Not Matched"); 
+        }
+        organMatchRequest.setStatus("Completed");
+    }//GEN-LAST:event_processTestBtnActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        LabAssistantWorkArea labWorkArea = (LabAssistantWorkArea) component;
+        labWorkArea.populateTable();
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JComboBox<String> organSizeCombo;
+    private javax.swing.JButton processTestBtn;
+    private javax.swing.JComboBox<String> tissueMatchComboBox;
     // End of variables declaration//GEN-END:variables
 }

@@ -57,12 +57,10 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         patientagelabel = new javax.swing.JLabel();
         PatientBloodTypeLabel = new javax.swing.JLabel();
         PatientWeightLabel = new javax.swing.JLabel();
-        OrganSizeLabel = new javax.swing.JLabel();
         PatientNameField = new javax.swing.JTextField();
         PatientAgeTextField = new javax.swing.JTextField();
         PatientWeightTextField = new javax.swing.JTextField();
         OrganNeededTextField = new javax.swing.JTextField();
-        OrganSizeTextField = new javax.swing.JTextField();
         RaiseRequestBtn = new javax.swing.JButton();
         MedicalCondLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -90,7 +88,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
 
         OrganNeededLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         OrganNeededLabel.setText("Organ affected:");
-        add(OrganNeededLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 370, -1, -1));
+        add(OrganNeededLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
 
         patientagelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         patientagelabel.setText("Age:");
@@ -104,10 +102,6 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         PatientWeightLabel.setText("Body Weight:");
         add(PatientWeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
 
-        OrganSizeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        OrganSizeLabel.setText("Organ size:");
-        add(OrganSizeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, -1, -1));
-
         PatientNameField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(PatientNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 166, -1));
 
@@ -120,9 +114,6 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         OrganNeededTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(OrganNeededTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 166, -1));
 
-        OrganSizeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(OrganSizeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 420, 166, -1));
-
         RaiseRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         RaiseRequestBtn.setText("Raise request");
         RaiseRequestBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -134,13 +125,13 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
 
         MedicalCondLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MedicalCondLabel.setText("Other Medical Conditions:");
-        add(MedicalCondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 500, -1, -1));
+        add(MedicalCondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
 
         OtherMedicalConditionTextArea.setColumns(20);
         OtherMedicalConditionTextArea.setRows(5);
         jScrollPane1.setViewportView(OtherMedicalConditionTextArea);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 480, 260, 66));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, 260, 100));
 
         BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         BackBtn.setText("<< Back");
@@ -168,7 +159,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
                 HospitalContactNoTextFieldActionPerformed(evt);
             }
         });
-        add(HospitalContactNoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 570, 169, 34));
+        add(HospitalContactNoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 169, 34));
 
         CriticalLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         CriticalLabel.setText("Criticality : ");
@@ -204,7 +195,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         patient.setBloodType(PatientBloodTypeComboBox.getSelectedItem().toString());
         patient.setWeight(Double.parseDouble(PatientWeightTextField.getText()));
         patient.getOrganNeeded().setOrganName(OrganNeededTextField.getText());
-        patient.getOrganNeeded().setOrganSize(Double.parseDouble(OrganSizeTextField.getText()));
+        //patient.getOrganNeeded().setOrganSize(Double.parseDouble(OrganSizeTextField.getText()));
         patient.setOtherMedicalCondition(OtherMedicalConditionTextArea.getText());
         patient.setPatientContactNumber(Integer.parseInt(ContactNoTextField.getText()));
         patient.setCritical(CriticalJComboBox.getSelectedItem().toString());
@@ -260,8 +251,6 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
     private javax.swing.JLabel MedicalCondLabel;
     private javax.swing.JLabel OrganNeededLabel;
     private javax.swing.JTextField OrganNeededTextField;
-    private javax.swing.JLabel OrganSizeLabel;
-    private javax.swing.JTextField OrganSizeTextField;
     private javax.swing.JTextArea OtherMedicalConditionTextArea;
     private javax.swing.JTextField PatientAgeTextField;
     private javax.swing.JComboBox<String> PatientBloodTypeComboBox;

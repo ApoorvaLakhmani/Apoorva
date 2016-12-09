@@ -148,6 +148,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
              system.getMasterDonorDirectory().add(request.getDonor());
              stateNetwork.getDonorDirectory().addDonor(request.getDonor());
              ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor(request.getDonor());
+             
          }else{
              if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter)){
                  ((DonorRegistrationCenter)enterprise).getDonorDirectory().deleteDonor(request.getDonor());
