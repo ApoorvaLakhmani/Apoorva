@@ -41,6 +41,12 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.account = account;
+        dateLabel.setText(String.valueOf(new Date()));
+        KidneyChkBox.setEnabled(false);
+         pancreasChkBox.setEnabled(false);
+         LungChkBox.setEnabled(false);
+         LiverChkbox.setEnabled(false);
+         intestineChkBox.setEnabled(false);
        
     }
 
@@ -87,6 +93,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         DonorAgeLabel = new javax.swing.JLabel();
         DonorAgeTextField = new javax.swing.JTextField();
         BackBtn = new javax.swing.JButton();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        dateLabel = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -144,31 +152,37 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         AllOrganLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         AllOrganLabel.setText("a) All my organs and tissues :  ");
         add(AllOrganLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 627, -1, -1));
+
+        AllOrganCheckbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AllOrganCheckboxActionPerformed(evt);
+            }
+        });
         add(AllOrganCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 627, -1, -1));
 
         ORLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        ORLabel.setText("b) OR ");
-        add(ORLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 683, -1, -1));
+        ORLabel.setText("b) OR 1 or more from the following: ");
+        add(ORLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, -1, -1));
 
         LungChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         LungChkBox.setText("Lungs");
-        add(LungChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 720, -1, -1));
+        add(LungChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 730, -1, -1));
 
         KidneyChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         KidneyChkBox.setText("Kidney");
-        add(KidneyChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 679, -1, -1));
+        add(KidneyChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 730, -1, -1));
 
         LiverChkbox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         LiverChkbox.setText("Liver");
-        add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 761, -1, -1));
+        add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 730, -1, -1));
 
         pancreasChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         pancreasChkBox.setText("Pancreas");
-        add(pancreasChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(122, 802, -1, -1));
+        add(pancreasChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 730, -1, -1));
 
         intestineChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         intestineChkBox.setText("Intestine");
-        add(intestineChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 674, -1, -1));
+        add(intestineChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 730, -1, -1));
 
         Label3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         Label3.setText("be removed for the purpose of transaplantation.");
@@ -221,6 +235,14 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
             }
         });
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1109, 150, 40));
+
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 680, -1, -1));
+        add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 920, 140, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
@@ -301,7 +323,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   donor.setOrganDonateList(organList);
                                   
               } catch (ParseException ex) {
-               Logger.getLogger(DonorRegistrationFormJPanel.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(null, "Please enter valid information in the form");
               }
               
           }
@@ -323,15 +345,49 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
               account.getWorkQueue().getWorkRequestList().add(request);
               
               JOptionPane.showMessageDialog(null, "Request for initial screening raised");
+              clearFields();
           }
 
     }//GEN-LAST:event_InitialScreeningBtnActionPerformed
-
+    private void clearFields(){
+      NameTextField.setText("");
+      DonorAgeTextField.setText("");
+      DobTextField.setText("");
+     MaleRadioBtn.setSelected(false);
+     FemaleRadioBtn.setSelected(false);
+     TelephoneTextField.setText("");
+     AddTextArea.setText("");
+     EmailTextField.setText("");
+     KidneyChkBox.setSelected(false);
+         pancreasChkBox.setSelected(false);
+         LungChkBox.setSelected(false);
+         LiverChkbox.setSelected(false);
+         intestineChkBox.setSelected(false);
+         AllOrganCheckbox.setSelected(false);
+        
+    }
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+        KidneyChkBox.setEnabled(true);
+         pancreasChkBox.setEnabled(true);
+         LungChkBox.setEnabled(true);
+         LiverChkbox.setEnabled(true);
+         intestineChkBox.setEnabled(true);
+        
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void AllOrganCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllOrganCheckboxActionPerformed
+        KidneyChkBox.setEnabled(false);
+         pancreasChkBox.setEnabled(false);
+         LungChkBox.setEnabled(false);
+         LiverChkbox.setEnabled(false);
+         intestineChkBox.setEnabled(false);
+    }//GEN-LAST:event_AllOrganCheckboxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -366,7 +422,9 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel SignatureLabel;
     private javax.swing.JLabel TelephoneLabel;
     private javax.swing.JTextField TelephoneTextField;
+    private javax.swing.JLabel dateLabel;
     private javax.swing.JCheckBox intestineChkBox;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox pancreasChkBox;
     // End of variables declaration//GEN-END:variables

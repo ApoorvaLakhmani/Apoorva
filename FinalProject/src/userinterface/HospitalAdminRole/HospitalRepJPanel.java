@@ -44,7 +44,6 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         RaiseRequestBtn = new javax.swing.JButton();
-        RegisterDonorBtn = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -58,43 +57,27 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
             }
         });
 
-        RegisterDonorBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        RegisterDonorBtn.setText("Register Donors>>");
-        RegisterDonorBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegisterDonorBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 830, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(RaiseRequestBtn)
-                                .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(232, 232, 232)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(RaiseRequestBtn)))
+                .addContainerGap(247, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 651, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel1)
-                    .addGap(103, 103, 103)
-                    .addComponent(RaiseRequestBtn)
-                    .addGap(57, 57, 57)
-                    .addComponent(RegisterDonorBtn)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addComponent(jLabel1)
+                .addGap(103, 103, 103)
+                .addComponent(RaiseRequestBtn)
+                .addContainerGap(373, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -105,14 +88,9 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_RaiseRequestBtnActionPerformed
 
-    private void RegisterDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDonorBtnActionPerformed
-
-    }//GEN-LAST:event_RegisterDonorBtnActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RaiseRequestBtn;
-    private javax.swing.JButton RegisterDonorBtn;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

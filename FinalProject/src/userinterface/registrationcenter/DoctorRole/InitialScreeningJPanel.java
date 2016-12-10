@@ -30,26 +30,7 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.request=request;
-//        for(Organ organ : request.getDonor().getOrganDonateList()){
-//            if (organ.getOrganName().equals("Kidney")){
-//                kidneySizeTextField.setEditable(true);
-//            }
-//            else if (organ.getOrganName().equals("Pancreas")){
-//                pancreasSizeTextField.setEditable(true);
-//            }
-//             else if (organ.getOrganName().equals("Intestine")){
-//                intestineSizeTextField.setEditable(true);
-//            }
-//            else if (organ.getOrganName().equals("Lungs")){
-//                lungSizeTextField.setEditable(true);
-//            }
-//            else if (organ.getOrganName().equals("Liver")){
-//                liverSizeTextField.setEditable(true);
-//            }
-//            
-//            
-//            
-//        }
+        
     }
 
     /**
@@ -118,11 +99,11 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         add(BloodGrpLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 149, -1, -1));
 
         HeightLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        HeightLabel.setText("Height : ");
+        HeightLabel.setText("Height(cm) : ");
         add(HeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 195, -1, -1));
 
         WeightLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        WeightLabel.setText("Weight : ");
+        WeightLabel.setText("Weight(Kgs) : ");
         add(WeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 241, -1, -1));
 
         bmiLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
@@ -153,8 +134,14 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         add(HeightTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 189, 114, -1));
 
         WeightTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        WeightTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                WeightTextFieldFocusLost(evt);
+            }
+        });
         add(WeightTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 238, 114, -1));
 
+        BMITextField.setEditable(false);
         BMITextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         add(BMITextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(149, 285, 114, -1));
 
@@ -330,6 +317,10 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
+
+    private void WeightTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_WeightTextFieldFocusLost
+       
+    }//GEN-LAST:event_WeightTextFieldFocusLost
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
