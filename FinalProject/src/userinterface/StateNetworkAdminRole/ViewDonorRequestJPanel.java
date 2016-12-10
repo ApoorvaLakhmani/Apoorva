@@ -11,12 +11,9 @@ import Business.RegCenter.Donor;
 import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
-import Business.WorkQueue.OrganMatchingWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import javax.swing.JPanel;
 
 /**
@@ -285,36 +282,38 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
             Boolean bloodTyping = false;
 
             for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
-                for (Organ organ : donor.getOrganDonateList()) {
-                    if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
-                        organTest = true;
-                        break;
+                if (donor.isAvailable()) {
+                    for (Organ organ : donor.getOrganDonateList()) {
+                        if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
+                            organTest = true;
+                            break;
 
+                        }
                     }
+                    String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
+                    String patientBloodGroup = request.getPatientDetails().getBloodType();
+                    bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
+                    if (bloodTyping == true && organTest == true) {
+                        foundDonor = donor;
+                    }
+                    foundDonorList.add(foundDonor);
                 }
-                String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
-                String patientBloodGroup = request.getPatientDetails().getBloodType();
-                bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
-                if (bloodTyping == true && organTest == true) {
-                    foundDonor = donor;
-                }
-                foundDonorList.add(foundDonor);
+
             }
-            
+
 //            organMatchingRequest.setDonorList(foundDonorList);
 //            organMatchingRequest.setPatient(request.getPatientDetails());
 //            organMatchingRequest.setSender(account);
 //            organMatchingRequest.setStatus("Organ Matching Request Raised");
 //            organMatchingRequest.setRequestDate(new Date());
-
-            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork,foundDonorList);
+            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
             userProcessContainer.add("DonorFoundJPanel", donorFound);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
 
         } else {
             foundDonorList.add(request.getDonor());
-            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork,foundDonorList);
+            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
             userProcessContainer.add("DonorFoundJPanel", donorFound);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);

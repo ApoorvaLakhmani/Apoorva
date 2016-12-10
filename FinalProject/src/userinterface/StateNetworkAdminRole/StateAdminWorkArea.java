@@ -115,6 +115,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseBtn.setText("Manage Enterprise");
@@ -152,6 +153,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
+        jButton2.setText("View Registered Donors");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,7 +172,8 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                     .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(389, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -179,7 +188,9 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                         .addGap(30, 30, 30)
                         .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(36, 36, 36)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(50, 50, 50)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -215,12 +226,21 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        RegisteredDonorsListJPanel registeredDonors = new RegisteredDonorsListJPanel(userProcessContainer,stateNetwork.getDonorDirectory());
+        userProcessContainer.add("RegisteredDonorsListJPanel",registeredDonors);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MngEnterpriseAdminBtn;
     private javax.swing.JButton MngEnterpriseBtn;
     private javax.swing.JTree NetworkJTree;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton manageWorkRequestBtn;
     // End of variables declaration//GEN-END:variables

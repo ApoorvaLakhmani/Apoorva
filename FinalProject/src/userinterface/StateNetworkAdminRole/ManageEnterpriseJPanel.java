@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import userinterface.CountryNetworkAdminRole.CountryNetworkAdminWorkArea;
+import userinterface.DataInitialization;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -196,6 +197,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
 
         Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+        DataInitialization.populateEnterpriseDonorList(cityNetwork);
         
         if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);

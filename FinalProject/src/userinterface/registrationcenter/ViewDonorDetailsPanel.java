@@ -10,6 +10,7 @@ import userinterface.SurgeonRole.*;
 import Business.RegCenter.Organ;
 import Business.RegCenter.Organ;
 import Business.WorkQueue.FindDonorRequest;
+import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -42,7 +43,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -50,32 +51,32 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         donorIDTextField = new javax.swing.JTextField();
-        weightTextField2 = new javax.swing.JTextField();
+        emailTextField = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         genderTextField = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        bloodGrouptTextField1 = new javax.swing.JTextField();
+        telephoneTextField = new javax.swing.JTextField();
         ageTextField = new javax.swing.JTextField();
         DonorAgeLabel = new javax.swing.JLabel();
-        weightTextField1 = new javax.swing.JTextField();
+        addressTextField = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
-        weightTextField = new javax.swing.JTextField();
+        bloodGroupTextField = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        bloodGrouptTextField = new javax.swing.JTextField();
+        weightTextField = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        weightTextField3 = new javax.swing.JTextField();
+        heightTextField = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
-        weightTextField4 = new javax.swing.JTextField();
+        bmiTextField = new javax.swing.JTextField();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText("Donor Details");
 
-        jButton1.setText("<<Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("<<Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -89,7 +90,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
 
         donorIDTextField.setEnabled(false);
 
-        weightTextField2.setEnabled(false);
+        emailTextField.setEnabled(false);
 
         jLabel16.setText("Address:");
 
@@ -99,13 +100,13 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
 
         jLabel12.setText("Telephone:");
 
-        bloodGrouptTextField1.setEnabled(false);
+        telephoneTextField.setEnabled(false);
 
         ageTextField.setEnabled(false);
 
         DonorAgeLabel.setText("Age : ");
 
-        weightTextField1.setEnabled(false);
+        addressTextField.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -123,7 +124,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                             .addComponent(donorIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
                             .addComponent(donorNameTextField)
                             .addComponent(genderTextField)
-                            .addComponent(weightTextField1)))
+                            .addComponent(addressTextField)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
@@ -134,8 +135,8 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                         .addGap(125, 125, 125)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(ageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                            .addComponent(bloodGrouptTextField1)
-                            .addComponent(weightTextField2))))
+                            .addComponent(telephoneTextField)
+                            .addComponent(emailTextField))))
                 .addContainerGap(194, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -158,7 +159,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(weightTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -172,29 +173,29 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bloodGrouptTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(weightTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(70, 70, 70))))
         );
 
         jTabbedPane1.addTab("Personal Details", jPanel1);
 
-        weightTextField.setEnabled(false);
+        bloodGroupTextField.setEnabled(false);
 
         jLabel11.setText("Blood Group:");
 
         jLabel14.setText("Body weight:");
 
-        bloodGrouptTextField.setEnabled(false);
+        weightTextField.setEnabled(false);
 
         jLabel18.setText("Height:");
 
-        weightTextField3.setEnabled(false);
+        heightTextField.setEnabled(false);
 
         jLabel19.setText("BMI:");
 
-        weightTextField4.setEnabled(false);
+        bmiTextField.setEnabled(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -209,10 +210,10 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                     .addComponent(jLabel19))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(bloodGroupTextField)
                     .addComponent(weightTextField)
-                    .addComponent(bloodGrouptTextField)
-                    .addComponent(weightTextField3)
-                    .addComponent(weightTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(heightTextField)
+                    .addComponent(bmiTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -221,19 +222,19 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(weightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bloodGroupTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bloodGrouptTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(weightTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel18))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
-                    .addComponent(weightTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(bmiTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(214, Short.MAX_VALUE))
         );
 
@@ -245,7 +246,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addComponent(jButton1)
+                .addComponent(backBtn)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,28 +266,38 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                 .addGap(44, 44, 44)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(63, 63, 63)
-                .addComponent(jButton1)
+                .addComponent(backBtn)
                 .addContainerGap(316, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void populateForm(){
-       
+       donorIDTextField.setText(donor.getDonorId());
+       donorNameTextField.setText(donor.getDonorName());
+       genderTextField.setText(donor.getDonorGender());
+       addressTextField.setText(donor.getDonorAddress());
+       ageTextField.setText(String.valueOf(donor.getDonorAge()));
+       bloodGroupTextField.setText(donor.getHealthDetails().getBloodGroup());
        
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DonorAgeLabel;
+    private javax.swing.JTextField addressTextField;
     private javax.swing.JTextField ageTextField;
-    private javax.swing.JTextField bloodGrouptTextField;
-    private javax.swing.JTextField bloodGrouptTextField1;
+    private javax.swing.JButton backBtn;
+    private javax.swing.JTextField bloodGroupTextField;
+    private javax.swing.JTextField bmiTextField;
     private javax.swing.JTextField donorIDTextField;
     private javax.swing.JTextField donorNameTextField;
+    private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField genderTextField;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JTextField heightTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -301,10 +312,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField telephoneTextField;
     private javax.swing.JTextField weightTextField;
-    private javax.swing.JTextField weightTextField1;
-    private javax.swing.JTextField weightTextField2;
-    private javax.swing.JTextField weightTextField3;
-    private javax.swing.JTextField weightTextField4;
     // End of variables declaration//GEN-END:variables
 }

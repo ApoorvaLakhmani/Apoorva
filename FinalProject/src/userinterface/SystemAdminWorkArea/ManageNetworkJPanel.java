@@ -13,6 +13,7 @@ import java.awt.event.ItemEvent;
 import java.util.Iterator;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import userinterface.DataInitialization;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -210,6 +211,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         
             Network stateNetwork = network.addSubNetwork();
             stateNetwork.setNetworkName(StateCombo.getSelectedItem().toString());
+            DataInitialization.populateNetworkDonorList(system);
         
             Network cityNetwork = stateNetwork.addSubNetwork();
             cityNetwork.setNetworkName(CityCombo.getSelectedItem().toString());

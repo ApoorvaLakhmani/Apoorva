@@ -16,6 +16,7 @@ import java.awt.CardLayout;
 import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -40,7 +41,7 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
        this.stateNetwork = stateNetwork;
        this.system = system;
        
-       confirmDonorBtn.setEnabled(false);
+       //confirmDonorBtn.setEnabled(false);
        
        populateTable();
     }
@@ -51,7 +52,7 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
        for(WorkRequest request : account.getWorkQueue().getWorkRequestList()){
-           
+           //request.setStatus("Completed");
                Object[] row = new Object[7];
                row[0] = request;
                row[1] = ((OrganMatchingWorkRequest)(request)).getPatient().getPatientID();
@@ -159,16 +160,23 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
         int selectedRow= donorDetailsTable.getSelectedRow();
         if(selectedRow >= 0){
             OrganMatchingWorkRequest organMatchRequest = (OrganMatchingWorkRequest) donorDetailsTable.getValueAt(selectedRow, 0);
-            if(organMatchRequest.getStatus().equalsIgnoreCase("Closed")){
+            if(!organMatchRequest.getStatus().equalsIgnoreCase("Closed")){
               if(organMatchRequest.getResult().equalsIgnoreCase("Organ Matched")){
                 for(WorkRequest request : stateNetwork.getWorkQueue().getWorkRequestList()){
                     if(((FindDonorRequest)request).getPatientDetails().getPatientID() == organMatchRequest.getPatient().getPatientID()){
+                        stateNetwork.getWorkQueue().getWorkRequestList().remove(request);
                         ((FindDonorRequest)request).setDonor(organMatchRequest.getDonor());
+                        
+                        stateNetwork.getWorkQueue().getWorkRequestList().add(request);
+                        
+                        organMatchRequest.getDonor().setIsAvailable(false);
                         changeRequestStatus(organMatchRequest);
                         break;
                     }
                 }
-            }  
+            } else{
+                  JOptionPane.showMessageDialog(null, "Can't assign this donor as Organ match test failed");
+              }
             }else{
                 JOptionPane.showConfirmDialog(null, "Donor is already assigned");
             }
@@ -182,9 +190,10 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
     public void changeRequestStatus(OrganMatchingWorkRequest organMatchRequest){
         for(WorkRequest request : account.getWorkQueue().getWorkRequestList()){
             if(((OrganMatchingWorkRequest)(request)).getPatient().getPatientID() == organMatchRequest.getPatient().getPatientID()){
-                organMatchRequest.setStatus("Closed");
+                request.setStatus("Closed");
             }
         }
+        populateTable();
     }
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         userProcessContainer.remove(this);

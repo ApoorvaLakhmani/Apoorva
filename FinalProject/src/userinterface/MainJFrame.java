@@ -11,8 +11,6 @@ import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 //import org.quartz.CronScheduleBuilder;
@@ -43,7 +41,11 @@ public class MainJFrame extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         this.setExtendedState(MAXIMIZED_BOTH);
         //scheduleJob();
+        DataInitialization.initializeData();
+        system = DataInitialization.populateSystemDonorList(system);
     }
+    
+   
     
 //    public void scheduleJob(){
 //        try {

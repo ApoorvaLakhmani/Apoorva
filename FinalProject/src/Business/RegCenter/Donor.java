@@ -27,6 +27,7 @@ public class Donor {
     private HealthDetails healthDetails;
     private static int counter;
     private Date donorRegisterationDate;
+    private boolean isAvailable;
     
     public Donor(){
         organDonateList = new ArrayList<>();
@@ -35,6 +36,15 @@ public class Donor {
         healthDetails = new HealthDetails();
     }
 
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setIsAvailable(boolean isAvailable) {
+        this.isAvailable = isAvailable;
+    }
+
+    
     public HealthDetails getHealthDetails() {
         return healthDetails;
     }
@@ -136,6 +146,12 @@ public class Donor {
     @Override
     public String toString(){
         return String.valueOf(donorId);
+    }
+    
+    public Organ addOrgan(){
+        Organ organ = new Organ();
+        organDonateList.add(organ);
+        return organ;
     }
     
 }

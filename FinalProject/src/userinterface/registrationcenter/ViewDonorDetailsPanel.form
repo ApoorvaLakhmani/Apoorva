@@ -18,7 +18,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="backBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" attributes="0">
@@ -44,7 +44,7 @@
               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
               <Component id="jTabbedPane1" min="-2" pref="433" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <Component id="backBtn" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="316" max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -59,12 +59,12 @@
         <Property name="text" type="java.lang.String" value="Donor Details"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton1">
+    <Component class="javax.swing.JButton" name="backBtn">
       <Properties>
         <Property name="text" type="java.lang.String" value="&lt;&lt;Back"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
       </Events>
     </Component>
     <Container class="javax.swing.JTabbedPane" name="jTabbedPane1">
@@ -96,7 +96,7 @@
                                   <Component id="donorIDTextField" alignment="0" pref="264" max="32767" attributes="0"/>
                                   <Component id="donorNameTextField" alignment="0" max="32767" attributes="0"/>
                                   <Component id="genderTextField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="weightTextField1" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="addressTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
@@ -110,8 +110,8 @@
                               <EmptySpace min="125" pref="125" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="ageTextField" alignment="0" pref="264" max="32767" attributes="0"/>
-                                  <Component id="bloodGrouptTextField1" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="weightTextField2" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="telephoneTextField" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="emailTextField" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -144,7 +144,7 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="weightTextField1" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
+                          <Component id="addressTextField" alignment="3" min="-2" pref="57" max="-2" attributes="0"/>
                           <Component id="jLabel16" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
@@ -160,9 +160,9 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="ageTextField" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="bloodGrouptTextField1" min="-2" max="-2" attributes="0"/>
+                              <Component id="telephoneTextField" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="weightTextField2" min="-2" max="-2" attributes="0"/>
+                              <Component id="emailTextField" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -196,7 +196,7 @@
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="weightTextField2">
+            <Component class="javax.swing.JTextField" name="emailTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -221,7 +221,7 @@
                 <Property name="text" type="java.lang.String" value="Telephone:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="bloodGrouptTextField1">
+            <Component class="javax.swing.JTextField" name="telephoneTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -236,7 +236,7 @@
                 <Property name="text" type="java.lang.String" value="Age : "/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="weightTextField1">
+            <Component class="javax.swing.JTextField" name="addressTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -265,10 +265,10 @@
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="bloodGroupTextField" max="32767" attributes="0"/>
                           <Component id="weightTextField" max="32767" attributes="0"/>
-                          <Component id="bloodGrouptTextField" max="32767" attributes="0"/>
-                          <Component id="weightTextField3" max="32767" attributes="0"/>
-                          <Component id="weightTextField4" min="-2" pref="321" max="-2" attributes="0"/>
+                          <Component id="heightTextField" max="32767" attributes="0"/>
+                          <Component id="bmiTextField" min="-2" pref="321" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="177" max="32767" attributes="0"/>
                   </Group>
@@ -280,22 +280,22 @@
                       <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="weightTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bloodGroupTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="bloodGrouptTextField" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="weightTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel14" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="weightTextField3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="heightTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="weightTextField4" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="bmiTextField" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="214" max="32767" attributes="0"/>
                   </Group>
@@ -303,7 +303,7 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JTextField" name="weightTextField">
+            <Component class="javax.swing.JTextField" name="bloodGroupTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -318,7 +318,7 @@
                 <Property name="text" type="java.lang.String" value="Body weight:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="bloodGrouptTextField">
+            <Component class="javax.swing.JTextField" name="weightTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -328,7 +328,7 @@
                 <Property name="text" type="java.lang.String" value="Height:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="weightTextField3">
+            <Component class="javax.swing.JTextField" name="heightTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>
@@ -338,7 +338,7 @@
                 <Property name="text" type="java.lang.String" value="BMI:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="weightTextField4">
+            <Component class="javax.swing.JTextField" name="bmiTextField">
               <Properties>
                 <Property name="enabled" type="boolean" value="false"/>
               </Properties>

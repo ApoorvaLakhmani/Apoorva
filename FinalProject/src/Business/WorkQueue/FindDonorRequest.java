@@ -23,6 +23,10 @@ public class FindDonorRequest extends WorkRequest{
     private Donor donor;
     private String rejectionReason;
 
+    public FindDonorRequest(){
+        donor = new Donor();
+    }
+    
     public int getHospitalContactNo() {
         return hospitalContactNo;
     }
