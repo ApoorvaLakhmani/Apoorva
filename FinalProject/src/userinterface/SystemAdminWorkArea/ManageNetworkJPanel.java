@@ -211,7 +211,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
         
             Network stateNetwork = network.addSubNetwork();
             stateNetwork.setNetworkName(StateCombo.getSelectedItem().toString());
-            DataInitialization.populateNetworkDonorList(system);
+            
         
             Network cityNetwork = stateNetwork.addSubNetwork();
             cityNetwork.setNetworkName(CityCombo.getSelectedItem().toString());
@@ -231,7 +231,7 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void CountryComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CountryComboItemStateChanged
         if(CountryCombo.getSelectedItem().toString().equals("USA")){
-            String[] stateList = new String[]{"New York","California"};
+            String[] stateList = new String[]{"New York","Texas","Masachusetts"};
             populateStateCombo(stateList);
         }
         else if(CountryCombo.getSelectedItem().toString().equals("India")){
@@ -242,12 +242,16 @@ public class ManageNetworkJPanel extends javax.swing.JPanel {
 
     private void StateComboItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_StateComboItemStateChanged
         if(evt.getStateChange() == ItemEvent.SELECTED){
-            if(CountryCombo.getSelectedItem().equals("USA")&& StateCombo.getSelectedItem().equals("California")){
-                String[] cityList = new String[]{"San Fransisco","Mountain View"};
+            if(CountryCombo.getSelectedItem().equals("USA")&& StateCombo.getSelectedItem().equals("Texas")){
+                String[] cityList = new String[]{"Austin","Dallas"};
                 populateCityCombo(cityList);
             }
             if(CountryCombo.getSelectedItem().equals("USA")&& StateCombo.getSelectedItem().equals("New York")){
-                String[] cityList = new String[]{"New York","Long Island"};
+                String[] cityList = new String[]{"Buffalo","Syracuse"};
+                populateCityCombo(cityList);
+            }
+            if(CountryCombo.getSelectedItem().equals("USA")&& StateCombo.getSelectedItem().equals("Masachusetts")){
+                String[] cityList = new String[]{"Newton","Framingham"};
                 populateCityCombo(cityList);
             }
              if(CountryCombo.getSelectedItem().equals("India")&& StateCombo.getSelectedItem().equals("Maharastra")){

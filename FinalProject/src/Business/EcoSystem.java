@@ -24,7 +24,7 @@ public class EcoSystem extends Organization {
     private ArrayList<Patient> masterPatientList;
 
     private EcoSystem() {
-        super(null);
+        super("Ecosystem");
         networkList = new ArrayList<Network>();
         masterDonorDirectory = new ArrayList<>();
         masterPatientList = new ArrayList<>();

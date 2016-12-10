@@ -41,8 +41,8 @@ public class MainJFrame extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         this.setExtendedState(MAXIMIZED_BOTH);
         //scheduleJob();
-        DataInitialization.initializeData();
-        system = DataInitialization.populateSystemDonorList(system);
+        //DataInitialization.initializeData();
+        //system = DataInitialization.populateSystemDonorList(system);
     }
     
    

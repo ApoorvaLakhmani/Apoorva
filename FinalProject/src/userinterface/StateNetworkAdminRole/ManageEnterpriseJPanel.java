@@ -20,9 +20,6 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import userinterface.CountryNetworkAdminRole.CountryNetworkAdminWorkArea;
-import userinterface.DataInitialization;
-import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
  *
@@ -197,16 +194,14 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         String name = enterpriseNameTextField.getText();
 
         Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-        DataInitialization.populateEnterpriseDonorList(cityNetwork);
+        //DataInitialization.populateEnterpriseDonorList(cityNetwork);
         
         if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
-        }
-        else if(type.equals(Enterprise.EnterpriseType.Hospital)){
+        }else if(type.equals(Enterprise.EnterpriseType.Hospital)){
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OrganTransaplantDeptRep);
         }else if(type.equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)){
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Surgeon);
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTEAdmin);
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTELab);
         }else if(type.equals(Enterprise.EnterpriseType.LegalEnterprise)){
             enterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalDepartment);

@@ -7,11 +7,14 @@ package userinterface.registrationcenter.AdministrativeRole;
 
 //import Business.Enterprise.Enterprise;
 import Business.EcoSystem;
+import Business.Enterprise.DonorRegistrationCenter;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
+import Business.RegCenter.Donor;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.StateNetworkAdminRole.RegisteredDonorsListJPanel;
 
 //import java.awt.CardLayout;
 //import javax.swing.JPanel;
@@ -38,6 +41,21 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.system = system;
         this.stateNetwork = stateNetwork;
         valueLabel.setText(enterprise.getName());
+        //populateDonorList();
+    }
+    
+    public void populateDonorList(){
+        for(Donor donor : stateNetwork.getDonorDirectory().getDonorList()){
+           for(Network cityNetwork : stateNetwork.getSubNetwork()){
+            if(cityNetwork.getNetworkName().trim().equals("Dallas") && (donor.getDonorAddress().trim().equals("Dallas"))){
+                for(Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()){
+                    if(enterprise instanceof DonorRegistrationCenter){
+                        ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor(donor);
+                    }
+                }
+            }
+        } 
+        }
         
     }
 
@@ -55,6 +73,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
         RegisterDonorBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -90,6 +109,13 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
 
+        jButton1.setText("View Registered Donor");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -108,9 +134,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(userJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
-                        .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                    .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(216, 216, 216))
         );
         layout.setVerticalGroup(
@@ -128,7 +154,9 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(userJButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(142, Short.MAX_VALUE))
+                .addGap(47, 47, 47)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(92, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -158,10 +186,18 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);  
     }//GEN-LAST:event_RegisterDonorBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        RegisteredDonorsListJPanel registeredDonors = new RegisteredDonorsListJPanel(userProcessContainer,((DonorRegistrationCenter)enterprise).getDonorDirectory());
+        userProcessContainer.add("RegisteredDonorsListJPanel",registeredDonors);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RegisterDonorBtn;
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton userJButton;

@@ -26,7 +26,7 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RegisteredDonorsListJPanel
      */
-    RegisteredDonorsListJPanel(JPanel userProcessContainer, DonorDirectory donorDirectory) {
+    public RegisteredDonorsListJPanel(JPanel userProcessContainer, DonorDirectory donorDirectory) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.donorDirectory = donorDirectory;
