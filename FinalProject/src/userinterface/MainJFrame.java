@@ -44,12 +44,17 @@ public class MainJFrame extends javax.swing.JFrame {
         system = dB4OUtil.retrieveSystem();
         this.setExtendedState(MAXIMIZED_BOTH);
         //scheduleJob();
+<<<<<<< HEAD
        
         DataInitialization.initializeData();
         system = DataInitialization.populateSystemDonorList(system);
         // ImageIcon imageIcon = new ImageIcon("logo.jpg");
           //  jLabel1.setIcon(imageIcon); 
         
+=======
+        //DataInitialization.initializeData();
+        //system = DataInitialization.populateSystemDonorList(system);
+>>>>>>> 087242135c125f662faf42bf92006a74542ad005
     }
     
    

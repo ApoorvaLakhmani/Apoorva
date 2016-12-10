@@ -62,35 +62,35 @@ public class DataInitialization {
             donor.setDonorName(row.getCell(1).toString());
             donor.setDonorAge(Integer.parseInt(row.getCell(2).toString()));
             donor.setDonorGender(row.getCell(3).toString());
-            if(row.getCell(4).toString()!=null){
+            if(row.getCell(4).toString()!=""){
                 Organ organ1 = donor.addOrgan();
                 organ1.setOrganName(row.getCell(4).toString());
                 organ1.setOrganLife(Integer.parseInt(row.getCell(5).toString()));
             }
             
-            if(row.getCell(6).toString()!=null){
+            if(row.getCell(6).toString()!=""){
                 Organ organ2 = donor.addOrgan();
                 organ2.setOrganName(row.getCell(6).toString());
                 organ2.setOrganLife(Integer.parseInt(row.getCell(7).toString()));
             }
-            if(row.getCell(8).toString()!=null){
+            if(row.getCell(8).toString()!=""){
                 Organ organ3 = donor.addOrgan();
                 organ3.setOrganName(row.getCell(8).toString());
                 organ3.setOrganLife(Integer.parseInt(row.getCell(9).toString()));
             }
-            if(row.getCell(10).toString()!=null){
+            if(row.getCell(10).toString()!=""){
                 Organ organ3 = donor.addOrgan();
                 organ3.setOrganName(row.getCell(10).toString());
                 organ3.setOrganLife(Integer.parseInt(row.getCell(11).toString()));
             }
-            if(row.getCell(12).toString()!=null){
+            if(row.getCell(12).toString()!=""){
                 Organ organ3 = donor.addOrgan();
                 organ3.setOrganName(row.getCell(12).toString());
                 organ3.setOrganLife(Integer.parseInt(row.getCell(13).toString()));
             }
             donor.setDonorPhoneNumber(Integer.parseInt(row.getCell(14).toString()));
             donor.setDonorAddress(row.getCell(15).toString());
-            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
             Date dob = sdf.parse(row.getCell(16).toString());
             
             donor.setDateOfBirth(dob);
@@ -98,7 +98,7 @@ public class DataInitialization {
             donor.getHealthDetails().setBloodGroup(row.getCell(18).toString());
             donor.getHealthDetails().setHeight(Integer.parseInt(row.getCell(19).toString()));
             donor.getHealthDetails().setWeight(Integer.parseInt(row.getCell(20).toString()));
-            donor.getHealthDetails().setBmi(Integer.parseInt(row.getCell(21).toString()));
+            donor.getHealthDetails().setBmi(Float.parseFloat(row.getCell(21).toString()));
             donor.getHealthDetails().setHasHighBloodPressure(Boolean.parseBoolean(row.getCell(22).toString()));
             donor.getHealthDetails().setHasDiabetes(Boolean.parseBoolean(row.getCell(23).toString()));
             donor.getHealthDetails().setHasInfectiousDisease(Boolean.parseBoolean(row.getCell(24).toString()));

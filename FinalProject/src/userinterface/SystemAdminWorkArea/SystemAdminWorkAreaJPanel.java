@@ -10,6 +10,7 @@ package userinterface.SystemAdminWorkArea;
 //import Business.Network.Network;
 //import Business.Organization.Organization;
 import Business.EcoSystem;
+import Business.Enterprise.DonorRegistrationCenter;
 import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
@@ -40,12 +41,31 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
          this.system = system;
          this.account=account;
          populateTree();
+<<<<<<< HEAD
          userNameLabel.setHorizontalAlignment(HEIGHT);
          userNameLabel.setText(account.getEmployee().getName());
      
          
+=======
+         //manipulateData();
     }
-    
+    public void manipulateData(){
+        system.getMasterDonorDirectory().clear();
+        for(Network network : system.getNetworkList()){
+            network.getDonorDirectory().getDonorList().clear();
+            for(Network stateNetwork : network.getSubNetwork()){
+                stateNetwork.getDonorDirectory().getDonorList().clear();
+                for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                    for(Enterprise ent : cityNetwork.getEnterpriseDirectory().getEnterpriseList()){
+                        if(ent.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter.getValue())){
+                            ((DonorRegistrationCenter)ent).getDonorDirectory().getDonorList().clear();
+                        }
+                    }
+                }
+            }
+        }
+>>>>>>> 087242135c125f662faf42bf92006a74542ad005
+    }
     public void populateTree(){
         DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
         ArrayList<Network> networkList = system.getNetworkList();
