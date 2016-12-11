@@ -12,13 +12,10 @@ import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
-<<<<<<< HEAD
-import java.awt.Font;
-=======
 import java.awt.CardLayout;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,11 +38,7 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
          this.system = system;
          this.account = account;
          this.countryNetwork=countryNetwork;
-<<<<<<< HEAD
-         countryNameLabel.setText(this.countryNetwork.getNetworkName());
-=======
          
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
          populateRequests();
     }
 
@@ -62,16 +55,12 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         workrequestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         findDonorInCountryBtn = new javax.swing.JButton();
-<<<<<<< HEAD
-        jButton2 = new javax.swing.JButton();
-        countryNameLabel = new javax.swing.JLabel();
-=======
         backButton = new javax.swing.JButton();
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
 
         setBackground(new java.awt.Color(204, 255, 255));
 
         workrequestTable.setBackground(new java.awt.Color(204, 255, 255));
+        workrequestTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         workrequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -93,12 +82,9 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText(" Admin Work Area");
 
-<<<<<<< HEAD
         findDonorInCountryBtn.setBackground(new java.awt.Color(0, 0, 0));
         findDonorInCountryBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         findDonorInCountryBtn.setForeground(new java.awt.Color(255, 153, 153));
-=======
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
         findDonorInCountryBtn.setText("Find Donor");
         findDonorInCountryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,76 +92,48 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
             }
         });
 
-<<<<<<< HEAD
-        jButton2.setBackground(new java.awt.Color(0, 0, 0));
-        jButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 153, 153));
-        jButton2.setText("<<Back");
-=======
+        backButton.setBackground(new java.awt.Color(0, 0, 0));
+        backButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backButton.setForeground(new java.awt.Color(255, 153, 153));
         backButton.setText("<<Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
-
-        countryNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+                .addContainerGap(86, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 850, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(91, 91, 91))
             .addGroup(layout.createSequentialGroup()
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                        .addComponent(countryNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2)
-=======
-                        .addGap(456, 456, 456)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addComponent(backButton)
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
                         .addGap(331, 331, 331)
-                        .addComponent(findDonorInCountryBtn)))
-                .addContainerGap(430, Short.MAX_VALUE))
+                        .addComponent(findDonorInCountryBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(456, 456, 456)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(countryNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(74, 74, 74)
-=======
                 .addGap(58, 58, 58)
                 .addComponent(jLabel1)
                 .addGap(76, 76, 76)
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(findDonorInCountryBtn)
-<<<<<<< HEAD
-                    .addComponent(jButton2))
-                .addContainerGap(206, Short.MAX_VALUE))
-=======
                     .addComponent(backButton))
-                .addContainerGap(211, Short.MAX_VALUE))
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -231,10 +189,6 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
 
         }
     }//GEN-LAST:event_findDonorInCountryBtnActionPerformed
-<<<<<<< HEAD
-    public void  populateRequests(){
-        workrequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
-=======
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         userProcessContainer.remove(this); 
@@ -242,7 +196,7 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backButtonActionPerformed
     public void populateRequests() {
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
+        workrequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) workrequestTable.getModel();
         model.setRowCount(0);
         if (countryNetwork.getWorkQueue().getWorkRequestList().size() > 0) {
@@ -275,11 +229,7 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
-    private javax.swing.JLabel countryNameLabel;
-=======
     private javax.swing.JButton backButton;
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
     private javax.swing.JButton findDonorInCountryBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -31,11 +31,10 @@ public class MainJFrame extends javax.swing.JFrame {
         initComponents();
         system = dB4OUtil.retrieveSystem();
         this.setExtendedState(MAXIMIZED_BOTH);
-<<<<<<< HEAD
+
         //DataInitialization.initializeData();
-        //system = DataInitialization.populateSystemDonorList(system);
-    }   
-=======
+        //system = DataInitialization.populateSystemDonorList(system);  
+
         //scheduleJob();
 
        
@@ -48,24 +47,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     }
     
-   
-    
-//    public void scheduleJob(){
-//        try {
-//            //MyJob job = new MyJob();
-//            JobDetail job1 = (JobDetail) JobBuilder.newJob(MyJob.class).withIdentity("Job1", "Group1").build();
-//            job1.getJobDataMap().put("System", system);
-//            Trigger trigger = TriggerBuilder.newTrigger().withIdentity("Trigger 1", "group1").
-//                    withSchedule(CronScheduleBuilder.cronSchedule("0/5 * * * * ?")).build();
-//            Scheduler scheduler1 = new StdSchedulerFactory().getScheduler();
-//            scheduler1.start();
-//            scheduler1.scheduleJob(job1, trigger);
-//        } catch (SchedulerException ex) {
-//            Logger.getLogger(MainJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//    }
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
+
 
     /**
      * This method is called from within the constructor to initialize the form.

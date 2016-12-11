@@ -8,6 +8,7 @@ package userinterface.StateNetworkAdminRole;
 import Business.Hospital.Patient;
 import Business.Hospital.PatientDirectory;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -27,7 +28,20 @@ public class ViewStatePatientsStateJPanel extends javax.swing.JPanel {
          populateTable();
     }
 
-   
+   public void populateTable(){
+         patientDetailsTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+        DefaultTableModel model = (DefaultTableModel) patientDetailsTable.getModel();
+        model.setRowCount(0);
+       
+        for(Patient patient : networkPatientDirectory.getPatientDirectory()){
+            Object[] row = new Object[2];
+            row[0] = patient.getPatientID();
+            row[1] = patient.getPatientName();
+            
+            model.addRow(row);
+        }
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,8 +56,10 @@ public class ViewStatePatientsStateJPanel extends javax.swing.JPanel {
         patientDetailsTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        patientDetailsTable.setBackground(new java.awt.Color(204, 255, 255));
         patientDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -67,6 +83,9 @@ public class ViewStatePatientsStateJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 44, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 153, 153));
         jButton1.setText("<<Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,17 +108,5 @@ public class ViewStatePatientsStateJPanel extends javax.swing.JPanel {
     private javax.swing.JTable patientDetailsTable;
     // End of variables declaration//GEN-END:variables
 
-       public void populateTable(){
-        DefaultTableModel model = (DefaultTableModel) patientDetailsTable.getModel();
-        model.setRowCount(0);
        
-        for(Patient patient : networkPatientDirectory.getPatientDirectory()){
-            Object[] row = new Object[2];
-            row[0] = patient.getPatientID();
-            row[1] = patient.getPatientName();
-            
-            model.addRow(row);
-        }
-        
-    }
 }

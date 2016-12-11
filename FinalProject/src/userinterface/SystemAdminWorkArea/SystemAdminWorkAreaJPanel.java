@@ -41,16 +41,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
          this.system = system;
          this.account=account;
          populateTree();
-<<<<<<< HEAD
-         userNameLabel.setHorizontalAlignment(HEIGHT);
-         userNameLabel.setText(account.getEmployee().getName());
-=======
 
          userNameLabel.setHorizontalAlignment(HEIGHT);
          userNameLabel.setText(account.getEmployee().getName());
+
+
+  
      
         
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
          //manipulateData();
     }
     public void manipulateData(){
@@ -68,10 +66,8 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
-<<<<<<< HEAD
-=======
 
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
+
     }
     public void populateTree(){
         DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();

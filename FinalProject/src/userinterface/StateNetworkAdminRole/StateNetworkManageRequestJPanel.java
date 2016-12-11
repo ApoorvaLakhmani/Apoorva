@@ -45,13 +45,8 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         populatetable();
     }
     
-<<<<<<< HEAD
-    public void populatetable(){
-        DonorRequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
-=======
     public void populatetable() {
         DonorRequestTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
->>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
         DefaultTableModel model = (DefaultTableModel) DonorRequestTable.getModel();
         model.setRowCount(0);
         if (stateNetwork.getWorkQueue().getWorkRequestList().size() > 0) {
