@@ -66,6 +66,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         RequestDetailsTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -106,6 +107,17 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText("My Work Requests");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 86, 201, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 153, 153));
+        jButton1.setText("<< Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 490, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RaiseReqBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseReqBtnActionPerformed
@@ -115,10 +127,17 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
        layout.next(userProcessContainer);
     }//GEN-LAST:event_RaiseReqBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RaiseReqBtn;
     private javax.swing.JTable RequestDetailsTable;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

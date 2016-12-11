@@ -38,7 +38,7 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
         this.system=system; 
         this.network = network;
         this.userAccount = userAccount;
-        this.organization=organization;
+        this.organization = organization;
        // populatePatientList() ;
     }
 
@@ -138,10 +138,10 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_RaiseRequestBtnActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       ViewStatePatientsStateJPanel viewStatePatientsStateJPanel = new ViewStatePatientsStateJPanel(userProcessContainer,((HospitalRepOrganization) organization).getPatientDirectory());
-        userProcessContainer.add("ViewStatePatientsStateJPanel",viewStatePatientsStateJPanel);
-        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
-        layout.next(userProcessContainer); 
+        ViewStatePatientsStateJPanel viewStatePatientsStateJPanel = new ViewStatePatientsStateJPanel(userProcessContainer,((HospitalRepOrganization) organization).getPatientDirectory());
+       userProcessContainer.add("ViewStatePatientsStateJPanel",viewStatePatientsStateJPanel);
+       CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+       layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
      public void populatePatientList() {
@@ -150,7 +150,7 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
                 for (Network cityNetwork : stateNetwork.getSubNetwork()) {
                     if (cityNetwork.getNetworkName().equals(network.getNetworkName())) {
                         for (Patient patient : stateNetwork.getNetworkPatientDirectory().getPatientDirectory()) {
-                            if (cityNetwork.getNetworkName().trim().equals("Syracuse") && (patient.getPatientLocation().trim().equals("Syracuse"))) {
+                            if (cityNetwork.getNetworkName().trim().equals("Dallas") && (patient.getPatientLocation().trim().equals("Dallas"))) {
                                 for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
                                     if (enterprise instanceof HospitalEnterprise) {
                                         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {

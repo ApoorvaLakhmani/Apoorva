@@ -11,6 +11,7 @@ import Business.RegCenter.Donor;
 import Business.RegCenter.DonorDirectory;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -21,7 +22,9 @@ import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.renderer.category.CategoryItemRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
@@ -177,7 +180,27 @@ public class StateReportsJPanel extends javax.swing.JPanel {
     }
 
     private JFreeChart createDonorsReportsChart(CategoryDataset dataset) {
-        JFreeChart barChart = ChartFactory.createBarChart("No Of Registered Donors", "Year", "Registered Donors", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart("No Of Registered Donors",
+                                                            "Year", 
+                                                            "Registered Donors", 
+                                                            dataset, 
+                                                            PlotOrientation.VERTICAL, 
+                                                            true, 
+                                                            true, 
+                                                            false);
+        barChart.setBackgroundPaint(Color.white);  
+        // Set the background color of the chart
+        barChart.getTitle().setPaint(Color.DARK_GRAY);
+        barChart.setBorderVisible(true);
+        // Adjust the color of the title
+        CategoryPlot plot = barChart.getCategoryPlot();
+        plot.getRangeAxis().setLowerBound(0.0);
+        // Get the Plot object for a bar graph
+        plot.setBackgroundPaint(Color.white);     
+        plot.setRangeGridlinePaint(Color.blue);
+        CategoryItemRenderer renderer = plot.getRenderer();
+        renderer.setSeriesPaint(0, Color.decode("#00008B"));
+        //return chart;
         return barChart;
     }
 
@@ -257,6 +280,20 @@ public class StateReportsJPanel extends javax.swing.JPanel {
 
     private JFreeChart createPatientReportsChart(CategoryDataset dataset) {
         JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, false, true, false);
+        
+        barChart.setBackgroundPaint(Color.white);  
+        // Set the background color of the chart
+        barChart.getTitle().setPaint(Color.DARK_GRAY);
+        barChart.setBorderVisible(true);
+        // Adjust the color of the title
+        CategoryPlot plot = barChart.getCategoryPlot();
+        plot.getRangeAxis().setLowerBound(0.0);
+        // Get the Plot object for a bar graph
+        plot.setBackgroundPaint(Color.white);     
+        plot.setRangeGridlinePaint(Color.blue);
+        CategoryItemRenderer renderer = plot.getRenderer();
+        renderer.setSeriesPaint(0, Color.decode("#00008B"));
+        //return chart;
         return barChart;
     }
 
