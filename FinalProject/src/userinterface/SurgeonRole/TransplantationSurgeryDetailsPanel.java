@@ -64,21 +64,30 @@ private FindDonorRequest request;
         jScrollPane1 = new javax.swing.JScrollPane();
         medicalConditionsTextArea = new javax.swing.JTextArea();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        patientIDTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         patientIDTextField.setEnabled(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 18)); // NOI18N
         jLabel1.setText(" Transplantation Surgery  Details");
 
+        locationtextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         locationtextField.setEnabled(false);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setText("Patient ID :");
 
+        patientNameTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         patientNameTextField.setEnabled(false);
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setText("Patient Name :");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Location:");
 
+        updateStatusBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         updateStatusBtn.setText("Update Status");
         updateStatusBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,6 +95,7 @@ private FindDonorRequest request;
             }
         });
 
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         backBtn.setText("<<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,33 +103,47 @@ private FindDonorRequest request;
             }
         });
 
+        requestIDTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         requestIDTextField.setEnabled(false);
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("Request ID :");
 
+        jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel6.setText("Age:");
 
+        ageTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         ageTextField.setEnabled(false);
 
+        bloodTypeTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         bloodTypeTextField.setEnabled(false);
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel7.setText("Blood Type:");
 
+        weightTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         weightTextField.setEnabled(false);
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel8.setText("Body Weight:");
 
+        organTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         organTextField.setEnabled(false);
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel9.setText("Affected Organ:");
 
+        organSizeTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         organSizeTextField.setEnabled(false);
 
+        jLabel10.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel10.setText("Organ Size:");
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel11.setText("Other Medical Conditions");
 
         medicalConditionsTextArea.setColumns(20);
+        medicalConditionsTextArea.setFont(new java.awt.Font("Segoe UI Semibold", 0, 13)); // NOI18N
         medicalConditionsTextArea.setRows(5);
         jScrollPane1.setViewportView(medicalConditionsTextArea);
 
@@ -128,10 +152,7 @@ private FindDonorRequest request;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(254, 254, 254)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,25 +181,26 @@ private FindDonorRequest request;
                                             .addComponent(locationtextField, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(ageTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(bloodTypeTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(organTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addComponent(organTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel11)
-                                .addGap(37, 37, 37)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(278, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addComponent(backBtn)
-                .addGap(210, 210, 210)
-                .addComponent(updateStatusBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(390, 390, 390)
+                        .addComponent(updateStatusBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(backBtn)))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
+                .addGap(62, 62, 62)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(requestIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,11 +242,11 @@ private FindDonorRequest request;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(updateStatusBtn)
-                    .addComponent(backBtn))
-                .addGap(120, 120, 120))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(updateStatusBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(backBtn)
+                .addGap(31, 31, 31))
         );
     }// </editor-fold>//GEN-END:initComponents
 

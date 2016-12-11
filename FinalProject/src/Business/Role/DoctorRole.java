@@ -24,6 +24,8 @@ public class DoctorRole extends Role {
         return new DoctorWorkAreaJPanel(userProcessContainer, business,organization,account);
     }
     
-    
+    public String toString(){
+        return "Doctor";
+    }
 
 }

@@ -45,13 +45,21 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
         tissueMatchComboBox = new javax.swing.JComboBox<>();
         organSizeCombo = new javax.swing.JComboBox<>();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Process Organ Matching Test");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setText("Tissue Matching Test");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setText("Organ Size Matching Test");
 
+        processTestBtn.setBackground(new java.awt.Color(0, 0, 0));
+        processTestBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        processTestBtn.setForeground(new java.awt.Color(255, 153, 153));
         processTestBtn.setText("Process Test");
         processTestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -59,6 +67,9 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,8 +77,10 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
             }
         });
 
+        tissueMatchComboBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         tissueMatchComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Positive", "Negative" }));
 
+        organSizeCombo.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         organSizeCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Positive", "Negative" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -87,13 +100,14 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
                             .addComponent(organSizeCombo, 0, 114, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(229, 229, 229)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addComponent(backBtn)
-                        .addGap(168, 168, 168)
+                        .addGap(79, 79, 79)
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(371, 371, 371)
                         .addComponent(processTestBtn)))
-                .addContainerGap(262, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,14 +122,11 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(organSizeCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(104, 104, 104)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(processTestBtn)))
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
+                .addComponent(processTestBtn)
+                .addGap(114, 114, 114)
+                .addComponent(backBtn)
+                .addGap(83, 83, 83))
         );
     }// </editor-fold>//GEN-END:initComponents
 

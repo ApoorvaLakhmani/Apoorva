@@ -10,6 +10,7 @@ import Business.Network.Network;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,6 +37,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
     }
     
     public void populateTable(){
+        RequestDetailsTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) RequestDetailsTable.getModel();
         model.setRowCount(0);
         
@@ -65,9 +67,12 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         RequestDetailsTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        RaiseReqBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        RaiseReqBtn.setBackground(new java.awt.Color(0, 0, 0));
+        RaiseReqBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        RaiseReqBtn.setForeground(new java.awt.Color(255, 153, 153));
         RaiseReqBtn.setText("Raise new request>>");
         RaiseReqBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,6 +81,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         });
         add(RaiseReqBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(368, 480, -1, -1));
 
+        RequestDetailsTable.setBackground(new java.awt.Color(204, 255, 255));
         RequestDetailsTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         RequestDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,7 +103,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 970, 192));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText("My Work Requests");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(408, 86, 201, -1));
     }// </editor-fold>//GEN-END:initComponents

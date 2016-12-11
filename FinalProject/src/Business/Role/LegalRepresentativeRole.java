@@ -24,4 +24,8 @@ public class LegalRepresentativeRole extends Role {
        return new LegalRepresentativeWorkArea(userProcessContainer,account,inNetwork,enterprise,business);
     }
     
+    public String toString(){
+        return "Lawyer";
+    }
+
 }

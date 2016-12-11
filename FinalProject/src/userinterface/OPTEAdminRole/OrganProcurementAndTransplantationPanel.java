@@ -14,6 +14,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -57,8 +58,10 @@ public class OrganProcurementAndTransplantationPanel extends javax.swing.JPanel 
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        opteWorkRequestTable.setBackground(new java.awt.Color(204, 255, 255));
         opteWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -84,6 +87,9 @@ public class OrganProcurementAndTransplantationPanel extends javax.swing.JPanel 
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 910, 490));
 
+        scheduleProcAndTransBtn.setBackground(new java.awt.Color(0, 0, 0));
+        scheduleProcAndTransBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        scheduleProcAndTransBtn.setForeground(new java.awt.Color(255, 153, 153));
         scheduleProcAndTransBtn.setText("Schedule Procurement and Transplant");
         scheduleProcAndTransBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,10 +98,13 @@ public class OrganProcurementAndTransplantationPanel extends javax.swing.JPanel 
         });
         add(scheduleProcAndTransBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 610, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText("Organ Procurement and Transplantation Work Queue");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 510, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 580, -1));
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<<Back ");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +161,7 @@ public class OrganProcurementAndTransplantationPanel extends javax.swing.JPanel 
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
     public void populateOPTEWorkRequest(){
+        opteWorkRequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) opteWorkRequestTable.getModel();
         model.setRowCount(0);
         for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){
