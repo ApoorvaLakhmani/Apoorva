@@ -183,6 +183,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
                 for(Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()){
                     if(organization instanceof HospitalRepOrganization){
                        patient = ((HospitalRepOrganization) organization).getPatientDirectory().getPatient();
+                       
                     }
                 }
             }
@@ -199,7 +200,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         patient.setOtherMedicalCondition(OtherMedicalConditionTextArea.getText());
         patient.setPatientContactNumber(Integer.parseInt(ContactNoTextField.getText()));
         patient.setCritical(CriticalJComboBox.getSelectedItem().toString());
-        
+       
         FindDonorRequest findDonorReq = new FindDonorRequest();
         findDonorReq.setPatientDetails(patient);
         findDonorReq.setSender(userAccount);
@@ -216,6 +217,8 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
                     if(cityNetwork.getNetworkName().equals(this.network.getNetworkName())){
                         findDonorReq.setHospitalState(stateNetwork.getNetworkName());
                         stateNetwork.getWorkQueue().getWorkRequestList().add(findDonorReq);
+                        stateNetwork.getNetworkPatientDirectory().getPatientDirectory().add(patient);
+                        system.getMasterPatientList().add(patient);
                         JOptionPane.showMessageDialog(null, "Request raised successfully");
                     }
                 }

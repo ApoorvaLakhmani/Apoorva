@@ -33,6 +33,8 @@ public class PatientDirectory {
         return patient;
     }
     
-    
+    public void addPatient(Patient patient){
+        patientDirectory.add (patient) ;  
+    }
     
 }

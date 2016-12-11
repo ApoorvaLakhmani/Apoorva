@@ -7,6 +7,7 @@ package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.RegCenter.Donor;
@@ -40,8 +41,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         employeeNameLabel.setHorizontalAlignment(HEIGHT);
         employeeNameLabel.setText(account.getEmployee().getName());
         populateTree();
+<<<<<<< HEAD
         //populateDonorList();
 
+=======
+//        populateDonorList();
+//       populatePatientList();
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
     }
 
     public void populateTree() {
@@ -141,6 +147,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+<<<<<<< HEAD
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         employeeNameLabel = new javax.swing.JLabel();
@@ -154,6 +161,9 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jScrollPane2.setViewportView(NetworkJTree);
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
+=======
+        viewPatientsButton = new javax.swing.JButton();
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
 
         MngEnterpriseBtn.setBackground(new java.awt.Color(0, 0, 0));
         MngEnterpriseBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -215,6 +225,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
+<<<<<<< HEAD
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -255,6 +266,14 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jLabel2.setText("Welcome ! ");
 
         employeeNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+=======
+        viewPatientsButton.setText("View Patient List");
+        viewPatientsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPatientsButtonActionPerformed(evt);
+            }
+        });
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -263,6 +282,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(90, 90, 90)
@@ -279,10 +299,23 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                                 .addGap(8, 8, 8)
                                 .addComponent(employeeNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(26, 26, 26))))))
+=======
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewPatientsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -296,6 +329,28 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(141, 141, 141))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewPatientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -343,6 +398,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void viewPatientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientsButtonActionPerformed
+       ViewStatePatientsStateJPanel viewStatePatientsStateJPanel = new ViewStatePatientsStateJPanel(userProcessContainer,stateNetwork.getNetworkPatientDirectory());
+        userProcessContainer.add("ViewStatePatientsStateJPanel",viewStatePatientsStateJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewPatientsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MngEnterpriseAdminBtn;
@@ -357,5 +419,23 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton manageWorkRequestBtn;
+    private javax.swing.JButton viewPatientsButton;
     // End of variables declaration//GEN-END:variables
+
+    private void populatePatientList() {
+        for(Patient patient : system.getMasterPatientList()){
+             for(Network countryNetwork : system.getNetworkList()){
+                 for(Network stateNetwork : countryNetwork.getSubNetwork()){
+                     if(stateNetwork.getNetworkName().equals(this.stateNetwork.getNetworkName())){
+                        for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                         if(patient.getPatientLocation().trim().equals(cityNetwork.getNetworkName().trim())){
+                             stateNetwork.getNetworkPatientDirectory().addPatient(patient);
+                         }
+                        } 
+                     }
+                     
+                 }
+             }
+         }
+    }
 }

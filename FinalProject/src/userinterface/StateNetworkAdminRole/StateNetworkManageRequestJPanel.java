@@ -45,22 +45,28 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         populatetable();
     }
     
+<<<<<<< HEAD
     public void populatetable(){
         DonorRequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
+=======
+    public void populatetable() {
+        DonorRequestTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
         DefaultTableModel model = (DefaultTableModel) DonorRequestTable.getModel();
         model.setRowCount(0);
-        
-        for(Network countryNetwork : system.getNetworkList()){
-            for(Network stateNetwork : countryNetwork.getSubNetwork()){
-                if(stateNetwork.getNetworkName().equals(this.stateNetwork.getNetworkName())){
-                    for(WorkRequest request : stateNetwork.getWorkQueue().getWorkRequestList()){
-                        FindDonorRequest donorReq = (FindDonorRequest) request;
-                        Object[] row = new Object[3];
-                        row[0] = request;
-                        row[1] = donorReq.getPatientDetails().getPatientID();
-                        row[2] = request.getStatus();
-                        
-                        model.addRow(row);
+        if (stateNetwork.getWorkQueue().getWorkRequestList().size() > 0) {
+            for (Network countryNetwork : system.getNetworkList()) {
+                for (Network stateNetwork : countryNetwork.getSubNetwork()) {
+                    if (stateNetwork.getNetworkName().equals(this.stateNetwork.getNetworkName())) {
+                        for (WorkRequest request : stateNetwork.getWorkQueue().getWorkRequestList()) {
+                            FindDonorRequest donorReq = (FindDonorRequest) request;
+                            Object[] row = new Object[3];
+                            row[0] = request;
+                            row[1] = donorReq.getPatientDetails().getPatientID();
+                            row[2] = request.getStatus();
+
+                            model.addRow(row);
+                        }
                     }
                 }
             }

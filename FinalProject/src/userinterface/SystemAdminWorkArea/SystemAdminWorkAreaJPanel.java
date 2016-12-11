@@ -41,8 +41,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
          this.system = system;
          this.account=account;
          populateTree();
+<<<<<<< HEAD
          userNameLabel.setHorizontalAlignment(HEIGHT);
          userNameLabel.setText(account.getEmployee().getName());
+=======
+
+         userNameLabel.setHorizontalAlignment(HEIGHT);
+         userNameLabel.setText(account.getEmployee().getName());
+     
+        
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
          //manipulateData();
     }
     public void manipulateData(){
@@ -60,6 +68,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 }
             }
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9a002eab58e024ec5b53a8aa395363495330eb8e
     }
     public void populateTree(){
         DefaultTreeModel treeModel = (DefaultTreeModel) NetworkJTree.getModel();
@@ -137,6 +149,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         ManageNetBtn = new javax.swing.JButton();
         manageNetworkAdminBtm = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        viewPatientsButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         userNameLabel = new javax.swing.JLabel();
         userNameLabel1 = new javax.swing.JLabel();
@@ -177,7 +190,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 ManageNetBtnActionPerformed(evt);
             }
         });
-        jPanel3.add(ManageNetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 53, 319, 43));
+        jPanel3.add(ManageNetBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 319, 43));
 
         manageNetworkAdminBtm.setBackground(new java.awt.Color(0, 0, 0));
         manageNetworkAdminBtm.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -188,7 +201,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 manageNetworkAdminBtmActionPerformed(evt);
             }
         });
-        jPanel3.add(manageNetworkAdminBtm, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 138, 319, 41));
+        jPanel3.add(manageNetworkAdminBtm, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, 319, 41));
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -199,7 +212,18 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(113, 227, 319, 42));
+        jPanel3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 319, 42));
+
+        viewPatientsButton.setBackground(new java.awt.Color(0, 0, 0));
+        viewPatientsButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        viewPatientsButton.setForeground(new java.awt.Color(255, 153, 153));
+        viewPatientsButton.setText("View Patients");
+        viewPatientsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPatientsButtonActionPerformed(evt);
+            }
+        });
+        jPanel3.add(viewPatientsButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 319, 42));
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 541, 353));
 
@@ -277,6 +301,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void viewPatientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientsButtonActionPerformed
+         ViewAllPatientsJPanel viewAllPatientsJPanel = new ViewAllPatientsJPanel(userProcessContainer, system);
+       userProcessContainer.add("viewAllPatientsJPanel",viewAllPatientsJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewPatientsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ManageNetBtn;
@@ -293,5 +324,6 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton manageNetworkAdminBtm;
     private javax.swing.JLabel userNameLabel;
     private javax.swing.JLabel userNameLabel1;
+    private javax.swing.JButton viewPatientsButton;
     // End of variables declaration//GEN-END:variables
 }
