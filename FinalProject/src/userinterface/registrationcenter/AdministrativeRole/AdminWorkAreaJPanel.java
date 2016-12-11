@@ -77,16 +77,20 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Donor Registration Center");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 39, -1, -1));
 
         enterpriseLabel.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 119, 120, 30));
 
         valueLabel.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         valueLabel.setText("<value>");
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 119, 392, 30));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -157,40 +161,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
                 .addContainerGap(39, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(240, 240, 240)
-                .addComponent(jLabel1)
-                .addGap(290, 427, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(90, 90, 90)
-                .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(173, 173, 173))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(52, 52, 52)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enterpriseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(valueLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(33, 33, 33)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(112, Short.MAX_VALUE))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(248, 182, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButtonActionPerformed

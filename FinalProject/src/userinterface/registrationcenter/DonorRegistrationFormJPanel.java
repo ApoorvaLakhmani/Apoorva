@@ -6,6 +6,7 @@
 package userinterface.registrationcenter;
 
 import Business.Enterprise.Enterprise;
+import Business.Network.Network;
 import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
 import Business.Organization.Organization;
 import Business.RegCenter.Donor;
@@ -16,7 +17,10 @@ import java.awt.CardLayout;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -29,16 +33,28 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Enterprise enterprise;
     private UserAccount account;
+    private Network stateNetwork;
     
     /**
      * Creates new form DonarRegistrationJPanel
      */
-    public DonorRegistrationFormJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account) {
+    public DonorRegistrationFormJPanel(JPanel userProcessContainer,Enterprise enterprise,UserAccount account,Network stateNetwork) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.enterprise = enterprise;
         this.account = account;
+        this.stateNetwork=stateNetwork;
         dateLabel.setText(String.valueOf(new Date()));
+        for(Network city: stateNetwork.getSubNetwork()){
+                      for(Enterprise checkEnterprise:city.getEnterpriseDirectory().getEnterpriseList()){
+                          if(checkEnterprise.getName().equals(enterprise.getName())){
+                               
+                              donorCityTextField.setText(city.getNetworkName());
+                             
+                          }
+                      }
+                  } 
+       
         KidneyChkBox.setEnabled(false);
          pancreasChkBox.setEnabled(false);
          LungChkBox.setEnabled(false);
@@ -86,7 +102,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         DonorAgeLabel = new javax.swing.JLabel();
         DonorAgeTextField = new javax.swing.JTextField();
         BackBtn = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        someOrgansCheckBox = new javax.swing.JCheckBox();
         dateLabel = new javax.swing.JLabel();
         donorCityTextField = new javax.swing.JTextField();
 
@@ -107,7 +123,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         add(NameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 160, -1, -1));
 
         DobLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        DobLabel.setText("Date of Birth : ");
+        DobLabel.setText("Date of Birth(mm/dd/yyyy) : ");
         add(DobLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 207, -1, -1));
 
         GenderLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -130,13 +146,13 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         GenderBtnGrp.add(MaleRadioBtn);
         MaleRadioBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         MaleRadioBtn.setText("Male");
-        add(MaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 247, -1, -1));
+        add(MaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, -1, -1));
 
         FemaleRadioBtn.setBackground(new java.awt.Color(204, 255, 255));
         GenderBtnGrp.add(FemaleRadioBtn);
         FemaleRadioBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         FemaleRadioBtn.setText("Female");
-        add(FemaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 247, -1, -1));
+        add(FemaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 250, -1, -1));
 
         OrganWishLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         OrganWishLabel.setText("2. Your Wish ");
@@ -191,16 +207,21 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         add(Label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, -1, -1));
 
         NameTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(NameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 157, 248, -1));
+        add(NameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 248, -1));
 
         DobTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(DobTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 204, 249, -1));
+        DobTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                DobTextFieldFocusLost(evt);
+            }
+        });
+        add(DobTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 249, -1));
 
         TelephoneTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(TelephoneTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 246, -1));
+        add(TelephoneTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 360, 246, -1));
 
         EmailTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(EmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 246, -1));
+        add(EmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 420, 246, -1));
 
         InitialScreeningBtn.setBackground(new java.awt.Color(0, 0, 0));
         InitialScreeningBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -215,10 +236,11 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
 
         DonorAgeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DonorAgeLabel.setText("Age : ");
-        add(DonorAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 70, 40));
+        add(DonorAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 150, 70, 40));
 
+        DonorAgeTextField.setEditable(false);
         DonorAgeTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        add(DonorAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 220, 40));
+        add(DonorAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 220, 40));
 
         BackBtn.setBackground(new java.awt.Color(0, 0, 0));
         BackBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -231,14 +253,18 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         });
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 940, 150, 40));
 
-        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+        someOrgansCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox1ActionPerformed(evt);
+                someOrgansCheckBoxActionPerformed(evt);
             }
         });
-        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
-        add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 920, 140, 30));
-        add(donorCityTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 250, 40));
+        add(someOrgansCheckBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
+
+        dateLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 290, 40));
+
+        donorCityTextField.setEditable(false);
+        add(donorCityTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
@@ -249,11 +275,23 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
 //          }
           if(donor!=null){
               try {
-                  SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-DD");
+                  
+                  if (DobTextField.getText().equals("")|| NameTextField.getText().equals("")||(MaleRadioBtn.isSelected()==false && FemaleRadioBtn.isSelected()==false ) || (AllOrganCheckbox.isSelected()==false && someOrgansCheckBox.isSelected()==false)) {
+                      JOptionPane.showMessageDialog(null, "Please enter valid Details in the form!");
+                    return;
+                  }
+                      
+                  SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                   Date dateOfBirth = sdf.parse(DobTextField.getText());
                   donor.setDonorName(NameTextField.getText());
                   donor.setDonorAge(Integer.parseInt(DonorAgeTextField.getText()));
                   donor.setDateOfBirth(dateOfBirth);
+                  Boolean dateValid=isValidDate(DobTextField.getText());
+                  if(dateValid==false){
+                       JOptionPane.showMessageDialog(null, "Please enter valid Date format");
+                 return;
+                      
+                  }
                   if(MaleRadioBtn.isSelected()){
                       donor.setDonorGender("Male");
                   }
@@ -262,6 +300,9 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   }
                   donor.setDonorPhoneNumber(Integer.parseInt(TelephoneTextField.getText()));
                   donor.setDonorEmailId(EmailTextField.getText());
+                  
+                  donor.setDonorAddress(donorCityTextField.getText());
+ 
                   donor.setDonorAddress(donorCityTextField.getText());
                   if(AllOrganCheckbox.isSelected()){
                       Organ kidney = new Organ();
@@ -317,12 +358,14 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                       organList.add(intestines);
                   } 
                   donor.setOrganDonateList(organList);
-                                  
+                                 
               } catch (ParseException ex) {
               JOptionPane.showMessageDialog(null, "Please enter valid information in the form");
+                 return;
               }
               
           }
+          
           InitialScreeningTestWorkRequest request = new InitialScreeningTestWorkRequest();
           request.setDonor(donor);
           request.setRequestDate(new Date());
@@ -368,23 +411,72 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_BackBtnActionPerformed
 
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void someOrgansCheckBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_someOrgansCheckBoxActionPerformed
+       AllOrganCheckbox.setSelected(false);
+        KidneyChkBox.setSelected(false);
+         pancreasChkBox.setSelected(false);
+         LungChkBox.setSelected(false);
+         LiverChkbox.setSelected(false);
+         intestineChkBox.setSelected(false);
         KidneyChkBox.setEnabled(true);
          pancreasChkBox.setEnabled(true);
          LungChkBox.setEnabled(true);
          LiverChkbox.setEnabled(true);
          intestineChkBox.setEnabled(true);
         
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }//GEN-LAST:event_someOrgansCheckBoxActionPerformed
 
     private void AllOrganCheckboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AllOrganCheckboxActionPerformed
+        someOrgansCheckBox.setSelected(false);
         KidneyChkBox.setEnabled(false);
          pancreasChkBox.setEnabled(false);
          LungChkBox.setEnabled(false);
          LiverChkbox.setEnabled(false);
          intestineChkBox.setEnabled(false);
+         KidneyChkBox.setSelected(false);
+         pancreasChkBox.setSelected(false);
+         LungChkBox.setSelected(false);
+         LiverChkbox.setSelected(false);
+         intestineChkBox.setSelected(false);
     }//GEN-LAST:event_AllOrganCheckboxActionPerformed
 
+    private void DobTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_DobTextFieldFocusLost
+        DonorAgeTextField.setText("");
+        Boolean dateValid=isValidDate(DobTextField.getText());
+                  if(dateValid==false){
+                       JOptionPane.showMessageDialog(null, "Please enter valid Date format");
+                    return;
+                      
+                  }
+                  else{
+                     Calendar c = Calendar.getInstance();
+                      Calendar c2 = Calendar.getInstance();
+                     SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+          try {
+              Date dateOfBirth = sdf.parse(DobTextField.getText());
+              c.setTime(dateOfBirth);
+              c2.setTime(new Date());
+              int dobYear = c.get(Calendar.YEAR);
+              int currentYear=c2.get(Calendar.YEAR);
+              DonorAgeTextField.setText(String.valueOf(currentYear-dobYear));
+       
+          } catch (ParseException ex) {
+              JOptionPane.showMessageDialog(null, "Please enter valid Date format");
+                    return;
+          }
+                      
+                  }
+    }//GEN-LAST:event_DobTextFieldFocusLost
+    public static boolean isValidDate(String inDate) {
+    SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+    dateFormat.setLenient(false);
+    try {
+      dateFormat.parse(inDate.trim());
+    } catch (ParseException pe) {
+      return false;
+    }
+    return true;
+  }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AddressLabel;
@@ -418,7 +510,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel dateLabel;
     private javax.swing.JTextField donorCityTextField;
     private javax.swing.JCheckBox intestineChkBox;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox pancreasChkBox;
+    private javax.swing.JCheckBox someOrgansCheckBox;
     // End of variables declaration//GEN-END:variables
 }

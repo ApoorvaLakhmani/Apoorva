@@ -51,6 +51,7 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
         RegStatusBtn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton1.setBackground(new java.awt.Color(0, 0, 0));
         jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
@@ -61,6 +62,7 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 499, 157, -1));
 
         jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
@@ -105,28 +107,7 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
                 .addContainerGap(70, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(224, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(185, 185, 185))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(162, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(jButton1)
-                .addGap(94, 94, 94))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(224, 162, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegStatusBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegStatusBtnActionPerformed
@@ -137,7 +118,7 @@ public class DonorRegistrationStatusJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_RegStatusBtnActionPerformed
 
     private void NewRegBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NewRegBtnActionPerformed
-        DonorRegistrationFormJPanel donorRegRequest = new DonorRegistrationFormJPanel(userProcessContainer,enterprise,account);
+        DonorRegistrationFormJPanel donorRegRequest = new DonorRegistrationFormJPanel(userProcessContainer,enterprise,account,stateNetwork);
         userProcessContainer.add("DonorRegistrationFormJPanel", donorRegRequest);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);

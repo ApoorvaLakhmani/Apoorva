@@ -72,7 +72,9 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        DononrRegReqTable.setBackground(new java.awt.Color(204, 255, 255));
         DononrRegReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -94,49 +96,29 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(DononrRegReqTable);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(192, 54, -1, 164));
+
+        RegisterDonorBtn.setBackground(new java.awt.Color(0, 0, 0));
+        RegisterDonorBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        RegisterDonorBtn.setForeground(new java.awt.Color(255, 153, 153));
         RegisterDonorBtn.setText("Register Donor");
         RegisterDonorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RegisterDonorBtnActionPerformed(evt);
             }
         });
+        add(RegisterDonorBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 280, 287, 50));
 
+        jButton1.setBackground(new java.awt.Color(0, 0, 0));
+        jButton1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 153, 153));
         jButton1.setText("<< Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(192, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(180, 180, 180))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(277, 277, 277)
-                        .addComponent(RegisterDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(101, 101, 101)
-                .addComponent(RegisterDonorBtn)
-                .addGap(50, 50, 50)
-                .addComponent(jButton1)
-                .addContainerGap(140, Short.MAX_VALUE))
-        );
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 394, 100, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterDonorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDonorBtnActionPerformed
