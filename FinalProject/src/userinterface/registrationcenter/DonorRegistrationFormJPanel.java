@@ -5,7 +5,6 @@
  */
 package userinterface.registrationcenter;
 
-import Business.Enterprise.DonorRegistrationCenter;
 import Business.Enterprise.Enterprise;
 import Business.Organization.DonorRegCenter.RegCenterDoctorOrganization;
 import Business.Organization.Organization;
@@ -18,8 +17,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -81,12 +78,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         pancreasChkBox = new javax.swing.JCheckBox();
         intestineChkBox = new javax.swing.JCheckBox();
         Label3 = new javax.swing.JLabel();
-        SignatureLabel = new javax.swing.JLabel();
-        DateLabel = new javax.swing.JLabel();
         NameTextField = new javax.swing.JTextField();
         DobTextField = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        AddTextArea = new javax.swing.JTextArea();
         TelephoneTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
         InitialScreeningBtn = new javax.swing.JButton();
@@ -95,154 +88,157 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         BackBtn = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
         dateLabel = new javax.swing.JLabel();
+        donorCityTextField = new javax.swing.JTextField();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        HeaderLabel.setFont(new java.awt.Font("Tahoma", 3, 24)); // NOI18N
+        HeaderLabel.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         HeaderLabel.setText("Organ Donar Registration Form");
         add(HeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 41, 426, 49));
 
-        PersonalDataLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PersonalDataLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         PersonalDataLabel.setText("1. Your Personal Data");
         add(PersonalDataLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 108, 323, 33));
 
-        NameLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        NameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         NameLabel.setText("Name : ");
         add(NameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 160, -1, -1));
 
-        DobLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        DobLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DobLabel.setText("Date of Birth : ");
         add(DobLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 207, -1, -1));
 
-        GenderLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        GenderLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         GenderLabel.setText("Gender : ");
         add(GenderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 251, -1, -1));
 
-        TelephoneLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        TelephoneLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         TelephoneLabel.setText("Tel No : ");
-        add(TelephoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 433, -1, -1));
+        add(TelephoneLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 370, -1, -1));
 
-        AddressLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        AddressLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         AddressLabel.setText("Address : ");
         add(AddressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 292, -1, -1));
 
-        EmailLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        EmailLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         EmailLabel.setText("Email Id : ");
-        add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 490, -1, -1));
+        add(EmailLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
+        MaleRadioBtn.setBackground(new java.awt.Color(204, 255, 255));
         GenderBtnGrp.add(MaleRadioBtn);
-        MaleRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        MaleRadioBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         MaleRadioBtn.setText("Male");
         add(MaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 247, -1, -1));
 
+        FemaleRadioBtn.setBackground(new java.awt.Color(204, 255, 255));
         GenderBtnGrp.add(FemaleRadioBtn);
-        FemaleRadioBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        FemaleRadioBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         FemaleRadioBtn.setText("Female");
         add(FemaleRadioBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(263, 247, -1, -1));
 
-        OrganWishLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        OrganWishLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         OrganWishLabel.setText("2. Your Wish ");
-        add(OrganWishLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 543, -1, -1));
+        add(OrganWishLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 480, -1, -1));
 
-        Label.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        Label.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         Label.setText("I wish that after my death :-  ");
-        add(Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 584, -1, -1));
+        add(Label, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 520, -1, -1));
 
-        AllOrganLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        AllOrganLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         AllOrganLabel.setText("a) All my organs and tissues :  ");
-        add(AllOrganLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 627, -1, -1));
+        add(AllOrganLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
 
         AllOrganCheckbox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AllOrganCheckboxActionPerformed(evt);
             }
         });
-        add(AllOrganCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(294, 627, -1, -1));
+        add(AllOrganCheckbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 560, -1, -1));
 
-        ORLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        ORLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         ORLabel.setText("b) OR 1 or more from the following: ");
-        add(ORLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 680, -1, -1));
+        add(ORLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 610, -1, -1));
 
-        LungChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LungChkBox.setBackground(new java.awt.Color(204, 255, 255));
+        LungChkBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         LungChkBox.setText("Lungs");
-        add(LungChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 730, -1, -1));
+        add(LungChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 660, -1, -1));
 
-        KidneyChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        KidneyChkBox.setBackground(new java.awt.Color(204, 255, 255));
+        KidneyChkBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         KidneyChkBox.setText("Kidney");
-        add(KidneyChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 730, -1, -1));
+        add(KidneyChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 660, -1, -1));
 
-        LiverChkbox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        LiverChkbox.setBackground(new java.awt.Color(204, 255, 255));
+        LiverChkbox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         LiverChkbox.setText("Liver");
-        add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 730, -1, -1));
+        add(LiverChkbox, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 660, -1, -1));
 
-        pancreasChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        pancreasChkBox.setBackground(new java.awt.Color(204, 255, 255));
+        pancreasChkBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         pancreasChkBox.setText("Pancreas");
-        add(pancreasChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 730, -1, -1));
+        add(pancreasChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 660, -1, -1));
 
-        intestineChkBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        intestineChkBox.setBackground(new java.awt.Color(204, 255, 255));
+        intestineChkBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         intestineChkBox.setText("Intestine");
-        add(intestineChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 730, -1, -1));
+        add(intestineChkBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 660, -1, -1));
 
-        Label3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        Label3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         Label3.setText("be removed for the purpose of transaplantation.");
-        add(Label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 847, -1, -1));
+        add(Label3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 720, -1, -1));
 
-        SignatureLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        SignatureLabel.setText("Signature");
-        add(SignatureLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 921, -1, -1));
-
-        DateLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        DateLabel.setText("Date");
-        add(DateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 920, -1, -1));
-
-        NameTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        NameTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(NameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(155, 157, 248, -1));
 
-        DobTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        DobTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(DobTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(154, 204, 249, -1));
 
-        AddTextArea.setColumns(20);
-        AddTextArea.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
-        AddTextArea.setRows(5);
-        jScrollPane1.setViewportView(AddTextArea);
+        TelephoneTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(TelephoneTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 246, -1));
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 292, -1, 110));
+        EmailTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(EmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 246, -1));
 
-        TelephoneTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(TelephoneTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 430, 246, -1));
-
-        EmailTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(EmailTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 487, 246, -1));
-
-        InitialScreeningBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        InitialScreeningBtn.setBackground(new java.awt.Color(0, 0, 0));
+        InitialScreeningBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        InitialScreeningBtn.setForeground(new java.awt.Color(255, 153, 153));
         InitialScreeningBtn.setText("Proceed for Initial Screening >> ");
         InitialScreeningBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 InitialScreeningBtnActionPerformed(evt);
             }
         });
-        add(InitialScreeningBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 980, -1, 40));
+        add(InitialScreeningBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 850, -1, 40));
 
+        DonorAgeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DonorAgeLabel.setText("Age : ");
         add(DonorAgeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 70, 40));
+
+        DonorAgeTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(DonorAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 150, 220, 40));
 
+        BackBtn.setBackground(new java.awt.Color(0, 0, 0));
+        BackBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        BackBtn.setForeground(new java.awt.Color(255, 153, 153));
         BackBtn.setText("<< Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
             }
         });
-        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 1109, 150, 40));
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 940, 150, 40));
 
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 680, -1, -1));
+        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 610, -1, -1));
         add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 920, 140, 30));
+        add(donorCityTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void InitialScreeningBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InitialScreeningBtnActionPerformed
@@ -266,7 +262,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   }
                   donor.setDonorPhoneNumber(Integer.parseInt(TelephoneTextField.getText()));
                   donor.setDonorEmailId(EmailTextField.getText());
-                  donor.setDonorAddress(AddTextArea.getText());
+                  donor.setDonorAddress(donorCityTextField.getText());
                   if(AllOrganCheckbox.isSelected()){
                       Organ kidney = new Organ();
                       kidney.setOrganName("Kidney");
@@ -349,22 +345,22 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
           }
 
     }//GEN-LAST:event_InitialScreeningBtnActionPerformed
-    private void clearFields(){
-      NameTextField.setText("");
-      DonorAgeTextField.setText("");
-      DobTextField.setText("");
-     MaleRadioBtn.setSelected(false);
-     FemaleRadioBtn.setSelected(false);
-     TelephoneTextField.setText("");
-     AddTextArea.setText("");
-     EmailTextField.setText("");
-     KidneyChkBox.setSelected(false);
-         pancreasChkBox.setSelected(false);
-         LungChkBox.setSelected(false);
-         LiverChkbox.setSelected(false);
-         intestineChkBox.setSelected(false);
-         AllOrganCheckbox.setSelected(false);
-        
+    private void clearFields() {
+        NameTextField.setText("");
+        DonorAgeTextField.setText("");
+        DobTextField.setText("");
+        MaleRadioBtn.setSelected(false);
+        FemaleRadioBtn.setSelected(false);
+        TelephoneTextField.setText("");
+        donorCityTextField.setText("");
+        EmailTextField.setText("");
+        KidneyChkBox.setSelected(false);
+        pancreasChkBox.setSelected(false);
+        LungChkBox.setSelected(false);
+        LiverChkbox.setSelected(false);
+        intestineChkBox.setSelected(false);
+        AllOrganCheckbox.setSelected(false);
+
     }
     private void BackBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackBtnActionPerformed
         userProcessContainer.remove(this);
@@ -391,12 +387,10 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextArea AddTextArea;
     private javax.swing.JLabel AddressLabel;
     private javax.swing.JCheckBox AllOrganCheckbox;
     private javax.swing.JLabel AllOrganLabel;
     private javax.swing.JButton BackBtn;
-    private javax.swing.JLabel DateLabel;
     private javax.swing.JLabel DobLabel;
     private javax.swing.JTextField DobTextField;
     private javax.swing.JLabel DonorAgeLabel;
@@ -419,13 +413,12 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel ORLabel;
     private javax.swing.JLabel OrganWishLabel;
     private javax.swing.JLabel PersonalDataLabel;
-    private javax.swing.JLabel SignatureLabel;
     private javax.swing.JLabel TelephoneLabel;
     private javax.swing.JTextField TelephoneTextField;
     private javax.swing.JLabel dateLabel;
+    private javax.swing.JTextField donorCityTextField;
     private javax.swing.JCheckBox intestineChkBox;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JCheckBox pancreasChkBox;
     // End of variables declaration//GEN-END:variables
 }

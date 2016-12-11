@@ -35,7 +35,7 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-        donorDetailsTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        donorDetailsTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) donorDetailsTable.getModel();
         model.setRowCount(0);
         
@@ -62,6 +62,10 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
         viewDonorDetailsBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        donorDetailsTable.setBackground(new java.awt.Color(204, 255, 255));
+        donorDetailsTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         donorDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -75,6 +79,9 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(donorDetailsTable);
 
+        viewDonorDetailsBtn.setBackground(new java.awt.Color(0, 0, 0));
+        viewDonorDetailsBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        viewDonorDetailsBtn.setForeground(new java.awt.Color(255, 153, 153));
         viewDonorDetailsBtn.setText("View Details");
         viewDonorDetailsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,6 +89,9 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +125,7 @@ public class RegisteredDonorsListJPanel extends javax.swing.JPanel {
                 .addComponent(viewDonorDetailsBtn)
                 .addGap(43, 43, 43)
                 .addComponent(backBtn)
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

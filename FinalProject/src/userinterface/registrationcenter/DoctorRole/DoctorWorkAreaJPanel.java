@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.InitialScreeningTestWorkRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -42,6 +43,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
+        initialScreeningReqTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) initialScreeningReqTable.getModel();
         model.setRowCount(0);
        
@@ -69,8 +71,10 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         valueLabel = new javax.swing.JLabel();
         requestTestJButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        initialScreeningReqTable.setBackground(new java.awt.Color(204, 255, 255));
         initialScreeningReqTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         initialScreeningReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -102,15 +106,17 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 658, 169));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        enterpriseLabel.setText("EnterPrise :");
+        enterpriseLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        enterpriseLabel.setText("Enterprise :");
         add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 27, 127, 30));
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        valueLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         valueLabel.setText("<value>");
         add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 29, 158, 26));
 
-        requestTestJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        requestTestJButton.setBackground(new java.awt.Color(0, 0, 0));
+        requestTestJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
+        requestTestJButton.setForeground(new java.awt.Color(255, 153, 153));
         requestTestJButton.setText("Initial Screening>>");
         requestTestJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

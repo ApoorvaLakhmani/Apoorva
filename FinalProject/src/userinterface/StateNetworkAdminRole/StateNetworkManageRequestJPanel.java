@@ -46,7 +46,7 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
     }
     
     public void populatetable(){
-        DonorRequestTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DonorRequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) DonorRequestTable.getModel();
         model.setRowCount(0);
         
@@ -83,9 +83,11 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         opteRequestBtn = new javax.swing.JButton();
         legalApprovalBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        DonorRequestTable.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DonorRequestTable.setBackground(new java.awt.Color(204, 255, 255));
+        DonorRequestTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DonorRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -106,7 +108,9 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(97, 90, 638, 164));
 
-        ViewRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        ViewRequestBtn.setBackground(new java.awt.Color(0, 0, 0));
+        ViewRequestBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        ViewRequestBtn.setForeground(new java.awt.Color(255, 153, 153));
         ViewRequestBtn.setText("View Request");
         ViewRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +119,9 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         });
         add(ViewRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 310, 330, 50));
 
-        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        BackBtn.setBackground(new java.awt.Color(0, 0, 0));
+        BackBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        BackBtn.setForeground(new java.awt.Color(255, 153, 153));
         BackBtn.setText("<< Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,6 +130,9 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         });
         add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 490, 170, 50));
 
+        opteRequestBtn.setBackground(new java.awt.Color(0, 0, 0));
+        opteRequestBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        opteRequestBtn.setForeground(new java.awt.Color(255, 153, 153));
         opteRequestBtn.setText("Initiate procurement and Transplant>>");
         opteRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +141,9 @@ public class StateNetworkManageRequestJPanel extends javax.swing.JPanel {
         });
         add(opteRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 380, 330, 50));
 
+        legalApprovalBtn.setBackground(new java.awt.Color(0, 0, 0));
+        legalApprovalBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        legalApprovalBtn.setForeground(new java.awt.Color(255, 153, 153));
         legalApprovalBtn.setText("Initiate Legal Approval");
         legalApprovalBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -47,7 +47,7 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
     }
     
     public void populateTable(){
-        donorDetailsTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        donorDetailsTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) donorDetailsTable.getModel();
         model.setRowCount(0);
         
@@ -82,6 +82,9 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
         confirmDonorBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        donorDetailsTable.setBackground(new java.awt.Color(204, 255, 255));
         donorDetailsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -114,6 +117,9 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
             donorDetailsTable.getColumnModel().getColumn(6).setPreferredWidth(30);
         }
 
+        confirmDonorBtn.setBackground(new java.awt.Color(0, 0, 0));
+        confirmDonorBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        confirmDonorBtn.setForeground(new java.awt.Color(255, 153, 153));
         confirmDonorBtn.setText("Confirm Donor");
         confirmDonorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,6 +127,9 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -6,12 +6,9 @@
 package userinterface.registrationcenter;
 
 import Business.RegCenter.Donor;
-import userinterface.SurgeonRole.*;
 import Business.RegCenter.Organ;
-import Business.RegCenter.Organ;
-import Business.WorkQueue.FindDonorRequest;
 import java.awt.CardLayout;
-import javax.swing.JOptionPane;
+import java.awt.Font;
 import javax.swing.JPanel;
 
 /**
@@ -28,6 +25,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.donor=donor;
+        donorDetailsTabbedPanel.setFont( new Font("Segoe UI Semibold", Font.PLAIN, 18 ) );
         populateForm();
     }
 
@@ -44,7 +42,7 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
+        donorDetailsTabbedPanel = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         donorNameTextField = new javax.swing.JTextField();
@@ -69,43 +67,76 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
         heightTextField = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         bmiTextField = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        kidney = new javax.swing.JCheckBox();
+        liver = new javax.swing.JCheckBox();
+        lungs = new javax.swing.JCheckBox();
+        pancreas = new javax.swing.JCheckBox();
+        intestine = new javax.swing.JCheckBox();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Donor Details");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 39, 281, -1));
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<<Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(34, 706, -1, -1));
 
+        donorDetailsTabbedPanel.setBackground(new java.awt.Color(204, 255, 255));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 204));
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel9.setText("Donor Name :");
 
+        donorNameTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         donorNameTextField.setEnabled(false);
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel8.setText("Donor ID :");
 
+        jLabel17.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel17.setText("Email:");
 
+        donorIDTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         donorIDTextField.setEnabled(false);
 
+        emailTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         emailTextField.setEnabled(false);
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel16.setText("Address:");
 
+        jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel15.setText("Gender:");
 
+        genderTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         genderTextField.setEnabled(false);
 
+        jLabel12.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel12.setText("Telephone:");
 
+        telephoneTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         telephoneTextField.setEnabled(false);
 
+        ageTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         ageTextField.setEnabled(false);
 
+        DonorAgeLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DonorAgeLabel.setText("Age : ");
 
+        addressTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         addressTextField.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -115,29 +146,32 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(78, 78, 78)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel8))
-                        .addGap(146, 146, 146)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(donorIDTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                            .addComponent(donorNameTextField)
-                            .addComponent(genderTextField)
-                            .addComponent(addressTextField)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel15)
-                            .addComponent(DonorAgeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel15)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel17)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel12)
-                            .addComponent(jLabel17))
-                        .addGap(125, 125, 125)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(ageTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
-                            .addComponent(telephoneTextField)
-                            .addComponent(emailTextField))))
-                .addContainerGap(194, Short.MAX_VALUE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(DonorAgeLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel16)
+                                .addComponent(jLabel8))
+                            .addGap(128, 128, 128)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(genderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(donorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(donorIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,54 +182,89 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(donorIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addGap(19, 19, 19)
+                        .addGap(21, 21, 21)
                         .addComponent(donorNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(genderTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jLabel9)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel16))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(DonorAgeLabel)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel12)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel17)
-                        .addGap(74, 74, 74))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(70, 70, 70))))
+                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(35, 35, 35)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(DonorAgeLabel)
+                    .addComponent(ageTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(emailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Personal Details", jPanel1);
+        donorDetailsTabbedPanel.addTab("Personal Details", jPanel1);
 
+        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+
+        bloodGroupTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         bloodGroupTextField.setEnabled(false);
 
+        jLabel11.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel11.setText("Blood Group:");
 
+        jLabel14.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel14.setText("Body weight:");
 
+        weightTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         weightTextField.setEnabled(false);
 
+        jLabel18.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel18.setText("Height:");
 
+        heightTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         heightTextField.setEnabled(false);
 
+        jLabel19.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel19.setText("BMI:");
 
+        bmiTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         bmiTextField.setEnabled(false);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel2.setText("Organs Donating :");
+
+        kidney.setBackground(new java.awt.Color(0, 204, 204));
+        kidney.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        kidney.setText("Kidney");
+
+        liver.setBackground(new java.awt.Color(0, 204, 204));
+        liver.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        liver.setText("Liver");
+        liver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                liverActionPerformed(evt);
+            }
+        });
+
+        lungs.setBackground(new java.awt.Color(0, 204, 204));
+        lungs.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        lungs.setText("Lungs");
+
+        pancreas.setBackground(new java.awt.Color(0, 204, 204));
+        pancreas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        pancreas.setText("Pancreas");
+
+        intestine.setBackground(new java.awt.Color(0, 204, 204));
+        intestine.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        intestine.setText("Intestine");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -204,17 +273,32 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel19))
-                .addGap(39, 39, 39)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(bloodGroupTextField)
-                    .addComponent(weightTextField)
-                    .addComponent(heightTextField)
-                    .addComponent(bmiTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(177, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel14)
+                            .addComponent(jLabel18)
+                            .addComponent(jLabel19))
+                        .addGap(39, 39, 39)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bloodGroupTextField)
+                            .addComponent(weightTextField)
+                            .addComponent(heightTextField)
+                            .addComponent(bmiTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(kidney)
+                            .addComponent(pancreas))
+                        .addGap(26, 26, 26)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(liver)
+                                .addGap(33, 33, 33)
+                                .addComponent(lungs))
+                            .addComponent(intestine))))
+                .addContainerGap(226, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,40 +319,22 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel19)
                     .addComponent(bmiTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(214, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(kidney)
+                    .addComponent(liver)
+                    .addComponent(lungs))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(pancreas)
+                    .addComponent(intestine))
+                .addContainerGap(174, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Medical Details", jPanel2);
+        donorDetailsTabbedPanel.addTab("Medical Details", jPanel2);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addComponent(backBtn)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(369, 369, 369)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jLabel1)
-                .addGap(44, 44, 44)
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(63, 63, 63)
-                .addComponent(backBtn)
-                .addContainerGap(316, Short.MAX_VALUE))
-        );
+        add(donorDetailsTabbedPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, -1, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -277,6 +343,10 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
         layout.previous(userProcessContainer);
     }//GEN-LAST:event_backBtnActionPerformed
 
+    private void liverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_liverActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_liverActionPerformed
+
     private void populateForm(){
        donorIDTextField.setText(donor.getDonorId());
        donorNameTextField.setText(donor.getDonorName());
@@ -284,7 +354,36 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
        addressTextField.setText(donor.getDonorAddress());
        ageTextField.setText(String.valueOf(donor.getDonorAge()));
        bloodGroupTextField.setText(donor.getHealthDetails().getBloodGroup());
+       telephoneTextField.setText(String.valueOf(donor.getDonorPhoneNumber()));
+       emailTextField.setText(donor.getDonorEmailId());
+       weightTextField.setText(String.valueOf(donor.getHealthDetails().getWeight()));
+       heightTextField.setText(String.valueOf(donor.getHealthDetails().getHeight()));
+       bmiTextField.setText(String.valueOf(calculateBmi(donor.getHealthDetails().getHeight(), donor.getHealthDetails().getWeight())));
        
+       for(Organ organ : donor.getOrganDonateList()){
+          if(organ.getOrganName().equalsIgnoreCase("Kidney")){
+              kidney.setSelected(true);
+          }
+          if(organ.getOrganName().equalsIgnoreCase("Liver")){
+              liver.setSelected(true);
+          }
+          if(organ.getOrganName().equalsIgnoreCase("Lungs")){
+              lungs.setSelected(true);
+          }
+          if(organ.getOrganName().equalsIgnoreCase("Pancreas")){
+              pancreas.setSelected(true);
+          }
+          if(organ.getOrganName().equalsIgnoreCase("intestines")){
+              intestine.setSelected(true);
+          }
+       }
+       
+    }
+    
+    public float calculateBmi(int height, float weight){
+        
+        float bmi = (weight/(height*height))*10000;
+        return bmi;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel DonorAgeLabel;
@@ -293,11 +392,13 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField bloodGroupTextField;
     private javax.swing.JTextField bmiTextField;
+    private javax.swing.JTabbedPane donorDetailsTabbedPanel;
     private javax.swing.JTextField donorIDTextField;
     private javax.swing.JTextField donorNameTextField;
     private javax.swing.JTextField emailTextField;
     private javax.swing.JTextField genderTextField;
     private javax.swing.JTextField heightTextField;
+    private javax.swing.JCheckBox intestine;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -307,11 +408,15 @@ public class ViewDonorDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JCheckBox kidney;
+    private javax.swing.JCheckBox liver;
+    private javax.swing.JCheckBox lungs;
+    private javax.swing.JCheckBox pancreas;
     private javax.swing.JTextField telephoneTextField;
     private javax.swing.JTextField weightTextField;
     // End of variables declaration//GEN-END:variables

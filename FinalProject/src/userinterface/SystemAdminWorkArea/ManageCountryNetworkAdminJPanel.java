@@ -14,6 +14,7 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Font;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,10 +33,45 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.system = system;
+        usernameErrorLabel.setVisible(false);
+        passwordErrLabel.setVisible(false);
+        nameErrLabel.setVisible(false);
         populateNetworkComboBox();
         populateTable();
     }
-
+    
+    public boolean validateData(){
+        if(usernameJTextField.getText().isEmpty()){
+            usernameErrorLabel.setVisible(true);
+           return false; 
+        }else{
+            usernameErrorLabel.setVisible(false);
+        }
+        if(passwordJPasswordField.getPassword().length <=0){
+            passwordErrLabel.setVisible(true);
+            return false;
+        }else{
+            passwordErrLabel.setVisible(false);
+        }
+        if(nameJTextField.getText().isEmpty()){
+            nameErrLabel.setVisible(true);
+            return false;
+        }else{
+            nameErrLabel.setVisible(false);
+        }
+        return true;
+    }
+    
+    public boolean validateUsername(){
+        Network network = (Network) networkJComboBox.getSelectedItem();
+        for(UserAccount account : network.getUserAccountDirectory().getUserAccountList()){
+            if(account.getUsername().equals(usernameJTextField.getText())){
+                JOptionPane.showMessageDialog(null, "Username already exists, please select another username");
+                return false;
+            }
+        }
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -57,25 +93,33 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
         networkJComboBox = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
         usernameJTextField = new javax.swing.JTextField();
+        usernameErrorLabel = new javax.swing.JLabel();
+        passwordErrLabel = new javax.swing.JLabel();
+        nameErrLabel = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        submitJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        submitJButton.setBackground(new java.awt.Color(0, 0, 0));
+        submitJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        submitJButton.setForeground(new java.awt.Color(255, 153, 153));
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(502, 498, -1, -1));
+        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 440, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("Password");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 299, -1, -1));
 
-        nameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        nameJTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(nameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(268, 345, 138, -1));
 
+        networkJTable.setBackground(new java.awt.Color(204, 255, 255));
+        networkJTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         networkJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -102,18 +146,20 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(83, 48, 523, 120));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("Name");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 348, -1, -1));
 
-        passwordJPasswordField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        passwordJPasswordField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(passwordJPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 296, 136, -1));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setText("Network");
         add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(133, 201, -1, -1));
 
-        backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        backJButton.setBackground(new java.awt.Color(0, 0, 0));
+        backJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backJButton.setForeground(new java.awt.Color(255, 153, 153));
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,31 +168,45 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
         });
         add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 489, -1, -1));
 
-        networkJComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        networkJComboBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         networkJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(networkJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 198, 136, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setText("Username");
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 250, -1, -1));
 
-        usernameJTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        usernameJTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(usernameJTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 247, 136, -1));
+
+        usernameErrorLabel.setText("username cannot be empty");
+        add(usernameErrorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 250, 320, -1));
+
+        passwordErrLabel.setText("password cannot be empty");
+        add(passwordErrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 190, -1));
+
+        nameErrLabel.setText("Name cannot be empty");
+        add(nameErrLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 190, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+        if (validateData()) {
+            if (validateUsername()) {
+                Network network = (Network) networkJComboBox.getSelectedItem();
 
-       Network network = (Network) networkJComboBox.getSelectedItem();
+                String username = usernameJTextField.getText();
+                String password = String.valueOf(passwordJPasswordField.getPassword());
+                String name = nameJTextField.getText();
 
-        String username = usernameJTextField.getText();
-        String password = String.valueOf(passwordJPasswordField.getPassword());
-        String name = nameJTextField.getText();
+                Employee employee = network.getEmployeeDirectory().createEmployee(name);
 
-        Employee employee = network.getEmployeeDirectory().createEmployee(name);
-
-        UserAccount account = network.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryNetworkAdminRole());
-        populateTable();
-
+                UserAccount account = network.getUserAccountDirectory().createUserAccount(username, password, employee, new CountryNetworkAdminRole());
+                populateTable();
+            }
+        }
+        usernameJTextField.setText("");
+        passwordJPasswordField.setText("");
+        nameJTextField.setText("");
     }//GEN-LAST:event_submitJButtonActionPerformed
 
     private void backJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backJButtonActionPerformed
@@ -169,7 +229,7 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
     }
      
      private void populateTable() {
-        networkJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        networkJTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) networkJTable.getModel();
 
         model.setRowCount(0);
@@ -191,11 +251,14 @@ public class ManageCountryNetworkAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nameErrLabel;
     private javax.swing.JTextField nameJTextField;
     private javax.swing.JComboBox networkJComboBox;
     private javax.swing.JTable networkJTable;
+    private javax.swing.JLabel passwordErrLabel;
     private javax.swing.JPasswordField passwordJPasswordField;
     private javax.swing.JButton submitJButton;
+    private javax.swing.JLabel usernameErrorLabel;
     private javax.swing.JTextField usernameJTextField;
     // End of variables declaration//GEN-END:variables
 }

@@ -41,7 +41,9 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         this.account = account;
 
         populateTable();
-      //  populateCountryName();
+        //  populateCountryName();
+        cityErrLabel.setVisible(false);
+        nameErrLabel.setVisible(false);
         populateCityComboBox();
         populateEnterpriseComboBox();
         enterpriseTypeJComboBox.setEnabled(false);
@@ -49,27 +51,45 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     }
 
     private void populateTable() {
-        enterpriseJTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        enterpriseJTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) enterpriseJTable.getModel();
 
         model.setRowCount(0);
         for (Network network : system.getNetworkList()) {
-            for (Network state: network.getSubNetwork()){
-                 if (state.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
-                  for (Network cityNetwork : state.getSubNetwork()) {
-                    for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
-                        Object[] row = new Object[5];
-                        row[0] = enterprise.getName();
-                        row[1] = cityNetwork.getNetworkName();
-                        row[2] = enterprise.getEnterpriseType().getValue();
-                        model.addRow(row);
+            for (Network state : network.getSubNetwork()) {
+                if (state.getUserAccountDirectory().getUserAccountList().size() > 0) {
+                    if (state.getUserAccountDirectory().getUserAccountList().get(0).getUsername().equals(account.getUsername())) {
+                        for (Network cityNetwork : state.getSubNetwork()) {
+                            for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
+                                Object[] row = new Object[5];
+                                row[0] = enterprise.getName();
+                                row[1] = cityNetwork.getNetworkName();
+                                row[2] = enterprise.getEnterpriseType().getValue();
+                                model.addRow(row);
+                            }
+                        }
                     }
-                }  
+                }
+
             }
-           }
         }
     }
-
+    public boolean validateData(){
+        
+        if(CityComboBox.getSelectedItem().toString().equalsIgnoreCase("Please Select")){
+            cityErrLabel.setVisible(true);
+            return false;
+        }else{
+            cityErrLabel.setVisible(false);
+        }
+        if(enterpriseNameTextField.getText().equalsIgnoreCase("")){
+            nameErrLabel.setVisible(true);
+            return false;
+        }else{
+            nameErrLabel.setVisible(false);
+        }
+        return true;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -93,9 +113,12 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         CityComboBox = new javax.swing.JComboBox();
         stateNameTextBox = new javax.swing.JTextField();
         countryNameTextBox = new javax.swing.JTextField();
+        cityErrLabel = new javax.swing.JLabel();
+        nameErrLabel = new javax.swing.JLabel();
 
-        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        setBackground(new java.awt.Color(204, 255, 255));
 
+        enterpriseJTable.setBackground(new java.awt.Color(204, 255, 255));
         enterpriseJTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         enterpriseJTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,95 +141,177 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(enterpriseJTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 47, 760, 120));
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel1.setText("Country : ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 201, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel2.setText("Name : ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 479, -1, -1));
 
-        enterpriseNameTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(enterpriseNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 476, 190, -1));
+        enterpriseNameTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel3.setText("Enterprise Type : ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 416, -1, -1));
 
-        enterpriseTypeJComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        enterpriseTypeJComboBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         enterpriseTypeJComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(enterpriseTypeJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 413, 190, -1));
 
-        submitJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        submitJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         submitJButton.setText("Submit");
         submitJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 submitJButtonActionPerformed(evt);
             }
         });
-        add(submitJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 590, -1, -1));
 
-        backJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        backJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         backJButton.setText("<< Back");
         backJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backJButtonActionPerformed(evt);
             }
         });
-        add(backJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 590, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel4.setText("State : ");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 269, -1, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel5.setText("City : ");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(88, 339, -1, -1));
 
-        CityComboBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        CityComboBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         CityComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         CityComboBox.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 CityComboBoxItemStateChanged(evt);
             }
         });
-        add(CityComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(299, 339, 190, -1));
 
-        stateNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(stateNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 260, 170, 30));
+        stateNameTextBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
 
-        countryNameTextBox.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(countryNameTextBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 200, 170, 30));
+        countryNameTextBox.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+
+        cityErrLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        cityErrLabel.setText("Select City");
+
+        nameErrLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        nameErrLabel.setText("Name cannot be left blank");
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 760, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel1)
+                        .addGap(131, 131, 131)
+                        .addComponent(countryNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel4)
+                        .addGap(155, 155, 155)
+                        .addComponent(stateNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(jLabel3)
+                        .addGap(67, 67, 67)
+                        .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(320, 320, 320)
+                        .addComponent(submitJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(backJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(165, 165, 165)
+                                .addComponent(CityComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(148, 148, 148)
+                                .addComponent(enterpriseNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cityErrLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nameErrLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(79, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jLabel1))
+                    .addComponent(countryNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel4))
+                    .addComponent(stateNameTextBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5)
+                    .addComponent(CityComboBox)
+                    .addComponent(cityErrLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel3))
+                    .addComponent(enterpriseTypeJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel2))
+                    .addComponent(enterpriseNameTextField)
+                    .addComponent(nameErrLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(53, 53, 53)
+                .addComponent(submitJButton)
+                .addGap(97, 97, 97)
+                .addComponent(backJButton))
+        );
     }// </editor-fold>//GEN-END:initComponents
 
     private void submitJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submitJButtonActionPerformed
+        if (validateData()) {
+            Network cityNetwork = (Network) CityComboBox.getSelectedItem();
+            Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
 
-        Network cityNetwork = (Network) CityComboBox.getSelectedItem();
-        Enterprise.EnterpriseType type = (Enterprise.EnterpriseType) enterpriseTypeJComboBox.getSelectedItem();
+            if (cityNetwork == null || type == null) {
+                JOptionPane.showMessageDialog(null, "Invalid Input!");
+                return;
+            }
 
-        if (cityNetwork == null || type == null) {
-            JOptionPane.showMessageDialog(null, "Invalid Input!");
-            return;
+            String name = enterpriseNameTextField.getText();
+
+            Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
+            //DataInitialization.populateEnterpriseDonorList(cityNetwork);
+
+            if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
+                enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
+            } else if (type.equals(Enterprise.EnterpriseType.Hospital)) {
+                enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OrganTransaplantDeptRep);
+            } else if (type.equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)) {
+                enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Surgeon);
+                enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTELab);
+            } else if (type.equals(Enterprise.EnterpriseType.LegalEnterprise)) {
+                enterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalDepartment);
+            }
+            populateTable();
         }
 
-        String name = enterpriseNameTextField.getText();
-
-        Enterprise enterprise = cityNetwork.getEnterpriseDirectory().createAndAddEnterprise(name, type);
-        //DataInitialization.populateEnterpriseDonorList(cityNetwork);
-        
-        if (type.equals(Enterprise.EnterpriseType.DonorRegCenter)) {
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Doctor);
-        }else if(type.equals(Enterprise.EnterpriseType.Hospital)){
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OrganTransaplantDeptRep);
-        }else if(type.equals(Enterprise.EnterpriseType.OrganProcAndTransCenter)){
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.Surgeon);
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.OPTELab);
-        }else if(type.equals(Enterprise.EnterpriseType.LegalEnterprise)){
-            enterprise.getOrganizationDirectory().createOrganization(Organization.Type.LegalDepartment);
-        }
-        populateTable();
 
     }//GEN-LAST:event_submitJButtonActionPerformed
 
@@ -259,7 +364,8 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
         }
 
     }
-     private void populateEnterpriseComboBox() {
+
+    private void populateEnterpriseComboBox() {
         enterpriseTypeJComboBox.removeAllItems();
         enterpriseTypeJComboBox.removeAllItems();
         for (Enterprise.EnterpriseType type : Enterprise.EnterpriseType.values()) {
@@ -286,6 +392,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox CityComboBox;
     private javax.swing.JButton backJButton;
+    private javax.swing.JLabel cityErrLabel;
     private javax.swing.JTextField countryNameTextBox;
     private javax.swing.JTable enterpriseJTable;
     private javax.swing.JTextField enterpriseNameTextField;
@@ -296,6 +403,7 @@ public class ManageEnterpriseJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel nameErrLabel;
     private javax.swing.JTextField stateNameTextBox;
     private javax.swing.JButton submitJButton;
     // End of variables declaration//GEN-END:variables

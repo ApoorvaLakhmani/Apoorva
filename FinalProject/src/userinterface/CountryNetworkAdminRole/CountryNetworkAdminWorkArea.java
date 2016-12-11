@@ -10,8 +10,6 @@ import Business.Enterprise.Enterprise;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
-import userinterface.StateNetworkAdminRole.ManageEnterpriseAdminJPanel;
-import userinterface.StateNetworkAdminRole.ManageEnterpriseJPanel;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -37,6 +35,8 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
          this.system = system;
          this.account = account;
          this.countryNetwork=countryNetwork;
+         employeeNameLabel.setHorizontalAlignment(HEIGHT);
+         employeeNameLabel.setText(account.getEmployee().getName());
          populateTree();
     }
     
@@ -118,13 +118,19 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
         jTree1 = new javax.swing.JTree();
         jScrollPane2 = new javax.swing.JScrollPane();
         NetworkJTree = new javax.swing.JTree();
-        manageRequestsBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         manageStateNetworkAdminBtn = new javax.swing.JButton();
+        manageRequestsBtn = new javax.swing.JButton();
+        userAccImgLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        employeeNameLabel = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTree1);
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        NetworkJTree.setBackground(new java.awt.Color(204, 255, 255));
         NetworkJTree.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("System");
         NetworkJTree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
@@ -132,25 +138,60 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
 
         add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 0, 174, 652));
 
-        manageRequestsBtn.setBackground(new java.awt.Color(255, 255, 255));
-        manageRequestsBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        manageRequestsBtn.setText("Manage WorkRequests");
-        manageRequestsBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageRequestsBtnActionPerformed(evt);
-            }
-        });
-        add(manageRequestsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 300, -1));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
-        manageStateNetworkAdminBtn.setBackground(new java.awt.Color(255, 255, 255));
-        manageStateNetworkAdminBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        manageStateNetworkAdminBtn.setBackground(new java.awt.Color(0, 0, 0));
+        manageStateNetworkAdminBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageStateNetworkAdminBtn.setForeground(new java.awt.Color(255, 153, 153));
         manageStateNetworkAdminBtn.setText("Manage State Network Admin");
         manageStateNetworkAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageStateNetworkAdminBtnActionPerformed(evt);
             }
         });
-        add(manageStateNetworkAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, -1, -1));
+
+        manageRequestsBtn.setBackground(new java.awt.Color(0, 0, 0));
+        manageRequestsBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageRequestsBtn.setForeground(new java.awt.Color(255, 153, 153));
+        manageRequestsBtn.setText("Manage WorkRequests");
+        manageRequestsBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageRequestsBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(44, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(manageRequestsBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageStateNetworkAdminBtn))
+                .addGap(39, 39, 39))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(73, 73, 73)
+                .addComponent(manageStateNetworkAdminBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                .addComponent(manageRequestsBtn)
+                .addGap(85, 85, 85))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, 380, 300));
+
+        userAccImgLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/SystemAdminWorkArea/sysadmin.png"))); // NOI18N
+        add(userAccImgLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setText("Welcome ! ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 40, -1, -1));
+
+        employeeNameLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        add(employeeNameLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 40, 150, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageRequestsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRequestsBtnActionPerformed
@@ -170,10 +211,14 @@ public class CountryNetworkAdminWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTree NetworkJTree;
+    private javax.swing.JLabel employeeNameLabel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTree jTree1;
     private javax.swing.JButton manageRequestsBtn;
     private javax.swing.JButton manageStateNetworkAdminBtn;
+    private javax.swing.JLabel userAccImgLabel;
     // End of variables declaration//GEN-END:variables
 }

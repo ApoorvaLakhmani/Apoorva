@@ -64,7 +64,7 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
     }
 
     public void populateTable() {
-        DonorDetailTable.getTableHeader().setFont(new Font("Tahoma", Font.PLAIN, 20));
+        DonorDetailTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 20));
         DefaultTableModel model = (DefaultTableModel) DonorDetailTable.getModel();
         model.setRowCount(0);
 
@@ -94,8 +94,11 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         forwardToCountryAdminBtn = new javax.swing.JButton();
         organMatchingBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        DonorDetailTable.setBackground(new java.awt.Color(204, 255, 255));
+        DonorDetailTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DonorDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -111,19 +114,25 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, -1, 188));
 
+        backBtn.setBackground(new java.awt.Color(0, 0, 0));
+        backBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(255, 153, 153));
         backBtn.setText("<< Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, -1, -1));
+        add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 620, 130, 40));
 
         noDonorLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         noDonorLabel.setForeground(new java.awt.Color(255, 0, 51));
         noDonorLabel.setText("No Donor Found!");
         add(noDonorLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 150, -1, -1));
 
+        forwardToCountryAdminBtn.setBackground(new java.awt.Color(0, 0, 0));
+        forwardToCountryAdminBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        forwardToCountryAdminBtn.setForeground(new java.awt.Color(255, 153, 153));
         forwardToCountryAdminBtn.setText("Request Country Administrator");
         forwardToCountryAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -132,6 +141,9 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         });
         add(forwardToCountryAdminBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 430, 253, 58));
 
+        organMatchingBtn.setBackground(new java.awt.Color(0, 0, 0));
+        organMatchingBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        organMatchingBtn.setForeground(new java.awt.Color(255, 153, 153));
         organMatchingBtn.setText("Raise Organ Matching");
         organMatchingBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
