@@ -293,19 +293,21 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
                     String patientBloodGroup = request.getPatientDetails().getBloodType();
                     bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
-                    if (bloodTyping == true && organTest == true) {
+                   
+                    
+                    Boolean bmiTest=false;
+                    if (Math.abs(donor.getHealthDetails().getBmi()-request.getPatientDetails().getBmi())<5){
+                        bmiTest=true;
+                    }
+                    
+                    
+                    if (bloodTyping == true && organTest == true && bmiTest==true) {
                         foundDonor = donor;
                     }
                     foundDonorList.add(foundDonor);
                 }
 
             }
-
-//            organMatchingRequest.setDonorList(foundDonorList);
-//            organMatchingRequest.setPatient(request.getPatientDetails());
-//            organMatchingRequest.setSender(account);
-//            organMatchingRequest.setStatus("Organ Matching Request Raised");
-//            organMatchingRequest.setRequestDate(new Date());
             DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
             userProcessContainer.add("DonorFoundJPanel", donorFound);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();

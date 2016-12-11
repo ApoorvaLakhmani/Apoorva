@@ -7,9 +7,14 @@ package userinterface.CountryNetworkAdminRole;
 
 import Business.EcoSystem;
 import Business.Network.Network;
+import Business.RegCenter.Donor;
+import Business.RegCenter.Organ;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -32,6 +37,7 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
          this.system = system;
          this.account = account;
          this.countryNetwork=countryNetwork;
+         
          populateRequests();
     }
 
@@ -47,9 +53,8 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         workrequestTable = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         findDonorInCountryBtn = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
 
         workrequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -72,12 +77,6 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
         jLabel1.setText(" Admin Work Area");
 
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
-        jTextField1.setText("<<Country Name>>");
-        jTextField1.setEnabled(false);
-        jTextField1.setOpaque(false);
-
         findDonorInCountryBtn.setText("Find Donor");
         findDonorInCountryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +84,12 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
             }
         });
 
-        jButton2.setText("<<Back");
+        backButton.setText("<<Back");
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -98,13 +102,11 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(255, 255, 255)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(456, 456, 456)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(63, 63, 63)
-                        .addComponent(jButton2)
+                        .addComponent(backButton)
                         .addGap(331, 331, 331)
                         .addComponent(findDonorInCountryBtn)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -112,46 +114,113 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(73, 73, 73)
+                .addGap(58, 58, 58)
+                .addComponent(jLabel1)
+                .addGap(76, 76, 76)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(findDonorInCountryBtn)
-                    .addComponent(jButton2))
+                    .addComponent(backButton))
                 .addContainerGap(211, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void findDonorInCountryBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_findDonorInCountryBtnActionPerformed
-       
+        ArrayList<Donor> foundDonorList = new ArrayList<>();
+        int selectedRow = workrequestTable.getSelectedRow();
+        if (selectedRow >= 0) {
+            //Find a Donor 
+            FindDonorRequest request = (FindDonorRequest) workrequestTable.getValueAt(selectedRow, 0);
+            Donor foundDonor = new Donor();
+            Boolean organTest = false;
+            Boolean bloodTyping = false;
+            for (Network stateNetwork : countryNetwork.getSubNetwork()) {
+                for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
+                    if (donor.isAvailable()) {
+                        for (Organ organ : donor.getOrganDonateList()) {
+                            if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
+                                organTest = true;
+                                break;
+
+                            }
+                        }
+                        String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
+                        String patientBloodGroup = request.getPatientDetails().getBloodType();
+                        bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
+
+                        Boolean bmiTest = false;
+                        if (Math.abs(donor.getHealthDetails().getBmi() - request.getPatientDetails().getBmi()) < 5) {
+                            bmiTest = true;
+                        }
+
+                        if (bloodTyping == true && organTest == true && bmiTest == true) {
+                            foundDonor = donor;
+                        }
+                        foundDonorList.add(foundDonor);
+                    }
+
+                }
+
+            }
+            
+            if (foundDonorList.size()==0){
+                request.setStatus("No Donor Found in Country");
+                JOptionPane.showMessageDialog(null, "No Donor found , request status updated");
+            }
+            else{
+                
+            FindDonorAtCountryLevelPanel donorFound = new FindDonorAtCountryLevelPanel(userProcessContainer, account, system, request, foundDonorList,countryNetwork);
+            userProcessContainer.add("FindDonorAtCountryLevelPanel", donorFound);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+            }
+
+        }
     }//GEN-LAST:event_findDonorInCountryBtnActionPerformed
-    public void  populateRequests(){
-         DefaultTableModel model = (DefaultTableModel) workrequestTable.getModel();
+
+    private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        userProcessContainer.remove(this); 
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_backButtonActionPerformed
+    public void populateRequests() {
+        DefaultTableModel model = (DefaultTableModel) workrequestTable.getModel();
         model.setRowCount(0);
-        
-        for (WorkRequest request : countryNetwork.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[7];
-            row[0] = request;
-            row[1] =((FindDonorRequest) request).getHospitalState();
-            row[2]=((FindDonorRequest) request).getHospitalCity();
-            row[3]=((FindDonorRequest) request).getHospitalName();
-            row[4]=((FindDonorRequest) request).getPatientDetails().getPatientID();
-            row[5]=((FindDonorRequest) request).getPatientDetails().getPatientName();
-            row[6] = request.getStatus();
-            model.addRow(row);
+        if (countryNetwork.getWorkQueue().getWorkRequestList().size() > 0) {
+            for (WorkRequest request : countryNetwork.getWorkQueue().getWorkRequestList()) {
+                Object[] row = new Object[7];
+                row[0] = request;
+                row[1] = ((FindDonorRequest) request).getHospitalState();
+                row[2] = ((FindDonorRequest) request).getHospitalCity();
+                row[3] = ((FindDonorRequest) request).getHospitalName();
+                row[4] = ((FindDonorRequest) request).getPatientDetails().getPatientID();
+                row[5] = ((FindDonorRequest) request).getPatientDetails().getPatientName();
+                row[6] = request.getStatus();
+                model.addRow(row);
+            }
+        }
+    }
+    private Boolean bloodTest(String donorBloodGroup, String patientBloodGroup) {
+
+        if (donorBloodGroup.equals("O") && (patientBloodGroup.equals("O") || patientBloodGroup.equals("A") || patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("A") && (patientBloodGroup.equals("A") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("B") && (patientBloodGroup.equals("B") || patientBloodGroup.equals("AB"))) {
+            return true;
+        } else if (donorBloodGroup.equals("AB") && patientBloodGroup.equals("A")) {
+            return true;
+        } else {
+            return false;
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JButton findDonorInCountryBtn;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTable workrequestTable;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,22 @@
  */
 package userinterface.CountryNetworkAdminRole;
 
+import Business.EcoSystem;
+import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
+import Business.Network.Network;
+import Business.Organization.OPTOrganization.OPTELabOrganization;
+import Business.Organization.Organization;
+import Business.RegCenter.Donor;
+import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
+import Business.WorkQueue.OrganMatchingWorkRequest;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Neha
@@ -14,9 +30,22 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
     /**
      * Creates new form FindDonorPanel
      */
-    public FindDonorAtCountryLevelPanel() {
-        initComponents();
-        noDonorLabel.setVisible(false);
+    private JPanel userProcessContainer;
+    private EcoSystem system;
+    private UserAccount account;
+    private ArrayList<Donor> foundDonorList;
+    private FindDonorRequest request;
+    private Network countryNetwork;
+
+    public FindDonorAtCountryLevelPanel(JPanel userProcessContainer, UserAccount account, EcoSystem system, FindDonorRequest request, ArrayList<Donor> foundDonorList,Network countryNetwork) {
+       initComponents();
+        this.userProcessContainer = userProcessContainer;
+         this.system = system;
+         this.account = account;
+         this.foundDonorList=foundDonorList;
+         this.request=request;
+         this.countryNetwork=countryNetwork;
+       populateDonorTable();
     }
 
     /**
@@ -31,19 +60,18 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         DonorDetailTable = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        noDonorLabel = new javax.swing.JLabel();
+        forwardForOrganMatching = new javax.swing.JButton();
 
         DonorDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null}
             },
             new String [] {
-                "DonorID", "Donor Name", "City", "State"
+                "DonorID", "Donor Name", "City"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -54,11 +82,12 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
 
         jButton1.setText("<<Back");
 
-        jButton2.setText("Confirm Donor");
-
-        noDonorLabel.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        noDonorLabel.setForeground(new java.awt.Color(255, 0, 51));
-        noDonorLabel.setText("No Donor Found!");
+        forwardForOrganMatching.setText("Forward for Organ Matching>>");
+        forwardForOrganMatching.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                forwardForOrganMatchingActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,36 +100,79 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 672, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addComponent(jButton1)
-                        .addGap(223, 223, 223)
-                        .addComponent(jButton2)))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(forwardForOrganMatching)))
                 .addContainerGap(101, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(noDonorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(373, 373, 373))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(noDonorLabel)
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 228, Short.MAX_VALUE)
+                .addGap(93, 93, 93)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(forwardForOrganMatching)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(186, 186, 186))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void forwardForOrganMatchingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_forwardForOrganMatchingActionPerformed
+        for (Donor donor : foundDonorList) {
+            OrganMatchingWorkRequest organMatchingRequest = new OrganMatchingWorkRequest();
+            organMatchingRequest.setDonor(donor);
+            organMatchingRequest.setPatient(request.getPatientDetails());
+            organMatchingRequest.setRequestDate(new Date());
+            organMatchingRequest.setStatus("Request Raised");
+            organMatchingRequest.setSender(account);
 
+            Patient patient = request.getPatientDetails();
+            Organization org = null;
+            for (Network stateNetwork:countryNetwork.getSubNetwork() )
+            for (Network city : stateNetwork.getSubNetwork()) {
+                if (patient.getPatientLocation().equalsIgnoreCase(city.getNetworkName())) {
+                    for (Enterprise enterprise : city.getEnterpriseDirectory().getEnterpriseList()) {
+                        if (enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.OrganProcAndTransCenter.toString())) {
+                            for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {
+                                if (organization instanceof OPTELabOrganization) {
+                                    org = organization;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            if (org != null) {
+                org.getWorkQueue().getWorkRequestList().add(organMatchingRequest);
+            }
+            account.getWorkQueue().getWorkRequestList().add(organMatchingRequest);
+        }
+
+        JOptionPane.showMessageDialog(null, "Request sent for organ matching");
+    }//GEN-LAST:event_forwardForOrganMatchingActionPerformed
+    public void populateDonorTable(){
+        
+        DefaultTableModel model = (DefaultTableModel) DonorDetailTable.getModel();
+        model.setRowCount(0);
+        
+        
+                    for(Donor donor : foundDonorList){
+                        Object[] row = new Object[3];
+                        row[0] = donor;
+                        row[1] = donor.getDonorName();
+                        row[2] = donor.getDonorAddress(); 
+                        model.addRow(row);
+                    }
+                }
+            
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable DonorDetailTable;
+    private javax.swing.JButton forwardForOrganMatching;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel noDonorLabel;
     // End of variables declaration//GEN-END:variables
 }

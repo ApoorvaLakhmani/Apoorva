@@ -30,6 +30,7 @@ public class Patient {
     private Date transplantRequestDate;
     private Date transplantCompletionDate;
     private Date deathDate;
+    private double bmi;
  
     public Patient(){
         counter++;
@@ -154,6 +155,18 @@ public class Patient {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public double getBmi() {
+        return bmi;
+    }
+
+    public void setBmi(double bmi) {
+        this.bmi = bmi;
+    }
+
+    public void setPatientID(int patientID) {
+        this.patientID = patientID;
     }
     
     

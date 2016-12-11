@@ -7,6 +7,7 @@ package userinterface.StateNetworkAdminRole;
 
 import Business.EcoSystem;
 import Business.Enterprise.Enterprise;
+import Business.Hospital.Patient;
 import Business.Network.Network;
 import Business.Organization.Organization;
 import Business.RegCenter.Donor;
@@ -38,7 +39,8 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         this.account = account;
         this.stateNetwork = stateNetwork;
         populateTree();
-        //populateDonorList();
+//        populateDonorList();
+//       populatePatientList();
     }
 
     public void populateTree() {
@@ -135,6 +137,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        viewPatientsButton = new javax.swing.JButton();
 
         MngEnterpriseBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         MngEnterpriseBtn.setText("Manage Enterprise");
@@ -186,6 +189,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             }
         });
 
+        viewPatientsButton.setText("View Patient List");
+        viewPatientsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewPatientsButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -193,19 +203,16 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(389, Short.MAX_VALUE))
+                .addGap(170, 170, 170)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(MngEnterpriseBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(viewPatientsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(399, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -218,12 +225,14 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                         .addComponent(MngEnterpriseAdminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(manageWorkRequestBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(36, 36, 36)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(viewPatientsButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 712, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -275,6 +284,13 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void viewPatientsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewPatientsButtonActionPerformed
+       ViewStatePatientsStateJPanel viewStatePatientsStateJPanel = new ViewStatePatientsStateJPanel(userProcessContainer,stateNetwork.getNetworkPatientDirectory());
+        userProcessContainer.add("ViewStatePatientsStateJPanel",viewStatePatientsStateJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_viewPatientsButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MngEnterpriseAdminBtn;
@@ -285,5 +301,23 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton manageWorkRequestBtn;
+    private javax.swing.JButton viewPatientsButton;
     // End of variables declaration//GEN-END:variables
+
+    private void populatePatientList() {
+        for(Patient patient : system.getMasterPatientList()){
+             for(Network countryNetwork : system.getNetworkList()){
+                 for(Network stateNetwork : countryNetwork.getSubNetwork()){
+                     if(stateNetwork.getNetworkName().equals(this.stateNetwork.getNetworkName())){
+                        for(Network cityNetwork : stateNetwork.getSubNetwork()){
+                         if(patient.getPatientLocation().trim().equals(cityNetwork.getNetworkName().trim())){
+                             stateNetwork.getNetworkPatientDirectory().addPatient(patient);
+                         }
+                        } 
+                     }
+                     
+                 }
+             }
+         }
+    }
 }

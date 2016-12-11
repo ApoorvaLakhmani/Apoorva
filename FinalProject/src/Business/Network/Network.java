@@ -7,6 +7,7 @@ package Business.Network;
 
 import Business.Employee.EmployeeDirectory;
 import Business.Enterprise.EnterpriseDirectory;
+import Business.Hospital.PatientDirectory;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import Business.RegCenter.DonorDirectory;
@@ -26,6 +27,7 @@ public class Network extends Organization{
     private EnterpriseDirectory enterpriseDirectory;
     private ArrayList<Network> subNetwork;
     private DonorDirectory donorDirectory;
+    private PatientDirectory networkPatientDirectory;
     
     public Network(){
         super(Type.StateNetworkAdmin.getValue());
@@ -34,9 +36,17 @@ public class Network extends Organization{
         //userAccountDirectory = new UserAccountDirectory();
         subNetwork = new ArrayList<>();
         donorDirectory = new DonorDirectory();
-        
+        networkPatientDirectory=new PatientDirectory();
     }
 
+    public PatientDirectory getNetworkPatientDirectory() {
+        return networkPatientDirectory;
+    }
+
+    public void setNetworkPatientDirectory(PatientDirectory statePatientDirectory) {
+        this.networkPatientDirectory = statePatientDirectory;
+    }
+    
     public DonorDirectory getDonorDirectory() {
         return donorDirectory;
     }
