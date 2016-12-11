@@ -49,7 +49,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
   
      
         
-         //manipulateData();
+        // manipulateData();
     }
     public void manipulateData(){
         system.getMasterDonorDirectory().clear();
@@ -58,11 +58,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             for(Network stateNetwork : network.getSubNetwork()){
                 stateNetwork.getDonorDirectory().getDonorList().clear();
                 for(Network cityNetwork : stateNetwork.getSubNetwork()){
-                    for(Enterprise ent : cityNetwork.getEnterpriseDirectory().getEnterpriseList()){
+                   
+                        for(Enterprise ent : cityNetwork.getEnterpriseDirectory().getEnterpriseList()){
                         if(ent.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter.getValue())){
                             ((DonorRegistrationCenter)ent).getDonorDirectory().getDonorList().clear();
-                        }
+                       }
                     }
+                    
                 }
             }
         }

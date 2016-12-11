@@ -5,12 +5,16 @@
  */
 package userinterface.StateNetworkAdminRole;
 
+import Business.Hospital.Patient;
+import Business.Hospital.PatientDirectory;
 import Business.RegCenter.Donor;
 import Business.RegCenter.DonorDirectory;
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JPanel;
@@ -21,7 +25,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-
 /**
  *
  * @author ApoorvaLakhmani
@@ -30,21 +33,30 @@ public class StateReportsJPanel extends javax.swing.JPanel {
 
     private JPanel userProcessContainer;
     private DonorDirectory donorDirectory;
+    private PatientDirectory patientList;
 
     /**
      * Creates new form StateReportsJPanel
      */
-    StateReportsJPanel(JPanel userProcessContainer, DonorDirectory donorDirectory) {
+    StateReportsJPanel(JPanel userProcessContainer, DonorDirectory donorDirectory, PatientDirectory patientList) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.donorDirectory = donorDirectory;
-        final CategoryDataset dataset = createDataSet();
-        final JFreeChart chart = createChart(dataset);
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartJPanel.setLayout(new BorderLayout());
-        //chartJPanel.setPreferredSize(new Dimension(400, 400));
-        chartJPanel.add(chartPanel, BorderLayout.CENTER);
-        chartJPanel.validate();
+        this.patientList = patientList;
+
+        final CategoryDataset datasetDonors = createDataSetForDonorReports();
+        final JFreeChart donorChart = createDonorsReportsChart(datasetDonors);
+        final ChartPanel donorChartPanel = new ChartPanel(donorChart);
+        donorReportsJPanel.setLayout(new BorderLayout());
+        donorReportsJPanel.add(donorChartPanel, BorderLayout.CENTER);
+        donorReportsJPanel.validate();
+
+        final CategoryDataset datasetPatients = createDataSetForPatientsReports();
+        final JFreeChart patientChart = createPatientReportsChart(datasetPatients);
+        final ChartPanel patientChartPanel = new ChartPanel(patientChart);
+        patientReportJPanel.setLayout(new BorderLayout());
+        patientReportJPanel.add(patientChartPanel, BorderLayout.CENTER);
+        patientReportJPanel.validate();
     }
 
     /**
@@ -56,50 +68,83 @@ public class StateReportsJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chartJPanel = new javax.swing.JPanel();
+        patientReportJPanel = new javax.swing.JPanel();
+        donorReportsJPanel = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 255, 255));
 
-        javax.swing.GroupLayout chartJPanelLayout = new javax.swing.GroupLayout(chartJPanel);
-        chartJPanel.setLayout(chartJPanelLayout);
-        chartJPanelLayout.setHorizontalGroup(
-            chartJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout patientReportJPanelLayout = new javax.swing.GroupLayout(patientReportJPanel);
+        patientReportJPanel.setLayout(patientReportJPanelLayout);
+        patientReportJPanelLayout.setHorizontalGroup(
+            patientReportJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 404, Short.MAX_VALUE)
         );
-        chartJPanelLayout.setVerticalGroup(
-            chartJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        patientReportJPanelLayout.setVerticalGroup(
+            patientReportJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 303, Short.MAX_VALUE)
         );
+
+        javax.swing.GroupLayout donorReportsJPanelLayout = new javax.swing.GroupLayout(donorReportsJPanel);
+        donorReportsJPanel.setLayout(donorReportsJPanelLayout);
+        donorReportsJPanelLayout.setHorizontalGroup(
+            donorReportsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 434, Short.MAX_VALUE)
+        );
+        donorReportsJPanelLayout.setVerticalGroup(
+            donorReportsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jButton1.setText("<< Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(269, 269, 269)
-                .addComponent(chartJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(298, 298, 298))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(patientReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(donorReportsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(119, 119, 119)
+                        .addComponent(jButton1)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(chartJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(172, Short.MAX_VALUE))
+                .addGap(129, 129, 129)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(donorReportsJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(patientReportJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(67, 67, 67))
         );
     }// </editor-fold>//GEN-END:initComponents
-    private CategoryDataset createDataSet() {
-        
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private CategoryDataset createDataSetForDonorReports() {
         ArrayList<String> cityList = new ArrayList<>();
 
         DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
-//        barChartData.addValue(20000, "Contribution Amount", "January");
-//        barChartData.addValue(15000, "Contribution Amount", "February");
-//        barChartData.addValue(10000, "Contribution Amount", "March");
-
         for (Donor donor : donorDirectory.getDonorList()) {
-            if (!cityList.contains(donor.getDonorAddress()) && !cityList.contains(donor.getDonorAddress()+" ")) {
-                
+            if (!cityList.contains(donor.getDonorAddress()) && !cityList.contains(donor.getDonorAddress() + " ")) {
+
                 cityList.add(donor.getDonorAddress());
             }
         }
@@ -129,15 +174,96 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         }
 
         return barChartData;
-
     }
 
-    private JFreeChart createChart(CategoryDataset dataset) {
+    private JFreeChart createDonorsReportsChart(CategoryDataset dataset) {
         JFreeChart barChart = ChartFactory.createBarChart("No Of Registered Donors", "Year", "Registered Donors", dataset, PlotOrientation.VERTICAL, false, true, false);
         return barChart;
     }
 
+    private CategoryDataset createDataSetForPatientsReports() {
+        ArrayList<String> cityList = new ArrayList<>();
+        ArrayList<Integer> yearList = new ArrayList<>();
+
+        DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
+        
+        for (Patient patient : patientList.getPatientDirectory()) {
+            if (!cityList.contains(patient.getPatientLocation())) {
+                cityList.add(patient.getPatientLocation());
+            }
+        }
+
+        for (Patient patient : patientList.getPatientDirectory()) {
+            Date reqDate = patient.getTransplantRequestDate();
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(reqDate);
+            int year = cal.get(Calendar.YEAR);
+            if (!yearList.contains(year)) {
+                yearList.add(year);
+            }
+
+        }
+        for (String city : cityList) {
+            Map<Integer, Double> yearPatientMap = new HashMap<>();
+            for (int reqYear : yearList) {
+                double sum = 0;
+                int count = 0;
+                double avg = 0.0;
+                for (Patient patient2 : patientList.getPatientDirectory()) {
+                    if (patient2.getPatientLocation().equals(city)) {
+                        //if patient ka add == city
+                        //if patient ka reg year = year
+                        Date compDate = patient2.getTransplantCompletionDate();
+                        
+                        if(compDate!=null){
+                        Date reqDate = patient2.getTransplantRequestDate();
+                        Calendar cal = Calendar.getInstance();
+                        cal.setTime(reqDate);
+                        int year = cal.get(Calendar.YEAR);
+                        double diff = 0;
+                        if (year == reqYear) {
+//                            diff = (patient2.getTransplantCompletionDate().getTime() - patient2.getTransplantRequestDate().getTime()) / ((1000 * 60 * 60 * 24 * 30));
+//                            sum = sum+diff;
+//                            count++;
+                            Calendar startCalendar = new GregorianCalendar();
+                            startCalendar.setTime(reqDate);
+                            Calendar endCalendar = new GregorianCalendar();
+                            endCalendar.setTime(patient2.getTransplantCompletionDate());
+                            
+                            int diffyear = endCalendar.get(Calendar.YEAR)-startCalendar.get(Calendar.YEAR);
+                            int monthDiff = diffyear *12 + endCalendar.get(Calendar.MONTH)-startCalendar.get(Calendar.MONTH);
+                            
+                            sum+=  monthDiff;
+                            count++;
+                            
+                        }
+                    
+                            
+                    }
+                    }
+                }
+                
+               avg = sum/count;
+               yearPatientMap.put(reqYear, avg);
+            }
+            //putting in data set
+            for (Map.Entry<Integer, Double> entryset : yearPatientMap.entrySet()) {
+                barChartData.addValue(entryset.getValue(), city, entryset.getKey());
+            }
+        }
+
+        return barChartData;
+    }
+
+    private JFreeChart createPatientReportsChart(CategoryDataset dataset) {
+        JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, false, true, false);
+        return barChart;
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel chartJPanel;
+    private javax.swing.JPanel donorReportsJPanel;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel patientReportJPanel;
     // End of variables declaration//GEN-END:variables
 }

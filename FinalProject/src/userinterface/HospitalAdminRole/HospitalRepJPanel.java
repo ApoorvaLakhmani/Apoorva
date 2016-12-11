@@ -15,6 +15,7 @@ import Business.Organization.Organization;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.StateNetworkAdminRole.ViewStatePatientsStateJPanel;
 
 /**
  *
@@ -26,16 +27,18 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
     private EcoSystem system;
     private Network network;
     private UserAccount userAccount;
+    private Organization organization;
 
     /**
      * Creates new form HospitalRepJPanel
      */
-    public HospitalRepJPanel(JPanel userProcessContainer,UserAccount userAccount,Network network,EcoSystem system) {
+    public HospitalRepJPanel(JPanel userProcessContainer,UserAccount userAccount,Network network,EcoSystem system,Organization organization) {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.system=system; 
         this.network = network;
         this.userAccount = userAccount;
+        this.organization=organization;
        // populatePatientList() ;
     }
 
@@ -65,6 +68,11 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
         });
 
         jButton1.setText("View Patient List >>");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -101,13 +109,20 @@ public class HospitalRepJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_RaiseRequestBtnActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       ViewStatePatientsStateJPanel viewStatePatientsStateJPanel = new ViewStatePatientsStateJPanel(userProcessContainer,((HospitalRepOrganization) organization).getPatientDirectory());
+        userProcessContainer.add("ViewStatePatientsStateJPanel",viewStatePatientsStateJPanel);
+        CardLayout layout = (CardLayout)userProcessContainer.getLayout();
+        layout.next(userProcessContainer); 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
      public void populatePatientList() {
         for (Network country : system.getNetworkList()) {
             for (Network stateNetwork : country.getSubNetwork()) {
                 for (Network cityNetwork : stateNetwork.getSubNetwork()) {
                     if (cityNetwork.getNetworkName().equals(network.getNetworkName())) {
                         for (Patient patient : stateNetwork.getNetworkPatientDirectory().getPatientDirectory()) {
-                            if (cityNetwork.getNetworkName().trim().equals("Dallas") && (patient.getPatientLocation().trim().equals("Dallas"))) {
+                            if (cityNetwork.getNetworkName().trim().equals("Syracuse") && (patient.getPatientLocation().trim().equals("Syracuse"))) {
                                 for (Enterprise enterprise : cityNetwork.getEnterpriseDirectory().getEnterpriseList()) {
                                     if (enterprise instanceof HospitalEnterprise) {
                                         for (Organization organization : enterprise.getOrganizationDirectory().getOrganizationList()) {

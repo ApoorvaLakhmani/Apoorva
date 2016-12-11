@@ -41,7 +41,7 @@ public class AdminWorkAreaJPanel extends javax.swing.JPanel {
         this.system = system;
         this.stateNetwork = stateNetwork;
         valueLabel.setText(enterprise.getName());
-        //populateDonorList();
+      //populateDonorList();
     }
     
     public void populateDonorList(){

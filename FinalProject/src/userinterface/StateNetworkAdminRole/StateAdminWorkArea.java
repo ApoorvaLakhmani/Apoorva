@@ -39,8 +39,8 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
         this.account = account;
         this.stateNetwork = stateNetwork;
         populateTree();
-//        populateDonorList();
-//       populatePatientList();
+       // populateDonorList();
+      // populatePatientList();
     }
 
     public void populateTree() {
@@ -300,7 +300,7 @@ public class StateAdminWorkArea extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        StateReportsJPanel registeredDonorsReport = new StateReportsJPanel(userProcessContainer,stateNetwork.getDonorDirectory());
+        StateReportsJPanel registeredDonorsReport = new StateReportsJPanel(userProcessContainer,stateNetwork.getDonorDirectory(),stateNetwork.getNetworkPatientDirectory());
         userProcessContainer.add("StateReportsJPanel",registeredDonorsReport);
         CardLayout layout = (CardLayout)userProcessContainer.getLayout();
         layout.next(userProcessContainer);
