@@ -23,5 +23,8 @@ public class HospitalRepRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem system) {
         return new HospitalRepJPanel(userProcessContainer,account, inNetwork,system);
     }
-    
+    @Override
+    public String toString(){
+        return "Hospital Representative";
+    }
 }

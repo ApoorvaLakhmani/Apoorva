@@ -52,106 +52,89 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         HeaderLabel = new javax.swing.JLabel();
-        patientnamelabel = new javax.swing.JLabel();
-        OrganNeededLabel = new javax.swing.JLabel();
-        patientagelabel = new javax.swing.JLabel();
-        PatientBloodTypeLabel = new javax.swing.JLabel();
-        PatientWeightLabel = new javax.swing.JLabel();
-        PatientNameField = new javax.swing.JTextField();
-        PatientAgeTextField = new javax.swing.JTextField();
-        PatientWeightTextField = new javax.swing.JTextField();
-        OrganNeededTextField = new javax.swing.JTextField();
         RaiseRequestBtn = new javax.swing.JButton();
+        BackBtn = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        PatientBloodTypeLabel = new javax.swing.JLabel();
+        patientContactNoLabel = new javax.swing.JLabel();
+        patientnamelabel = new javax.swing.JLabel();
+        patientagelabel = new javax.swing.JLabel();
+        PatientWeightLabel = new javax.swing.JLabel();
+        OrganNeededLabel = new javax.swing.JLabel();
         MedicalCondLabel = new javax.swing.JLabel();
+        HospitalContactNoLabel = new javax.swing.JLabel();
+        CriticalLabel = new javax.swing.JLabel();
+        CriticalJComboBox = new javax.swing.JComboBox<>();
+        HospitalContactNoTextField = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         OtherMedicalConditionTextArea = new javax.swing.JTextArea();
-        BackBtn = new javax.swing.JButton();
-        patientContactNoLabel = new javax.swing.JLabel();
-        ContactNoTextField = new javax.swing.JTextField();
-        HospitalContactNoLabel = new javax.swing.JLabel();
-        HospitalContactNoTextField = new javax.swing.JTextField();
-        CriticalLabel = new javax.swing.JLabel();
+        PatientWeightTextField = new javax.swing.JTextField();
         PatientBloodTypeComboBox = new javax.swing.JComboBox<>();
-        CriticalJComboBox = new javax.swing.JComboBox<>();
+        ContactNoTextField = new javax.swing.JTextField();
+        PatientAgeTextField = new javax.swing.JTextField();
+        PatientNameField = new javax.swing.JTextField();
+        OrganNeededCombobox = new javax.swing.JComboBox<>();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        HeaderLabel.setFont(new java.awt.Font("Tahoma", 3, 22)); // NOI18N
+        HeaderLabel.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         HeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         HeaderLabel.setText("Raise Donor Requirement request");
-        add(HeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 42, 434, -1));
+        add(HeaderLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, 434, -1));
 
-        patientnamelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        patientnamelabel.setText("Patient Name:");
-        add(patientnamelabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, -1));
-
-        OrganNeededLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        OrganNeededLabel.setText("Organ affected:");
-        add(OrganNeededLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 380, -1, -1));
-
-        patientagelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        patientagelabel.setText("Age:");
-        add(patientagelabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
-
-        PatientBloodTypeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        PatientBloodTypeLabel.setText("Blood type:");
-        add(PatientBloodTypeLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 270, -1, -1));
-
-        PatientWeightLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        PatientWeightLabel.setText("Body Weight:");
-        add(PatientWeightLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
-
-        PatientNameField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(PatientNameField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 110, 166, -1));
-
-        PatientAgeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(PatientAgeTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 160, 166, -1));
-
-        PatientWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(PatientWeightTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 166, -1));
-
-        OrganNeededTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(OrganNeededTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 370, 166, -1));
-
-        RaiseRequestBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        RaiseRequestBtn.setBackground(new java.awt.Color(0, 0, 0));
+        RaiseRequestBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        RaiseRequestBtn.setForeground(new java.awt.Color(255, 153, 153));
         RaiseRequestBtn.setText("Raise request");
         RaiseRequestBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RaiseRequestBtnActionPerformed(evt);
             }
         });
-        add(RaiseRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 720, 207, -1));
+        add(RaiseRequestBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 770, 207, -1));
 
-        MedicalCondLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        MedicalCondLabel.setText("Other Medical Conditions:");
-        add(MedicalCondLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 460, -1, -1));
-
-        OtherMedicalConditionTextArea.setColumns(20);
-        OtherMedicalConditionTextArea.setRows(5);
-        jScrollPane1.setViewportView(OtherMedicalConditionTextArea);
-
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 440, 260, 100));
-
-        BackBtn.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        BackBtn.setBackground(new java.awt.Color(0, 0, 0));
+        BackBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        BackBtn.setForeground(new java.awt.Color(255, 153, 153));
         BackBtn.setText("<< Back");
         BackBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BackBtnActionPerformed(evt);
             }
         });
-        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 742, -1, -1));
+        add(BackBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 770, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(0, 204, 153));
+
+        PatientBloodTypeLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientBloodTypeLabel.setText("Blood type:");
 
         patientContactNoLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         patientContactNoLabel.setText("Contact Number :");
-        add(patientContactNoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 210, -1, -1));
 
-        ContactNoTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        add(ContactNoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, 166, 34));
+        patientnamelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientnamelabel.setText("Patient Name:");
+
+        patientagelabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        patientagelabel.setText("Age:");
+
+        PatientWeightLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        PatientWeightLabel.setText("Body Weight:");
+
+        OrganNeededLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        OrganNeededLabel.setText("Organ affected:");
+
+        MedicalCondLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        MedicalCondLabel.setText("Other Medical Conditions:");
 
         HospitalContactNoLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         HospitalContactNoLabel.setText("Hospital Contact Number : ");
-        add(HospitalContactNoLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 580, -1, -1));
+
+        CriticalLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        CriticalLabel.setText("Criticality : ");
+
+        CriticalJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "Low", "Medium", "High" }));
 
         HospitalContactNoTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         HospitalContactNoTextField.addActionListener(new java.awt.event.ActionListener() {
@@ -159,17 +142,111 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
                 HospitalContactNoTextFieldActionPerformed(evt);
             }
         });
-        add(HospitalContactNoTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 580, 169, 34));
 
-        CriticalLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        CriticalLabel.setText("Criticality : ");
-        add(CriticalLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 620, 226, 26));
+        OtherMedicalConditionTextArea.setColumns(20);
+        OtherMedicalConditionTextArea.setRows(5);
+        jScrollPane1.setViewportView(OtherMedicalConditionTextArea);
+
+        PatientWeightTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
 
         PatientBloodTypeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "O", "A", "B", "AB" }));
-        add(PatientBloodTypeComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 170, 30));
 
-        CriticalJComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Please select", "Low", "Medium", "High" }));
-        add(CriticalJComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 630, 170, 30));
+        ContactNoTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        PatientAgeTextField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        PatientNameField.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+
+        OrganNeededCombobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kidney", "Pancreas", "Lungs", "Intestines", "Liver" }));
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(MedicalCondLabel)
+                            .addComponent(PatientWeightLabel)
+                            .addComponent(PatientBloodTypeLabel)
+                            .addComponent(patientContactNoLabel)
+                            .addComponent(patientagelabel)
+                            .addComponent(patientnamelabel)
+                            .addComponent(OrganNeededLabel))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PatientNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PatientAgeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(ContactNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(PatientBloodTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(OrganNeededCombobox, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(PatientWeightTextField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(CriticalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22)
+                        .addComponent(CriticalJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(HospitalContactNoLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(HospitalContactNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(58, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(patientnamelabel)
+                    .addComponent(PatientNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PatientAgeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientagelabel))
+                .addGap(41, 41, 41)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ContactNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(patientContactNoLabel))
+                .addGap(39, 39, 39)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(PatientBloodTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(PatientBloodTypeLabel))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(PatientWeightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                        .addComponent(PatientWeightLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(OrganNeededLabel))
+                    .addComponent(OrganNeededCombobox, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(MedicalCondLabel)
+                        .addGap(106, 106, 106)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(HospitalContactNoLabel)
+                            .addComponent(HospitalContactNoTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(CriticalLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CriticalJComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24))
+        );
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 80, 580, 640));
     }// </editor-fold>//GEN-END:initComponents
 
     private void RaiseRequestBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RaiseRequestBtnActionPerformed
@@ -195,7 +272,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
         patient.setPatientLocation(network.getNetworkName());
         patient.setBloodType(PatientBloodTypeComboBox.getSelectedItem().toString());
         patient.setWeight(Double.parseDouble(PatientWeightTextField.getText()));
-        patient.getOrganNeeded().setOrganName(OrganNeededTextField.getText());
+        patient.getOrganNeeded().setOrganName(OrganNeededCombobox.getSelectedItem().toString());
         //patient.getOrganNeeded().setOrganSize(Double.parseDouble(OrganSizeTextField.getText()));
         patient.setOtherMedicalCondition(OtherMedicalConditionTextArea.getText());
         patient.setPatientContactNumber(Integer.parseInt(ContactNoTextField.getText()));
@@ -252,8 +329,8 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
     private javax.swing.JLabel HospitalContactNoLabel;
     private javax.swing.JTextField HospitalContactNoTextField;
     private javax.swing.JLabel MedicalCondLabel;
+    private javax.swing.JComboBox<String> OrganNeededCombobox;
     private javax.swing.JLabel OrganNeededLabel;
-    private javax.swing.JTextField OrganNeededTextField;
     private javax.swing.JTextArea OtherMedicalConditionTextArea;
     private javax.swing.JTextField PatientAgeTextField;
     private javax.swing.JComboBox<String> PatientBloodTypeComboBox;
@@ -262,6 +339,7 @@ public class RaiseNewRequestPanel extends javax.swing.JPanel {
     private javax.swing.JLabel PatientWeightLabel;
     private javax.swing.JTextField PatientWeightTextField;
     private javax.swing.JButton RaiseRequestBtn;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel patientContactNoLabel;
     private javax.swing.JLabel patientagelabel;

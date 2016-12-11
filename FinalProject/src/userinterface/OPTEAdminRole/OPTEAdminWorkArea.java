@@ -43,39 +43,78 @@ private JPanel userProcessContainer;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        manageOPTBtn = new javax.swing.JButton();
-        manageUsersBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         manageEmployeeBtn = new javax.swing.JButton();
+        manageUsersBtn = new javax.swing.JButton();
+        manageOPTBtn = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText("OPTD ADMIN WORK AREA");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 40, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 370, -1));
 
-        manageOPTBtn.setText("Manage Organ Procurement and Transplantation >>");
-        manageOPTBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageOPTBtnActionPerformed(evt);
-            }
-        });
-        add(manageOPTBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 330, -1, -1));
+        jPanel1.setBackground(new java.awt.Color(0, 204, 153));
 
-        manageUsersBtn.setText("Manage Users>>");
-        manageUsersBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                manageUsersBtnActionPerformed(evt);
-            }
-        });
-        add(manageUsersBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 280, 330, -1));
-
-        manageEmployeeBtn.setText("Manage Employees>>");
+        manageEmployeeBtn.setBackground(new java.awt.Color(0, 0, 0));
+        manageEmployeeBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageEmployeeBtn.setForeground(new java.awt.Color(255, 153, 153));
+        manageEmployeeBtn.setText("Manage Employees");
         manageEmployeeBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEmployeeBtnActionPerformed(evt);
             }
         });
-        add(manageEmployeeBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 230, 330, -1));
+
+        manageUsersBtn.setBackground(new java.awt.Color(0, 0, 0));
+        manageUsersBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageUsersBtn.setForeground(new java.awt.Color(255, 153, 153));
+        manageUsersBtn.setText("Manage Users");
+        manageUsersBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageUsersBtnActionPerformed(evt);
+            }
+        });
+
+        manageOPTBtn.setBackground(new java.awt.Color(0, 0, 0));
+        manageOPTBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageOPTBtn.setForeground(new java.awt.Color(255, 153, 153));
+        manageOPTBtn.setText("Manage Organ Procurement and Transplantation");
+        manageOPTBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageOPTBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(139, 139, 139)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(manageUsersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(manageEmployeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(manageOPTBtn)
+                .addGap(65, 65, 65))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addComponent(manageEmployeeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(manageUsersBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(39, 39, 39)
+                .addComponent(manageOPTBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(54, 54, 54))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 610, 330));
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageEmployeeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageEmployeeBtnActionPerformed
@@ -103,6 +142,7 @@ private JPanel userProcessContainer;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton manageEmployeeBtn;
     private javax.swing.JButton manageOPTBtn;
     private javax.swing.JButton manageUsersBtn;

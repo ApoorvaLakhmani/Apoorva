@@ -13,6 +13,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -58,6 +59,9 @@ private EcoSystem business;
         cityNameLabel = new javax.swing.JLabel();
         viewLegalRequestButton = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        legalWorkRequestTable.setBackground(new java.awt.Color(204, 255, 255));
         legalWorkRequestTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -79,11 +83,15 @@ private EcoSystem business;
         });
         jScrollPane1.setViewportView(legalWorkRequestTable);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Legal Department Work Area");
 
         cityNameLabel.setText("<< City name >>");
 
+        viewLegalRequestButton.setBackground(new java.awt.Color(0, 0, 0));
+        viewLegalRequestButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        viewLegalRequestButton.setForeground(new java.awt.Color(255, 153, 153));
         viewLegalRequestButton.setText("View Request >>");
         viewLegalRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,27 +110,27 @@ private EcoSystem business;
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addGap(108, 108, 108)
                         .addComponent(cityNameLabel)
-                        .addGap(169, 169, 169)
-                        .addComponent(jLabel1))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(355, 355, 355)
                         .addComponent(viewLegalRequestButton)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(223, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(cityNameLabel))
-                .addGap(39, 39, 39)
+                    .addComponent(cityNameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
                 .addComponent(viewLegalRequestButton)
-                .addContainerGap(219, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -143,7 +151,7 @@ private EcoSystem business;
         }
     }//GEN-LAST:event_viewLegalRequestButtonActionPerformed
     public void populateWorkQueue(){
-        
+        legalWorkRequestTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) legalWorkRequestTable.getModel();
         model.setRowCount(0);
         for(Organization organization:enterprise.getOrganizationDirectory().getOrganizationList()){

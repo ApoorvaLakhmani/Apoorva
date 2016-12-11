@@ -39,38 +39,67 @@ public class HospitalAdminWorkArea extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        userJButton2 = new javax.swing.JButton();
-        manageEmployeeJButton = new javax.swing.JButton();
         enterpriseLabel = new javax.swing.JLabel();
         valueLabel = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        manageEmployeeJButton = new javax.swing.JButton();
+        userJButton2 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        userJButton2.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        userJButton2.setText("Manage User");
-        userJButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                userJButton2ActionPerformed(evt);
-            }
-        });
-        add(userJButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 380, 220, -1));
+        enterpriseLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        enterpriseLabel.setText("Enterprise :");
+        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, -1, -1));
 
-        manageEmployeeJButton.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
+        valueLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        valueLabel.setText("<value>");
+        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 60, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(0, 204, 153));
+
+        manageEmployeeJButton.setBackground(new java.awt.Color(0, 0, 0));
+        manageEmployeeJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        manageEmployeeJButton.setForeground(new java.awt.Color(255, 153, 153));
         manageEmployeeJButton.setText("Manage Employee");
         manageEmployeeJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageEmployeeJButtonActionPerformed(evt);
             }
         });
-        add(manageEmployeeJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 300, 220, -1));
 
-        enterpriseLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        enterpriseLabel.setText("Enterprise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, -1, -1));
+        userJButton2.setBackground(new java.awt.Color(0, 0, 0));
+        userJButton2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        userJButton2.setForeground(new java.awt.Color(255, 153, 153));
+        userJButton2.setText("Manage User");
+        userJButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                userJButton2ActionPerformed(evt);
+            }
+        });
 
-        valueLabel.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 80, -1, -1));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(userJButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(manageEmployeeJButton, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(88, 88, 88)
+                .addComponent(manageEmployeeJButton)
+                .addGap(18, 18, 18)
+                .addComponent(userJButton2)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 450, 270));
     }// </editor-fold>//GEN-END:initComponents
 
     private void userJButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_userJButton2ActionPerformed
@@ -94,6 +123,7 @@ public class HospitalAdminWorkArea extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton manageEmployeeJButton;
     private javax.swing.JButton userJButton2;
     private javax.swing.JLabel valueLabel;

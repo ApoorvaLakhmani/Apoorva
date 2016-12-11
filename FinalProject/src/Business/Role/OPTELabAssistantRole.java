@@ -23,5 +23,8 @@ public class OPTELabAssistantRole extends Role{
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
         return new LabAssistantWorkArea(userProcessContainer, account, organization, business); 
     }
-    
+    public String toString(){
+        return "OPTE Lab Assistant";
+    }
+
 }

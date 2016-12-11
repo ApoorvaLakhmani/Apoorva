@@ -23,5 +23,8 @@ public class SurgeonRole extends Role {
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account,Network inNetwork, Organization organization, Enterprise enterprise, EcoSystem business) {
       return new SurgeriesWorkArea(userProcessContainer, account, organization, business,inNetwork);
     }
-    
+    public String toString(){
+        return "Surgeon";
+    }
+
 }

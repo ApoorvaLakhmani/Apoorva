@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
+import java.awt.Font;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -54,9 +55,12 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
         surgeryWorkQueueTable = new javax.swing.JTable();
         viewSurgeryBtn = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText(" Scheduled Surgeries");
 
+        surgeryWorkQueueTable.setBackground(new java.awt.Color(204, 255, 255));
         surgeryWorkQueueTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -75,6 +79,9 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(surgeryWorkQueueTable);
 
+        viewSurgeryBtn.setBackground(new java.awt.Color(0, 0, 0));
+        viewSurgeryBtn.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        viewSurgeryBtn.setForeground(new java.awt.Color(255, 153, 153));
         viewSurgeryBtn.setText("View Surgery Details>>");
         viewSurgeryBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,26 +96,26 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(320, 320, 320)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(111, 111, 111)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(316, 316, 316)
+                        .addGap(297, 297, 297)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(280, 280, 280)
                         .addComponent(viewSurgeryBtn)))
                 .addContainerGap(135, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel1)
-                .addGap(40, 40, 40)
+                .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(66, 66, 66)
                 .addComponent(viewSurgeryBtn)
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -149,6 +156,7 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
     
     
     private void populateSurgeries() {
+        surgeryWorkQueueTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
        DefaultTableModel model = (DefaultTableModel) surgeryWorkQueueTable.getModel();
         model.setRowCount(0);
         

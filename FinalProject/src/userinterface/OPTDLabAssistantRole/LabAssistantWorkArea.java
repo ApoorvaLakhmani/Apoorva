@@ -74,9 +74,15 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         organMatchingDetailTable = new javax.swing.JTable();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 18)); // NOI18N
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("OPTD Lab Assistant Work Area");
 
+        processJButton.setBackground(new java.awt.Color(0, 0, 0));
+        processJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        processJButton.setForeground(new java.awt.Color(255, 153, 153));
         processJButton.setText("Process");
         processJButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,6 +90,7 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
             }
         });
 
+        organMatchingDetailTable.setBackground(new java.awt.Color(204, 255, 255));
         organMatchingDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -118,23 +125,23 @@ public class LabAssistantWorkArea extends javax.swing.JPanel {
                         .addGap(29, 29, 29)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(409, 409, 409)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(427, 427, 427)
-                        .addComponent(processJButton)))
+                        .addComponent(processJButton))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(360, 360, 360)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(56, 56, 56)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel1)
-                .addGap(47, 47, 47)
+                .addGap(60, 60, 60)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(processJButton)
-                .addContainerGap(159, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
