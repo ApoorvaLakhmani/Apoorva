@@ -24,7 +24,7 @@ public class Patient {
     private Organ organNeeded;
    // private int organSize;
     private String otherMedicalCondition;
-    private int patientContactNumber;
+    private long patientContactNumber;
     private String critical;
     private static int counter;
     private Date transplantRequestDate;
@@ -51,14 +51,16 @@ public class Patient {
         this.critical = critical;
     }
 
-    
-    public int getPatientContactNumber() {
+    public long getPatientContactNumber() {
         return patientContactNumber;
     }
 
-    public void setPatientContactNumber(int patientContactNumber) {
+    public void setPatientContactNumber(long patientContactNumber) {
         this.patientContactNumber = patientContactNumber;
     }
+
+    
+   
 
     
     public String getPatientName() {

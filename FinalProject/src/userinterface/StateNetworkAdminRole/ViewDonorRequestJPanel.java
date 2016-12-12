@@ -285,13 +285,16 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         ArrayList<Donor> foundDonorList = new ArrayList<>();
         //OrganMatchingWorkRequest organMatchingRequest = new OrganMatchingWorkRequest();
 
-        if (request.getDonor() == null) {
+        if (request.getDonor().getDonorName() == null) {
             //Find a Donor 
-            Donor foundDonor = new Donor();
-            Boolean organTest = false;
-            Boolean bloodTyping = false;
+            Donor foundDonor = null;
+            
 
             for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
+                Boolean organTest = false;
+                Boolean bloodTyping = false;
+                Boolean bmiTest=false;
+                
                 if (donor.isAvailable()) {
                     for (Organ organ : donor.getOrganDonateList()) {
                         if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
@@ -305,7 +308,7 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
                    
                     
-                    Boolean bmiTest=false;
+                    
                     if (Math.abs(donor.getHealthDetails().getBmi()-request.getPatientDetails().getBmi())<5){
                         bmiTest=true;
                     }
@@ -313,8 +316,9 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     
                     if (bloodTyping == true && organTest == true && bmiTest==true) {
                         foundDonor = donor;
+                        foundDonorList.add(foundDonor);
                     }
-                    foundDonorList.add(foundDonor);
+                   
                 }
 
             }
@@ -323,14 +327,15 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
 
-        } else {
-            foundDonorList.add(request.getDonor());
-            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
-            userProcessContainer.add("DonorFoundJPanel", donorFound);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-
-        }
+     } 
+//else {
+//            foundDonorList.add(request.getDonor());
+//            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
+//            userProcessContainer.add("DonorFoundJPanel", donorFound);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
+//
+//        }
     }//GEN-LAST:event_FindDonorBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

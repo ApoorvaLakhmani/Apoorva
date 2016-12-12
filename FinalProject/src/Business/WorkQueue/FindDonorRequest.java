@@ -16,7 +16,7 @@ public class FindDonorRequest extends WorkRequest{
     private Patient patientDetails;
     private int hospitalID;
     private String hospitalName;
-    private int hospitalContactNo;
+    private long hospitalContactNo;
     private String hospitalCity;
     private String hospitalState;
      private String authorization;
@@ -26,12 +26,12 @@ public class FindDonorRequest extends WorkRequest{
     public FindDonorRequest(){
         donor = new Donor();
     }
-    
-    public int getHospitalContactNo() {
+
+    public long getHospitalContactNo() {
         return hospitalContactNo;
     }
 
-    public void setHospitalContactNo(int hospitalContactNo) {
+    public void setHospitalContactNo(long hospitalContactNo) {
         this.hospitalContactNo = hospitalContactNo;
     }
     

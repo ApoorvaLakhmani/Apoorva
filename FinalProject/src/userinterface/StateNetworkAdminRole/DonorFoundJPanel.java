@@ -69,11 +69,14 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Donor donor : donorList) {
-            Object[] row = new Object[2];
+            if(donorList.size()>0){
+                 Object[] row = new Object[2];
             row[0] = donor;
             row[1] = donor.getDonorName();
 
             model.addRow(row);
+            }
+           
         }
 
     }
