@@ -155,7 +155,7 @@ public class SurgeriesWorkArea extends javax.swing.JPanel {
     }//GEN-LAST:event_viewSurgeryBtnActionPerformed
     
     
-    private void populateSurgeries() {
+    public void populateSurgeries() {
         surgeryWorkQueueTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
        DefaultTableModel model = (DefaultTableModel) surgeryWorkQueueTable.getModel();
         model.setRowCount(0);

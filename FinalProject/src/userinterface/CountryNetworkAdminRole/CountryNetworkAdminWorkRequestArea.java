@@ -143,33 +143,37 @@ public class CountryNetworkAdminWorkRequestArea extends javax.swing.JPanel {
         if (selectedRow >= 0) {
             //Find a Donor 
             FindDonorRequest request = (FindDonorRequest) workrequestTable.getValueAt(selectedRow, 0);
-            Donor foundDonor = new Donor();
-            Boolean organTest = false;
-            Boolean bloodTyping = false;
+            Donor foundDonor = null;
+           
             for (Network stateNetwork : countryNetwork.getSubNetwork()) {
-                for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
-                    if (donor.isAvailable()) {
-                        for (Organ organ : donor.getOrganDonateList()) {
-                            if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
-                                organTest = true;
-                                break;
+                for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {            
+                 Boolean organTest = false;
+                Boolean bloodTyping = false;
+                Boolean bmiTest = false;
 
-                            }
-                        }
-                        String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
-                        String patientBloodGroup = request.getPatientDetails().getBloodType();
-                        bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
+                if (donor.isAvailable()) {
+                    for (Organ organ : donor.getOrganDonateList()) {
+                        if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
+                            organTest = true;
+                            break;
 
-                        Boolean bmiTest = false;
-                        if (Math.abs(donor.getHealthDetails().getBmi() - request.getPatientDetails().getBmi()) < 5) {
-                            bmiTest = true;
                         }
+                    }
+                    String donorBloodGroup = donor.getHealthDetails().getBloodGroup();
+                    String patientBloodGroup = request.getPatientDetails().getBloodType();
+                    bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
 
-                        if (bloodTyping == true && organTest == true && bmiTest == true) {
-                            foundDonor = donor;
-                        }
+                    if (Math.abs(donor.getHealthDetails().getBmi() - request.getPatientDetails().getBmi()) < 5) {
+                        bmiTest = true;
+                    }
+
+                    if (bloodTyping == true && organTest == true && bmiTest == true) {
+                        foundDonor = donor;
                         foundDonorList.add(foundDonor);
                     }
+
+                }
+
 
                 }
 

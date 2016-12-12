@@ -180,6 +180,7 @@ public class OrganMatchingRequestJPanel extends javax.swing.JPanel {
                         
                         organMatchRequest.getDonor().setIsAvailable(false);
                         changeRequestStatus(organMatchRequest);
+                        JOptionPane.showMessageDialog(null, "Donor assigned to the request!");
                         break;
                     }
                 }

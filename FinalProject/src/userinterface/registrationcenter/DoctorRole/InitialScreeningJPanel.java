@@ -270,58 +270,52 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         request.getDonor().getHealthDetails().setWeight(Integer.parseInt(WeightTextField.getText()));
         if(BPYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasHighBloodPressure(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasHighBloodPressure(false);
         }
         if(DiabetesYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasDiabetes(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasDiabetes(false);
         }
         if(infectionYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasInfectiousDisease(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasInfectiousDisease(false);
+            
         }
         if(infectionYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasInfectiousDisease(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasInfectiousDisease(false);
+            
         }
         if(psychiatricYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setPsychiatricDisease(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setPsychiatricDisease(false);
+            
         }
         if(CancerYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasCancer(true);
+             request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasCancer(false);
+           
         }
         if(HIVYesRadioBtn.isSelected()){
             request.getDonor().getHealthDetails().setHasHIV(true);
+            request.setTestResult("Cant be an organ donor");
         }else{
             request.getDonor().getHealthDetails().setHasHIV(false);
         }
         
-//        for(Organ organ : request.getDonor().getOrganDonateList()){
-//            if (organ.getOrganName().equals("Kidney")){
-//                organ.setOrganSize(Double.parseDouble(kidneySizeTextField.getText()));
-//            }
-//            else if (organ.getOrganName().equals("Pancreas")){
-//                   organ.setOrganSize(Double.parseDouble(pancreasSizeTextField.getText()));
-//            }
-//             else if (organ.getOrganName().equals("Intestines")){
-//                organ.setOrganSize(Double.parseDouble(intestineSizeTextField.getText()));
-//            }
-//            else if (organ.getOrganName().equals("Lungs")){
-//                organ.setOrganSize(Double.parseDouble(lungSizeTextField.getText()));
-//            }
-//            else if (organ.getOrganName().equals("Liver")){
-//               organ.setOrganSize(Double.parseDouble(liverSizeTextField.getText()));
-//            }
-//               
-//        }
+
          
         request.setStatus("Initial Screening Done");
         request.setResolveDate(new Date());
@@ -331,6 +325,18 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
         HeightTextField.setText("");
         WeightTextField.setText("");
         BMITextField.setText("");
+        HIVNoRadioBtn.setSelected(false);
+        CancerNoRadioBtn.setSelected(false);
+        HIVYesRadioBtn.setSelected(false);
+        CancerYesRadioBtn.setSelected(false);
+        psychiatricYesRadioBtn.setSelected(false);
+        psychiatricNoRadioBtn.setSelected(false);
+        infectionYesRadioBtn.setSelected(false);
+        InfectionNoRadioBtn.setSelected(false);
+        DiabetesYesRadioBtn.setSelected(false);
+        DiabetesNoRadioBtn.setSelected(false);
+        BPYesRadioBtn.setSelected(false);
+        BPNoRadioBtn.setSelected(false);
         
         
     }//GEN-LAST:event_SubmitBtnActionPerformed

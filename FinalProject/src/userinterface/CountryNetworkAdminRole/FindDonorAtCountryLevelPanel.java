@@ -15,6 +15,8 @@ import Business.RegCenter.Donor;
 import Business.UserAccount.UserAccount;
 import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.OrganMatchingWorkRequest;
+import java.awt.CardLayout;
+import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JOptionPane;
@@ -62,6 +64,9 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
         jButton1 = new javax.swing.JButton();
         forwardForOrganMatching = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(204, 255, 255));
+
+        DonorDetailTable.setBackground(new java.awt.Color(204, 255, 255));
         DonorDetailTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null}
@@ -81,7 +86,15 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(DonorDetailTable);
 
         jButton1.setText("<<Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
+        forwardForOrganMatching.setBackground(new java.awt.Color(0, 0, 0));
+        forwardForOrganMatching.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        forwardForOrganMatching.setForeground(new java.awt.Color(255, 153, 153));
         forwardForOrganMatching.setText("Forward for Organ Matching>>");
         forwardForOrganMatching.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,8 +125,8 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
                 .addGap(93, 93, 93)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
-                .addComponent(forwardForOrganMatching)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addComponent(forwardForOrganMatching, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(186, 186, 186))
         );
@@ -153,6 +166,17 @@ public class FindDonorAtCountryLevelPanel extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(null, "Request sent for organ matching");
     }//GEN-LAST:event_forwardForOrganMatchingActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        userProcessContainer.remove(this);
+        Component[] componentArray = userProcessContainer.getComponents();
+        Component component = componentArray[componentArray.length - 1];
+        CountryNetworkAdminWorkRequestArea sysAdminwjp = (CountryNetworkAdminWorkRequestArea) component;
+        sysAdminwjp.populateRequests();
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }//GEN-LAST:event_jButton1ActionPerformed
     public void populateDonorTable(){
         
         DefaultTableModel model = (DefaultTableModel) DonorDetailTable.getModel();

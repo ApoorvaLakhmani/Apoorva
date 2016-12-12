@@ -136,7 +136,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
 
         AddressLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         AddressLabel.setText("Address : ");
-        add(AddressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 292, -1, -1));
+        add(AddressLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 310, -1, -1));
 
         EmailLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         EmailLabel.setText("Email Id : ");
@@ -264,6 +264,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         add(dateLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 20, 290, 40));
 
         donorCityTextField.setEditable(false);
+        donorCityTextField.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         add(donorCityTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 

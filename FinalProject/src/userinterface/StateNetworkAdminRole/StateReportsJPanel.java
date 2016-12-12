@@ -305,7 +305,7 @@ public class StateReportsJPanel extends javax.swing.JPanel {
     }
 
     private JFreeChart createPatientReportsChart(CategoryDataset dataset) {
-        JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, true, true, false);
         
         barChart.setBackgroundPaint(Color.white);  
         // Set the background color of the chart
@@ -323,10 +323,65 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         return barChart;
     }
  private CategoryDataset createDataSetForpatientDonorReports() {
-        return null;
+     DefaultCategoryDataset barChartData = new DefaultCategoryDataset();
+       ArrayList<String> array=new ArrayList<>();
+       array.add("patient");
+       array.add("donor");
+       
+       for (String item:array){
+        HashMap<Integer,Integer> map=new HashMap<>();
+        if (item.equals("patient")){
+           for (Patient patient : patientList.getPatientDirectory()) {
+                {
+                    int counter = 1;
+                    Date regDate = patient.getTransplantRequestDate();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(regDate);
+                    int year = cal.get(Calendar.YEAR);
+                    if (map.containsKey(year)) {
+                        counter = map.get(year);
+                        counter++;
+                        map.put(year, counter);
+                    } else {
+                        map.put(year, counter);
+                    }
+                }
+            }
+            for (Map.Entry<Integer, Integer> entryset : map.entrySet()) {
+                barChartData.addValue(entryset.getValue(), item, entryset.getKey());
+            } 
+        }
+        else{
+             for (Donor donor : donorDirectory.getDonorList()) {
+                {
+                    int counter = 1;
+                    Date regDate = donor.getDonorRegisterationDate();
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTime(regDate);
+                    int year = cal.get(Calendar.YEAR);
+                    if (map.containsKey(year)) {
+                        counter = map.get(year);
+                        counter++;
+                        map.put(year, counter);
+                    } else {
+                        map.put(year, counter);
+                    }
+                }
+            }
+            for (Map.Entry<Integer, Integer> entryset : map.entrySet()) {
+                barChartData.addValue(entryset.getValue(), item, entryset.getKey());
+            } 
+        }
+       
+            
+           
+       }
+       
+     
+    return barChartData;
  }
    private JFreeChart createpatientDonorReportsChart(CategoryDataset dataset) {
-        JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, false, true, false);
+        JFreeChart barChart = ChartFactory.createBarChart("Patients:Donor in the state", "Year", "Number of Donors/Patients", dataset, PlotOrientation.VERTICAL, true, true, false);
         
         barChart.setBackgroundPaint(Color.white);  
         // Set the background color of the chart

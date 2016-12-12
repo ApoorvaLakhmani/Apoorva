@@ -159,8 +159,8 @@ private EcoSystem business;
             Object[] row = new Object[3];
             row[0] = request;
             row[1] = ((FindDonorRequest) request).getHospitalID();
-            String result = ((FindDonorRequest) request).getAuthorization();
-            row[2] = result == null ? "Waiting" : result;
+            String result = ((FindDonorRequest) request).getStatus();
+            row[2] = result;
             
             model.addRow(row);
         }
