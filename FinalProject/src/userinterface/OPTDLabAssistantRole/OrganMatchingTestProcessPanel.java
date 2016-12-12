@@ -8,6 +8,7 @@ package userinterface.OPTDLabAssistantRole;
 import Business.WorkQueue.OrganMatchingWorkRequest;
 import java.awt.CardLayout;
 import java.awt.Component;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import userinterface.HospitalAdminRole.RaiseAndViewMyRequests;
 
@@ -140,6 +141,7 @@ public class OrganMatchingTestProcessPanel extends javax.swing.JPanel {
            organMatchRequest.setResult("Organ Not Matched"); 
         }
         organMatchRequest.setStatus("Completed");
+        JOptionPane.showMessageDialog(null, "Request processed");
     }//GEN-LAST:event_processTestBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

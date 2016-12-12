@@ -69,11 +69,13 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
 
         for (Donor donor : donorList) {
-            Object[] row = new Object[2];
-            row[0] = donor;
-            row[1] = donor.getDonorName();
-
+            if(donorList.size() > 0){
+                Object[] row = new Object[2];
+                row[0] = donor;
+                row[1] = donor.getDonorName();
             model.addRow(row);
+            }
+            
         }
 
     }
@@ -202,7 +204,8 @@ public class DonorFoundJPanel extends javax.swing.JPanel {
             }
             account.getWorkQueue().getWorkRequestList().add(organMatchingRequest);
         }
-
+        findDonorRequest.setStatus("Sent for organ matching");
+        
         JOptionPane.showMessageDialog(null, "Request sent for organ matching");
     }//GEN-LAST:event_organMatchingBtnActionPerformed
 

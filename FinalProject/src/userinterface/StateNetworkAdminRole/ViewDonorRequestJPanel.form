@@ -22,10 +22,13 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
+                      <Component id="patientidlabel1" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="requestIDTExtField" min="-2" pref="201" max="-2" attributes="0"/>
                           <Component id="patientidlabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="patientnamelabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="patientagelabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -36,45 +39,59 @@
                           <Component id="OrganNeededLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="OrganSizeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="MedicalCondLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="patientidlabel1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="PatientLocTextField" alignment="0" pref="201" max="32767" attributes="0"/>
-                              <Component id="PatientAgeTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientNameField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientIDTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="ContactNoTextField" alignment="0" max="32767" attributes="0"/>
-                              <Component id="PatientBloodTypeTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="PatientWeightTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="OrganNeededTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="OrganSizeTextField" alignment="1" max="32767" attributes="0"/>
-                              <Component id="requestIDTExtField" alignment="1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="PatientLocTextField" alignment="0" pref="201" max="32767" attributes="0"/>
+                                      <Component id="PatientAgeTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="PatientNameField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="PatientIDTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="ContactNoTextField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="PatientBloodTypeTextField" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="PatientWeightTextField" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="OrganNeededTextField" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="OrganSizeTextField" alignment="1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <EmptySpace pref="12" max="32767" attributes="0"/>
+                              <Component id="reqStatusTextField" min="-2" pref="167" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jScrollPane1" min="-2" pref="303" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Component id="backBtn" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="213" max="-2" attributes="0"/>
                       <Component id="FindDonorBtn" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="147" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="49" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="requestIDTExtField" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="patientidlabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                      <Component id="requestIDTExtField" min="-2" max="-2" attributes="0"/>
+                      <Component id="patientidlabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="reqStatusTextField" min="-2" pref="28" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" pref="23" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="patientidlabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="PatientIDTextField" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -360,6 +377,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="backBtnActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Semibold" size="18" style="0"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Request Status : "/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="reqStatusTextField">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -7,6 +7,9 @@ package userinterface.OPTEAdminRole;
 
 import Business.EcoSystem;
 import Business.Employee.Employee;
+import Business.Organization.OPTOrganization.OPTEAdminOrganization;
+import Business.Organization.OPTOrganization.OPTELabOrganization;
+import Business.Organization.OPTOrganization.SurgeonOrganization;
 import Business.Organization.Organization;
 import Business.Organization.OrganizationDirectory;
 import java.awt.CardLayout;
@@ -30,9 +33,19 @@ private OrganizationDirectory organizationDir;
         this.organizationDir=organizationDir;
         
         populateOrganizationEmpComboBox();
-        populateOrganizationEmpComboBox();
+        //populateOrganizationEmpComboBox();
+        populateOrganizationComboBox();
     }
-
+    public void populateOrganizationComboBox(){
+        organizationJComboBox.removeAllItems();
+        
+        for (Organization organization : organizationDir.getOrganizationList()){
+            if(organization instanceof OPTELabOrganization || organization instanceof SurgeonOrganization){
+                organizationJComboBox.addItem(organization);
+            }
+            
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -198,6 +211,7 @@ private OrganizationDirectory organizationDir;
         String name = nameJTextField.getText();
         
         organization.getEmployeeDirectory().createEmployee(name);
+        populateTable(organization);
 
     }//GEN-LAST:event_addJButtonActionPerformed
 

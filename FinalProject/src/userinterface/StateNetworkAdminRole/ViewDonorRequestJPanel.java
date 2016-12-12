@@ -40,6 +40,10 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         this.request = request;
 
         populateData();
+        
+        if(reqStatusTextField.getText().equalsIgnoreCase("Completed") || reqStatusTextField.getText().equalsIgnoreCase("Closed")){
+            FindDonorBtn.setEnabled(false);
+        }
     }
 
     public void populateData() {
@@ -54,6 +58,7 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         OrganNeededTextField.setText(request.getPatientDetails().getOrganNeeded().getOrganName());
         OrganSizeTextField.setText(String.valueOf(request.getPatientDetails().getOrganNeeded().getOrganSize()));
         OtherMedicalConditionTextArea.setText(request.getPatientDetails().getOtherMedicalCondition());
+        reqStatusTextField.setText(request.getStatus());
     }
 
     /**
@@ -90,6 +95,8 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         patientidlabel1 = new javax.swing.JLabel();
         requestIDTExtField = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        reqStatusTextField = new javax.swing.JTextField();
 
         setBackground(new java.awt.Color(204, 255, 255));
 
@@ -182,15 +189,23 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setText("Request Status : ");
+
+        reqStatusTextField.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
+                        .addComponent(patientidlabel1)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(requestIDTExtField, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(patientidlabel)
                             .addComponent(patientnamelabel)
                             .addComponent(patientagelabel)
@@ -200,37 +215,46 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                             .addComponent(PatientWeightLabel)
                             .addComponent(OrganNeededLabel)
                             .addComponent(OrganSizeLabel)
-                            .addComponent(MedicalCondLabel)
-                            .addComponent(patientidlabel1))
+                            .addComponent(MedicalCondLabel))
                         .addGap(39, 39, 39)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(PatientLocTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                                .addComponent(PatientAgeTextField)
-                                .addComponent(PatientNameField)
-                                .addComponent(PatientIDTextField)
-                                .addComponent(ContactNoTextField)
-                                .addComponent(PatientBloodTypeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(PatientWeightTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(OrganNeededTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(OrganSizeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(requestIDTExtField, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(PatientLocTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                                        .addComponent(PatientAgeTextField)
+                                        .addComponent(PatientNameField)
+                                        .addComponent(PatientIDTextField)
+                                        .addComponent(ContactNoTextField)
+                                        .addComponent(PatientBloodTypeTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(PatientWeightTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(OrganNeededTextField, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(OrganSizeTextField, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(40, 40, 40)
+                                        .addComponent(jLabel1)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                                .addComponent(reqStatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 303, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
                         .addComponent(backBtn)
                         .addGap(213, 213, 213)
                         .addComponent(FindDonorBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(70, 70, 70))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(49, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(requestIDTExtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(patientidlabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1)
+                        .addComponent(requestIDTExtField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(patientidlabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(reqStatusTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(patientidlabel)
                     .addComponent(PatientIDTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -285,9 +309,9 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         ArrayList<Donor> foundDonorList = new ArrayList<>();
         //OrganMatchingWorkRequest organMatchingRequest = new OrganMatchingWorkRequest();
 
-        if (request.getDonor() == null) {
+        if (request.getDonor().getDonorName() == null) {
             //Find a Donor 
-            Donor foundDonor = new Donor();
+            Donor foundDonor = null;
             Boolean organTest = false;
             Boolean bloodTyping = false;
 
@@ -323,12 +347,12 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
 
-        } else {
-            foundDonorList.add(request.getDonor());
-            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
-            userProcessContainer.add("DonorFoundJPanel", donorFound);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+//        } else {
+//            foundDonorList.add(request.getDonor());
+//            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
+//            userProcessContainer.add("DonorFoundJPanel", donorFound);
+//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+//            layout.next(userProcessContainer);
 
         }
     }//GEN-LAST:event_FindDonorBtnActionPerformed
@@ -377,12 +401,14 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel PatientWeightLabel;
     private javax.swing.JTextField PatientWeightTextField;
     private javax.swing.JButton backBtn;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel patientContactNoLabel;
     private javax.swing.JLabel patientagelabel;
     private javax.swing.JLabel patientidlabel;
     private javax.swing.JLabel patientidlabel1;
     private javax.swing.JLabel patientnamelabel;
+    private javax.swing.JTextField reqStatusTextField;
     private javax.swing.JTextField requestIDTExtField;
     // End of variables declaration//GEN-END:variables
 }

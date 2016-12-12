@@ -60,6 +60,14 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         patientReportJPanel.setLayout(new BorderLayout());
         patientReportJPanel.add(patientChartPanel, BorderLayout.CENTER);
         patientReportJPanel.validate();
+        
+        
+        final CategoryDataset patientDonordataSet = createDataSetForpatientDonorReports();
+        final JFreeChart patientDonorChart = createpatientDonorReportsChart(patientDonordataSet);
+        final ChartPanel patientDonorChartPanel = new ChartPanel(patientDonorChart);
+        patientDonorPanel.setLayout(new BorderLayout());
+        patientDonorPanel.add(patientDonorChartPanel, BorderLayout.CENTER);
+        patientDonorPanel.validate();
     }
 
     /**
@@ -74,6 +82,7 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         patientReportJPanel = new javax.swing.JPanel();
         donorReportsJPanel = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        patientDonorPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(204, 255, 255));
 
@@ -96,7 +105,7 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         );
         donorReportsJPanelLayout.setVerticalGroup(
             donorReportsJPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 303, Short.MAX_VALUE)
         );
 
         jButton1.setText("<< Back");
@@ -106,32 +115,49 @@ public class StateReportsJPanel extends javax.swing.JPanel {
             }
         });
 
+        javax.swing.GroupLayout patientDonorPanelLayout = new javax.swing.GroupLayout(patientDonorPanel);
+        patientDonorPanel.setLayout(patientDonorPanelLayout);
+        patientDonorPanelLayout.setHorizontalGroup(
+            patientDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 490, Short.MAX_VALUE)
+        );
+        patientDonorPanelLayout.setVerticalGroup(
+            patientDonorPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 309, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addComponent(patientReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(donorReportsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(patientReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58)
-                        .addComponent(donorReportsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(69, 69, 69)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(119, 119, 119)
-                        .addComponent(jButton1)))
-                .addContainerGap(40, Short.MAX_VALUE))
+                        .addGap(230, 230, 230)
+                        .addComponent(patientDonorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(129, 129, 129)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(donorReportsJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(patientReportJPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(patientReportJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(donorReportsJPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(patientDonorPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(1, 1, 1)
                 .addComponent(jButton1)
-                .addGap(67, 67, 67))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -296,11 +322,32 @@ public class StateReportsJPanel extends javax.swing.JPanel {
         //return chart;
         return barChart;
     }
-
+ private CategoryDataset createDataSetForpatientDonorReports() {
+        return null;
+ }
+   private JFreeChart createpatientDonorReportsChart(CategoryDataset dataset) {
+        JFreeChart barChart = ChartFactory.createBarChart("Average Waiting period of Patients", "Year", "Avg Waiting period(months)", dataset, PlotOrientation.VERTICAL, false, true, false);
+        
+        barChart.setBackgroundPaint(Color.white);  
+        // Set the background color of the chart
+        barChart.getTitle().setPaint(Color.DARK_GRAY);
+        barChart.setBorderVisible(true);
+        // Adjust the color of the title
+        CategoryPlot plot = barChart.getCategoryPlot();
+        plot.getRangeAxis().setLowerBound(0.0);
+        // Get the Plot object for a bar graph
+        plot.setBackgroundPaint(Color.white);     
+        plot.setRangeGridlinePaint(Color.blue);
+        CategoryItemRenderer renderer = plot.getRenderer();
+        renderer.setSeriesPaint(0, Color.decode("#00008B"));
+        //return chart;
+        return barChart;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel donorReportsJPanel;
     private javax.swing.JButton jButton1;
+    private javax.swing.JPanel patientDonorPanel;
     private javax.swing.JPanel patientReportJPanel;
     // End of variables declaration//GEN-END:variables
 }
