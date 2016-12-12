@@ -84,8 +84,7 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         donorContactTextField = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        donorLocationTExtArea = new javax.swing.JTextArea();
+        donorLocationTExtArea = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -242,9 +241,7 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
         jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         jLabel15.setText("Location:");
 
-        donorLocationTExtArea.setColumns(20);
-        donorLocationTExtArea.setRows(5);
-        jScrollPane1.setViewportView(donorLocationTExtArea);
+        donorLocationTExtArea.setEditable(false);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -262,7 +259,7 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
                     .addComponent(donorContactTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
                     .addComponent(donorIDTextField)
                     .addComponent(donorNameTextField)
-                    .addComponent(jScrollPane1))
+                    .addComponent(donorLocationTExtArea))
                 .addContainerGap(108, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -281,12 +278,10 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
                     .addComponent(jLabel13)
                     .addComponent(donorContactTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addGap(0, 58, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(donorLocationTExtArea, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
 
         add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, -1, 290));
@@ -423,7 +418,7 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
     private javax.swing.JButton backButton;
     private javax.swing.JTextField donorContactTextField;
     private javax.swing.JTextField donorIDTextField;
-    private javax.swing.JTextArea donorLocationTExtArea;
+    private javax.swing.JTextField donorLocationTExtArea;
     private javax.swing.JTextField donorNameTextField;
     private javax.swing.JTextField hospitalContactTextField;
     private javax.swing.JTextField hospitalIDTextField;
@@ -445,7 +440,6 @@ public class ViewLegalRequestPanel extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField patientContactTExtField;
     private javax.swing.JTextField patientCriticalityTextField;

@@ -148,6 +148,8 @@ public class OrganProcurementAndTransplantationPanel extends javax.swing.JPanel 
         if (org!=null){
             org.getWorkQueue().getWorkRequestList().add(request);
         }
+        
+         JOptionPane.showMessageDialog(this, "Procurement and Transplantation initiated!");
        }
        else{
            

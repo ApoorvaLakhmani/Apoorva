@@ -75,6 +75,7 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         DononrRegReqTable.setBackground(new java.awt.Color(204, 255, 255));
+        DononrRegReqTable.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
         DononrRegReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
@@ -127,17 +128,26 @@ public class DonorRequestStatusJPanel extends javax.swing.JPanel {
        if (selectedRow>=0)
        {
          InitialScreeningTestWorkRequest request= (InitialScreeningTestWorkRequest)DononrRegReqTable.getValueAt(selectedRow, 0);
-         if(request.getStatus().equals("Initial Screening Done")){
+         if(request.getStatus().equals("Initial Screening Done")&& (request.getTestResult() == null || !request.getTestResult().equalsIgnoreCase("Cant be an organ donor"))
+                                                                             ){
              request.setStatus("Registeration complete");
              request.getDonor().setIsAvailable(true);
              system.getMasterDonorDirectory().add(request.getDonor());
              stateNetwork.getDonorDirectory().addDonor(request.getDonor());
              ((DonorRegistrationCenter)enterprise).getDonorDirectory().addDonor(request.getDonor());
+             populateTable();
+             JOptionPane.showMessageDialog(this, "Donor Registered!");
              
-         }else{
-             if(enterprise.getEnterpriseType().getValue().equals(Enterprise.EnterpriseType.DonorRegCenter)){
-                 ((DonorRegistrationCenter)enterprise).getDonorDirectory().deleteDonor(request.getDonor());
-             }
+         }
+         else if(request.getStatus().equals("Initial Screening pending")){
+             JOptionPane.showMessageDialog(this, "Request is not in proper status to register the Donor!");
+           
+         }
+         else if(request.getStatus().equals("Initial Screening Done")&& request.getTestResult().equalsIgnoreCase("Cant be an organ donor")){
+             
+             request.setStatus("Cannot be a donor");
+               JOptionPane.showMessageDialog(this, "Request updated!");
+             populateTable();
          }
        }
        else{

@@ -27,6 +27,7 @@ public class HospitalAdminWorkArea extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer=userProcessContainer;
         this.enterprise = enterprise;
+        valueLabel.setText(enterprise.getName());
         
     }
 

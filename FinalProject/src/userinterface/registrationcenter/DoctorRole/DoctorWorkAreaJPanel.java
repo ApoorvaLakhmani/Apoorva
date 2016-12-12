@@ -38,6 +38,7 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         this.userAccount = account;
         this.system = system;
         this.doctorOrganization = (RegCenterDoctorOrganization)organization;
+        
         populateTable();
         
     }
@@ -48,11 +49,11 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
        
         for(WorkRequest request : doctorOrganization.getWorkQueue().getWorkRequestList()){
-            Object[] row = new Object[3];
+            Object[] row = new Object[4];
             row[0] = request;
             row[1] = request.getStatus();
             row[2] = ((InitialScreeningTestWorkRequest)request).getDonor().getDonorName();
-            
+            row[3] = ((InitialScreeningTestWorkRequest)request).getTestResult();
             model.addRow(row);
         }
     }
@@ -67,9 +68,8 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         initialScreeningReqTable = new javax.swing.JTable();
-        enterpriseLabel = new javax.swing.JLabel();
-        valueLabel = new javax.swing.JLabel();
         requestTestJButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -78,20 +78,20 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
         initialScreeningReqTable.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         initialScreeningReqTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Request ID", "Status", "Donor Name"
+                "Request ID", "Status", "Donor Name", "Result"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -106,14 +106,6 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 658, 169));
 
-        enterpriseLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        enterpriseLabel.setText("Enterprise :");
-        add(enterpriseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 27, 127, 30));
-
-        valueLabel.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
-        valueLabel.setText("<value>");
-        add(valueLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(157, 29, 158, 26));
-
         requestTestJButton.setBackground(new java.awt.Color(0, 0, 0));
         requestTestJButton.setFont(new java.awt.Font("Segoe UI Semibold", 0, 20)); // NOI18N
         requestTestJButton.setForeground(new java.awt.Color(255, 153, 153));
@@ -124,16 +116,25 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
             }
         });
         add(requestTestJButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 460, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setText("Initial Screening work area");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 250, 40));
     }// </editor-fold>//GEN-END:initComponents
 
     private void requestTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_requestTestJButtonActionPerformed
         int selectedRow = initialScreeningReqTable.getSelectedRow();
         if (selectedRow >= 0) {
             InitialScreeningTestWorkRequest request = (InitialScreeningTestWorkRequest) initialScreeningReqTable.getValueAt(selectedRow, 0);
-            InitialScreeningJPanel initialScreening = new InitialScreeningJPanel(userProcessContainer,request);
-            userProcessContainer.add("InitialScreeningJPanel", initialScreening);
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
+            if(request.getStatus().equalsIgnoreCase("Initial Screening pending")){
+                InitialScreeningJPanel initialScreening = new InitialScreeningJPanel(userProcessContainer,request);
+                userProcessContainer.add("InitialScreeningJPanel", initialScreening);
+                CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                layout.next(userProcessContainer);
+            }else{
+                JOptionPane.showMessageDialog(null, "Initial screening done");
+            }
+            
         } else {
 
             JOptionPane.showMessageDialog(this, "Please select a row", "Error", JOptionPane.ERROR_MESSAGE);
@@ -144,10 +145,9 @@ public class DoctorWorkAreaJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JTable initialScreeningReqTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton requestTestJButton;
-    private javax.swing.JLabel valueLabel;
     // End of variables declaration//GEN-END:variables
 }
