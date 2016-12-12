@@ -8,9 +8,16 @@ package userinterface.HospitalAdminRole;
 import Business.EcoSystem;
 import Business.Network.Network;
 import Business.UserAccount.UserAccount;
+import Business.WorkQueue.FindDonorRequest;
 import Business.WorkQueue.WorkRequest;
 import java.awt.CardLayout;
 import java.awt.Font;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -40,15 +47,29 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         RequestDetailsTable.getTableHeader().setFont(new Font("Segoe UI Semibold", Font.PLAIN, 18));
         DefaultTableModel model = (DefaultTableModel) RequestDetailsTable.getModel();
         model.setRowCount(0);
-        
+         Date dateWithZeroTime=null;
+         Date completionDate=null;
         for (WorkRequest request : userAccount.getWorkQueue().getWorkRequestList()){
             Object[] row = new Object[7];
             row[0] = request.getRequestID();
-            row[1] = request.getRequestDate();
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+            Date reqDate = request.getRequestDate(); 
+             Date processCompletonDate=((FindDonorRequest)request).getResolveDate();
+            try {
+               dateWithZeroTime = formatter.parse(formatter.format(reqDate));
+               if (processCompletonDate!=null){
+                   completionDate=formatter.parse(formatter.format(processCompletonDate));
+               }
+               
+            } catch (ParseException ex) {
+                Logger.getLogger(RaiseAndViewMyRequests.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            row[1] = dateWithZeroTime;
+             row[2] = ((FindDonorRequest)request).getPatientDetails().getPatientID();
+             row[3] = ((FindDonorRequest)request).getPatientDetails().getPatientName();
+             row[4] = ((FindDonorRequest)request).getPatientDetails().getOrganNeeded().getOrganName();
             row[5] = request.getStatus();
-            //String result = ((LabTestWorkRequest) request).getTestResult();
-            //row[3] = result == null ? "Waiting" : result;
-            
+            row[6] = processCompletonDate == null ? "" : completionDate;
             model.addRow(row);
         }
     }
@@ -102,7 +123,7 @@ public class RaiseAndViewMyRequests extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(RequestDetailsTable);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 970, 192));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(37, 171, 980, 192));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 3, 20)); // NOI18N
         jLabel1.setText("My Work Requests");

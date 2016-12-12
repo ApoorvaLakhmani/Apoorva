@@ -276,7 +276,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
           if(donor!=null){
               try {
                   
-                  if (DobTextField.getText().equals("")|| NameTextField.getText().equals("")||(MaleRadioBtn.isSelected()==false && FemaleRadioBtn.isSelected()==false ) || (AllOrganCheckbox.isSelected()==false && someOrgansCheckBox.isSelected()==false)) {
+                  if (DobTextField.getText().equals("")|| NameTextField.getText().equals("")||(MaleRadioBtn.isSelected()==false && FemaleRadioBtn.isSelected()==false ) || (AllOrganCheckbox.isSelected()==false && someOrgansCheckBox.isSelected()==false)||NameTextField.getText().equals("")||TelephoneTextField.getText().equals("")) {
                       JOptionPane.showMessageDialog(null, "Please enter valid Details in the form!");
                     return;
                   }
@@ -286,7 +286,9 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   donor.setDonorName(NameTextField.getText());
                   donor.setDonorAge(Integer.parseInt(DonorAgeTextField.getText()));
                   donor.setDateOfBirth(dateOfBirth);
+                  donor.setIsAvailable(true);
                   Boolean dateValid=isValidDate(DobTextField.getText());
+                  
                   if(dateValid==false){
                        JOptionPane.showMessageDialog(null, "Please enter valid Date format");
                  return;
@@ -298,7 +300,7 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   if(FemaleRadioBtn.isSelected()){
                       donor.setDonorGender("Female");
                   }
-                  donor.setDonorPhoneNumber(Integer.parseInt(TelephoneTextField.getText()));
+                  donor.setDonorPhoneNumber(Long.parseLong(TelephoneTextField.getText().trim()));
                   donor.setDonorEmailId(EmailTextField.getText());
                   
                   donor.setDonorAddress(donorCityTextField.getText());
@@ -395,7 +397,6 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
         MaleRadioBtn.setSelected(false);
         FemaleRadioBtn.setSelected(false);
         TelephoneTextField.setText("");
-        donorCityTextField.setText("");
         EmailTextField.setText("");
         KidneyChkBox.setSelected(false);
         pancreasChkBox.setSelected(false);

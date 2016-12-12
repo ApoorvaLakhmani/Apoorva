@@ -312,10 +312,18 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
         if (request.getDonor().getDonorName() == null) {
             //Find a Donor 
             Donor foundDonor = null;
+<<<<<<< HEAD
             Boolean organTest = false;
             Boolean bloodTyping = false;
+=======
+            
+>>>>>>> bab9c92993e162f6ad441c8a1ab15d862097e5cd
 
             for (Donor donor : stateNetwork.getDonorDirectory().getDonorList()) {
+                Boolean organTest = false;
+                Boolean bloodTyping = false;
+                Boolean bmiTest=false;
+                
                 if (donor.isAvailable()) {
                     for (Organ organ : donor.getOrganDonateList()) {
                         if (request.getPatientDetails().getOrganNeeded().getOrganName().equals(organ.getOrganName())) {
@@ -329,7 +337,7 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     bloodTyping = bloodTest(donorBloodGroup, patientBloodGroup);
                    
                     
-                    Boolean bmiTest=false;
+                    
                     if (Math.abs(donor.getHealthDetails().getBmi()-request.getPatientDetails().getBmi())<5){
                         bmiTest=true;
                     }
@@ -337,8 +345,9 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
                     
                     if (bloodTyping == true && organTest == true && bmiTest==true) {
                         foundDonor = donor;
+                        foundDonorList.add(foundDonor);
                     }
-                    foundDonorList.add(foundDonor);
+                   
                 }
 
             }
@@ -347,14 +356,24 @@ public class ViewDonorRequestJPanel extends javax.swing.JPanel {
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
 
+<<<<<<< HEAD
 //        } else {
+=======
+     } 
+//else {
+>>>>>>> bab9c92993e162f6ad441c8a1ab15d862097e5cd
 //            foundDonorList.add(request.getDonor());
 //            DonorFoundJPanel donorFound = new DonorFoundJPanel(userProcessContainer, account, system, request, stateNetwork, foundDonorList);
 //            userProcessContainer.add("DonorFoundJPanel", donorFound);
 //            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
 //            layout.next(userProcessContainer);
+<<<<<<< HEAD
 
         }
+=======
+//
+//        }
+>>>>>>> bab9c92993e162f6ad441c8a1ab15d862097e5cd
     }//GEN-LAST:event_FindDonorBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

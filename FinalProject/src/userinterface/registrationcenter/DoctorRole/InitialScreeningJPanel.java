@@ -348,7 +348,7 @@ public class InitialScreeningJPanel extends javax.swing.JPanel {
     private void WeightTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_WeightTextFieldFocusLost
        Integer height = Integer.parseInt(HeightTextField.getText())*Integer.parseInt(HeightTextField.getText());
        Float weight = Float.parseFloat(WeightTextField.getText());
-       float bmi = (weight/(height*height))*10000;
+       float bmi = (weight/(height))*10000;
        
        BMITextField.setText(String.valueOf(bmi));
     }//GEN-LAST:event_WeightTextFieldFocusLost
