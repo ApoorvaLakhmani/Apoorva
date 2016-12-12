@@ -361,8 +361,8 @@ public class DonorRegistrationFormJPanel extends javax.swing.JPanel {
                   } 
                   donor.setOrganDonateList(organList);
                                  
-              } catch (ParseException ex) {
-              JOptionPane.showMessageDialog(null, "Please enter valid information in the form");
+              } catch (Exception ex) {
+                   JOptionPane.showMessageDialog(null, "Please enter valid information in the form");
                  return;
               }
               
